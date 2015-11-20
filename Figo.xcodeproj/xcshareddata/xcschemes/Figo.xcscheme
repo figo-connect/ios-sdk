@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "83F3AF211BFF28D900767D77"
-               BuildableName = "Figo iOS.framework"
+               BuildableName = "Figo.framework"
                BlueprintName = "Figo iOS"
                ReferencedContainer = "container:Figo.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83F3AF2B1BFF28DA00767D77"
+               BlueprintIdentifier = "83D3A6E91BFF5BA4003EDE45"
                BuildableName = "Figo iOS Tests.xctest"
                BlueprintName = "Figo iOS Tests"
                ReferencedContainer = "container:Figo.xcodeproj">
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "83F3AF211BFF28D900767D77"
-            BuildableName = "Figo iOS.framework"
+            BuildableName = "Figo.framework"
             BlueprintName = "Figo iOS"
             ReferencedContainer = "container:Figo.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "83F3AF211BFF28D900767D77"
-            BuildableName = "Figo iOS.framework"
+            BuildableName = "Figo.framework"
             BlueprintName = "Figo iOS"
             ReferencedContainer = "container:Figo.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "83F3AF211BFF28D900767D77"
-            BuildableName = "Figo iOS.framework"
+            BuildableName = "Figo.framework"
             BlueprintName = "Figo iOS"
             ReferencedContainer = "container:Figo.xcodeproj">
          </BuildableReference>

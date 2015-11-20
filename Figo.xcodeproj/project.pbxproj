@@ -8,44 +8,74 @@
 
 /* Begin PBXBuildFile section */
 		83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A68B1BFF29D9003EDE45 /* Figo.swift */; };
-		83D3A68D1BFF29D9003EDE45 /* Figo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A68B1BFF29D9003EDE45 /* Figo.swift */; };
-		83D3A68E1BFF2AFF003EDE45 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6861BFF298A003EDE45 /* BaseTestCase.swift */; };
-		83F3AF2D1BFF28DA00767D77 /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
+		83D3A6921BFF507A003EDE45 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D3A68F1BFF503D003EDE45 /* Alamofire.framework */; };
+		83D3A6EF1BFF5BA4003EDE45 /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
+		83D3A6F51BFF5C24003EDE45 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D3A68F1BFF503D003EDE45 /* Alamofire.framework */; };
+		83D3A6F81BFF5C4A003EDE45 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83D3A68F1BFF503D003EDE45 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */; };
+		83D3A7001BFF8E97003EDE45 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */; };
+		83D3A70B1BFFB6AA003EDE45 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7091BFFB6A7003EDE45 /* BaseTestCase.swift */; };
+		83D3A70E1BFFB71D003EDE45 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70C1BFFB71D003EDE45 /* Account.swift */; };
+		83D3A70F1BFFB71D003EDE45 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70C1BFFB71D003EDE45 /* Account.swift */; };
+		83D3A7101BFFB71D003EDE45 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70D1BFFB71D003EDE45 /* Error.swift */; };
+		83D3A7111BFFB71D003EDE45 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70D1BFFB71D003EDE45 /* Error.swift */; };
+		83D3A7131BFFB72C003EDE45 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7121BFFB72C003EDE45 /* ResponseObjectSerializable.swift */; };
+		83D3A7141BFFB72C003EDE45 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7121BFFB72C003EDE45 /* ResponseObjectSerializable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83F3AF2E1BFF28DA00767D77 /* PBXContainerItemProxy */ = {
+		83D3A6F01BFF5BA4003EDE45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83F3AF191BFF28D900767D77 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 83F3AF211BFF28D900767D77;
-			remoteInfo = Figo;
+			remoteInfo = "Figo iOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		83D3A6F71BFF5C42003EDE45 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Frameworks;
+			dstSubfolderSpec = 7;
+			files = (
+				83D3A6F81BFF5C4A003EDE45 /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		83D3A6811BFF2953003EDE45 /* Figo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figo.h; sourceTree = "<group>"; };
 		83D3A6821BFF2953003EDE45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83D3A6861BFF298A003EDE45 /* BaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
-		83D3A6881BFF298A003EDE45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83D3A68B1BFF29D9003EDE45 /* Figo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Figo.swift; sourceTree = "<group>"; };
+		83D3A68F1BFF503D003EDE45 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		83D3A6EA1BFF5BA4003EDE45 /* Figo iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Figo iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Types/Authorization.swift; sourceTree = "<group>"; };
+		83D3A7091BFFB6A7003EDE45 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
+		83D3A70A1BFFB6A7003EDE45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83D3A70C1BFFB71D003EDE45 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Types/Account.swift; sourceTree = "<group>"; };
+		83D3A70D1BFFB71D003EDE45 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Types/Error.swift; sourceTree = "<group>"; };
+		83D3A7121BFFB72C003EDE45 /* ResponseObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseObjectSerializable.swift; sourceTree = "<group>"; };
 		83F3AF221BFF28D900767D77 /* Figo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Figo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		83F3AF2C1BFF28DA00767D77 /* Figo iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Figo iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		83D3A6E71BFF5BA4003EDE45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D3A6F51BFF5C24003EDE45 /* Alamofire.framework in Frameworks */,
+				83D3A6EF1BFF5BA4003EDE45 /* Figo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83F3AF1E1BFF28D900767D77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83F3AF291BFF28DA00767D77 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83F3AF2D1BFF28DA00767D77 /* Figo.framework in Frameworks */,
+				83D3A6921BFF507A003EDE45 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +85,9 @@
 		83D3A67F1BFF2953003EDE45 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				83D3A6FA1BFF684C003EDE45 /* Types */,
 				83D3A68B1BFF29D9003EDE45 /* Figo.swift */,
+				83D3A7121BFFB72C003EDE45 /* ResponseObjectSerializable.swift */,
 				83D3A6801BFF2953003EDE45 /* Supporting Files */,
 			);
 			path = Source;
@@ -70,28 +102,39 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		83D3A6851BFF298A003EDE45 /* Tests */ = {
+		83D3A6911BFF5065003EDE45 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				83D3A6861BFF298A003EDE45 /* BaseTestCase.swift */,
-				83D3A6871BFF298A003EDE45 /* Supporting Files */,
+				83D3A68F1BFF503D003EDE45 /* Alamofire.framework */,
 			);
-			path = Tests;
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		83D3A6871BFF298A003EDE45 /* Supporting Files */ = {
+		83D3A6FA1BFF684C003EDE45 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				83D3A6881BFF298A003EDE45 /* Info.plist */,
+				83D3A70C1BFFB71D003EDE45 /* Account.swift */,
+				83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */,
+				83D3A70D1BFFB71D003EDE45 /* Error.swift */,
 			);
-			path = "Supporting Files";
+			name = Types;
+			sourceTree = "<group>";
+		};
+		83D3A7081BFFB6A7003EDE45 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				83D3A7091BFFB6A7003EDE45 /* BaseTestCase.swift */,
+				83D3A70A1BFFB6A7003EDE45 /* Info.plist */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		83F3AF181BFF28D900767D77 = {
 			isa = PBXGroup;
 			children = (
+				83D3A6911BFF5065003EDE45 /* Dependencies */,
 				83D3A67F1BFF2953003EDE45 /* Source */,
-				83D3A6851BFF298A003EDE45 /* Tests */,
+				83D3A7081BFFB6A7003EDE45 /* Tests */,
 				83F3AF231BFF28D900767D77 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				83F3AF221BFF28D900767D77 /* Figo.framework */,
-				83F3AF2C1BFF28DA00767D77 /* Figo iOS Tests.xctest */,
+				83D3A6EA1BFF5BA4003EDE45 /* Figo iOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +161,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		83D3A6E91BFF5BA4003EDE45 /* Figo iOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83D3A6F21BFF5BA4003EDE45 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */;
+			buildPhases = (
+				83D3A6E61BFF5BA4003EDE45 /* Sources */,
+				83D3A6E71BFF5BA4003EDE45 /* Frameworks */,
+				83D3A6E81BFF5BA4003EDE45 /* Resources */,
+				83D3A6F71BFF5C42003EDE45 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83D3A6F11BFF5BA4003EDE45 /* PBXTargetDependency */,
+			);
+			name = "Figo iOS Tests";
+			productName = "Figo iOS Tests";
+			productReference = 83D3A6EA1BFF5BA4003EDE45 /* Figo iOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		83F3AF211BFF28D900767D77 /* Figo iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83F3AF361BFF28DA00767D77 /* Build configuration list for PBXNativeTarget "Figo iOS" */;
@@ -136,24 +198,6 @@
 			productReference = 83F3AF221BFF28D900767D77 /* Figo.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		83F3AF2B1BFF28DA00767D77 /* Figo iOS Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83F3AF391BFF28DA00767D77 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */;
-			buildPhases = (
-				83F3AF281BFF28DA00767D77 /* Sources */,
-				83F3AF291BFF28DA00767D77 /* Frameworks */,
-				83F3AF2A1BFF28DA00767D77 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83F3AF2F1BFF28DA00767D77 /* PBXTargetDependency */,
-			);
-			name = "Figo iOS Tests";
-			productName = FigoTests;
-			productReference = 83F3AF2C1BFF28DA00767D77 /* Figo iOS Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -164,10 +208,10 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = CodeStage;
 				TargetAttributes = {
-					83F3AF211BFF28D900767D77 = {
+					83D3A6E91BFF5BA4003EDE45 = {
 						CreatedOnToolsVersion = 7.1.1;
 					};
-					83F3AF2B1BFF28DA00767D77 = {
+					83F3AF211BFF28D900767D77 = {
 						CreatedOnToolsVersion = 7.1.1;
 					};
 				};
@@ -185,20 +229,20 @@
 			projectRoot = "";
 			targets = (
 				83F3AF211BFF28D900767D77 /* Figo iOS */,
-				83F3AF2B1BFF28DA00767D77 /* Figo iOS Tests */,
+				83D3A6E91BFF5BA4003EDE45 /* Figo iOS Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		83F3AF201BFF28D900767D77 /* Resources */ = {
+		83D3A6E81BFF5BA4003EDE45 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83F3AF2A1BFF28DA00767D77 /* Resources */ = {
+		83F3AF201BFF28D900767D77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,34 +252,69 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		83D3A6E61BFF5BA4003EDE45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D3A7111BFFB71D003EDE45 /* Error.swift in Sources */,
+				83D3A7141BFFB72C003EDE45 /* ResponseObjectSerializable.swift in Sources */,
+				83D3A7001BFF8E97003EDE45 /* Authorization.swift in Sources */,
+				83D3A70B1BFFB6AA003EDE45 /* BaseTestCase.swift in Sources */,
+				83D3A70F1BFFB71D003EDE45 /* Account.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83F3AF1D1BFF28D900767D77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D3A7101BFFB71D003EDE45 /* Error.swift in Sources */,
+				83D3A7131BFFB72C003EDE45 /* ResponseObjectSerializable.swift in Sources */,
+				83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83F3AF281BFF28DA00767D77 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83D3A68E1BFF2AFF003EDE45 /* BaseTestCase.swift in Sources */,
-				83D3A68D1BFF29D9003EDE45 /* Figo.swift in Sources */,
+				83D3A70E1BFFB71D003EDE45 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		83F3AF2F1BFF28DA00767D77 /* PBXTargetDependency */ = {
+		83D3A6F11BFF5BA4003EDE45 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83F3AF211BFF28D900767D77 /* Figo iOS */;
-			targetProxy = 83F3AF2E1BFF28DA00767D77 /* PBXContainerItemProxy */;
+			targetProxy = 83D3A6F01BFF5BA4003EDE45 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		83D3A6F31BFF5BA4003EDE45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.chriskoenig.Figo-iOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		83D3A6F41BFF5BA4003EDE45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.chriskoenig.Figo-iOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		83F3AF341BFF28DA00767D77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -332,6 +411,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -348,6 +431,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -357,32 +444,17 @@
 			};
 			name = Release;
 		};
-		83F3AF3A1BFF28DA00767D77 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.FigoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		83F3AF3B1BFF28DA00767D77 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.FigoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		83D3A6F21BFF5BA4003EDE45 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83D3A6F31BFF5BA4003EDE45 /* Debug */,
+				83D3A6F41BFF5BA4003EDE45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		83F3AF1C1BFF28D900767D77 /* Build configuration list for PBXProject "Figo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -397,15 +469,6 @@
 			buildConfigurations = (
 				83F3AF371BFF28DA00767D77 /* Debug */,
 				83F3AF381BFF28DA00767D77 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83F3AF391BFF28DA00767D77 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83F3AF3A1BFF28DA00767D77 /* Debug */,
-				83F3AF3B1BFF28DA00767D77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
