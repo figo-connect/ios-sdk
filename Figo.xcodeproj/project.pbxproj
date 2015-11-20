@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A68B1BFF29D9003EDE45 /* Figo.swift */; };
+		83D3A68D1BFF29D9003EDE45 /* Figo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A68B1BFF29D9003EDE45 /* Figo.swift */; };
+		83D3A68E1BFF2AFF003EDE45 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6861BFF298A003EDE45 /* BaseTestCase.swift */; };
+		83F3AF2D1BFF28DA00767D77 /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83F3AF2E1BFF28DA00767D77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F3AF191BFF28D900767D77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83F3AF211BFF28D900767D77;
+			remoteInfo = Figo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		83D3A6811BFF2953003EDE45 /* Figo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figo.h; sourceTree = "<group>"; };
+		83D3A6821BFF2953003EDE45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83D3A6861BFF298A003EDE45 /* BaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
+		83D3A6881BFF298A003EDE45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83D3A68B1BFF29D9003EDE45 /* Figo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Figo.swift; sourceTree = "<group>"; };
+		83F3AF221BFF28D900767D77 /* Figo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Figo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F3AF2C1BFF28DA00767D77 /* Figo iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Figo iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		83F3AF1E1BFF28D900767D77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F3AF291BFF28DA00767D77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F3AF2D1BFF28DA00767D77 /* Figo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		83D3A67F1BFF2953003EDE45 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				83D3A68B1BFF29D9003EDE45 /* Figo.swift */,
+				83D3A6801BFF2953003EDE45 /* Supporting Files */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		83D3A6801BFF2953003EDE45 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83D3A6811BFF2953003EDE45 /* Figo.h */,
+				83D3A6821BFF2953003EDE45 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83D3A6851BFF298A003EDE45 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				83D3A6861BFF298A003EDE45 /* BaseTestCase.swift */,
+				83D3A6871BFF298A003EDE45 /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		83D3A6871BFF298A003EDE45 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83D3A6881BFF298A003EDE45 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83F3AF181BFF28D900767D77 = {
+			isa = PBXGroup;
+			children = (
+				83D3A67F1BFF2953003EDE45 /* Source */,
+				83D3A6851BFF298A003EDE45 /* Tests */,
+				83F3AF231BFF28D900767D77 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		83F3AF231BFF28D900767D77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83F3AF221BFF28D900767D77 /* Figo.framework */,
+				83F3AF2C1BFF28DA00767D77 /* Figo iOS Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		83F3AF1F1BFF28D900767D77 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		83F3AF211BFF28D900767D77 /* Figo iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83F3AF361BFF28DA00767D77 /* Build configuration list for PBXNativeTarget "Figo iOS" */;
+			buildPhases = (
+				83F3AF1D1BFF28D900767D77 /* Sources */,
+				83F3AF1E1BFF28D900767D77 /* Frameworks */,
+				83F3AF1F1BFF28D900767D77 /* Headers */,
+				83F3AF201BFF28D900767D77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Figo iOS";
+			productName = Figo;
+			productReference = 83F3AF221BFF28D900767D77 /* Figo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		83F3AF2B1BFF28DA00767D77 /* Figo iOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83F3AF391BFF28DA00767D77 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */;
+			buildPhases = (
+				83F3AF281BFF28DA00767D77 /* Sources */,
+				83F3AF291BFF28DA00767D77 /* Frameworks */,
+				83F3AF2A1BFF28DA00767D77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83F3AF2F1BFF28DA00767D77 /* PBXTargetDependency */,
+			);
+			name = "Figo iOS Tests";
+			productName = FigoTests;
+			productReference = 83F3AF2C1BFF28DA00767D77 /* Figo iOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83F3AF191BFF28D900767D77 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = CodeStage;
+				TargetAttributes = {
+					83F3AF211BFF28D900767D77 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					83F3AF2B1BFF28DA00767D77 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 83F3AF1C1BFF28D900767D77 /* Build configuration list for PBXProject "Figo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 83F3AF181BFF28D900767D77;
+			productRefGroup = 83F3AF231BFF28D900767D77 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				83F3AF211BFF28D900767D77 /* Figo iOS */,
+				83F3AF2B1BFF28DA00767D77 /* Figo iOS Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83F3AF201BFF28D900767D77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F3AF2A1BFF28DA00767D77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		83F3AF1D1BFF28D900767D77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F3AF281BFF28DA00767D77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D3A68E1BFF2AFF003EDE45 /* BaseTestCase.swift in Sources */,
+				83D3A68D1BFF29D9003EDE45 /* Figo.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83F3AF2F1BFF28DA00767D77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83F3AF211BFF28D900767D77 /* Figo iOS */;
+			targetProxy = 83F3AF2E1BFF28DA00767D77 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		83F3AF341BFF28DA00767D77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		83F3AF351BFF28DA00767D77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		83F3AF371BFF28DA00767D77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.Figo;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		83F3AF381BFF28DA00767D77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.Figo;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		83F3AF3A1BFF28DA00767D77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.FigoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		83F3AF3B1BFF28DA00767D77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.FigoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		83F3AF1C1BFF28D900767D77 /* Build configuration list for PBXProject "Figo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F3AF341BFF28DA00767D77 /* Debug */,
+				83F3AF351BFF28DA00767D77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83F3AF361BFF28DA00767D77 /* Build configuration list for PBXNativeTarget "Figo iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F3AF371BFF28DA00767D77 /* Debug */,
+				83F3AF381BFF28DA00767D77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83F3AF391BFF28DA00767D77 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F3AF3A1BFF28DA00767D77 /* Debug */,
+				83F3AF3B1BFF28DA00767D77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83F3AF191BFF28D900767D77 /* Project object */;
+}
