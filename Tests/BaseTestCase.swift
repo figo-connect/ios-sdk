@@ -50,5 +50,24 @@ class BaseTestCase: XCTestCase {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
+    func testRetrieveAccounts() {
+        let resultArrived = self.expectationWithDescription("result arrived")
+        
+        Figo.retrieveAccounts() { result in
+            
+            switch result {
+            case .Success(let accounts):
+                XCTAssertGreaterThan(accounts.count, 0)
+                break
+            case .Failure(let error):
+                XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
+                break
+            }
+            
+            resultArrived.fulfill()
+        }
+        
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
 
 }

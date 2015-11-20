@@ -9,29 +9,7 @@
 import Foundation
 
 
-public struct Account {
-    init(JSON: [String: AnyObject]) {
-        account_id = JSON["account_id"] as? String
-        account_number = JSON["account_number"] as? String
-        additional_icons = JSON["additional_icons"] as? [String: String]
-        auto_sync = JSON["auto_sync"] as? Bool
-        balance = JSON["bank_code"]
-        bank_code = JSON["bank_code"] as? String
-        bank_id = JSON["bank_id"] as? String
-        bank_name = JSON["bank_name"] as? String
-        bic = JSON["bic"] as? String
-        currency = JSON["currency"] as? String
-        iban = JSON["iban"] as? String
-        icon = JSON["icon"] as? String
-        in_total_balance = JSON["in_total_balance"] as? Bool
-        name = JSON["name"] as? String
-        owner = JSON["owner"] as? String
-        preferred_tan_scheme = JSON["preferred_tan_scheme"]
-        save_pin = JSON["save_pin"] as? Bool
-        status = JSON["status"]
-        supported_payments = JSON["supported_payments"]
-        type = JSON["type"] as? String
-    }
+public final class Account: ResponseObjectSerializable, ResponseCollectionSerializable {
     
     let account_id: String?
     let account_number: String?
@@ -53,6 +31,44 @@ public struct Account {
     let status: AnyObject?
     let supported_payments: AnyObject?
     let type: String?
+    
+    
+    public init?(response: NSHTTPURLResponse, representation: AnyObject) {
+        account_id = representation.valueForKeyPath("account_id") as? String
+        account_number = representation.valueForKeyPath("account_number") as? String
+        additional_icons = representation.valueForKeyPath("additional_icons") as? [String : String]
+        auto_sync = representation.valueForKeyPath("auto_sync") as? Bool
+        balance = representation.valueForKeyPath("balance")
+        bank_code = representation.valueForKeyPath("bank_code") as? String
+        bank_id = representation.valueForKeyPath("bank_id") as? String
+        bank_name = representation.valueForKeyPath("bank_name") as? String
+        bic = representation.valueForKeyPath("bic") as? String
+        currency = representation.valueForKeyPath("currency") as? String
+        iban = representation.valueForKeyPath("iban") as? String
+        icon = representation.valueForKeyPath("icon") as? String
+        in_total_balance = representation.valueForKeyPath("in_total_balance") as? Bool
+        name = representation.valueForKeyPath("name") as? String
+        owner = representation.valueForKeyPath("owner") as? String
+        preferred_tan_scheme = representation.valueForKeyPath("preferred_tan_scheme")
+        save_pin = representation.valueForKeyPath("save_pin") as? Bool
+        status = representation.valueForKeyPath("status")
+        supported_payments = representation.valueForKeyPath("supported_payments")
+        type = representation.valueForKeyPath("type") as? String
+    }
+    
+    public static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Account] {
+        var accounts: [Account] = []
+        if let representation = representation as? [String: AnyObject] {
+            if let representation = representation["accounts"] as? [[String: AnyObject]] {
+                for userRepresentation in representation {
+                    if let account = Account(response: response, representation: userRepresentation) {
+                        accounts.append(account)
+                    }
+                }
+            }
+        }
+        return accounts
+    }
 }
 
 

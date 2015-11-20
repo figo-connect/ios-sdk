@@ -22,7 +22,7 @@ func logResponse(response: Alamofire.Response<AnyObject, NSError>) {
             debugPrint(JSON)
         }
     }
-    debugPrint(response.result)
+
     debugPrint(response.response!)
     if let data = response.data {
         if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
@@ -35,19 +35,34 @@ public func login(username username: String, password: String, clientID: String,
     let route = Router.LoginUser(username: username, password: password, clientID: clientID, clientSecret: clientSecret)
     Alamofire.request(route)
         .validate()
+        .responseJSON() { response in
+            logResponse(response)
+        }
         .responseObject { (response: Response<Authorization, NSError>) in
+            switch response.result {
+                case .Success(let value):
+                    completionHandler(result: Result.Success(value))
+                    break
+                case .Failure(let error):
+                    let error = errorFromResponseData(response.data, frameworkError: error)
+                    completionHandler(result: Result.Failure(error))
+                    return
+            }
+        }
+}
+
+
+
+public func retrieveAccounts(completionHandler: (result: Result<[Account]>) -> ()) {
+    Alamofire.request(Router.RetrieveAccounts)
+        .validate()
+        .responseJSON() { response in
+            logResponse(response)
+        }
+        .responseCollection { (response: Response<[Account], NSError>) in
             switch response.result {
             case .Success(let value):
                 completionHandler(result: Result.Success(value))
-                break
-            case .Failure(_):
-                break
-            }
-        }
-        .responseJSON { response in
-            logResponse(response)
-            switch response.result {
-            case .Success(_):
                 break
             case .Failure(let error):
                 let error = errorFromResponseData(response.data, frameworkError: error)
@@ -58,6 +73,9 @@ public func login(username username: String, password: String, clientID: String,
 }
 
 
+public enum Retrieve {
+    case Accounts
+}
 
 
 func errorFromResponseData(data: NSData?, frameworkError: NSError) -> NSError {
@@ -74,34 +92,36 @@ func errorFromResponseData(data: NSData?, frameworkError: NSError) -> NSError {
 
 
 
-enum Router: URLRequestConvertible {
+public enum Router: URLRequestConvertible {
     private static let baseURLString = "https://api.figo.me"
-    private static var OAuthToken: String?
+    private static var OAuthToken: String? = "ASHWLIkouP2O6_bgA2wWReRhletgWKHYjLqDaqb0LFfamim9RjexTo22ujRIP_cjLiRiSyQXyt2kM1eXU2XLFZQ0Hro15HikJQT_eNeT_9XQ"
     
     case RefreshToken(token: String)
     case LoginUser(username: String, password: String, clientID: String, clientSecret: String)
-    case RetrieveAccounts(handler: (AnyObject?) -> ())
+    case RetrieveAccount(accountId: String, handler: (result: Result<Account>) -> ())
+    case RetrieveAccounts
     
     var method: Alamofire.Method {
         switch self {
-        case .RefreshToken, LoginUser:
-            return .POST
-        default:
-            return .GET
+            case .RefreshToken, LoginUser:
+                return .POST
+            default:
+                return .GET
         }
     }
     
     var path: String {
         switch self {
-            
-        case .RefreshToken, LoginUser:
-            return "/auth/token"
-        case .RetrieveAccounts:
-            return "/rest/accounts"
+            case .RefreshToken, LoginUser:
+                return "/auth/token"
+            case .RetrieveAccounts:
+                return "/rest/accounts"
+            case.RetrieveAccount(let accountId, _):
+                return "/rest/accounts/" + accountId
         }
     }
     
-    var URLRequest: NSMutableURLRequest {
+    public var URLRequest: NSMutableURLRequest {
         let URL = NSURL(string: Router.baseURLString)!
         let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         
@@ -113,19 +133,18 @@ enum Router: URLRequestConvertible {
         }
         
         switch self {
+            case .RefreshToken(let token):
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["refresh_token": token]).0
+                
+            case .LoginUser(let username, let password, let clientID, let clientSecret):
+                let clientCode: String = clientID + ":" + clientSecret
+                let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
+                let base64Encoded: NSString = utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
+                mutableURLRequest.setValue("Basic \(base64Encoded)", forHTTPHeaderField: "Authorization")
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["username": username, "password" : password, "grant_type" : "password"]).0
             
-        case .RefreshToken(let token):
-            return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["refresh_token": token]).0
-            
-        case .LoginUser(let username, let password, let clientID, let clientSecret):
-            let clientCode: String = clientID + ":" + clientSecret
-            let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
-            let base64Encoded: NSString = utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
-            mutableURLRequest.setValue("Basic \(base64Encoded)", forHTTPHeaderField: "Authorization")
-            return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["username": username, "password" : password, "grant_type" : "password"]).0
-            
-        default:
-            return mutableURLRequest
+            default:
+                return mutableURLRequest
         }
     }
 }

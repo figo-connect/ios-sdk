@@ -37,6 +37,11 @@
                BlueprintName = "Figo iOS Tests"
                ReferencedContainer = "container:Figo.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "BaseTestCase/testLoginUser()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
