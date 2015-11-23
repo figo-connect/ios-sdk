@@ -25,28 +25,22 @@ extension Request {
     public func responseObject<T: ResponseObjectSerializable>(completionHandler: Result<T, NSError> -> Void) -> Self {
         let responseSerializer = ResponseSerializer<T, NSError> { request, response, data, error in
             
-            debugPrintRequest(request)
-            debugPrintResponse(response)
-            debugPrintData(data)
-            debugPrint(error)
-            
-            guard let response = response else { return .Failure(error!) }
-            
             let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
             let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
+            debugPrintRequest(request, response, data)
             
             switch result {
-            case .Success(let value):
-                guard error == nil else {
-                    return .Failure(Error(response: response, representation: value))
-                }
-                if let responseObject = T(response: response, representation: value) {
-                    return .Success(responseObject)
-                } else {
-                    return .Failure(Error(code: .UnexpectedJSONStructure, failureReason: "Failed to created object \(T.self) from JSON: \(value)"))
-                }
-            case .Failure(let error):
-                return .Failure(error)
+                case .Success(let value):
+                    if let responseObject = T(response: response!, representation: value) {
+                        return .Success(responseObject)
+                    } else {
+                        return .Failure(Error(code: .UnexpectedJSONStructure, failureReason: "Failed to created object \(T.self) from JSON: \(value)"))
+                    }
+                case .Failure(let error):
+                    guard let data = data else { return .Failure(error) }
+                    guard let string = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(error) }
+                    guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(Error(code: Error.Code.UnrecognizedServerResponse, failureReason: string)) }
+                    return .Failure(Error(response: response!, representation: JSON))
             }
         }
         
@@ -65,44 +59,37 @@ extension Request {
 
     public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: Result<[T], NSError> -> Void) -> Self {
         let responseSerializer = ResponseSerializer<[T], NSError> { request, response, data, error in
-
-            debugPrintRequest(request)
-            debugPrintResponse(response)
-            debugPrintData(data)
-            debugPrint(error)
             
-            guard let response = response else { return .Failure(error!) }
-        
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
             let result = JSONSerializer.serializeResponse(request, response, data, error)
+            debugPrintRequest(request, response, data)
             
             switch result {
-            case .Success(let value):
-                guard error == nil else {
-                    return .Failure(Error(response: response, representation: value))
+                case .Success(let value):
+                    return .Success(T.collection(response: response!, representation: value))
+                case .Failure(let error):
+                    guard let data = data else { return .Failure(error) }
+                    guard let string = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(error) }
+                    guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(Error(code: Error.Code.UnrecognizedServerResponse, failureReason: string)) }
+                    return .Failure(Error(response: response!, representation: JSON))
                 }
-                return .Success(T.collection(response: response, representation: value))
-
-            case .Failure(let error):
-                return .Failure(error)
-            }
         }
         
         return response(responseSerializer: responseSerializer) { (response: Response<[T], NSError>) in
             switch response.result {
-            case .Success(let value):
-                completionHandler(Result.Success(value))
-                break
-            case .Failure(let error):
-                completionHandler(Result.Failure(error))
-                return
-            }
+                case .Success(let value):
+                    completionHandler(Result.Success(value))
+                    break
+                case .Failure(let error):
+                    completionHandler(Result.Failure(error))
+                    return
+                }
         }
     }
 }
 
 
-private func debugPrintRequest(request: NSURLRequest?) {
+private func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _ data: NSData?) {
     if let request = request {
         debugPrint(request)
         if let data = request.HTTPBody {
@@ -111,22 +98,12 @@ private func debugPrintRequest(request: NSURLRequest?) {
             }
         }
     }
-}
-
-private func debugPrintResponse(response: NSHTTPURLResponse?) {
     if let response = response {
         debugPrint(response)
     }
-}
-
-
-private func debugPrintData(data: NSData?) {
     if let data = data {
         if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
             debugPrint(JSON)
         }
     }
 }
-
-
-

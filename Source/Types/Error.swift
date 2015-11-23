@@ -34,7 +34,8 @@ public final class Error: NSError, ResponseObjectSerializable {
     public let Domain = "me.figo.error"
     
     public enum Code: Int {
-        case ServerErrorResponse        = -4000
-        case UnexpectedJSONStructure    = -4001
+        case UnrecognizedServerResponse = -4001
+        case ServerErrorResponse        = -4002
+        case UnexpectedJSONStructure    = -4003
     }
 }
