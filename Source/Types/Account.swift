@@ -9,32 +9,60 @@
 import Foundation
 
 
-public final class Account: ResponseObjectSerializable, ResponseCollectionSerializable {
+func stringForKey(key: String, representation: AnyObject) throws -> String {
+    if let value = representation.valueForKeyPath(key) as? String {
+        return value
+    } else {
+        throw SerializationError.MissingMandatoryKey(key: key)
+    }
+}
+
+
+public struct Account: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible, CustomDebugStringConvertible {
     
-    let account_id: String?
-    let account_number: String?
-    let additional_icons: [String : String]?
-    let auto_sync: Bool?
-    let balance: AnyObject?
-    let bank_code: String?
-    let bank_id: String?
-    let bank_name: String?
-    let bic: String?
-    let currency: String?
-    let iban: String?
-    let icon: String?
-    let in_total_balance: Bool?
-    let name: String?
-    let owner: String?
-    let preferred_tan_scheme: AnyObject?
-    let save_pin: Bool?
-    let status: AnyObject?
-    let supported_payments: AnyObject?
-    let type: String?
+    let account_id: String
+    let account_number: String!
+    let additional_icons: [String : String]!
+    let auto_sync: Bool!
+    let balance: AnyObject!
+    let bank_code: String!
+    let bank_id: String!
+    let bank_name: String!
+    let bic: String!
+    let currency: String!
+    let iban: String!
+    let icon: String!
+    let in_total_balance: Bool!
+    let name: String!
+    let owner: String!
+    let preferred_tan_scheme: AnyObject!
+    let save_pin: Bool!
+    let status: AnyObject!
+    let supported_payments: AnyObject!
+    let type: String!
     
+    private var representation: AnyObject
     
-    public init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        account_id = representation.valueForKeyPath("account_id") as? String
+    public var description: String {
+        get {
+            return representation.description ?? ""
+        }
+    }
+    
+    public var debugDescription: String {
+        get {
+            return representation.debugDescription ?? ""
+        }
+    }
+    
+    public init?(response: NSHTTPURLResponse, representation: AnyObject) throws {
+        try self.init(representation: representation)
+    }
+    
+    public init?(representation: AnyObject) throws {
+        self.representation = representation
+        
+        account_id = try stringForKey("account_id", representation: representation)
         account_number = representation.valueForKeyPath("account_number") as? String
         additional_icons = representation.valueForKeyPath("additional_icons") as? [String : String]
         auto_sync = representation.valueForKeyPath("auto_sync") as? Bool
@@ -54,14 +82,16 @@ public final class Account: ResponseObjectSerializable, ResponseCollectionSerial
         status = representation.valueForKeyPath("status")
         supported_payments = representation.valueForKeyPath("supported_payments")
         type = representation.valueForKeyPath("type") as? String
+
+
     }
     
-    public static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Account] {
+    public static func collection(response response: NSHTTPURLResponse, representation: AnyObject) throws -> [Account] {
         var accounts: [Account] = []
         if let representation = representation as? [String: AnyObject] {
             if let representation = representation["accounts"] as? [[String: AnyObject]] {
                 for userRepresentation in representation {
-                    if let account = Account(response: response, representation: userRepresentation) {
+                    if let account = try Account(response: response, representation: userRepresentation) {
                         accounts.append(account)
                     }
                 }

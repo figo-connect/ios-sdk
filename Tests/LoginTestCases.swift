@@ -70,10 +70,12 @@ class LoginTestCases: XCTestCase {
     }
     
     
-    func testThatLogoutRevokesAccessToken() {
+    func disabled_testThatLogoutRevokesAccessToken() {
         let resultArrived = self.expectationWithDescription("result arrived")
         Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
+            XCTAssert(result.isSuccess)
             Figo.logout() { result in
+                XCTAssert(result.isSuccess)
                 Figo.retrieveAccount("A1.1") { result in
                     XCTAssert(result.isFailure)
                     resultArrived.fulfill()

@@ -1,0 +1,64 @@
+{
+    "account_id": "A1.1",
+    "account_number": "4711951500",
+    "additional_icons": {
+        "48x48": "https://api.figo.me/assets/images/accounts/default_48.png",
+        "60x60": "https://api.figo.me/assets/images/accounts/default_60.png"
+    },
+    "auto_sync": false,
+    "balance": {
+        "balance": 3250.3099999999999,
+        "balance_date": "2013-09-11T00:00:00.000Z",
+        "credit_line": 0.0,
+        "monthly_spending_limit": 0.0
+    },
+    "bank_code": "90090042",
+    "bank_id": "B1.1",
+    "bank_name": "Demobank",
+    "bic": "DEMODE01",
+    "currency": "EUR",
+    "iban": "DE67900900424711951500",
+    "icon": "https://api.figo.me/assets/images/accounts/default.png",
+    "in_total_balance": true,
+    "name": "Girokonto",
+    "owner": "figo",
+    "preferred_tan_scheme": null,
+    "save_pin": false,
+    "status": {
+        "code": -1,
+        "message": "Cannot load credential 8f084858-e1c6-4642-87f8-540b530b6e0f: UUID does not exist.",
+        "success_timestamp": "2013-09-11T00:00:00.000Z",
+        "sync_timestamp": "2014-07-09T10:04:40.000Z"
+    },
+    "supported_payments": {
+        "Transfer": {
+            "allowed_recipients": [],
+            "can_be_recurring": false,
+            "can_be_scheduled": false,
+            "max_purpose_length": 108,
+            "supported_file_formats": [],
+            "supported_text_keys": [
+                                    51,
+                                    53
+                                    ]
+        }
+    },
+    "supported_tan_schemes": [
+                              {
+                              "medium_name": "",
+                              "name": "iTAN",
+                              "tan_scheme_id": "M1.1"
+                              },
+                              {
+                              "medium_name": "Girocard",
+                              "name": "chipTAN optisch",
+                              "tan_scheme_id": "M1.2"
+                              }, 
+                              {
+                              "medium_name": "Girocard", 
+                              "name": "chipTAN manuell", 
+                              "tan_scheme_id": "M1.3"
+                              }
+                              ], 
+    "type": "Unknown"
+}

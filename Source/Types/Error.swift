@@ -14,7 +14,7 @@ public final class Error: NSError, ResponseObjectSerializable {
     
     let error_description: String
     
-    public init(response: NSHTTPURLResponse, representation: AnyObject) {
+    public init(response: NSHTTPURLResponse, representation: AnyObject) throws {
         error_description = representation.valueForKeyPath("error_description") as? String ?? ""
         let userInfo = [NSLocalizedFailureReasonErrorKey: error_description]
         super.init(domain: Domain, code: Code.ServerErrorResponse.rawValue, userInfo: userInfo)
@@ -37,5 +37,13 @@ public final class Error: NSError, ResponseObjectSerializable {
         case UnrecognizedServerResponse = -4001
         case ServerErrorResponse        = -4002
         case UnexpectedJSONStructure    = -4003
+        case MissingJSONKey             = -4004
     }
+}
+
+
+public enum SerializationError: ErrorType {
+    case MissingMandatoryKey(key: String)
+    case UnexpectedType(key: String)
+    case UnexpectedRootObject
 }

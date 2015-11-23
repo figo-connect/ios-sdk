@@ -66,7 +66,8 @@ The Figo Framework depends on Alamofire, so you need to make sure that you add t
 ### Manually
 
 * Add Figo as a git submodule by running the following command:
-`$ git submodule add https://github.com/figome/ios-sdk.git`
+
+	`$ git submodule add https://github.com/figome/ios-sdk.git`
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
 * Add the Figo.framework to your target(s) in the "Embedded Binaries" sections

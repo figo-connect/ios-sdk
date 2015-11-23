@@ -23,7 +23,8 @@ public func login(username username: String, password: String, clientID: String,
 }
 
 public func logout(completionHandler: (result: Result<Authorization, NSError>) -> Void) {
-    fireRequest(Router.RevokeToken(token: Session.sharedSession.accessToken ?? "")).responseObject() { (result: Result<Authorization, NSError>) in
+    fireRequest(Router.RevokeToken(token: Session.sharedSession.authorization?.refresh_token ?? "")).responseObject() { (result: Result<Authorization, NSError>) in
+        // TODO: Endpoint always sends error
         Session.sharedSession.authorization = nil
         completionHandler(result: result)
     }
@@ -87,7 +88,7 @@ enum Router: URLRequestConvertible {
             case .RefreshToken(let token):
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["refresh_token": token]).0
             case .RevokeToken(let token):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["token": token]).0
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["token": token, "cascade" : false]).0
             default:
                 return mutableURLRequest
         }
