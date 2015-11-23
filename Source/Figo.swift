@@ -8,12 +8,9 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 
-public enum Result<T> {
-    case Success(T)
-    case Failure(NSError)
-}
 
 func logResponse(response: Alamofire.Response<AnyObject, NSError>) {
     debugPrint(response.request!)
@@ -31,29 +28,19 @@ func logResponse(response: Alamofire.Response<AnyObject, NSError>) {
     }
 }
 
-public func login(username username: String, password: String, clientID: String, clientSecret: String, completionHandler: (result: Result<Authorization>) -> ()) {
+public func login(username username: String, password: String, clientID: String, clientSecret: String, completionHandler: (result: Result<Authorization, NSError>) -> ()) {
     let route = Router.LoginUser(username: username, password: password, clientID: clientID, clientSecret: clientSecret)
     Alamofire.request(route)
         .validate()
         .responseJSON() { response in
             logResponse(response)
         }
-        .responseObject { (response: Response<Authorization, NSError>) in
-            switch response.result {
-                case .Success(let value):
-                    completionHandler(result: Result.Success(value))
-                    break
-                case .Failure(let error):
-                    let error = errorFromResponseData(response.data, frameworkError: error)
-                    completionHandler(result: Result.Failure(error))
-                    return
-            }
-        }
+        .responseObject(completionHandler)
 }
 
 
 
-public func retrieveAccounts(completionHandler: (result: Result<[Account]>) -> ()) {
+public func retrieveAccounts(completionHandler: (result: Result<[Account], NSError>) -> ()) {
     Alamofire.request(Router.RetrieveAccounts)
         .validate()
         .responseJSON() { response in
@@ -73,23 +60,20 @@ public func retrieveAccounts(completionHandler: (result: Result<[Account]>) -> (
 }
 
 
-public enum Retrieve {
-    case Accounts
-}
+public func retrieveAccount(accountID: String, completionHandler: (result: Result<Account, NSError>) -> ()) {
 
-
-func errorFromResponseData(data: NSData?, frameworkError: NSError) -> NSError {
-    if let data = data {
-        if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-            if let JSON = JSON as? [String: AnyObject] {
-                let error = Error.errorWithCode(.ServerErrorResponse, failureReason: JSON["error_description"] as! String)
-                return error
-            }
+    Alamofire.request(Router.RetrieveAccount(accountId: accountID, handler: completionHandler))
+        .validate()
+        .responseJSON() { response in
+            logResponse(response)
         }
-    }
-    return frameworkError
+        .responseObject(completionHandler)
 }
 
+
+public func retrieve(r: Router) {
+    
+}
 
 
 public enum Router: URLRequestConvertible {
@@ -98,7 +82,7 @@ public enum Router: URLRequestConvertible {
     
     case RefreshToken(token: String)
     case LoginUser(username: String, password: String, clientID: String, clientSecret: String)
-    case RetrieveAccount(accountId: String, handler: (result: Result<Account>) -> ())
+    case RetrieveAccount(accountId: String, handler: (result: Result<Account, NSError>) -> ())
     case RetrieveAccounts
     
     var method: Alamofire.Method {
@@ -121,12 +105,19 @@ public enum Router: URLRequestConvertible {
         }
     }
     
+    
     public var URLRequest: NSMutableURLRequest {
         let URL = NSURL(string: Router.baseURLString)!
         let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         
         mutableURLRequest.HTTPMethod = method.rawValue
+
+        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        mutableURLRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forKey: "Content-Type")
+
+
+        // "device_name" : UIDevice.currentDevice().name, "device_type" : UIDevice.currentDevice().model, "device_udid" : NSUUID().UUIDString
         
         if let token = Router.OAuthToken {
             mutableURLRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

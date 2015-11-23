@@ -21,7 +21,7 @@ public protocol ResponseCollectionSerializable {
 
 
 extension Request {
-    public func responseObject<T: ResponseObjectSerializable>(completionHandler: Response<T, NSError> -> Void) -> Self {
+    public func responseObject<T: ResponseObjectSerializable>(completionHandler: Result<T, NSError> -> Void) -> Self {
         let responseSerializer = ResponseSerializer<T, NSError> { request, response, data, error in
             guard error == nil else { return .Failure(error!) }
             
@@ -45,7 +45,17 @@ extension Request {
             }
         }
         
-        return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
+        return response(responseSerializer: responseSerializer) { (response: Response<T, NSError>) in
+            switch response.result {
+            case .Success(let value):
+                completionHandler(Result.Success(value))
+                break
+            case .Failure(let error):
+                let error = errorFromResponseData(response.data, frameworkError: error)
+                completionHandler(Result.Failure(error))
+                return
+            }
+        }
     }
 }
 
@@ -60,9 +70,12 @@ extension Request {
             
             switch result {
             case .Success(let value):
-                if let response = response {
+                if let response = response
+                {
                     return .Success(T.collection(response: response, representation: value))
-                } else {
+                }
+                else
+                {
                     let failureReason = "Response collection could not be serialized due to nil response"
                     let error = Error.errorWithCode(.UnexpectedJSONStructure, failureReason: failureReason)
                     return .Failure(error)
@@ -75,4 +88,20 @@ extension Request {
         return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
 }
+
+
+func errorFromResponseData(data: NSData?, frameworkError: NSError) -> NSError {
+    if let data = data {
+        if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
+            if let JSON = JSON as? [String: AnyObject] {
+                let error = Error.errorWithCode(.ServerErrorResponse, failureReason: JSON["error_description"] as! String)
+                return error
+            }
+        }
+    }
+    return frameworkError
+}
+
+
+
 
