@@ -13,10 +13,10 @@ import Alamofire
 
 class BaseTestCase: XCTestCase {
     
-    let username = "demo@figo.me"
-    let password = "demo1234"
-    let clientID = "CaESKmC8MAhNpDe5rvmWnSkRE_7pkkVIIgMwclgzGcQY"
-    let clientSecret = "STdzfv0GXtEj_bwYn7AgCVszN1kKq5BdgEIKOM_fzybQ"
+    let username = "christian@koenig.systems"
+    let password = "eVPVdiL7a8EUAP"
+    let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
+    let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
     
     
     override func setUp() {
@@ -53,18 +53,20 @@ class BaseTestCase: XCTestCase {
     func testRetrieveAccounts() {
         let resultArrived = self.expectationWithDescription("result arrived")
         
-        Figo.retrieveAccounts() { result in
-            
-            switch result {
-            case .Success(let accounts):
-                XCTAssertGreaterThan(accounts.count, 0)
-                break
-            case .Failure(let error):
-                XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
-                break
+        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
+            Figo.retrieveAccounts() { result in
+                
+                switch result {
+                case .Success(let accounts):
+                    XCTAssertGreaterThan(accounts.count, 0)
+                    break
+                case .Failure(let error):
+                    XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
+                    break
+                }
+                
+                resultArrived.fulfill()
             }
-            
-            resultArrived.fulfill()
         }
         
         self.waitForExpectationsWithTimeout(30, handler: nil)
@@ -74,20 +76,21 @@ class BaseTestCase: XCTestCase {
     func testRetrieveAccount() {
         let resultArrived = self.expectationWithDescription("result arrived")
         
-        
-        Figo.retrieveAccount("A1.2") { result in
-            
-            switch result {
-            case .Success(let account):
-                XCTAssertEqual(account.account_number!, "4711951501")
-                break
-            case .Failure(let error):
-                XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
-                break
+        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
+            Figo.retrieveAccount("A1079434.13") { result in
+                
+                switch result {
+                case .Success(let account):
+                    XCTAssertEqual(account.account_number!, "743668")
+                    break
+                case .Failure(let error):
+                    XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
+                    break
+                }
+                
+                
+                resultArrived.fulfill()
             }
-            
-            
-            resultArrived.fulfill()
         }
         
         self.waitForExpectationsWithTimeout(30, handler: nil)

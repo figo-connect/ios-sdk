@@ -8,81 +8,44 @@
 
 import Foundation
 import Alamofire
-import UIKit
 
 
-
-func logResponse(response: Alamofire.Response<AnyObject, NSError>) {
-    debugPrint(response.request!)
-    if let data = response.request?.HTTPBody {
-        if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-            debugPrint(JSON)
-        }
-    }
-
-    debugPrint(response.response!)
-    if let data = response.data {
-        if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-            debugPrint(JSON)
-        }
-    }
-}
 
 public func login(username username: String, password: String, clientID: String, clientSecret: String, completionHandler: (result: Result<Authorization, NSError>) -> ()) {
     let route = Router.LoginUser(username: username, password: password, clientID: clientID, clientSecret: clientSecret)
+    
+    let h: (result: Result<Authorization, NSError>) -> () = { result in
+        Router.OAuthToken = result.value?.access_token
+        completionHandler(result: result)
+    }
+    
     Alamofire.request(route)
         .validate()
-        .responseJSON() { response in
-            logResponse(response)
-        }
-        .responseObject(completionHandler)
+        .responseObject(h)
 }
-
 
 
 public func retrieveAccounts(completionHandler: (result: Result<[Account], NSError>) -> ()) {
     Alamofire.request(Router.RetrieveAccounts)
         .validate()
-        .responseJSON() { response in
-            logResponse(response)
-        }
-        .responseCollection { (response: Response<[Account], NSError>) in
-            switch response.result {
-            case .Success(let value):
-                completionHandler(result: Result.Success(value))
-                break
-            case .Failure(let error):
-                let error = errorFromResponseData(response.data, frameworkError: error)
-                completionHandler(result: Result.Failure(error))
-                return
-            }
-    }
+        .responseCollection(completionHandler)
 }
 
 
 public func retrieveAccount(accountID: String, completionHandler: (result: Result<Account, NSError>) -> ()) {
-
-    Alamofire.request(Router.RetrieveAccount(accountId: accountID, handler: completionHandler))
+    Alamofire.request(Router.RetrieveAccount(accountId: accountID))
         .validate()
-        .responseJSON() { response in
-            logResponse(response)
-        }
         .responseObject(completionHandler)
-}
-
-
-public func retrieve(r: Router) {
-    
 }
 
 
 public enum Router: URLRequestConvertible {
     private static let baseURLString = "https://api.figo.me"
-    private static var OAuthToken: String? = "ASHWLIkouP2O6_bgA2wWReRhletgWKHYjLqDaqb0LFfamim9RjexTo22ujRIP_cjLiRiSyQXyt2kM1eXU2XLFZQ0Hro15HikJQT_eNeT_9XQ"
+    private static var OAuthToken: String?
     
     case RefreshToken(token: String)
     case LoginUser(username: String, password: String, clientID: String, clientSecret: String)
-    case RetrieveAccount(accountId: String, handler: (result: Result<Account, NSError>) -> ())
+    case RetrieveAccount(accountId: String)
     case RetrieveAccounts
     
     var method: Alamofire.Method {
@@ -100,7 +63,7 @@ public enum Router: URLRequestConvertible {
                 return "/auth/token"
             case .RetrieveAccounts:
                 return "/rest/accounts"
-            case.RetrieveAccount(let accountId, _):
+            case.RetrieveAccount(let accountId):
                 return "/rest/accounts/" + accountId
         }
     }

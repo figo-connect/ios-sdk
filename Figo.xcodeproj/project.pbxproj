@@ -19,8 +19,8 @@
 		83D3A70F1BFFB71D003EDE45 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70C1BFFB71D003EDE45 /* Account.swift */; };
 		83D3A7101BFFB71D003EDE45 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70D1BFFB71D003EDE45 /* Error.swift */; };
 		83D3A7111BFFB71D003EDE45 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70D1BFFB71D003EDE45 /* Error.swift */; };
-		83D3A7131BFFB72C003EDE45 /* ResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7121BFFB72C003EDE45 /* ResponseExtensions.swift */; };
-		83D3A7141BFFB72C003EDE45 /* ResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7121BFFB72C003EDE45 /* ResponseExtensions.swift */; };
+		83D3A7131BFFB72C003EDE45 /* ResponseHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7121BFFB72C003EDE45 /* ResponseHandlers.swift */; };
+		83D3A7141BFFB72C003EDE45 /* ResponseHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7121BFFB72C003EDE45 /* ResponseHandlers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 		83D3A70A1BFFB6A7003EDE45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83D3A70C1BFFB71D003EDE45 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Types/Account.swift; sourceTree = "<group>"; };
 		83D3A70D1BFFB71D003EDE45 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Types/Error.swift; sourceTree = "<group>"; };
-		83D3A7121BFFB72C003EDE45 /* ResponseExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseExtensions.swift; sourceTree = "<group>"; };
+		83D3A7121BFFB72C003EDE45 /* ResponseHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandlers.swift; sourceTree = "<group>"; };
 		83F3AF221BFF28D900767D77 /* Figo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Figo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,7 +87,7 @@
 			children = (
 				83D3A6FA1BFF684C003EDE45 /* Types */,
 				83D3A68B1BFF29D9003EDE45 /* Figo.swift */,
-				83D3A7121BFFB72C003EDE45 /* ResponseExtensions.swift */,
+				83D3A7121BFFB72C003EDE45 /* ResponseHandlers.swift */,
 				83D3A6801BFF2953003EDE45 /* Supporting Files */,
 			);
 			path = Source;
@@ -257,7 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D3A7111BFFB71D003EDE45 /* Error.swift in Sources */,
-				83D3A7141BFFB72C003EDE45 /* ResponseExtensions.swift in Sources */,
+				83D3A7141BFFB72C003EDE45 /* ResponseHandlers.swift in Sources */,
 				83D3A7001BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83D3A70B1BFFB6AA003EDE45 /* BaseTestCase.swift in Sources */,
 				83D3A70F1BFFB71D003EDE45 /* Account.swift in Sources */,
@@ -269,7 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D3A7101BFFB71D003EDE45 /* Error.swift in Sources */,
-				83D3A7131BFFB72C003EDE45 /* ResponseExtensions.swift in Sources */,
+				83D3A7131BFFB72C003EDE45 /* ResponseHandlers.swift in Sources */,
 				83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */,
 				83D3A70E1BFFB71D003EDE45 /* Account.swift in Sources */,
