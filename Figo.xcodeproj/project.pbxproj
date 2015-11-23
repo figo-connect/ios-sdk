@@ -63,6 +63,8 @@
 		83D3A7171C031EDA003EDE45 /* ResponseHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseHandlers.swift; path = Core/ResponseHandlers.swift; sourceTree = "<group>"; };
 		83D3A71A1C031F1B003EDE45 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		83D3A71D1C033512003EDE45 /* LoginTestCases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCases.swift; sourceTree = "<group>"; };
+		83D3A7201C03471D003EDE45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		83D3A7211C03472F003EDE45 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		83F3AF221BFF28D900767D77 /* Figo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Figo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -147,6 +149,8 @@
 		83F3AF181BFF28D900767D77 = {
 			isa = PBXGroup;
 			children = (
+				83D3A7201C03471D003EDE45 /* README.md */,
+				83D3A7211C03472F003EDE45 /* Cartfile */,
 				83D3A6911BFF5065003EDE45 /* Dependencies */,
 				83D3A67F1BFF2953003EDE45 /* Source */,
 				83D3A7081BFFB6A7003EDE45 /* Tests */,

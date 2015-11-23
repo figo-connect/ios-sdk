@@ -1,15 +1,19 @@
 
 
+# figo Connect API iOS SDK
+
+
+figo Website: [http://figo.io](http://figo.io)
+
+figo API Reference: [http://docs.figo.io](http://docs.figo.io)
+
+
 ### How to add the Figo Framework to your project
 The Figo Framework depends on Alamofire, so you need to make sure that you add that to your project too.
 
 #### Maually
 
 #### Carthage
-
-#### CocoaPods
-
-
 
 
 1. Install Carthage
@@ -20,3 +24,5 @@ The Figo Framework depends on Alamofire, so you need to make sure that you add t
 
 	Run `carthage bootstrap` in your project folder
 
+
+#### CocoaPods
