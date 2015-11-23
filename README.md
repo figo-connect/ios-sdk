@@ -2,18 +2,34 @@
 
 # Figo iOS SDK
 
-The Figo Framework supports iOS, OSX, watchOS and tvOS. Take a look at the test cases if you are not sure how to use the framework's interface.
+The Figo Framework supports iOS, OSX, watchOS and tvOS. Take a look at the test cases to see more examples of interaction with the API.
 
 Website: [http://figo.io](http://figo.io)
 
 API Docs: [http://docs.figo.io](http://docs.figo.io)
 
+## Usage
+### Retrieve all accounts
+        Figo.retrieveAccounts() { result in
+            if let accounts = result.value {
+                for account in accounts {
+                    print(account.account_id)
+                }
+            }
+        }
+### Retrieve a single account
+        Figo.retrieveAccount("A1.1") { result in
+            if let account = result.value {
+                print(account.account_id)
+            }
+        }
+        
 
-### How to add the Figo Framework to your project
+## Installation
 The Figo Framework depends on Alamofire, so you need to make sure that you add that to your project too.
 
 
-#### Carthage
+### Carthage
 
 
 * Install Carthage
@@ -44,10 +60,10 @@ The Figo Framework depends on Alamofire, so you need to make sure that you add t
     `$(SRCROOT)/Carthage/Build/iOS/Figo.framework`
 
 
-#### CocoaPods
+### CocoaPods
 
 
-#### Manually
+### Manually
 
 * Add Figo as a git submodule by running the following command:
 `$ git submodule add https://github.com/figome/ios-sdk.git`

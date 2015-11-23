@@ -24,10 +24,9 @@ class DemoTestCases: XCTestCase {
         let resultArrived = self.expectationWithDescription("result arrived")
         Figo.retrieveAccounts() { result in
             if let accounts = result.value {
-                XCTAssertGreaterThan(accounts.count, 0)
-            }
-            else {
-                XCTFail()
+                for account in accounts {
+                    print(account.account_id)
+                }
             }
             resultArrived.fulfill()
         }
@@ -49,8 +48,19 @@ class DemoTestCases: XCTestCase {
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
-    
+
     func testRetrieveAccount() {
+        let resultArrived = self.expectationWithDescription("result arrived")
+        Figo.retrieveAccount("A1.1") { result in
+            if let account = result.value {
+                print(account.account_id)
+            }
+            resultArrived.fulfill()
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
+    func testRetrieveAccountWithResultChecking() {
         let resultArrived = self.expectationWithDescription("result arrived")
         Figo.retrieveAccount("A1.1") { result in
             switch result {
