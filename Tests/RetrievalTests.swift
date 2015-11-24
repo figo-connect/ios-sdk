@@ -14,15 +14,11 @@ class RetrievalTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveAccountsYieldsObjects() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.retrieveAccounts() { result in
-            switch result {
-            case .Success(let accounts):
+        Figo.retrieveAccounts() { accounts, error in
+            if let accounts = accounts {
                 XCTAssertGreaterThan(accounts.count, 0)
-                break
-            case .Failure(let error):
-                XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
-                break
             }
+            XCTAssertNil(error)
             callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
@@ -30,15 +26,11 @@ class RetrievalTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveAccountYieldsObject() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.retrieveAccount("A1079434.5") { result in
-            switch result {
-            case .Success(let account):
-                XCTAssertEqual(account.account_number!, "1146174")
-                break
-            case .Failure(let error):
-                XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
-                break
+        Figo.retrieveAccount("A1079434.5") { account, error in
+            if let account = account {
+                    XCTAssertEqual(account.account_number!, "1146174")
             }
+            XCTAssertNil(error)
             callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)

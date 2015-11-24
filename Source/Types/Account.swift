@@ -41,9 +41,9 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     }
     
     public init?(representation: AnyObject) throws {
-        let mapper = PropertyMapper(representation: representation)
+        let mapper = try PropertyMapper(representation: representation, objectType: "\(self.dynamicType)")
 
-        account_id = try mapper.stringForKey(Key.account_id.rawValue, representation: representation)
+        account_id = try mapper.stringForKey(Key.account_id.rawValue)
         account_number = representation.valueForKeyPath(Key.account_number.rawValue) as? String
         
         additional_icons = representation.valueForKeyPath("additional_icons") as? [String : String]

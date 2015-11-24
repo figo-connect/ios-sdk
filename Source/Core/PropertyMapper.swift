@@ -16,17 +16,22 @@ protocol JSONObjectConvertible {
 
 struct PropertyMapper {
     
-    let representation: AnyObject
+    let representation: Dictionary<String, AnyObject>
+    let objectType: String
     
-    init(representation: AnyObject) {
+    init(representation: AnyObject, objectType: String) throws {
+        guard let representation: Dictionary<String, AnyObject> = representation as? Dictionary<String, AnyObject> else {
+            throw FigoError.JSONUnexpectedRootObject(object: objectType)
+        }
         self.representation = representation
+        self.objectType = objectType
     }
     
-    func stringForKey(key: String, representation: AnyObject) throws -> String {
-        if let value = representation.valueForKeyPath(key) as? String {
+    func stringForKey(key: String) throws -> String {
+        if let value = representation[key] as? String {
             return value
         } else {
-            throw SerializationError.MissingMandatoryKey(key: key)
+            throw FigoError.JSONMissingMandatoryKey(key: key, object: objectType)
         }
     }
 }

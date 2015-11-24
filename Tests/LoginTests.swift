@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import Alamofire
 @testable import Figo
 
 
@@ -19,33 +18,27 @@ class LoginTests: XCTestCase {
     let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
     
     func testThatLoginYieldsAccessToken() {
-        let resultArrived = self.expectationWithDescription("result arrived")
-        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
-            switch result {
-            case .Success(let authorization):
-                XCTAssertNotNil(authorization.access_token)
-                break
-            case .Failure(let error):
-                XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
-                break
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { authorization, error in
+            guard let authorization = authorization else {
+                XCTFail(error?.failureReason ?? "no failure reason was provided")
+                return
             }
-            resultArrived.fulfill()
+            XCTAssertNotNil(authorization.access_token)
+            callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
     func testThatLoginWithWrongPasswordYieldsCorrectError() {
-        let resultArrived = self.expectationWithDescription("result arrived")
-        Figo.login(username: username, password: "foo", clientID: clientID, clientSecret: clientSecret) { result in
-            switch result {
-            case .Success(_):
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        Figo.login(username: username, password: "foo", clientID: clientID, clientSecret: clientSecret) { authorization, error in
+            guard let error = error else {
                 XCTFail("Login should have failed")
-                break
-            case .Failure(let error):
-                XCTAssertEqual(error.localizedFailureReason, "Invalid credentials")
-                break
+                return
             }
-            resultArrived.fulfill()
+            XCTAssertEqual(error.failureReason, "Invalid credentials")
+            callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
         
@@ -54,33 +47,29 @@ class LoginTests: XCTestCase {
     }
     
     func testThatRetrieveWithoutLoginYieldsCorrectError() {
-        let resultArrived = self.expectationWithDescription("result arrived")
-        Figo.logout() { result in
-            Figo.retrieveAccounts() { result in
-                switch result {
-                case .Success(_):
-                    XCTFail("Retrieve should have failed")
-                    break
-                case .Failure(let error):
-                    XCTAssert(error.localizedFailureReason!.containsString("401 Unauthorized"))
-                    break
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        Figo.logout() { _ in
+            Figo.retrieveAccounts() { _, error in
+                guard let error = error else {
+                    XCTFail("Login should have failed")
+                    return
                 }
-                resultArrived.fulfill()
+                XCTAssert(error.failureReason.containsString("401 Unauthorized"))
+                callbackExpectation.fulfill()
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    
     func disabled_testThatLogoutRevokesAccessToken() {
-        let resultArrived = self.expectationWithDescription("result arrived")
-        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
-            XCTAssert(result.isSuccess)
-            Figo.logout() { result in
-                XCTAssert(result.isSuccess)
-                Figo.retrieveAccount("A1.1") { result in
-                    XCTAssert(result.isFailure)
-                    resultArrived.fulfill()
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
+            XCTAssertNil(error)
+            Figo.logout() { _, error in
+                XCTAssertNil(error)
+                Figo.retrieveAccounts() { _, error in
+                    XCTAssertNil(error)
+                    callbackExpectation.fulfill()
                 }
             }
         }

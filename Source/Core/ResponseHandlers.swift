@@ -22,8 +22,8 @@ public protocol ResponseCollectionSerializable {
 
 extension Request {
     
-    public func responseObject<T: ResponseObjectSerializable>(completionHandler: Result<T, NSError> -> Void) -> Self {
-        let responseSerializer = ResponseSerializer<T, NSError> { request, response, data, error in
+    public func responseObject<T: ResponseObjectSerializable>(completionHandler: (T?, FigoError?) -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<T, FigoError> { request, response, data, error in
             
             let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
             let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
@@ -35,39 +35,31 @@ extension Request {
                     let responseObject = try T(response: response!, representation: value)
                     return .Success(responseObject!)
                 }
-                catch (SerializationError.MissingMandatoryKey(let key)) {
-                    return .Failure(Error(code: .MissingJSONKey, failureReason: "Failed to created object \(T.self) from JSON because of missing key: \(key)"))
+                catch (FigoError.JSONMissingMandatoryKey(let key, let object)) {
+                    return .Failure(FigoError.JSONMissingMandatoryKey(key: key, object: object))
                 }
-                catch (SerializationError.UnexpectedType(let key)) {
-                    return .Failure(Error(code: .UnexpectedJSONStructure, failureReason: "Failed to created object \(T.self) from JSON because of unexpected value type of key: \(key)"))
+                catch (FigoError.JSONUnexpectedType(let key, let object)) {
+                    return .Failure(FigoError.JSONUnexpectedType(key: key, object: object))
                 }
                 catch {
-                    return .Failure(Error(code: .UnexpectedJSONStructure, failureReason: "Failed to created object \(T.self) from JSON: \(value)"))
+                    return .Failure(FigoError.JSONUnexpectedRootObject(object: "\(T.self)"))
                 }
             case .Failure(let error):
-                guard let data = data else { return .Failure(error) }
-                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(error) }
-                let errorWithResponseText = Error(code: Error.Code.UnrecognizedServerResponse, failureReason: responseAsString)
-                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(errorWithResponseText) }
-                guard let errorWithServerMessage = try? Error(response: response!, representation: JSON) else { return .Failure(error) }
-                return .Failure(errorWithServerMessage)
+                guard let data = data else { return .Failure(FigoError.NetworkLayerError(error: error)) }
+                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(FigoError.NetworkLayerError(error: error)) }
+                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
+                guard let serverError = try? FigoError(response: response!, representation: JSON) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
+                return .Failure(serverError)
             }
         }
         
-        return response(responseSerializer: responseSerializer) { (response: Response<T, NSError>) in
-            switch response.result {
-            case .Success(let value):
-                completionHandler(Result.Success(value))
-                break
-            case .Failure(let error):
-                completionHandler(Result.Failure(error))
-                return
-            }
+        return response(responseSerializer: responseSerializer) { (response: Response<T, FigoError>) in
+            completionHandler(response.result.value, response.result.error)
         }
     }
     
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: Result<[T], NSError> -> Void) -> Self {
-        let responseSerializer = ResponseSerializer<[T], NSError> { request, response, data, error in
+    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: ([T]?, FigoError?) -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<[T], FigoError> { request, response, data, error in
             
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
             let result = JSONSerializer.serializeResponse(request, response, data, error)
@@ -79,34 +71,26 @@ extension Request {
                     let responseCollection = try T.collection(response: response!, representation: value)
                     return .Success(responseCollection)
                 }
-                catch (SerializationError.MissingMandatoryKey(let key)) {
-                    return .Failure(Error(code: .MissingJSONKey, failureReason: "Failed to created object \(T.self) from JSON because of missing key: \(key)"))
+                catch (FigoError.JSONMissingMandatoryKey(let key, let object)) {
+                    return .Failure(FigoError.JSONMissingMandatoryKey(key: key, object: object))
                 }
-                catch (SerializationError.UnexpectedType(let key)) {
-                    return .Failure(Error(code: .UnexpectedJSONStructure, failureReason: "Failed to created object \(T.self) from JSON because of unexpected value type of key: \(key)"))
+                catch (FigoError.JSONUnexpectedType(let key, let object)) {
+                    return .Failure(FigoError.JSONUnexpectedType(key: key, object: object))
                 }
                 catch {
-                    return .Failure(Error(code: .UnexpectedJSONStructure, failureReason: "Failed to created object \(T.self) from JSON: \(value)"))
+                    return .Failure(FigoError.JSONUnexpectedRootObject(object: "\(T.self)"))
                 }
             case .Failure(let error):
-                guard let data = data else { return .Failure(error) }
-                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(error) }
-                let errorWithResponseText = Error(code: Error.Code.UnrecognizedServerResponse, failureReason: responseAsString)
-                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(errorWithResponseText) }
-                guard let errorWithServerMessage = try? Error(response: response!, representation: JSON) else { return .Failure(error) }
-                return .Failure(errorWithServerMessage)
+                guard let data = data else { return .Failure(FigoError.NetworkLayerError(error: error)) }
+                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(FigoError.NetworkLayerError(error: error)) }
+                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
+                guard let serverError = try? FigoError(response: response!, representation: JSON) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
+                return .Failure(serverError)
             }
         }
         
-        return response(responseSerializer: responseSerializer) { (response: Response<[T], NSError>) in
-            switch response.result {
-            case .Success(let value):
-                completionHandler(Result.Success(value))
-                break
-            case .Failure(let error):
-                completionHandler(Result.Failure(error))
-                return
-            }
+        return response(responseSerializer: responseSerializer) { (response: Response<[T], FigoError>) in
+            completionHandler(response.result.value, response.result.error)
         }
     }
 }

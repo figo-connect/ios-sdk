@@ -25,18 +25,11 @@ class BaseTestCaseWithLogin: XCTestCase {
         guard !Figo.isUserLoggedIn else { return }
         
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
-            switch result {
-            case .Success(let authorization):
-                XCTAssertNotNil(authorization.access_token)
-                break
-            case .Failure(let error):
-                XCTFail(error.localizedFailureReason ?? "no failure reason was provided")
-                break
-            }
+        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { authorization, error in
+            XCTAssertNotNil(authorization?.access_token)
+            XCTAssertNil(error)
             callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
-
 }

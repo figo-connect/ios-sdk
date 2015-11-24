@@ -20,26 +20,26 @@ public func login(accessToken accessToken: String) {
     Session.sharedSession.authorization = Authorization(demoAccessToken: accessToken)
 }
 
-public func login(username username: String, password: String, clientID: String, clientSecret: String, completionHandler: (result: Result<Authorization, NSError>) -> Void) {
-    fireRequest(Router.LoginUser(username: username, password: password, secret: base64Encode(clientID, clientSecret))).responseObject() { (result: Result<Authorization, NSError>) -> Void in
-        Session.sharedSession.authorization = result.value
-        completionHandler(result: result)
+public func login(username username: String, password: String, clientID: String, clientSecret: String, completionHandler: (authorization: Authorization?, error: FigoError?) -> Void) {
+    fireRequest(Router.LoginUser(username: username, password: password, secret: base64Encode(clientID, clientSecret))).responseObject() { (authorization: Authorization?, error: FigoError?) -> Void in
+        Session.sharedSession.authorization = authorization
+        completionHandler(authorization: authorization, error: error)
     }
 }
 
-public func logout(completionHandler: (result: Result<Authorization, NSError>) -> Void) {
-    fireRequest(Router.RevokeToken(token: Session.sharedSession.authorization?.refresh_token ?? "")).responseObject() { (result: Result<Authorization, NSError>) in
+public func logout(completionHandler: (authorization: Authorization?, error: NSError?) -> Void) {
+    fireRequest(Router.RevokeToken(token: Session.sharedSession.authorization?.access_token ?? "")).responseObject() { (authorization: Authorization?, error: FigoError?) in
         // TODO: Endpoint always sends error
         Session.sharedSession.authorization = nil
-        completionHandler(result: result)
+        completionHandler(authorization: nil, error: nil)
     }
 }
 
-public func retrieveAccount(accountID: String, completionHandler: (result: Result<Account, NSError>) -> Void) {
+public func retrieveAccount(accountID: String, completionHandler: (account: Account?, error: FigoError?) -> Void) {
     fireRequest(Router.RetrieveAccount(accountId: accountID)).responseObject(completionHandler)
 }
 
-public func retrieveAccounts(completionHandler: (result: Result<[Account], NSError>) -> Void) {
+public func retrieveAccounts(completionHandler: (accounts: [Account]?, error: FigoError?) -> Void) {
     fireRequest(Router.RetrieveAccounts).responseCollection(completionHandler)
 }
 
@@ -93,7 +93,7 @@ enum Router: URLRequestConvertible {
             case .RefreshToken(let token):
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["refresh_token": token]).0
             case .RevokeToken(let token):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["token": token, "cascade" : false]).0
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["token": token]).0
             default:
                 return mutableURLRequest
         }
