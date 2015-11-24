@@ -8,17 +8,7 @@
 
 import Foundation
 
-
-func stringForKey(key: String, representation: AnyObject) throws -> String {
-    if let value = representation.valueForKeyPath(key) as? String {
-        return value
-    } else {
-        throw SerializationError.MissingMandatoryKey(key: key)
-    }
-}
-
-
-public struct Account: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible, CustomDebugStringConvertible {
+public struct Account: ResponseObjectSerializable, ResponseCollectionSerializable {
     
     let account_id: String
     let account_number: String!
@@ -40,19 +30,10 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     let status: AnyObject!
     let supported_payments: AnyObject!
     let type: String!
-    
-    private var representation: AnyObject
-    
-    public var description: String {
-        get {
-            return representation.description ?? ""
-        }
-    }
-    
-    public var debugDescription: String {
-        get {
-            return representation.debugDescription ?? ""
-        }
+
+    private enum Key: String {
+        case account_id
+        case account_number
     }
     
     public init?(response: NSHTTPURLResponse, representation: AnyObject) throws {
@@ -60,10 +41,11 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     }
     
     public init?(representation: AnyObject) throws {
-        self.representation = representation
+        let mapper = PropertyMapper(representation: representation)
+
+        account_id = try mapper.stringForKey(Key.account_id.rawValue, representation: representation)
+        account_number = representation.valueForKeyPath(Key.account_number.rawValue) as? String
         
-        account_id = try stringForKey("account_id", representation: representation)
-        account_number = representation.valueForKeyPath("account_number") as? String
         additional_icons = representation.valueForKeyPath("additional_icons") as? [String : String]
         auto_sync = representation.valueForKeyPath("auto_sync") as? Bool
         balance = representation.valueForKeyPath("balance")
@@ -82,8 +64,15 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
         status = representation.valueForKeyPath("status")
         supported_payments = representation.valueForKeyPath("supported_payments")
         type = representation.valueForKeyPath("type") as? String
-
-
+    }
+    
+    var JSONObject: [String: AnyObject] {
+        get {
+            var dict = Dictionary<String, AnyObject>()
+            dict[Key.account_id.rawValue] = account_id
+            dict[Key.account_number.rawValue] = account_number
+            return dict
+        }
     }
     
     public static func collection(response response: NSHTTPURLResponse, representation: AnyObject) throws -> [Account] {
@@ -101,4 +90,15 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     }
 }
 
-
+extension Account: CustomStringConvertible {
+    public var description: String {
+        get {
+            if let data = try? NSJSONSerialization.dataWithJSONObject(JSONObject, options: NSJSONWritingOptions.PrettyPrinted) {
+                if let string = String(data: data, encoding: NSUTF8StringEncoding) {
+                    return string
+                }
+            }
+            return ""
+        }
+    }
+}

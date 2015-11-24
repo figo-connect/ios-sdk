@@ -9,6 +9,11 @@
 import Foundation
 import Alamofire
 
+public var isUserLoggedIn: Bool {
+    get {
+        return Session.sharedSession.authorization != nil
+    }
+}
 
 public func login(accessToken accessToken: String) {
     // TODO: Refresh token

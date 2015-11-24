@@ -9,16 +9,16 @@
 import Foundation
 
 
-public class Session {
+class Session {
     
-    public static let sharedSession: Session = {
+    static let sharedSession: Session = {
         return Session()
     }()
     
     var authorization: Authorization?
     
     
-    public var accessToken: String? {
+    var accessToken: String? {
         get {
             return authorization?.access_token
         }

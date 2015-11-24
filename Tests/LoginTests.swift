@@ -11,7 +11,7 @@ import Alamofire
 @testable import Figo
 
 
-class LoginTestCases: XCTestCase {
+class LoginTests: XCTestCase {
     
     let username = "christian@koenig.systems"
     let password = "eVPVdiL7a8EUAP"
@@ -55,16 +55,18 @@ class LoginTestCases: XCTestCase {
     
     func testThatRetrieveWithoutLoginYieldsCorrectError() {
         let resultArrived = self.expectationWithDescription("result arrived")
-        Figo.retrieveAccounts() { result in
-            switch result {
-            case .Success(_):
-                XCTFail("Retrieve should have failed")
-                break
-            case .Failure(let error):
-                XCTAssert(error.localizedFailureReason!.containsString("401 Unauthorized"))
-                break
+        Figo.logout() { result in
+            Figo.retrieveAccounts() { result in
+                switch result {
+                case .Success(_):
+                    XCTFail("Retrieve should have failed")
+                    break
+                case .Failure(let error):
+                    XCTAssert(error.localizedFailureReason!.containsString("401 Unauthorized"))
+                    break
+                }
+                resultArrived.fulfill()
             }
-            resultArrived.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
