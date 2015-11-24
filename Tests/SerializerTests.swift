@@ -13,25 +13,18 @@ import XCTest
 class SerializerTests: XCTestCase {
 
     func testThatAccountSerializerYieldsObject() {
-        let bundle = NSBundle(forClass: self.classForCoder)
-        let path = bundle.pathForResource("Account", ofType: "json")!
-        let data = NSData(contentsOfFile: path)!
-        let JSON = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-        let account = try! Account(representation: JSON)
+        let JSONObject = Resources.Account.JSONObject
+        let account = try! Account(representation: JSONObject)
         print(account)
     }
     
     
     func testThatSerializerThrowsCorrectErrorForMissingMandatoryKeys() {
-        let bundle = NSBundle(forClass: self.classForCoder)
-        let path = bundle.pathForResource("Account", ofType: "json")!
-        let data = NSData(contentsOfFile: path)!
-        var JSON: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! [String: AnyObject]
-        
-        JSON.removeValueForKey("account_id")
+        var JSONJSONObject = Resources.Account.JSONObject
+        JSONJSONObject.removeValueForKey("account_id")
         
         do {
-            let account = try Account(representation: JSON)
+            let account = try Account(representation: JSONJSONObject)
             XCTAssertNil(account)
             XCTFail()
         }
@@ -81,4 +74,13 @@ class SerializerTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testThatSerializerYieldsBalanceObject() {
+        let JSONObject = Resources.Balance.JSONObject
+        let balance = try! Balance(representation: JSONObject)
+        XCTAssertTrue(nearlyEqual(balance.balance, b: 3250.31))
+        let date = dateFromString(balance.balance_date)
+        XCTAssertNotNil(date)
+    }
 }
+

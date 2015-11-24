@@ -11,7 +11,7 @@ import Alamofire
 
 
 public protocol ResponseObjectSerializable {
-    init?(response: NSHTTPURLResponse, representation: AnyObject) throws
+    init(response: NSHTTPURLResponse, representation: AnyObject) throws
 }
 
 
@@ -33,7 +33,7 @@ extension Request {
             case .Success(let value):
                 do {
                     let responseObject = try T(response: response!, representation: value)
-                    return .Success(responseObject!)
+                    return .Success(responseObject)
                 }
                 catch (let error as Error) {
                     return .Failure(error)
@@ -90,30 +90,3 @@ extension Request {
 }
 
 
-func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _ data: NSData?) {
-    if let request = request {
-        debugPrint("\(request.HTTPMethod) \(request)")
-        if let fields = request.allHTTPHeaderFields {
-            for (key, value) in fields {
-                debugPrint(key + ": " + value)
-            }
-        }
-        if let data = request.HTTPBody {
-            if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                debugPrint(JSON)
-            }
-        }
-    }
-    if let response = response {
-        debugPrint(response)
-    }
-    if let data = data {
-        if let string = String(data: data, encoding: NSUTF8StringEncoding) {
-            if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                debugPrint(JSON)
-            } else {
-                debugPrint(string)
-            }
-        }
-    }
-}

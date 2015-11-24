@@ -13,18 +13,18 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     let account_id: String
     let account_number: String
     let additional_icons: [String: String]!
-    let auto_sync: Bool!
-    let balance: AnyObject!
-    let bank_code: String!
-    let bank_id: String!
-    let bank_name: String!
-    let bic: String!
-    let currency: String!
-    let iban: String!
-    let icon: String!
-    let in_total_balance: Bool!
-    let name: String!
-    let owner: String!
+    let auto_sync: Bool
+    let balance: Balance
+    let bank_code: String
+    let bank_id: String
+    let bank_name: String
+    let bic: String
+    let currency: String
+    let iban: String
+    let icon: String
+    let in_total_balance: Bool
+    let name: String
+    let owner: String
     let preferred_tan_scheme: AnyObject!
     let save_pin: Bool!
     let status: AnyObject!
@@ -35,31 +35,43 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
         case account_id
         case account_number
         case additional_icons
+        case auto_sync
+        case balance
+        case bank_code
+        case bank_id
+        case bank_name
+        case bic
+        case currency
+        case iban
+        case icon
+        case in_total_balance
+        case name
+        case owner
     }
     
-    public init?(response: NSHTTPURLResponse, representation: AnyObject) throws {
+    public init(response: NSHTTPURLResponse, representation: AnyObject) throws {
         try self.init(representation: representation)
     }
     
-    public init?(representation: AnyObject) throws {
+    public init(representation: AnyObject) throws {
         let mapper = try PropertyMapper(representation: representation, objectType: "\(self.dynamicType)")
 
-        account_id = try mapper.stringForKey(Key.account_id.rawValue)
-        account_number = try mapper.stringForKey(Key.account_number.rawValue)
+        account_id          = try mapper.valueForKey(Key.account_id.rawValue)
+        account_number      = try mapper.valueForKey(Key.account_number.rawValue)
+        additional_icons    = representation.valueForKeyPath(Key.additional_icons.rawValue) as? [String: String]
+        auto_sync           = try mapper.valueForKey(Key.auto_sync.rawValue)
+        balance             = try Balance(representation: mapper.valueForKey(Key.balance.rawValue))
+        bank_code           = try mapper.valueForKey(Key.bank_code.rawValue)
+        bank_id             = try mapper.valueForKey(Key.bank_id.rawValue)
+        bank_name           = try mapper.valueForKey(Key.bank_name.rawValue)
+        bic                 = try mapper.valueForKey(Key.bic.rawValue)
+        currency            = try mapper.valueForKey(Key.currency.rawValue)
+        iban                = try mapper.valueForKey(Key.iban.rawValue)
+        icon                = try mapper.valueForKey(Key.icon.rawValue)
+        in_total_balance    = try mapper.valueForKey(Key.in_total_balance.rawValue)
+        name                = try mapper.valueForKey(Key.name.rawValue)
+        owner               = try mapper.valueForKey(Key.owner.rawValue)
         
-        additional_icons = representation.valueForKeyPath(Key.additional_icons.rawValue) as? [String: String]
-        auto_sync = representation.valueForKeyPath("auto_sync") as? Bool
-        balance = representation.valueForKeyPath("balance")
-        bank_code = representation.valueForKeyPath("bank_code") as? String
-        bank_id = representation.valueForKeyPath("bank_id") as? String
-        bank_name = representation.valueForKeyPath("bank_name") as? String
-        bic = representation.valueForKeyPath("bic") as? String
-        currency = representation.valueForKeyPath("currency") as? String
-        iban = representation.valueForKeyPath("iban") as? String
-        icon = representation.valueForKeyPath("icon") as? String
-        in_total_balance = representation.valueForKeyPath("in_total_balance") as? Bool
-        name = representation.valueForKeyPath("name") as? String
-        owner = representation.valueForKeyPath("owner") as? String
         preferred_tan_scheme = representation.valueForKeyPath("preferred_tan_scheme")
         save_pin = representation.valueForKeyPath("save_pin") as? Bool
         status = representation.valueForKeyPath("status")
@@ -81,9 +93,8 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
         if let representation = representation as? [String: AnyObject] {
             if let representation = representation["accounts"] as? [[String: AnyObject]] {
                 for userRepresentation in representation {
-                    if let account = try Account(response: response, representation: userRepresentation) {
-                        accounts.append(account)
-                    }
+                    let account = try Account(response: response, representation: userRepresentation)
+                    accounts.append(account)
                 }
             }
         }

@@ -13,8 +13,8 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
     
     public init(response: NSHTTPURLResponse, representation: AnyObject) throws {
         let mapper = try PropertyMapper(representation: representation, objectType: "\(self.dynamicType)")
-        let error = try mapper.stringForKey("error")
-        let error_description = try mapper.stringForKey("error_description")
+        let error: String = try mapper.valueForKey("error")
+        let error_description: String = try mapper.valueForKey("error_description")
         self = .ServerErrorWithDescrition(error: error, description: error_description)
     }
     

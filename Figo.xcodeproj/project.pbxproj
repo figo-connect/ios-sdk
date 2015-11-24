@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		833285E91C04D15600A9FE73 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285E81C04D15600A9FE73 /* Balance.swift */; };
+		833285EA1C04D15600A9FE73 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285E81C04D15600A9FE73 /* Balance.swift */; };
+		833285EC1C04D2E700A9FE73 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285EB1C04D2E700A9FE73 /* Logging.swift */; };
+		833285ED1C04D2E700A9FE73 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285EB1C04D2E700A9FE73 /* Logging.swift */; };
+		833285EF1C04D45900A9FE73 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = 833285EE1C04D45900A9FE73 /* Balance.json */; };
+		833285F11C04D48E00A9FE73 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285F01C04D48E00A9FE73 /* Resources.swift */; };
 		83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A68B1BFF29D9003EDE45 /* Figo.swift */; };
 		83D3A6921BFF507A003EDE45 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D3A68F1BFF503D003EDE45 /* Alamofire.framework */; };
 		83D3A6EF1BFF5BA4003EDE45 /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
@@ -57,6 +63,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		833285E81C04D15600A9FE73 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Balance.swift; path = Models/Balance.swift; sourceTree = "<group>"; };
+		833285EB1C04D2E700A9FE73 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Core/Logging.swift; sourceTree = "<group>"; };
+		833285EE1C04D45900A9FE73 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = Resources/Balance.json; sourceTree = "<group>"; };
+		833285F01C04D48E00A9FE73 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		83D3A6811BFF2953003EDE45 /* Figo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figo.h; sourceTree = "<group>"; };
 		83D3A6821BFF2953003EDE45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83D3A68B1BFF29D9003EDE45 /* Figo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Figo.swift; sourceTree = "<group>"; };
@@ -134,6 +144,7 @@
 			children = (
 				83D3A70C1BFFB71D003EDE45 /* Account.swift */,
 				83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */,
+				833285E81C04D15600A9FE73 /* Balance.swift */,
 				83D3A70D1BFFB71D003EDE45 /* Error.swift */,
 				83E7508B1C037ABE00545DF6 /* User.swift */,
 			);
@@ -155,6 +166,7 @@
 		83D3A7161C031EC4003EDE45 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				833285EB1C04D2E700A9FE73 /* Logging.swift */,
 				83E750931C04464D00545DF6 /* PropertyMapper.swift */,
 				83D3A7171C031EDA003EDE45 /* ResponseHandlers.swift */,
 				83D3A71A1C031F1B003EDE45 /* Session.swift */,
@@ -167,6 +179,8 @@
 			children = (
 				83D3A70A1BFFB6A7003EDE45 /* Info.plist */,
 				83E7508F1C037CC300545DF6 /* Account.json */,
+				833285EE1C04D45900A9FE73 /* Balance.json */,
+				833285F01C04D48E00A9FE73 /* Resources.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -283,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				833285EF1C04D45900A9FE73 /* Balance.json in Resources */,
 				83E750901C037CC300545DF6 /* Account.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D3A7111BFFB71D003EDE45 /* Error.swift in Sources */,
+				833285ED1C04D2E700A9FE73 /* Logging.swift in Sources */,
 				83D3A7001BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83D3A71F1C033512003EDE45 /* LoginTests.swift in Sources */,
 				83D3A71C1C031F1B003EDE45 /* Session.swift in Sources */,
@@ -309,8 +325,10 @@
 				83E7508D1C037ABE00545DF6 /* User.swift in Sources */,
 				83D3A70B1BFFB6AA003EDE45 /* RetrievalTests.swift in Sources */,
 				83E750951C04464D00545DF6 /* PropertyMapper.swift in Sources */,
+				833285F11C04D48E00A9FE73 /* Resources.swift in Sources */,
 				83D3A70F1BFFB71D003EDE45 /* Account.swift in Sources */,
 				83E750971C04507000545DF6 /* BaseTestCaseWithLogin.swift in Sources */,
+				833285EA1C04D15600A9FE73 /* Balance.swift in Sources */,
 				83D3A7191C031EDA003EDE45 /* ResponseHandlers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,9 +338,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D3A7101BFFB71D003EDE45 /* Error.swift in Sources */,
+				833285EC1C04D2E700A9FE73 /* Logging.swift in Sources */,
 				83E750941C04464D00545DF6 /* PropertyMapper.swift in Sources */,
 				83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83D3A71B1C031F1B003EDE45 /* Session.swift in Sources */,
+				833285E91C04D15600A9FE73 /* Balance.swift in Sources */,
 				83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */,
 				83D3A70E1BFFB71D003EDE45 /* Account.swift in Sources */,
 				83D3A7181C031EDA003EDE45 /* ResponseHandlers.swift in Sources */,
