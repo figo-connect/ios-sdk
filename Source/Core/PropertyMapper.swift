@@ -21,17 +21,21 @@ struct PropertyMapper {
     
     init(representation: AnyObject, objectType: String) throws {
         guard let representation: Dictionary<String, AnyObject> = representation as? Dictionary<String, AnyObject> else {
-            throw FigoError.JSONUnexpectedRootObject(object: objectType)
+            throw Error.JSONUnexpectedRootObject(object: objectType)
         }
         self.representation = representation
         self.objectType = objectType
     }
     
     func stringForKey(key: String) throws -> String {
-        if let value = representation[key] as? String {
-            return value
-        } else {
-            throw FigoError.JSONMissingMandatoryKey(key: key, object: objectType)
+        guard let anyValue = representation[key] else {
+            throw Error.JSONMissingMandatoryKey(key: key, object: objectType)
         }
+        
+        guard let value = anyValue as? String else {
+            throw Error.JSONUnexpectedType(key: key, object: objectType)
+        }
+
+        return value
     }
 }

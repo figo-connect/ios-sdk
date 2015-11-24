@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConvertible {
+public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertible {
     
     public init(response: NSHTTPURLResponse, representation: AnyObject) throws {
         let mapper = try PropertyMapper(representation: representation, objectType: "\(self.dynamicType)")
@@ -24,6 +24,7 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
     case NetworkLayerError(error: NSError)
     case ServerError(message: String)
     case ServerErrorWithDescrition(error: String, description: String)
+    case UnspecifiedError
 
     public var failureReason: String {
         get {
@@ -31,7 +32,7 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
             case .JSONMissingMandatoryKey(let key, let object):
                 return "Failed to created object '\(object)' from JSON because of missing key: \(key)"
             case .JSONUnexpectedType(let key, let object):
-                return "Failed to created object '\(object)' from JSON because of unexpected value type for \(key)"
+                return "Failed to created object '\(object)' from JSON because of unexpected value type for key: \(key)"
             case .JSONUnexpectedRootObject(let object):
                 return "Failed to created object '\(object)' from JSON because of unexpected root object type"
             case .NetworkLayerError(let error):
@@ -40,6 +41,8 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
                 return message
             case .ServerErrorWithDescrition(_, let description):
                 return description
+            case .UnspecifiedError:
+                return "Unspecified error"
             }
         }
     }

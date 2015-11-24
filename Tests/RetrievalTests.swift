@@ -28,7 +28,7 @@ class RetrievalTests: BaseTestCaseWithLogin {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.retrieveAccount("A1079434.5") { account, error in
             if let account = account {
-                    XCTAssertEqual(account.account_number!, "1146174")
+                XCTAssertEqual(account.account_number, "1146174")
             }
             XCTAssertNil(error)
             callbackExpectation.fulfill()

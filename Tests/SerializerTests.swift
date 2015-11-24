@@ -35,7 +35,7 @@ class SerializerTests: XCTestCase {
             XCTAssertNil(account)
             XCTFail()
         }
-        catch (let error as FigoError) {
+        catch (let error as Error) {
             XCTAssert(error.failureReason.containsString("Account"))
             XCTAssert(error.failureReason.containsString("account_id"))
             print(error)
@@ -53,9 +53,28 @@ class SerializerTests: XCTestCase {
             XCTAssertNil(account)
             XCTFail()
         }
-        catch (let error as FigoError) {
+        catch (let error as Error) {
             XCTAssert(error.failureReason.containsString("Account"))
             XCTAssert(error.failureReason.containsString("unexpected root object type"))
+            print(error)
+        }
+        catch {
+            XCTFail()
+        }
+    }
+    
+    func testThatSerializerThrowsCorrectErrorForUnexpectedValueType() {
+        let JSONObject = ["account_id": "A1.1", "account_number": ["1", "2", "3"]]
+        
+        do {
+            let account = try Account(representation: JSONObject)
+            XCTAssertNil(account)
+            XCTFail()
+        }
+        catch (let error as Error) {
+            XCTAssert(error.failureReason.containsString("Account"))
+            XCTAssert(error.failureReason.containsString("account_number"))
+            XCTAssert(error.failureReason.containsString("unexpected value type"))
             print(error)
         }
         catch {

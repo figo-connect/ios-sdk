@@ -11,8 +11,8 @@ import Foundation
 public struct Account: ResponseObjectSerializable, ResponseCollectionSerializable {
     
     let account_id: String
-    let account_number: String!
-    let additional_icons: [String : String]!
+    let account_number: String
+    let additional_icons: [String: String]!
     let auto_sync: Bool!
     let balance: AnyObject!
     let bank_code: String!
@@ -34,6 +34,7 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     private enum Key: String {
         case account_id
         case account_number
+        case additional_icons
     }
     
     public init?(response: NSHTTPURLResponse, representation: AnyObject) throws {
@@ -44,9 +45,9 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
         let mapper = try PropertyMapper(representation: representation, objectType: "\(self.dynamicType)")
 
         account_id = try mapper.stringForKey(Key.account_id.rawValue)
-        account_number = representation.valueForKeyPath(Key.account_number.rawValue) as? String
+        account_number = try mapper.stringForKey(Key.account_number.rawValue)
         
-        additional_icons = representation.valueForKeyPath("additional_icons") as? [String : String]
+        additional_icons = representation.valueForKeyPath(Key.additional_icons.rawValue) as? [String: String]
         auto_sync = representation.valueForKeyPath("auto_sync") as? Bool
         balance = representation.valueForKeyPath("balance")
         bank_code = representation.valueForKeyPath("bank_code") as? String

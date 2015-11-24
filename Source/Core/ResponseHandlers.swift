@@ -22,8 +22,8 @@ public protocol ResponseCollectionSerializable {
 
 extension Request {
     
-    public func responseObject<T: ResponseObjectSerializable>(completionHandler: (T?, FigoError?) -> Void) -> Self {
-        let responseSerializer = ResponseSerializer<T, FigoError> { request, response, data, error in
+    public func responseObject<T: ResponseObjectSerializable>(completionHandler: (T?, Error?) -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<T, Error> { request, response, data, error in
             
             let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
             let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
@@ -35,31 +35,28 @@ extension Request {
                     let responseObject = try T(response: response!, representation: value)
                     return .Success(responseObject!)
                 }
-                catch (FigoError.JSONMissingMandatoryKey(let key, let object)) {
-                    return .Failure(FigoError.JSONMissingMandatoryKey(key: key, object: object))
-                }
-                catch (FigoError.JSONUnexpectedType(let key, let object)) {
-                    return .Failure(FigoError.JSONUnexpectedType(key: key, object: object))
+                catch (let error as Error) {
+                    return .Failure(error)
                 }
                 catch {
-                    return .Failure(FigoError.JSONUnexpectedRootObject(object: "\(T.self)"))
+                    return .Failure(Error.UnspecifiedError)
                 }
             case .Failure(let error):
-                guard let data = data else { return .Failure(FigoError.NetworkLayerError(error: error)) }
-                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(FigoError.NetworkLayerError(error: error)) }
-                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
-                guard let serverError = try? FigoError(response: response!, representation: JSON) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
-                return .Failure(serverError)
+                guard let data = data else { return .Failure(Error.NetworkLayerError(error: error)) }
+                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(Error.NetworkLayerError(error: error)) }
+                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(Error.ServerError(message: responseAsString)) }
+                guard let serverErrorWithDescription = try? Error(response: response!, representation: JSON) else { return .Failure(Error.ServerError(message: responseAsString)) }
+                return .Failure(serverErrorWithDescription)
             }
         }
         
-        return response(responseSerializer: responseSerializer) { (response: Response<T, FigoError>) in
+        return response(responseSerializer: responseSerializer) { (response: Response<T, Error>) in
             completionHandler(response.result.value, response.result.error)
         }
     }
     
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: ([T]?, FigoError?) -> Void) -> Self {
-        let responseSerializer = ResponseSerializer<[T], FigoError> { request, response, data, error in
+    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: ([T]?, Error?) -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<[T], Error> { request, response, data, error in
             
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
             let result = JSONSerializer.serializeResponse(request, response, data, error)
@@ -71,25 +68,22 @@ extension Request {
                     let responseCollection = try T.collection(response: response!, representation: value)
                     return .Success(responseCollection)
                 }
-                catch (FigoError.JSONMissingMandatoryKey(let key, let object)) {
-                    return .Failure(FigoError.JSONMissingMandatoryKey(key: key, object: object))
-                }
-                catch (FigoError.JSONUnexpectedType(let key, let object)) {
-                    return .Failure(FigoError.JSONUnexpectedType(key: key, object: object))
+                catch (let error as Error) {
+                    return .Failure(error)
                 }
                 catch {
-                    return .Failure(FigoError.JSONUnexpectedRootObject(object: "\(T.self)"))
+                    return .Failure(Error.UnspecifiedError)
                 }
             case .Failure(let error):
-                guard let data = data else { return .Failure(FigoError.NetworkLayerError(error: error)) }
-                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(FigoError.NetworkLayerError(error: error)) }
-                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
-                guard let serverError = try? FigoError(response: response!, representation: JSON) else { return .Failure(FigoError.ServerError(message: responseAsString)) }
-                return .Failure(serverError)
+                guard let data = data else { return .Failure(Error.NetworkLayerError(error: error)) }
+                guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(Error.NetworkLayerError(error: error)) }
+                guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(Error.ServerError(message: responseAsString)) }
+                guard let serverErrorWithDescription = try? Error(response: response!, representation: JSON) else { return .Failure(Error.ServerError(message: responseAsString)) }
+                return .Failure(serverErrorWithDescription)
             }
         }
         
-        return response(responseSerializer: responseSerializer) { (response: Response<[T], FigoError>) in
+        return response(responseSerializer: responseSerializer) { (response: Response<[T], Error>) in
             completionHandler(response.result.value, response.result.error)
         }
     }
@@ -98,7 +92,7 @@ extension Request {
 
 private func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _ data: NSData?) {
     if let request = request {
-        debugPrint(request)
+        debugPrint("\(request.HTTPMethod) \(request)")
         if let fields = request.allHTTPHeaderFields {
             for (key, value) in fields {
                 debugPrint(key + ": " + value)
