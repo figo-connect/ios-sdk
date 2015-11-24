@@ -12,6 +12,17 @@ import XCTest
 
 class RetrievalTests: BaseTestCaseWithLogin {
     
+    func testShowsSimplestRetrieveAccountsCallWithoutErrorHandling() {
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        Figo.retrieveAccounts() { accounts, _ in
+            if let accounts = accounts {
+                XCTAssertGreaterThan(accounts.count, 0)
+            }
+            callbackExpectation.fulfill()
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
     func testThatRetrieveAccountsYieldsObjects() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.retrieveAccounts() { accounts, error in

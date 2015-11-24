@@ -10,16 +10,16 @@ API Docs: [http://docs.figo.io](http://docs.figo.io)
 
 ## Usage
 ### Retrieve all accounts
-        Figo.retrieveAccounts() { result in
-            if let accounts = result.value {
+        Figo.retrieveAccounts() { accounts, _ in
+            if let accounts = accounts {
                 for account in accounts {
                     print(account.account_id)
                 }
             }
         }
 ### Retrieve a single account
-        Figo.retrieveAccount("A1.1") { result in
-            if let account = result.value {
+        Figo.retrieveAccount("A1.1") { account, _ in
+            if let account = account {
                 print(account.account_id)
             }
         }
