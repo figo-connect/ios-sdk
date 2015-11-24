@@ -29,11 +29,18 @@ public func login(username username: String, password: String, clientID: String,
     }
 }
 
-public func logout(completionHandler: (authorization: Authorization?, error: NSError?) -> Void) {
-    fireRequest(Router.RevokeToken(token: Session.sharedSession.authorization?.access_token ?? "")).responseObject() { (authorization: Authorization?, error: Error?) in
-        // TODO: Endpoint always sends error
-        Session.sharedSession.authorization = nil
-        completionHandler(authorization: nil, error: nil)
+public func logout(completionHandler: (error: Error?) -> Void) {
+    fireRequest(Router.RevokeToken(token: Session.sharedSession.authorization?.access_token ?? ""))
+        .response { request, response, data, error in
+
+            Session.sharedSession.authorization = nil
+            
+            if let error = error {
+                completionHandler(error: Error.NetworkLayerError(error: error))
+            }
+            else {
+                completionHandler(error: nil)
+            }
     }
 }
 

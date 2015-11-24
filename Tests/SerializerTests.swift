@@ -12,7 +12,7 @@ import XCTest
 
 class SerializerTests: XCTestCase {
 
-    func testAccountSerializerYieldsObject() {
+    func testThatAccountSerializerYieldsObject() {
         let bundle = NSBundle(forClass: self.classForCoder)
         let path = bundle.pathForResource("Account", ofType: "json")!
         let data = NSData(contentsOfFile: path)!

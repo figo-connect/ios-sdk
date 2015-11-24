@@ -61,19 +61,24 @@ class LoginTests: XCTestCase {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func d_testThatLogoutRevokesAccessToken() {
+    func testThatLogoutRevokesAccessToken() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
             XCTAssertNil(error)
-            Figo.logout() { _, error in
+            Figo.logout() { error in
                 XCTAssertNil(error)
                 Figo.retrieveAccounts() { _, error in
-                    XCTAssertNil(error)
+                    XCTAssertNotNil(error)
                     callbackExpectation.fulfill()
                 }
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
+    func testThatRefreshTokenYieldsNewAccessToken()
+    {
+        	
     }
 
 }
