@@ -17,9 +17,15 @@ class LoginTests: XCTestCase {
     let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
     let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
     
+    
+    override func tearDown() {
+        Figo.discardSession()
+        super.tearDown()
+    }
+    
     func testThatLoginYieldsAccessToken() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { authorization, error in
+        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { authorization, error in
             guard let authorization = authorization else {
                 XCTFail(error?.failureReason ?? "no failure reason was provided")
                 return
@@ -32,7 +38,7 @@ class LoginTests: XCTestCase {
     
     func testThatLoginWithWrongPasswordYieldsCorrectError() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.login(username: username, password: "foo", clientID: clientID, clientSecret: clientSecret) { authorization, error in
+        Figo.loginWithUsername(username, password: "foo", clientID: clientID, clientSecret: clientSecret) { authorization, error in
             guard let error = error else {
                 XCTFail("Login should have failed")
                 return
@@ -48,27 +54,25 @@ class LoginTests: XCTestCase {
     
     func testThatRetrieveWithoutLoginYieldsCorrectError() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.logout() { _ in
-            Figo.retrieveAccounts() { _, error in
-                guard let error = error else {
-                    XCTFail("Login should have failed")
-                    return
-                }
-                XCTAssert(error.failureReason.containsString("401 Unauthorized"))
-                callbackExpectation.fulfill()
+        Figo.retrieveAccounts() { _, error in
+            guard let error = error else {
+                XCTFail("Login should have failed")
+                return
             }
+            XCTAssert(error.failureReason.containsString("401 Unauthorized"))
+            callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testThatLogoutRevokesAccessToken() {
+    func testRevokesAccessToken() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.login(username: username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
+        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
             XCTAssertNil(error)
-            Figo.logout() { error in
+            Figo.revokeAccessToken() { error in
                 XCTAssertNil(error)
-                Figo.retrieveAccounts() { _, error in
-                    XCTAssertNotNil(error)
+                Figo.retrieveAccount("A1079434.5") { _, error in
+                    XCTAssertNil(error)
                     callbackExpectation.fulfill()
                 }
             }
@@ -76,9 +80,20 @@ class LoginTests: XCTestCase {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testThatRefreshTokenYieldsNewAccessToken()
+    func testRevokeRefreshToken()
     {
-        	
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
+            XCTAssertNil(error)
+            Figo.revokeRefreshToken(nil) { error in
+                XCTAssertNil(error)
+                Figo.retrieveAccount("A1079434.5") { _, error in
+                    XCTAssertNotNil(error)
+                    callbackExpectation.fulfill()
+                }
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
     }
 
 }

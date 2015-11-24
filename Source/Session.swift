@@ -16,13 +16,7 @@ class Session {
     }()
     
     var authorization: Authorization?
-    
-    
-    var accessToken: String? {
-        get {
-            return authorization?.access_token
-        }
-    }
+    var secret: String?
     
     // "device_name" : UIDevice.currentDevice().name, "device_type" : UIDevice.currentDevice().model, "device_udid" : NSUUID().UUIDString
 }

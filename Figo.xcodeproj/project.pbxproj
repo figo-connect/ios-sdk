@@ -104,9 +104,9 @@
 		83D3A67F1BFF2953003EDE45 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				83D3A68B1BFF29D9003EDE45 /* Figo.swift */,
 				83D3A7161C031EC4003EDE45 /* Core */,
 				83D3A6FA1BFF684C003EDE45 /* Types */,
+				83D3A68B1BFF29D9003EDE45 /* Figo.swift */,
 				83D3A6801BFF2953003EDE45 /* Supporting Files */,
 			);
 			path = Source;

@@ -55,7 +55,7 @@ extension Request {
         }
     }
     
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: ([T]?, Error?) -> Void) -> Self {
+    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (Array<T>?, Error?) -> Void) -> Self {
         let responseSerializer = ResponseSerializer<[T], Error> { request, response, data, error in
             
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
@@ -90,7 +90,7 @@ extension Request {
 }
 
 
-private func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _ data: NSData?) {
+func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _ data: NSData?) {
     if let request = request {
         debugPrint("\(request.HTTPMethod) \(request)")
         if let fields = request.allHTTPHeaderFields {

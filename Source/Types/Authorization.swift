@@ -26,10 +26,10 @@ public final class Authorization: ResponseObjectSerializable {
         token_type = representation.valueForKeyPath("token_type") as? String
     }
     
-    public init(demoAccessToken: String) {
-        access_token = demoAccessToken
+    public init(token: String) {
+        access_token = nil
         expires_in = nil
-        refresh_token = nil
+        refresh_token = token
         scope = nil
         token_type = nil
     }
