@@ -15,6 +15,7 @@ enum Resources: String {
     case Balance
     case TanScheme
     case SyncStatus
+    case User
     
     var JSONObject: [String: AnyObject] {
         let bundle = NSBundle(forClass: BaseTestCaseWithLogin.classForCoder())

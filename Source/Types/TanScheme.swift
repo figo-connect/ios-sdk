@@ -11,9 +11,9 @@ import Foundation
 
 public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, ResponseCollectionSerializable {
     
-    let medium_name: String
-    let name: String
-    let tan_scheme_id: String
+    public let medium_name: String
+    public let name: String
+    public let tan_scheme_id: String
     
     private enum Key: String, PropertyKey {
         case medium_name
@@ -23,12 +23,13 @@ public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, Resp
     
     public init(representation: AnyObject) throws {
         let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        
         medium_name = try mapper.valueForKey(Key.medium_name)
         name = try mapper.valueForKey(Key.name)
         tan_scheme_id = try mapper.valueForKey(Key.tan_scheme_id)
     }
     
-    public static func collection(representation: AnyObject) throws -> [TanScheme] {
+    static func collection(representation: AnyObject) throws -> [TanScheme] {
         guard let representation: [[String: AnyObject]] = representation as? [[String: AnyObject]] else {
             throw Error.JSONUnexpectedType(key: "supported_tan_schemes", typeName: "Account")
         }

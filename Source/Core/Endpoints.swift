@@ -28,6 +28,7 @@ enum Endpoint: URLRequestConvertible {
     case RevokeToken(token: String)
     case RetrieveAccount(accountId: String)
     case RetrieveAccounts
+    case RetrieveCurrentUser
     
     private var method: Alamofire.Method {
         switch self {
@@ -40,14 +41,16 @@ enum Endpoint: URLRequestConvertible {
     
     private var path: String {
         switch self {
-        case .LoginUser, .RefreshToken:
-            return "/auth/token"
-        case .RevokeToken(_):
-            return "/auth/revoke"
-        case .RetrieveAccount(let accountId):
-            return "/rest/accounts/" + accountId
-        case .RetrieveAccounts:
-            return "/rest/accounts"
+            case .LoginUser, .RefreshToken:
+                return "/auth/token"
+            case .RevokeToken(_):
+                return "/auth/revoke"
+            case .RetrieveAccount(let accountId):
+                return "/rest/accounts/" + accountId
+            case .RetrieveAccounts:
+                return "/rest/accounts"
+            case .RetrieveCurrentUser:
+                return "/rest/user"
         }
     }
     

@@ -13,7 +13,7 @@ import Foundation
  Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
 
 */
-public struct Account: ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct Account: CustomStringConvertible, JSONObjectConvertible, ResponseObjectSerializable, ResponseCollectionSerializable {
     
     /// Internal figo Connect account ID
     let account_id: String
@@ -87,7 +87,6 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     /// TODO: Verify, make optional
     let balance: Balance
 
-
     private enum Key: String, PropertyKey {
         case account_id
         case account_number
@@ -138,7 +137,7 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
         type                    = try mapper.valueForKey(Key.type)
     }
     
-    var JSONObject: [String: AnyObject] {
+    public var JSONObject: [String: AnyObject] {
         get {
             var dict = Dictionary<String, AnyObject>()
             dict[Key.account_id.rawValue] = account_id
@@ -159,17 +158,11 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
         }
         return accounts
     }
-}
-
-extension Account: CustomStringConvertible {
+    
     public var description: String {
         get {
-            if let data = try? NSJSONSerialization.dataWithJSONObject(JSONObject, options: NSJSONWritingOptions.PrettyPrinted) {
-                if let string = String(data: data, encoding: NSUTF8StringEncoding) {
-                    return string
-                }
-            }
-            return ""
+            return JSONStringFromType(self)
         }
     }
 }
+

@@ -31,7 +31,7 @@ func retryRequestingObjectOnInvalidTokenError<T: ResponseObjectSerializable>(req
     completionHandler(object, error)
 }
 
-func retryRequestingCollectionOnInvalidTokenError<T: ResponseCollectionSerializable>(request: URLRequestConvertible, _ collection: [T]?, _ error: Error?, completionHandler: ([T]?, Error?) -> Void) {
+func retryRequestingCollectionOnInvalidTokenError<T: ResponseCollectionSerializable>(request: URLRequestConvertible, _ collection: [T]?, _ error: Error?, _ completionHandler: ([T]?, Error?) -> Void) {
     guard error != nil else {
         completionHandler(collection, error)
         return

@@ -9,16 +9,20 @@
 import Foundation
 
 
-public protocol ResponseObjectSerializable {
-    init(representation: AnyObject) throws
-}
-
-public protocol ResponseCollectionSerializable {
-    static func collection(representation: AnyObject) throws -> [Self]
-}
+// MARK: Public
 
 public protocol JSONObjectConvertible {
     var JSONObject: [String: AnyObject] { get }
+}
+
+// MARK: Internal
+
+protocol ResponseObjectSerializable {
+    init(representation: AnyObject) throws
+}
+
+protocol ResponseCollectionSerializable {
+    static func collection(representation: AnyObject) throws -> [Self]
 }
 
 protocol PropertyKey {

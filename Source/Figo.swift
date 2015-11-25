@@ -140,8 +140,14 @@ public func retrieveAccount(accountID: String, completionHandler: (account: Acco
 public func retrieveAccounts(completionHandler: (accounts: [Account]?, error: Error?) -> Void) {
     let request = Endpoint.RetrieveAccounts
     fireRequest(request).responseCollection() { accounts, error in
-        retryRequestingCollectionOnInvalidTokenError(request, accounts, error, completionHandler: completionHandler)
+        retryRequestingCollectionOnInvalidTokenError(request, accounts, error, completionHandler)
     }
 }
 
+public func retrieveCurrentUser(completionHandler: (user: User?, error: Error?) -> Void) {
+    let request = Endpoint.RetrieveCurrentUser
+    fireRequest(request).responseObject() { user, error in
+        retryRequestingObjectOnInvalidTokenError(request, user, error, completionHandler)
+    }
+}
 

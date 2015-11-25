@@ -1,0 +1,18 @@
+{
+    "address": {
+        "city": "Berlin",
+        "company": "figo",
+        "postal_code": "10969",
+        "street": "Ritterstr. 2-3"
+    },
+    "email": "demo@figo.me",
+    "join_date": "2012-04-19T17:25:54.000Z",
+    "language": "en",
+    "name": "John Doe",
+    "premium": true,
+    "premium_expires_on": "2014-04-19T17:25:54.000Z",
+    "premium_subscription": "paymill",
+    "send_newsletter": true,
+    "user_id": "U12345",
+    "verified_email": true
+}
