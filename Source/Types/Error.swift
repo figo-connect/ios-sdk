@@ -19,7 +19,6 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
     }
     
     case NoLogin
-    case NoSession
     case JSONMissingMandatoryKey(key: String, object: String)
     case JSONUnexpectedType(key: String, object: String)
     case JSONUnexpectedRootObject(object: String)
@@ -31,7 +30,7 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
     public var failureReason: String {
         get {
             switch self {
-            case .NoLogin, .NoSession:
+            case .NoLogin:
                 return "No Figo session active. Login with credentials or refresh token."
             case .JSONMissingMandatoryKey(let key, let object):
                 return "Failed to created object '\(object)' from JSON because of missing key: \(key)"

@@ -12,7 +12,7 @@ import Alamofire
 
 public final class Authorization: ResponseObjectSerializable {
     
-    let access_token: String?
+    var access_token: String?
     let expires_in: Int?
     let refresh_token: String?
     let scope: String?

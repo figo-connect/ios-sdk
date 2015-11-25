@@ -1,5 +1,5 @@
 //
-//  ResponseObjectSerializable.swift
+//  ResponseSerializers.swift
 //  Figo
 //
 //  Created by Christian König on 20.11.15.
@@ -10,19 +10,52 @@ import Foundation
 import Alamofire
 
 
-public protocol ResponseObjectSerializable {
-    init(response: NSHTTPURLResponse, representation: AnyObject) throws
+func retryRequestingObjectOnInvalidTokenError<T: ResponseObjectSerializable>(request: URLRequestConvertible, _ object: T?, _ error: Error?, _ completionHandler: (T?, Error?) -> Void) {
+    guard error != nil else {
+        completionHandler(object, error)
+        return
+    }
+    switch error! {
+    case Error.ServerError(_):
+        refreshAccessToken() { refreshError -> Void in
+            if refreshError == nil {
+                fireRequest(request).responseObject(completionHandler)
+            } else {
+                completionHandler(object, refreshError)
+            }
+        }
+        return
+    default:
+        break
+    }
+    completionHandler(object, error)
 }
 
-
-public protocol ResponseCollectionSerializable {
-    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) throws -> [Self]
+func retryRequestingCollectionOnInvalidTokenError<T: ResponseCollectionSerializable>(request: URLRequestConvertible, _ collection: [T]?, _ error: Error?, completionHandler: ([T]?, Error?) -> Void) {
+    guard error != nil else {
+        completionHandler(collection, error)
+        return
+    }
+    switch error! {
+    case Error.ServerError(_):
+        refreshAccessToken() { refreshError -> Void in
+            if refreshError == nil {
+                fireRequest(request).responseCollection(completionHandler)
+            } else {
+                completionHandler(collection, refreshError)
+            }
+        }
+        return
+    default:
+        break
+    }
+    completionHandler(collection, error)
 }
 
 
 extension Request {
     
-    public func responseObject<T: ResponseObjectSerializable>(completionHandler: (T?, Error?) -> Void) -> Self {
+    func responseObject<T: ResponseObjectSerializable>(completionHandler: (T?, Error?) -> Void) -> Self {
         let responseSerializer = ResponseSerializer<T, Error> { request, response, data, error in
             
             let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
@@ -55,7 +88,7 @@ extension Request {
         }
     }
     
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (Array<T>?, Error?) -> Void) -> Self {
+    func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (collection: [T]?, error: Error?) -> Void) -> Self {
         let responseSerializer = ResponseSerializer<[T], Error> { request, response, data, error in
             
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
@@ -84,7 +117,7 @@ extension Request {
         }
         
         return response(responseSerializer: responseSerializer) { (response: Response<[T], Error>) in
-            completionHandler(response.result.value, response.result.error)
+            completionHandler(collection: response.result.value, error: response.result.error)
         }
     }
 }

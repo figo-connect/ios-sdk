@@ -9,27 +9,54 @@
 import Foundation
 import Alamofire
 
-// MARK: Public Interface
+// MARK: Public
 
+/**
+ Checks whether there is an access token that can be used to talk to the API.
+*/
 public var isUserLoggedIn: Bool {
     get {
-        return Session.sharedSession.authorization != nil
+        return Session.sharedSession.authorization?.access_token != nil
     }
 }
 
-public func loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, completionHandler: (authorization: Authorization?, error: Error?) -> Void) {
+/**
+ CREDENTIAL LOGIN
+ 
+ Requests authorization with credentials. Authorization can be obtained as long
+ as the user has not revoked the access granted to your application.
+ 
+ The returned refresh token can be stored by the client for future logins, but only
+ in a securely encryped store like the keychain or a SQLCipher database.
+ 
+ - parameter username: The figo account email address
+ - parameter password: The figo account password
+ - parameter clientdID: The figo client identifier
+ - parameter clientdSecret: The figo client sclient
+ - parameter completionHandler: Returns refresh token or error
+*/
+public func loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, completionHandler: (refreshToken: String?, error: Error?) -> Void) {
     let secret = base64Encode(clientID, clientSecret)
-    let request = Router.LoginUser(username: username, password: password, secret: secret)
+    let request = Endpoint.LoginUser(username: username, password: password, secret: secret)
     fireRequest(request).responseObject() { (authorization: Authorization?, error: Error?) -> Void in
         Session.sharedSession.authorization = authorization
         Session.sharedSession.secret = secret
-        completionHandler(authorization: authorization, error: error)
+        completionHandler(refreshToken: authorization?.refresh_token, error: error)
     }
 }
 
+/** 
+ EXCHANGE REFRESH TOKEN
+ 
+ Requests new access token with refresh token. New access tokens can be obtained as long
+ as the user has not revoked the access granted to your application.
+ 
+ - Parameter refreshToken: The refresh token returned from a previous CREDENTIAL LOGIN
+ - parameter completionHandler: Returns nothing or error
+*/
 public func loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, completionHandler: (error: Error?) -> Void) {
     let secret = base64Encode(clientID, clientSecret)
-    let request = Router.RefreshToken(token: refreshToken, secret: secret)
+    let request = Endpoint.RefreshToken(token: refreshToken, secret: secret)
     fireRequest(request).responseObject() { (authorization: Authorization?, error: Error?) -> Void in
         Session.sharedSession.authorization = authorization
         Session.sharedSession.secret = secret
@@ -37,12 +64,20 @@ public func loginWithRefreshToken(refreshToken: String, clientID: String, client
     }
 }
 
-private func refreshAccessToken(completionHandler: (error: Error?) -> Void) {
-    guard let secret = Session.sharedSession.secret, let authorization = Session.sharedSession.authorization else {
+/**
+ EXCHANGE REFRESH TOKEN
+ 
+ Replaces expired access token for the current session.
+ 
+ - parameter completionHandler: Returns nothing or error
+*/
+func refreshAccessToken(completionHandler: (error: Error?) -> Void) {
+    guard   let secret = Session.sharedSession.secret,
+            let authorization = Session.sharedSession.authorization else {
         completionHandler(error: Error.NoLogin)
         return
     }
-    let request = Router.RefreshToken(token: authorization.refresh_token!, secret: secret)
+    let request = Endpoint.RefreshToken(token: authorization.refresh_token!, secret: secret)
     fireRequest(request).responseObject() { (authorization: Authorization?, error: Error?) -> Void in
         Session.sharedSession.authorization = authorization
         Session.sharedSession.secret = secret
@@ -50,8 +85,15 @@ private func refreshAccessToken(completionHandler: (error: Error?) -> Void) {
     }
 }
 
-public func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
-    fireRequest(Router.RevokeToken(token: Session.sharedSession.authorization?.access_token ?? ""))
+/**
+ REVOKE TOKEN
+ 
+ Invalidates the session's access token for testing automatic refreshing of expired access tokens.
+
+ - parameter completionHandler: Returns nothing or error
+*/
+func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
+    fireRequest(Endpoint.RevokeToken(token: Session.sharedSession.authorization?.access_token ?? ""))
         .response { request, response, data, error in
             debugPrintRequest(request, response, data)
             if let error = error {
@@ -62,86 +104,50 @@ public func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
     }
 }
 
-public func revokeRefreshToken(token: String?, completionHandler: (error: Error?) -> Void) {
-    let refreshToken: String = {
-        if token != nil { return token! }
+/**
+ REVOKE TOKEN
+ 
+ Invalidates access token and refresh token, after that CREDENTIAL LOGIN is required.
+ 
+ TODO: Think about renaming this to logout
+
+ - parameter refreshToken: The client's refresh token, defaults to the session's refresh token
+ - parameter completionHandler: Returns nothing or error
+ */
+public func revokeRefreshToken(refreshToken: String?, completionHandler: (error: Error?) -> Void) {
+    let token: String = {
+        if refreshToken != nil { return refreshToken! }
         else { return Session.sharedSession.authorization?.refresh_token ?? "" }
     }()
-    fireRequest(Router.RevokeToken(token: refreshToken))
+    fireRequest(Endpoint.RevokeToken(token: token))
         .response { request, response, data, error in
             debugPrintRequest(request, response, data)
             if let error = error {
                 completionHandler(error: Error.NetworkLayerError(error: error))
             } else {
+                Session.sharedSession.authorization = nil
                 completionHandler(error: nil)
             }
     }
-}
-
-public func discardSession() {
-    Session.sharedSession.authorization = nil
 }
 
 public func retrieveAccount(accountID: String, completionHandler: (account: Account?, error: Error?) -> Void) {
-    let request = Router.RetrieveAccount(accountId: accountID)
+    let request = Endpoint.RetrieveAccount(accountId: accountID)
     fireRequest(request).responseObject() { account, error in
         retryRequestingObjectOnInvalidTokenError(request, account, error, completionHandler)
     }
 }
 
 public func retrieveAccounts(completionHandler: (accounts: [Account]?, error: Error?) -> Void) {
-    fireRequest(Router.RetrieveAccounts).responseCollection(completionHandler)
+    let request = Endpoint.RetrieveAccounts
+    fireRequest(request).responseCollection() { accounts, error in
+        retryRequestingCollectionOnInvalidTokenError(request, accounts, error, completionHandler: completionHandler)
+    }
 }
 
 // MARK: Private
 
-
-private func retryRequestingObjectOnInvalidTokenError<T: ResponseObjectSerializable>(request: URLRequestConvertible, _ object: T?, _ error: Error?, _ completionHandler: (T?, Error?) -> Void) {
-    guard error != nil else {
-        completionHandler(object, error)
-        return
-    }
-    switch error! {
-        case Error.ServerError(_):
-            refreshAccessToken() { error -> Void in
-                if error == nil {
-                    fireRequest(request).responseObject(completionHandler)
-                } else {
-                    completionHandler(object, error)
-                }
-            }
-            return
-        default:
-            break
-    }
-    completionHandler(object, error)
-}
-
-private func retryRequestingCollectionOnInvalidTokenError<T: ResponseObjectSerializable>(request: URLRequestConvertible, _ collection: Array<T>?, _ error: Error?, _ completionHandler: (Array<T>?, Error?) -> Void) {
-    guard error != nil else {
-        completionHandler(collection, error)
-        return
-    }
-    switch error! {
-    case Error.ServerError(_):
-
-        refreshAccessToken() { error -> Void in
-            if error == nil {
-//                    fireRequest(request).responseCollection(completionHandler)
-            } else {
-                completionHandler(collection, error)
-            }
-        }
-        return
-    
-
-    default:
-        break
-    }
-    completionHandler(collection, error)
-}
-
-private enum Router: URLRequestConvertible {
+private enum Endpoint: URLRequestConvertible {
     private static let baseURLString = "https://api.figo.me"
     
     case LoginUser(username: String, password: String, secret: String)
@@ -196,7 +202,7 @@ private enum Router: URLRequestConvertible {
     }
     
     var URLRequest: NSMutableURLRequest {
-        let URL = NSURL(string: Router.baseURLString)!
+        let URL = NSURL(string: Endpoint.baseURLString)!
         let request = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         
         request.HTTPMethod = self.method.rawValue
@@ -222,11 +228,11 @@ private enum Router: URLRequestConvertible {
 }
 
 
-private func fireRequest(request: URLRequestConvertible) -> Request {
+func fireRequest(request: URLRequestConvertible) -> Request {
     return Alamofire.request(request).validate()
 }
 
-private func base64Encode(clientID: String, _ clientSecret: String) -> String {
+func base64Encode(clientID: String, _ clientSecret: String) -> String {
     let clientCode: String = clientID + ":" + clientSecret
     let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
     return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)

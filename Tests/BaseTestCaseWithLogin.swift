@@ -25,8 +25,8 @@ class BaseTestCaseWithLogin: XCTestCase {
         guard !Figo.isUserLoggedIn else { return }
         
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { authorization, error in
-            XCTAssertNotNil(authorization?.access_token)
+        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { refreshToken, error in
+            XCTAssertNotNil(refreshToken)
             XCTAssertNil(error)
             callbackExpectation.fulfill()
         }
