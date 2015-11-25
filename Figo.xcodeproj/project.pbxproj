@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		830E63D71C059F1C0048F7BF /* Figo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A68B1BFF29D9003EDE45 /* Figo.swift */; };
+		830E63D91C05A4050048F7BF /* TanScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TanScheme.swift */; };
+		830E63DA1C05A4050048F7BF /* TanScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TanScheme.swift */; };
+		830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
 		833285E91C04D15600A9FE73 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285E81C04D15600A9FE73 /* Balance.swift */; };
 		833285EA1C04D15600A9FE73 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285E81C04D15600A9FE73 /* Balance.swift */; };
 		833285EC1C04D2E700A9FE73 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285EB1C04D2E700A9FE73 /* Logging.swift */; };
@@ -66,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		830E63D81C05A4050048F7BF /* TanScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TanScheme.swift; path = Types/TanScheme.swift; sourceTree = "<group>"; };
+		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
 		833285E81C04D15600A9FE73 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Balance.swift; path = Models/Balance.swift; sourceTree = "<group>"; };
 		833285EB1C04D2E700A9FE73 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Core/Logging.swift; sourceTree = "<group>"; };
 		833285EE1C04D45900A9FE73 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = Resources/Balance.json; sourceTree = "<group>"; };
@@ -152,6 +157,7 @@
 				833285E81C04D15600A9FE73 /* Balance.swift */,
 				83D3A70D1BFFB71D003EDE45 /* Error.swift */,
 				83E7508B1C037ABE00545DF6 /* User.swift */,
+				830E63D81C05A4050048F7BF /* TanScheme.swift */,
 			);
 			name = Types;
 			sourceTree = "<group>";
@@ -182,10 +188,11 @@
 		83E7508E1C037C9400545DF6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				833285F01C04D48E00A9FE73 /* Resources.swift */,
 				83D3A70A1BFFB6A7003EDE45 /* Info.plist */,
 				83E7508F1C037CC300545DF6 /* Account.json */,
 				833285EE1C04D45900A9FE73 /* Balance.json */,
-				833285F01C04D48E00A9FE73 /* Resources.swift */,
+				830E63DB1C05A4960048F7BF /* TanScheme.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -302,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */,
 				833285EF1C04D45900A9FE73 /* Balance.json in Resources */,
 				83E750901C037CC300545DF6 /* Account.json in Resources */,
 			);
@@ -334,6 +342,7 @@
 				830E63D71C059F1C0048F7BF /* Figo.swift in Sources */,
 				833285F11C04D48E00A9FE73 /* Resources.swift in Sources */,
 				83D3A70F1BFFB71D003EDE45 /* Account.swift in Sources */,
+				830E63DA1C05A4050048F7BF /* TanScheme.swift in Sources */,
 				83E750971C04507000545DF6 /* BaseTestCaseWithLogin.swift in Sources */,
 				833285EA1C04D15600A9FE73 /* Balance.swift in Sources */,
 				83D3A7191C031EDA003EDE45 /* ResponseHandlers.swift in Sources */,
@@ -350,6 +359,7 @@
 				83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83D3A71B1C031F1B003EDE45 /* Session.swift in Sources */,
 				833285E91C04D15600A9FE73 /* Balance.swift in Sources */,
+				830E63D91C05A4050048F7BF /* TanScheme.swift in Sources */,
 				83D3A68C1BFF29D9003EDE45 /* Figo.swift in Sources */,
 				83D3A70E1BFFB71D003EDE45 /* Account.swift in Sources */,
 				83D3A7181C031EDA003EDE45 /* ResponseHandlers.swift in Sources */,

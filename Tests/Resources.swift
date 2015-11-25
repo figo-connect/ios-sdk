@@ -13,6 +13,7 @@ enum Resources: String {
 
     case Account
     case Balance
+    case TanScheme
     
     var JSONObject: [String: AnyObject] {
         let bundle = NSBundle(forClass: BaseTestCaseWithLogin.classForCoder())

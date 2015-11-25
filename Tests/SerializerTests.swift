@@ -82,5 +82,13 @@ class SerializerTests: XCTestCase {
         let date = dateFromString(balance.balance_date)
         XCTAssertNotNil(date)
     }
+    
+    func testThatSerializerYieldsTanSchemeObject() {
+        let JSONObject = Resources.TanScheme.JSONObject
+        let scheme = try! TanScheme(representation: JSONObject)
+        XCTAssertEqual(scheme.medium_name, "Girocard")
+        XCTAssertEqual(scheme.name, "chipTAN optisch")
+        XCTAssertEqual(scheme.tan_scheme_id, "M1.2")
+    }
 }
 
