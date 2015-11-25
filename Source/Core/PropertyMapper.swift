@@ -10,25 +10,49 @@ import Foundation
 
 
 struct PropertyMapper {
-    
     let representation: Dictionary<String, AnyObject>
-    let objectType: String
+    let typeName: String
     
-    init(representation: AnyObject, objectType: String) throws {
+    init(_ representation: AnyObject, typeName: String) throws {
         guard let representation: Dictionary<String, AnyObject> = representation as? Dictionary<String, AnyObject> else {
-            throw Error.JSONUnexpectedRootObject(object: objectType)
+            throw Error.JSONUnexpectedRootObject(typeName: typeName)
         }
         self.representation = representation
-        self.objectType = objectType
+        self.typeName = typeName
     }
     
-    func valueForKey<T>(key: String) throws -> T {
-        guard let anyValue = representation[key] else {
-            throw Error.JSONMissingMandatoryKey(key: key, object: objectType)
+    func valueForKey<T>(key: PropertyKey) throws -> T {
+        return try valueForKeyName(key.rawValue)
+    }
+    
+    func valueForKeyName<T>(keyName: String) throws -> T {
+        guard representation[keyName] != nil else {
+            throw Error.JSONMissingMandatoryKey(key: keyName, typeName: typeName)
         }
-        guard let value = anyValue as? T else {
-            throw Error.JSONUnexpectedType(key: key, object: objectType)
+        guard (representation[keyName] as? NSNull) == nil else {
+            throw Error.JSONMissingMandatoryValue(key: keyName, typeName: typeName)
+        }
+        guard let value = representation[keyName] as? T else {
+            throw Error.JSONUnexpectedType(key: keyName, typeName: typeName)
+        }
+        return value
+    }
+    
+    func optionalValueForKey<T>(key: PropertyKey) throws -> T? {
+        return try optionalValueForKeyName(key.rawValue)
+    }
+
+    func optionalValueForKeyName<T>(keyName: String) throws -> T? {
+        guard representation[keyName] != nil else {
+            return nil
+        }
+        guard (representation[keyName] as? NSNull) == nil else {
+            return nil
+        }
+        guard let value: T? = representation[keyName] as? T? else {
+            throw Error.JSONUnexpectedType(key: keyName, typeName: typeName)
         }
         return value
     }
 }
+

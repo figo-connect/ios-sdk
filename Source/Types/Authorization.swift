@@ -18,7 +18,7 @@ public final class Authorization: ResponseObjectSerializable {
     let scope: String?
     let token_type: String?
     
-    public init(response: NSHTTPURLResponse, representation: AnyObject) throws {
+    public init(representation: AnyObject) throws {
         access_token = representation.valueForKeyPath("access_token") as? String
         expires_in = representation.valueForKeyPath("access_token") as? Int
         refresh_token = representation.valueForKeyPath("refresh_token") as? String

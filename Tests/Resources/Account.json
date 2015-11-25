@@ -34,7 +34,7 @@
         "Transfer": {
             "allowed_recipients": [],
             "can_be_recurring": false,
-            "can_be_scheduled": false,
+            "can_be_scheduled": true,
             "max_purpose_length": 108,
             "supported_file_formats": [],
             "supported_text_keys": [

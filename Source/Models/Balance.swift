@@ -16,24 +16,20 @@ public struct Balance: JSONObjectConvertible, ResponseObjectSerializable {
     let credit_line: Float
     let monthly_spending_limit: Float
     
-    private enum Key: String {
+    private enum Key: String, PropertyKey {
         case balance
         case balance_date
         case credit_line
         case monthly_spending_limit
     }
     
-    public init(response: NSHTTPURLResponse, representation: AnyObject) throws {
-        try self.init(representation: representation)
-    }
-    
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation: representation, objectType: "\(self.dynamicType)")
+        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
         
-        balance = try mapper.valueForKey(Key.balance.rawValue)
-        balance_date = try mapper.valueForKey(Key.balance_date.rawValue)
-        credit_line = try mapper.valueForKey(Key.credit_line.rawValue)
-        monthly_spending_limit = try mapper.valueForKey(Key.monthly_spending_limit.rawValue)
+        balance = try mapper.valueForKey(Key.balance)
+        balance_date = try mapper.valueForKey(Key.balance_date)
+        credit_line = try mapper.valueForKey(Key.credit_line)
+        monthly_spending_limit = try mapper.valueForKey(Key.monthly_spending_limit)
     }
     
     public var JSONObject: [String: AnyObject] {

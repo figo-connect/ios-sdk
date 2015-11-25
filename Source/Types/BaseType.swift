@@ -10,15 +10,19 @@ import Foundation
 
 
 public protocol ResponseObjectSerializable {
-    init(response: NSHTTPURLResponse, representation: AnyObject) throws
+    init(representation: AnyObject) throws
 }
 
 public protocol ResponseCollectionSerializable {
-    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) throws -> [Self]
+    static func collection(representation: AnyObject) throws -> [Self]
 }
 
 public protocol JSONObjectConvertible {
     var JSONObject: [String: AnyObject] { get }
+}
+
+protocol PropertyKey {
+    var rawValue: String { get }
 }
 
 func JSONStringFromType(type: JSONObjectConvertible) -> String {

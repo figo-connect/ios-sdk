@@ -22,7 +22,7 @@ public final class User: ResponseObjectSerializable {
     let send_newsletter: Bool?
     let verified_email: Bool?
     
-    public init(response: NSHTTPURLResponse, representation: AnyObject) throws {
+    public init(representation: AnyObject) throws {
         user_id = representation.valueForKeyPath("user_id") as? String
         address = representation.valueForKeyPath("address") as? [String : AnyObject]
         email = representation.valueForKeyPath("email") as? String

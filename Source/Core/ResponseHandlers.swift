@@ -65,7 +65,7 @@ extension Request {
             switch result {
             case .Success(let value):
                 do {
-                    let responseObject = try T(response: response!, representation: value)
+                    let responseObject = try T(representation: value)
                     return .Success(responseObject)
                 }
                 catch (let error as Error) {
@@ -78,7 +78,7 @@ extension Request {
                 guard let data = data else { return .Failure(Error.NetworkLayerError(error: error)) }
                 guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(Error.NetworkLayerError(error: error)) }
                 guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(Error.ServerError(message: responseAsString)) }
-                guard let serverErrorWithDescription = try? Error(response: response!, representation: JSON) else { return .Failure(Error.ServerError(message: responseAsString)) }
+                guard let serverErrorWithDescription = try? Error(representation: JSON) else { return .Failure(Error.ServerError(message: responseAsString)) }
                 return .Failure(serverErrorWithDescription)
             }
         }
@@ -98,7 +98,7 @@ extension Request {
             switch result {
             case .Success(let value):
                 do {
-                    let responseCollection = try T.collection(response: response!, representation: value)
+                    let responseCollection = try T.collection(value)
                     return .Success(responseCollection)
                 }
                 catch (let error as Error) {
@@ -111,7 +111,7 @@ extension Request {
                 guard let data = data else { return .Failure(Error.NetworkLayerError(error: error)) }
                 guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(Error.NetworkLayerError(error: error)) }
                 guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(Error.ServerError(message: responseAsString)) }
-                guard let serverErrorWithDescription = try? Error(response: response!, representation: JSON) else { return .Failure(Error.ServerError(message: responseAsString)) }
+                guard let serverErrorWithDescription = try? Error(representation: JSON) else { return .Failure(Error.ServerError(message: responseAsString)) }
                 return .Failure(serverErrorWithDescription)
             }
         }
