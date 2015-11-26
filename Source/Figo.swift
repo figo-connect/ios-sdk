@@ -154,7 +154,8 @@ public func retrieveCurrentUser(completionHandler: (user: User?, error: Error?) 
 }
 
 public func createNewFigoUser(user: NewUser, clientID: String, clientSecret: String, completionHandler: (recoveryPassword: String?, error: Error?) -> Void) {
-    let request = Endpoint.RetrieveCurrentUser
+    let secret = base64Encode(clientID, clientSecret)
+    let request = Endpoint.CreateNewFigoUser(user: user, secret: secret)
     fireRequest(request).responseJSON() { response in
         debugPrintRequest(response.request, response.response, response.data)
         

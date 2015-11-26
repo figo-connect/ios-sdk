@@ -60,6 +60,7 @@
 		83E750971C04507000545DF6 /* BaseTestCaseWithLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750961C04507000545DF6 /* BaseTestCaseWithLogin.swift */; };
 		83E95C871C0740C90013ED1F /* PaymentParametersIntTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C851C0740C90013ED1F /* PaymentParametersIntTextKeys.json */; };
 		83E95C881C0740C90013ED1F /* PaymentParametersStringTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */; };
+		83E95C8A1C07535D0013ED1F /* CreateNewUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E95C891C07535D0013ED1F /* CreateNewUserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		83E750961C04507000545DF6 /* BaseTestCaseWithLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTestCaseWithLogin.swift; sourceTree = "<group>"; };
 		83E95C851C0740C90013ED1F /* PaymentParametersIntTextKeys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = PaymentParametersIntTextKeys.json; path = Resources/PaymentParametersIntTextKeys.json; sourceTree = "<group>"; };
 		83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = PaymentParametersStringTextKeys.json; path = Resources/PaymentParametersStringTextKeys.json; sourceTree = "<group>"; };
+		83E95C891C07535D0013ED1F /* CreateNewUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewUserTests.swift; sourceTree = "<group>"; };
 		83F3AF221BFF28D900767D77 /* Figo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Figo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -204,6 +206,7 @@
 				83E750911C037D3400545DF6 /* SerializerTests.swift */,
 				83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */,
 				83CEDB801C05DD3D0008CEF8 /* UserTests.swift */,
+				83E95C891C07535D0013ED1F /* CreateNewUserTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				83E750971C04507000545DF6 /* BaseTestCaseWithLogin.swift in Sources */,
 				833285EA1C04D15600A9FE73 /* Balance.swift in Sources */,
 				83CEDB861C05F69B0008CEF8 /* Address.swift in Sources */,
+				83E95C8A1C07535D0013ED1F /* CreateNewUserTests.swift in Sources */,
 				83D3A7191C031EDA003EDE45 /* ResponseHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,7 +29,7 @@ enum Endpoint: URLRequestConvertible {
     case RetrieveAccount(accountId: String)
     case RetrieveAccounts
     case RetrieveCurrentUser
-    case CreateNewFigoUser(user: NewUser)
+    case CreateNewFigoUser(user: NewUser, secret: String)
     
     private var method: Alamofire.Method {
         switch self {
@@ -63,7 +63,7 @@ enum Endpoint: URLRequestConvertible {
             return ["refresh_token": token, "grant_type": "refresh_token"]
         case .RevokeToken(let token):
             return ["token": token, "cascade": false]
-        case .CreateNewFigoUser(let user):
+        case .CreateNewFigoUser(let user, _):
             return user.JSONObject
         default:
             return nil
@@ -93,19 +93,26 @@ enum Endpoint: URLRequestConvertible {
         
         switch self {
         case .LoginUser(_, _, let secret):
-            request.setValue("Basic \(secret)", forHTTPHeaderField: "Authorization")
+            addSecretToHeader(secret, request)
             break
         case .RefreshToken(_, let secret):
-            request.setValue("Basic \(secret)", forHTTPHeaderField: "Authorization")
+            addSecretToHeader(secret, request)
             break
         case .RevokeToken(_):
             request.setValue("Basic \(Session.sharedSession.secret!)", forHTTPHeaderField: "Authorization")
+            break
+        case .CreateNewFigoUser(_, let secret):
+            addSecretToHeader(secret, request)
             break
         default:
             break
         }
         
         return self.encodeParameters(request)
+    }
+    
+    private func addSecretToHeader(secret: String, _ request: NSMutableURLRequest) {
+        request.setValue("Basic \(secret)", forHTTPHeaderField: "Authorization")
     }
 }
 

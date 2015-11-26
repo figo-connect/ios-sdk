@@ -9,31 +9,31 @@
 import Foundation
 
 
-public struct NewUser: JSONObjectConvertible {
+public struct NewUser {
     
     /// First and last name
-    public var name: String
+    public let name: String
     
     /// Email address; It must obey the figo username & password policy
-    public var email: String
+    public let email: String
     
     /// New figo Account password; It must obey the figo username & password policy
-    public var password: String
+    public let password: String
     
     /// This flag indicates whether the user has agreed to be contacted by email (optional)
-    public var send_newsletter: Bool?
+    public let send_newsletter: Bool?
     
     /// Two-letter code of preferred language (optional, default: de)
-    public var language: String?
+    public let language: String?
     
     /// Base64 encoded email address of the user promoting the new user (optional)
-    public var affiliate_user: String?
+    public let affiliate_user: String?
     
     /// Client ID of the figo Connect partner from which the user was redirected to the registration form (optional)
-    public var affiliate_client_id: String?
+    public let affiliate_client_id: String?
 
     
-    private enum Key: String, PropertyKey {
+    private enum Key: String {
         case name
         case email
         case send_newsletter
@@ -43,11 +43,9 @@ public struct NewUser: JSONObjectConvertible {
         case affiliate_client_id
     }
     
-    public init(name: String, email: String, password: String) {
-        self.name = name
-        self.email = email
-        self.password = password
-    }
+}
+
+extension NewUser: JSONObjectConvertible {
     
     public var JSONObject: [String: AnyObject] {
         get {
