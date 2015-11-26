@@ -6,9 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 import XCTest
-@testable import Figo
+import Figo
 
 
 class UserTests: BaseTestCaseWithLogin {
@@ -44,5 +43,14 @@ class UserTests: BaseTestCaseWithLogin {
         XCTAssertEqual(user.user_id, "U12345")
         XCTAssertEqual(user.verified_email, true)
     }
+    
+    func testCresate() {
+//        var user = NewUser(name: "Christian König", email: "christian@koenig.systems", password: "b2D59>497'TL")
+//        Figo.createNewFigoUser(user, clientID: clientID, clientSecret: clientSecret) { (recoveryPassword, error) -> Void in
+//            XCTAssertNotNil(recoveryPassword)
+//            XCTAssertNil(error)
+//        }
+    }
+    
     
 }

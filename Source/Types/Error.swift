@@ -27,7 +27,7 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
     case NetworkLayerError(error: NSError)
     case ServerError(message: String)
     case ServerErrorWithDescrition(error: String, description: String)
-    case UnspecifiedError
+    case UnspecifiedError(reason: String?)
 
     public var failureReason: String {
         get {
@@ -50,8 +50,8 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
                 return message
             case .ServerErrorWithDescrition(_, let description):
                 return description
-            case .UnspecifiedError:
-                return "Unspecified error"
+            case .UnspecifiedError(let reason):
+                return reason ?? "No failure reason given"
             }
         }
     }

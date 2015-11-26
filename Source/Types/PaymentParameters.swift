@@ -9,21 +9,14 @@
 import Foundation
 
 
-public enum PaymentType: String {
-    case Transfer = "Transfer"
-    case DirectDebit = "Direct debit"
-    case SEPATransfer = "SEPA transfer"
-    case SEPADirectDebit = "SEPA direct debit"
-}
-
-public struct PaymentParameters: JSONObjectConvertible, ResponseCollectionSerializable {
+public struct PaymentParameters {
     
     let type: PaymentType
-    let allowed_recipients: [AnyObject]
+    let allowed_recipients: [String]
     let can_be_recurring: Bool
     let can_be_scheduled: Bool
     let max_purpose_length: Int
-    let supported_file_formats: [AnyObject]
+    let supported_file_formats: [String]
     let supported_text_keys: [Int]
     
     private enum Key: String, PropertyKey {
@@ -45,8 +38,21 @@ public struct PaymentParameters: JSONObjectConvertible, ResponseCollectionSerial
         can_be_scheduled        = try mapper.valueForKey(Key.can_be_scheduled)
         max_purpose_length      = try mapper.valueForKey(Key.max_purpose_length)
         supported_file_formats  = try mapper.valueForKey(Key.supported_file_formats)
-        supported_text_keys     = try mapper.valueForKey(Key.supported_text_keys)
+        
+        // Special treatment for the key "supported_text_keys" because the server sometimes sends
+        // numbers and sometimes sends strings for the values
+        do {
+            supported_text_keys = try mapper.valueForKey(Key.supported_text_keys)
+        }
+        catch {
+            var stringKeys: [String] = try mapper.valueForKey(Key.supported_text_keys)
+            stringKeys = stringKeys.filter() { return Int($0) != nil }
+            supported_text_keys = stringKeys.map() { return Int($0)! }
+        }
     }
+}
+
+extension PaymentParameters: ResponseCollectionSerializable {
     
     public static func collection(representation: AnyObject) throws -> [PaymentParameters] {
         guard let representation: [String: [String: AnyObject]] = representation as? [String: [String: AnyObject]] else {
@@ -62,24 +68,5 @@ public struct PaymentParameters: JSONObjectConvertible, ResponseCollectionSerial
         }
         return paymentParameters
     }
-    
-    public var JSONObject: [String: AnyObject] {
-        get {
-            var dict = Dictionary<String, AnyObject>()
-            dict[Key.type.rawValue] = type.rawValue
-            dict[Key.allowed_recipients.rawValue] = allowed_recipients
-            dict[Key.can_be_recurring.rawValue] = can_be_recurring
-            dict[Key.can_be_scheduled.rawValue] = can_be_scheduled
-            dict[Key.max_purpose_length.rawValue] = max_purpose_length
-            dict[Key.supported_file_formats.rawValue] = supported_file_formats
-            dict[Key.supported_text_keys.rawValue] = supported_text_keys
-            return dict
-        }
-    }
-    
-    public var description: String {
-        get {
-            return JSONStringFromType(self)
-        }
-    }
 }
+

@@ -87,11 +87,13 @@ func refreshAccessToken(completionHandler: (error: Error?) -> Void) {
 /**
  REVOKE TOKEN
  
- Invalidates the session's access token for testing automatic refreshing of expired access tokens.
+ Invalidates the session's access token for simulating an expired access token.
+ 
+ After revoking the access token, with the next API call a new one is fetched automatically if the refresh token is still valid.
 
  - parameter completionHandler: Returns nothing or error
 */
-func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
+public func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
     fireRequest(Endpoint.RevokeToken(token: Session.sharedSession.authorization?.access_token ?? ""))
         .response { request, response, data, error in
             debugPrintRequest(request, response, data)
@@ -108,7 +110,7 @@ func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
  
  Invalidates access token and refresh token, after that CREDENTIAL LOGIN is required.
  
- TODO: Think about renaming this to logout
+ You might call this **LOGOUT**.
 
  - parameter refreshToken: The client's refresh token, defaults to the session's refresh token
  - parameter completionHandler: Returns nothing or error
@@ -148,6 +150,37 @@ public func retrieveCurrentUser(completionHandler: (user: User?, error: Error?) 
     let request = Endpoint.RetrieveCurrentUser
     fireRequest(request).responseObject() { user, error in
         retryRequestingObjectOnInvalidTokenError(request, user, error, completionHandler)
+    }
+}
+
+public func createNewFigoUser(user: NewUser, clientID: String, clientSecret: String, completionHandler: (recoveryPassword: String?, error: Error?) -> Void) {
+    let request = Endpoint.RetrieveCurrentUser
+    fireRequest(request).responseJSON() { response in
+        debugPrintRequest(response.request, response.response, response.data)
+        
+        switch response.result {
+        case .Success(let value):
+            if let JSON = value as? [String: String] {
+                completionHandler(recoveryPassword: JSON["recovery_password"], error: nil)
+            } else {
+                completionHandler(recoveryPassword: nil, error: Error.JSONMissingMandatoryKey(key: "recovery_password", typeName: "CreateNewFigoUserResponse"))
+            }
+            break
+        case .Failure(let error):
+            var figoError: Error = Error.NetworkLayerError(error: error)
+            if let data = response.data {
+                if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
+                    figoError = Error.ServerError(message: responseAsString)
+                    if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
+                        if let serverErrorWithDescription = try? Error(representation: JSON) {
+                            figoError = serverErrorWithDescription
+                        }
+                    }
+                }
+            }
+            completionHandler(recoveryPassword: nil, error: figoError)
+            break
+        }
     }
 }
 

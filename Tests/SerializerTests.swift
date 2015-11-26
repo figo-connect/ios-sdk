@@ -7,11 +7,33 @@
 //
 
 import XCTest
-@testable import Figo
+import Figo
 
 
 class SerializerTests: XCTestCase {
 
+    func testIntTextKeys() {
+        do {
+            let JSONObject = Resources.PaymentParametersIntTextKeys.JSONObject
+            let p = try PaymentParameters(paymentType: PaymentType.Transfer, representation: JSONObject)
+            XCTAssertNotNil(p)
+            XCTAssertEqual(p.supported_text_keys.count, 6)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testStringTextKeys() {
+        do {
+            let JSONObject = Resources.PaymentParametersStringTextKeys.JSONObject
+            let p = try PaymentParameters(paymentType: PaymentType.Transfer, representation: JSONObject)
+            XCTAssertNotNil(p)
+            XCTAssertEqual(p.supported_text_keys.count, 6)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testThatAccountSerializerYieldsObject() {
         let JSONObject = Resources.Account.JSONObject
         let account = try! Account(representation: JSONObject)

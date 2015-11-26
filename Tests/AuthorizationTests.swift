@@ -1,5 +1,5 @@
 //
-//  LoginTestCases.swift
+//  AuthorizationTests.swift
 //  Figo
 //
 //  Created by Christian König on 23.11.15.
@@ -7,10 +7,10 @@
 //
 
 import XCTest
-@testable import Figo
+import Figo
 
 
-class LoginTests: XCTestCase {
+class AuthorizationTests: XCTestCase {
     
     let username = "christian@koenig.systems"
     let password = "eVPVdiL7a8EUAP"
@@ -22,10 +22,10 @@ class LoginTests: XCTestCase {
         Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { refreshToken, error in
             XCTAssertNotNil(refreshToken)
             XCTAssertNil(error)
-//            Figo.revokeRefreshToken(refreshToken) { error in
-//                XCTAssertNil(error)
+            Figo.revokeRefreshToken(refreshToken) { error in
+                XCTAssertNil(error)
                 callbackExpectation.fulfill()
-//            }
+            }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
@@ -58,8 +58,8 @@ class LoginTests: XCTestCase {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    // Should only revoke access token, but at this time also revokes refresh token
-    func disabled_testRevokesAccessToken() {
+    // After revoking the access token, a new one is fetched automatically if the refresh token is still valid
+    func testThatExpiredAccessTokenTriggersRefreshAndYieldsNewToken() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
             XCTAssertNil(error)
@@ -89,19 +89,4 @@ class LoginTests: XCTestCase {
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
-    
-    func testThatExpiredAccessTokenTriggersRefreshAndYieldsNewToken() {
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
-            XCTAssertNil(error)
-            Figo.Session.discardAccessToken()
-            print(Figo.Session.sharedSession.authorization?.access_token)
-            Figo.retrieveAccount("A1079434.5") { _, error in
-                XCTAssertNil(error)
-                callbackExpectation.fulfill()
-            }
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-    }
-
 }

@@ -1,5 +1,5 @@
 //
-//  Endpoints.swift
+//  Endpoint.swift
 //  Figo
 //
 //  Created by Christian König on 25.11.15.
@@ -29,10 +29,11 @@ enum Endpoint: URLRequestConvertible {
     case RetrieveAccount(accountId: String)
     case RetrieveAccounts
     case RetrieveCurrentUser
+    case CreateNewFigoUser(user: NewUser)
     
     private var method: Alamofire.Method {
         switch self {
-        case .LoginUser, .RefreshToken:
+        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken(_):
             return .POST
         default:
             return .GET
@@ -49,7 +50,7 @@ enum Endpoint: URLRequestConvertible {
                 return "/rest/accounts/" + accountId
             case .RetrieveAccounts:
                 return "/rest/accounts"
-            case .RetrieveCurrentUser:
+            case .RetrieveCurrentUser, .CreateNewFigoUser:
                 return "/rest/user"
         }
     }
@@ -61,7 +62,9 @@ enum Endpoint: URLRequestConvertible {
         case .RefreshToken(let token, _):
             return ["refresh_token": token, "grant_type": "refresh_token"]
         case .RevokeToken(let token):
-            return ["token": token]
+            return ["token": token, "cascade": false]
+        case .CreateNewFigoUser(let user):
+            return user.JSONObject
         default:
             return nil
         }
@@ -94,6 +97,9 @@ enum Endpoint: URLRequestConvertible {
             break
         case .RefreshToken(_, let secret):
             request.setValue("Basic \(secret)", forHTTPHeaderField: "Authorization")
+            break
+        case .RevokeToken(_):
+            request.setValue("Basic \(Session.sharedSession.secret!)", forHTTPHeaderField: "Authorization")
             break
         default:
             break

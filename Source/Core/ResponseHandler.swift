@@ -1,5 +1,5 @@
 //
-//  ResponseSerializers.swift
+//  ResponseHandler.swift
 //  Figo
 //
 //  Created by Christian König on 20.11.15.
@@ -61,7 +61,7 @@ extension Request {
             let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
             let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
             debugPrintRequest(request, response, data)
-            
+
             switch result {
             case .Success(let value):
                 do {
@@ -72,7 +72,7 @@ extension Request {
                     return .Failure(error)
                 }
                 catch {
-                    return .Failure(Error.UnspecifiedError)
+                    return .Failure(Error.UnspecifiedError(reason: "Internal inconsistency at \(__FILE__):\(__LINE__)"))
                 }
             case .Failure(let error):
                 guard let data = data else { return .Failure(Error.NetworkLayerError(error: error)) }
@@ -105,7 +105,7 @@ extension Request {
                     return .Failure(error)
                 }
                 catch {
-                    return .Failure(Error.UnspecifiedError)
+                    return .Failure(Error.UnspecifiedError(reason: "Internal inconsistency at \(__FILE__):\(__LINE__)"))
                 }
             case .Failure(let error):
                 guard let data = data else { return .Failure(Error.NetworkLayerError(error: error)) }

@@ -1,0 +1,15 @@
+{
+    "allowed_recipients": [],
+    "can_be_recurring": false,
+    "can_be_scheduled": true,
+    "max_purpose_length": 54,
+    "supported_file_formats": [],
+    "supported_text_keys": [
+                            "51",
+                            "53",
+                            "54",
+                            "56",
+                            "67",
+                            "69"
+                            ]
+}

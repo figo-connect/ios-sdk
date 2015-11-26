@@ -11,9 +11,8 @@ import Foundation
 
 /**
  Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
-
 */
-public struct Account: CustomStringConvertible, JSONObjectConvertible, ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct Account {
     
     /// Internal figo Connect account ID
     let account_id: String
@@ -111,6 +110,11 @@ public struct Account: CustomStringConvertible, JSONObjectConvertible, ResponseO
         case type
     }
     
+
+}
+
+extension Account: ResponseObjectSerializable {
+    
     public init(representation: AnyObject) throws {
         let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
         
@@ -136,15 +140,9 @@ public struct Account: CustomStringConvertible, JSONObjectConvertible, ResponseO
         supported_tan_schemes   = try TanScheme.collection(mapper.valueForKey(Key.supported_tan_schemes))
         type                    = try mapper.valueForKey(Key.type)
     }
-    
-    public var JSONObject: [String: AnyObject] {
-        get {
-            var dict = Dictionary<String, AnyObject>()
-            dict[Key.account_id.rawValue] = account_id
-            dict[Key.account_number.rawValue] = account_number
-            return dict
-        }
-    }
+}
+
+extension Account: ResponseCollectionSerializable {
     
     public static func collection(representation: AnyObject) throws -> [Account] {
         var accounts: [Account] = []
@@ -157,12 +155,6 @@ public struct Account: CustomStringConvertible, JSONObjectConvertible, ResponseO
             }
         }
         return accounts
-    }
-    
-    public var description: String {
-        get {
-            return JSONStringFromType(self)
-        }
     }
 }
 
