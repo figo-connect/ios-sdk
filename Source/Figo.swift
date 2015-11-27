@@ -15,54 +15,10 @@ public typealias ChallengeResponder = (message: String, accountID: String, chall
 public typealias CompletionHandler = (error: Error?) -> Void
 
 
-class Session {
-    static let sharedInstance = Session()
-    private init() {} // This prevents others from using the default '()' initializer for this class.
-    
-    private var _accessToken: String?
-    var accessToken: String? {
-        get {
-            return _accessToken
-        }
-        set {
-            _accessToken = newValue
-        }
-    }
-    var refreshToken: String?
-    var secret: String?
-    
-    /// Milliseconds between polling task states
-    static let pollingInterval: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
-}
 
 
 
 
-/**
- CREDENTIAL LOGIN
- 
- Requests authorization with credentials. Authorization can be obtained as long
- as the user has not revoked the access granted to your application.
- 
- The returned refresh token can be stored by the client for future logins, but only
- in a securely encryped store like the keychain or a SQLCipher database.
- 
- - parameter username: The figo account email address
- - parameter password: The figo account password
- - parameter clientdID: The figo client identifier
- - parameter clientdSecret: The figo client sclient
- - parameter completionHandler: Returns refresh token or error
- */
-public func loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, completionHandler: (refreshToken: String?, error: Error?) -> Void) {
-    let secret = base64Encode(clientID, clientSecret)
-    let request = Endpoint.LoginUser(username: username, password: password, secret: secret)
-    fireRequest(request).responseObject() { (authorization: Authorization?, error: Error?) -> Void in
-        Session.sharedInstance.accessToken = authorization?.access_token
-        Session.sharedInstance.refreshToken = authorization?.refresh_token
-        Session.sharedInstance.secret = secret
-        completionHandler(refreshToken: authorization?.refresh_token, error: error)
-    }
-}
 
 /**
  EXCHANGE REFRESH TOKEN
@@ -104,52 +60,9 @@ func refreshAccessToken(completionHandler: (error: Error?) -> Void) {
     }
 }
 
-/**
- REVOKE TOKEN
- 
- Invalidates the session's access token for simulating an expired access token.
- 
- After revoking the access token, with the next API call a new one is fetched automatically if the refresh token is still valid.
- 
- - parameter completionHandler: Returns nothing or error
- */
-public func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
-    fireRequest(Endpoint.RevokeToken(token: Session.sharedInstance.accessToken ?? ""))
-        .response { request, response, data, error in
-            debugPrintRequest(request, response, data)
-            if let error = error {
-                completionHandler(error: Error.NetworkLayerError(error: error))
-            } else {
-                completionHandler(error: nil)
-            }
-    }
-}
 
-/**
- REVOKE TOKEN
- 
- Invalidates access token and refresh token, after that CREDENTIAL LOGIN is required.
- 
- You might call this **LOGOUT**.
- 
- - parameter refreshToken: The client's refresh token, defaults to the session's refresh token
- - parameter completionHandler: Returns nothing or error
- */
-public func revokeRefreshToken(refreshToken: String?, completionHandler: (error: Error?) -> Void) {
-    let token: String = {
-        if refreshToken != nil { return refreshToken! }
-        else { return Session.sharedInstance.refreshToken ?? "" }
-    }()
-    fireRequest(Endpoint.RevokeToken(token: token)).response { request, response, data, error in
-        debugPrintRequest(request, response, data)
-        if let error = error {
-            completionHandler(error: Error.NetworkLayerError(error: error))
-        } else {
-            Session.sharedInstance.accessToken = nil
-            completionHandler(error: nil)
-        }
-    }
-}
+
+
 
 public func retrieveAccount(accountID: String, completionHandler: (account: Account?, error: Error?) -> Void) {
     guard Session.sharedInstance.accessToken != nil else {

@@ -9,60 +9,48 @@
 import Foundation
 
 
-extension FigoSession {
-    
-    /**
-     CREDENTIAL LOGIN
-     
-     Requests authorization with credentials. Authorization can be obtained as long
-     as the user has not revoked the access granted to your application.
-     
-     The returned refresh token can be stored by the client for future logins, but only
-     in a securely encryped store like the keychain or a SQLCipher database.
-     
-     - parameter username: The figo account email address
-     - parameter password: The figo account password
-     - parameter completion: Returns refresh token or error
-     */
-    public func loginWithUsername(username: String, password: String, completion: (refreshToken: String?, error: Error?) -> Void) {
-        figoRequest(Endpoint.LoginUser(username: username, password: password, secret: self.basicAuthSecret)) { (data, error) -> Void in
-            let decoded: (Authorization?, Error?) = self.objectForData(data)
-            self.accessToken = decoded.0?.access_token
-            completion(refreshToken: decoded.0?.refresh_token, error: decoded.1 ?? error)
-        }
-    }
-}
+/**
+ Represents a Figo session, which has to be initialized with your client identifier and client secret.
+ 
+ Applications that would like to access the figo Connect have to register with us beforehand. If you would like to use figo Connect in your application, please email us. We would love to hear from you what you have in mind and will generate a client identifier and client secret for your application without any bureaucracy.
+ 
+ After a successfull login you can call all other functions as long as your session is valid. The first login has to be with credentials, after that you can login using the refresh token which you got from the credential login.
+ 
+ - Important: A session will timeout 60 minutes after login.
 
-
+ */
 public class FigoSession {
     
     let session: NSURLSession = NSURLSession.sharedSession()
     let basicAuthSecret: String
-    
     var accessToken: String?
+    var refreshToken: String?
     
     /**
+     Initializes a new Figo session
      
-     - parameter clientdID: The figo client identifier
-     - parameter clientdSecret: The figo client sclient
+     
+     - Parameter clientIdentifier: The figo client identifier
+     - Parameter clientSecret: The figo client sclient
      */
-    public init(clientID: String, clientSecret: String) {
-        basicAuthSecret = base64Encode(clientID, clientSecret)
+    public init(clientIdentifier: String, clientSecret: String) {
+        basicAuthSecret = base64Encode(clientIdentifier, clientSecret)
     }
     
-    public func retrieveAccounts(completion: (accounts: [Account]?, error: Error?) -> Void) {
-        figoRequest(Endpoint.RetrieveAccounts) { (data, error) -> Void in
-            let decoded: ([Account]?, Error?) = self.collectionForData(data)
-            completion(accounts: decoded.0, error: decoded.1)
-        }
-    }
+
     
     func figoRequest(requestConvertible: URLRequestConvertible, completion: (data: NSData?, error: Error?) -> Void) {
-        
+                
         let mutableURLRequest = requestConvertible.URLRequest
         
         if requestConvertible.needsBasicAuthHeader {
-            mutableURLRequest.setValue("Baisc \(basicAuthSecret)", forHTTPHeaderField: "Authorization")
+            mutableURLRequest.setValue("Basic \(self.basicAuthSecret)", forHTTPHeaderField: "Authorization")
+        } else {
+            guard self.accessToken != nil else {
+                completion(data: nil, error: Error.NoActiveSession)
+                return
+            }
+            mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
         }
 
         figoPrintRequest(mutableURLRequest)
@@ -115,7 +103,12 @@ public class FigoSession {
         }
         return (nil, nil)
     }
-    
-    
-
 }
+
+
+private func base64Encode(clientID: String, _ clientSecret: String) -> String {
+    let clientCode: String = clientID + ":" + clientSecret
+    let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
+    return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
+}
+

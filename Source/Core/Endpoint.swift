@@ -9,12 +9,6 @@
 import Foundation
 
 
-func base64Encode(clientID: String, _ clientSecret: String) -> String {
-    let clientCode: String = clientID + ":" + clientSecret
-    let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
-    return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
-}
-
 protocol URLRequestConvertible {
     var URLRequest: NSMutableURLRequest { get }
     var needsBasicAuthHeader: Bool { get }
@@ -27,13 +21,13 @@ enum Method: String {
 enum Endpoint: URLRequestConvertible {
     private static let baseURLString = "https://api.figo.me"
     
-    case LoginUser(username: String, password: String, secret: String)
-    case RefreshToken(token: String, secret: String)
+    case LoginUser(username: String, password: String)
+    case RefreshToken(token: String)
     case RevokeToken(token: String)
     case RetrieveAccount(accountId: String)
     case RetrieveAccounts
     case RetrieveCurrentUser
-    case CreateNewFigoUser(user: NewUser, secret: String)
+    case CreateNewFigoUser(user: NewUser)
     case SetupNewAccount(NewAccount)
     case PollTaskState(PollTaskStateParameters)
     case RemoveStoredPin(bankId: String)
@@ -68,13 +62,13 @@ enum Endpoint: URLRequestConvertible {
     
     private var parameters: [String: AnyObject] {
         switch self {
-        case .LoginUser(let username, let password, _):
+        case .LoginUser(let username, let password):
             return ["username": username, "password": password, "grant_type": "password"]
-        case .RefreshToken(let token, _):
+        case .RefreshToken(let token):
             return ["refresh_token": token, "grant_type": "refresh_token"]
         case .RevokeToken(let token):
             return ["token": token, "cascade": false]
-        case .CreateNewFigoUser(let user, _):
+        case .CreateNewFigoUser(let user):
             return user.JSONObject
         case .SetupNewAccount(let account):
             return account.JSONObject
@@ -97,19 +91,15 @@ enum Endpoint: URLRequestConvertible {
             } catch { }
             break
         case .GET:
-            func query(parameters: [String: AnyObject]) -> String {
-                var components: [(String, String)] = []
-                for key in parameters.keys.sort(<) {
-                    components.append((key, "\(parameters[key]!)"))
-                }
-                return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
-            }
+            if parameters.count > 0 {
+
             if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {
                 let percentEncodedQuery = (URLComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + query(parameters)
                 URLComponents.percentEncodedQuery = percentEncodedQuery
                 request.URL = URLComponents.URL
             }
             request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            }
             break
         default:
             break
@@ -133,11 +123,16 @@ enum Endpoint: URLRequestConvertible {
         encodeParameters(request)
         return request
     }
-    
-    private func addSecretToHeader(secret: String, _ request: NSMutableURLRequest) {
-        request.setValue("Basic \(secret)", forHTTPHeaderField: "Authorization")
-        debugPrint("Basic has been set")
-    }
 }
+
+
+private func query(parameters: [String: AnyObject]) -> String {
+    var components: [(String, String)] = []
+    for key in parameters.keys.sort(<) {
+        components.append((key, "\(parameters[key]!)"))
+    }
+    return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
+}
+
 
 
