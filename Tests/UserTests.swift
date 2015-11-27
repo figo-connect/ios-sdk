@@ -13,6 +13,7 @@ import Figo
 class UserTests: BaseTestCaseWithLogin {
 
     func testThatRetrieveCurrentUserYieldsObject() {
+        login()
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.retrieveCurrentUser() { user, error in
             if let user = user {
@@ -22,6 +23,7 @@ class UserTests: BaseTestCaseWithLogin {
             callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
+        logout()
     }
     
     func testThatUserSerializerYieldsObject() {

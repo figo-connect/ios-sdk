@@ -123,3 +123,12 @@ extension Request {
 }
 
 
+func wrapError(error: NSError, data: NSData?) -> Error {
+    guard let data = data else { return Error.NetworkLayerError(error: error) }
+    guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return Error.NetworkLayerError(error: error) }
+    guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return Error.ServerError(message: responseAsString) }
+    guard let serverErrorWithDescription = try? Error(representation: JSON) else { return Error.ServerError(message: responseAsString) }
+    return serverErrorWithDescription
+}
+
+

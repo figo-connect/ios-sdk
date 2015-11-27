@@ -10,9 +10,7 @@ import Foundation
 import Alamofire
 
 
-func fireRequest(request: URLRequestConvertible) -> Request {
-    return Alamofire.request(request).validate()
-}
+
 
 func base64Encode(clientID: String, _ clientSecret: String) -> String {
     let clientCode: String = clientID + ":" + clientSecret
@@ -30,10 +28,12 @@ enum Endpoint: URLRequestConvertible {
     case RetrieveAccounts
     case RetrieveCurrentUser
     case CreateNewFigoUser(user: NewUser, secret: String)
+    case SetupNewAccount(NewAccount)
+    case PollTaskState(PollTaskStateParameters)
     
     private var method: Alamofire.Method {
         switch self {
-        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken(_):
+        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupNewAccount, .PollTaskState:
             return .POST
         default:
             return .GET
@@ -42,16 +42,18 @@ enum Endpoint: URLRequestConvertible {
     
     private var path: String {
         switch self {
-            case .LoginUser, .RefreshToken:
-                return "/auth/token"
-            case .RevokeToken(_):
-                return "/auth/revoke"
-            case .RetrieveAccount(let accountId):
-                return "/rest/accounts/" + accountId
-            case .RetrieveAccounts:
-                return "/rest/accounts"
-            case .RetrieveCurrentUser, .CreateNewFigoUser:
-                return "/rest/user"
+        case .LoginUser, .RefreshToken:
+            return "/auth/token"
+        case .RevokeToken:
+            return "/auth/revoke"
+        case .RetrieveAccount(let accountId):
+            return "/rest/accounts/" + accountId
+        case .RetrieveAccounts, .SetupNewAccount:
+            return "/rest/accounts"
+        case .RetrieveCurrentUser, .CreateNewFigoUser:
+            return "/rest/user"
+        case .PollTaskState:
+            return "/task/progress"
         }
     }
     
@@ -65,6 +67,10 @@ enum Endpoint: URLRequestConvertible {
             return ["token": token, "cascade": false]
         case .CreateNewFigoUser(let user, _):
             return user.JSONObject
+        case .SetupNewAccount(let account):
+            return account.JSONObject
+        case .PollTaskState(let parameters):
+            return parameters.JSONObject
         default:
             return nil
         }
@@ -72,11 +78,11 @@ enum Endpoint: URLRequestConvertible {
     
     private func encodeParameters(request: NSMutableURLRequest) -> NSMutableURLRequest {
         switch self.method {
-            case .GET:
-                return Alamofire.ParameterEncoding.URL.encode(request, parameters: parameters).0
-            default:
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                return Alamofire.ParameterEncoding.JSON.encode(request, parameters: parameters).0
+        case .GET:
+            return Alamofire.ParameterEncoding.URL.encode(request, parameters: parameters).0
+        default:
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            return Alamofire.ParameterEncoding.JSON.encode(request, parameters: parameters).0
         }
     }
     
@@ -87,8 +93,11 @@ enum Endpoint: URLRequestConvertible {
         request.HTTPMethod = self.method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        if let token = Session.sharedSession.authorization?.access_token {
+        if let token = Session.sharedInstance.accessToken {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            debugPrint("Bearer has been set")
+        } else {
+            debugPrint("❗️Failed to set Bearer due to missing access token")
         }
         
         switch self {
@@ -99,7 +108,7 @@ enum Endpoint: URLRequestConvertible {
             addSecretToHeader(secret, request)
             break
         case .RevokeToken(_):
-            request.setValue("Basic \(Session.sharedSession.secret!)", forHTTPHeaderField: "Authorization")
+            addSecretToHeader(Session.sharedInstance.secret ?? "", request)
             break
         case .CreateNewFigoUser(_, let secret):
             addSecretToHeader(secret, request)
@@ -113,6 +122,7 @@ enum Endpoint: URLRequestConvertible {
     
     private func addSecretToHeader(secret: String, _ request: NSMutableURLRequest) {
         request.setValue("Basic \(secret)", forHTTPHeaderField: "Authorization")
+        debugPrint("Basic has been set")
     }
 }
 

@@ -58,7 +58,6 @@ class AuthorizationTests: XCTestCase {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    // After revoking the access token, a new one is fetched automatically if the refresh token is still valid
     func testThatExpiredAccessTokenTriggersRefreshAndYieldsNewToken() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in

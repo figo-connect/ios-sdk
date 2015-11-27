@@ -19,11 +19,9 @@ class BaseTestCaseWithLogin: XCTestCase {
     let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
     let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 
-    override func setUp() {
-        super.setUp()
+    func login() {
         
-        guard !Figo.isUserLoggedIn else { return }
-        
+        guard Session.sharedInstance.accessToken == nil else { return }
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { refreshToken, error in
             XCTAssertNotNil(refreshToken)
@@ -31,5 +29,18 @@ class BaseTestCaseWithLogin: XCTestCase {
             callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
+    func logout() {
+        
+        guard Session.sharedInstance.accessToken == nil else { return }
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        Figo.revokeAccessToken { (error) -> Void in
+            XCTAssertNil(error)
+            XCTAssertNil(Session.sharedInstance.accessToken)
+            callbackExpectation.fulfill()
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+        XCTAssertNil(Session.sharedInstance.accessToken)
     }
 }

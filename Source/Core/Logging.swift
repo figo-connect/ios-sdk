@@ -10,6 +10,7 @@ import Foundation
 
 
 func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _ data: NSData?) {
+    debugPrint("⬆️")
     if let request = request {
         debugPrint("\(request.HTTPMethod!) \(request.URLString)")
         if let fields = request.allHTTPHeaderFields {
@@ -23,6 +24,7 @@ func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _
             }
         }
     }
+    debugPrint("⬇️")
     if let response = response {
         debugPrint(response)
     }

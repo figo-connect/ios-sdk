@@ -28,6 +28,7 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
     case ServerError(message: String)
     case ServerErrorWithDescrition(error: String, description: String)
     case UnspecifiedError(reason: String?)
+    case TaskProcessingError(accountID: String, message: String?)
 
     public var failureReason: String {
         get {
@@ -52,6 +53,8 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
                 return description
             case .UnspecifiedError(let reason):
                 return reason ?? "No failure reason given"
+            case .TaskProcessingError(let accountID, let message):
+                return "Server faild to complete task for account \(accountID): \(message ?? "No message")"
             }
         }
     }

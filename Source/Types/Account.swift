@@ -12,80 +12,81 @@ import Foundation
 /**
  Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
 */
-public struct Account {
+public struct Account: ResponseObjectSerializable, ResponseCollectionSerializable {
     
     /// Internal figo Connect account ID
-    let account_id: String
+    public let account_id: String
     
     /// Internal figo Connect bank ID
-    let bank_id: String
+    public let bank_id: String
     
     /// Account name
-    let name: String
+    public let name: String
     
     /// Account owner
-    let owner: String
+    public let owner: String
     
-    /// This flag indicates whether the account will be automatically synchronized
+    public /// This flag indicates whether the account will be automatically synchronized
     let auto_sync: Bool
     
     /// Account number
-    let account_number: String
+    public let account_number: String
     
     /// Bank code
-    let bank_code: String
+    public let bank_code: String
     
     /// Bank name
-    let bank_name: String
+    public let bank_name: String
     
     /// Three-character currency code
-    let currency: String
+    public let currency: String
     
     /// IBAN
-    let iban: String
+    public let iban: String
     
     /// BIC
-    let bic: String
+    public let bic: String
     
     /**
      Account type
      
      Independent of the integration of the bank account into figo, the following kinds of bank accounts are defined: Giro account, Savings account, Credit card, Loan account, PayPal, Cash book, Depot and Unknown.
      */
-    let type: String
+    public let type: String
 
     /// Account icon URL
-    let icon: String
+    public let icon: String
     
     /**
      Dictionary mapping from resolution to URL for additional resolutions of the banks icon. Currently supports the following sizes:
      
      48x48 60x60 72x72 84x84 96x96 120x120 144x144 192x192 256x256
      */
-    let additional_icons: [String: String]
+    public let additional_icons: [String: String]
     
     /// List of payment types with payment parameters
-    let supported_payments: [PaymentParameters]
+    public let supported_payments: [PaymentParameters]
 
     // List of TAN schemes
-    let supported_tan_schemes: [TanScheme]
+    public let supported_tan_schemes: [TanScheme]
     
     /// ID of the TAN scheme preferred by the user
-    let preferred_tan_scheme: String?
+    public let preferred_tan_scheme: String?
 
     // This flag indicates whether the balance of this account is added to the total balance of accounts
-    let in_total_balance: Bool
+    public let in_total_balance: Bool
 
     /// This flag indicates whether the user has chosen to save the PIN on the figo Connect server
-    let save_pin: Bool
+    public let save_pin: Bool
 
     /// Synchronization status
-    let status: SyncStatus
+    public let status: SyncStatus
     
     /// Account balance; This response parameter will be omitted if the balance is not yet known
     /// TODO: Verify, make optional
-    let balance: Balance
+    public let balance: Balance
 
+    
     private enum Key: String, PropertyKey {
         case account_id
         case account_number
@@ -109,11 +110,6 @@ public struct Account {
         case supported_tan_schemes
         case type
     }
-    
-
-}
-
-extension Account: ResponseObjectSerializable {
     
     public init(representation: AnyObject) throws {
         let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
@@ -140,10 +136,7 @@ extension Account: ResponseObjectSerializable {
         supported_tan_schemes   = try TanScheme.collection(mapper.valueForKey(Key.supported_tan_schemes))
         type                    = try mapper.valueForKey(Key.type)
     }
-}
 
-extension Account: ResponseCollectionSerializable {
-    
     public static func collection(representation: AnyObject) throws -> [Account] {
         var accounts: [Account] = []
         if let representation = representation as? [String: AnyObject] {
