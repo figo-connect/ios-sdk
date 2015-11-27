@@ -34,7 +34,7 @@ class AuthorizationTests: XCTestCase {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.loginWithUsername(username, password: "foo", clientID: clientID, clientSecret: clientSecret) { authorization, error in
             XCTAssertNotNil(error)
-            XCTAssertEqual(error?.failureReason, "Invalid credentials")
+            XCTAssert(error!.failureReason.containsString("Invalid credentials"))
             callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
@@ -54,21 +54,6 @@ class AuthorizationTests: XCTestCase {
                     XCTFail()
             }
             callbackExpectation.fulfill()
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-    }
-    
-    func testThatExpiredAccessTokenTriggersRefreshAndYieldsNewToken() {
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { _, error in
-            XCTAssertNil(error)
-            Figo.revokeAccessToken() { error in
-                XCTAssertNil(error)
-                Figo.retrieveAccount("A1079434.5") { _, error in
-                    XCTAssertNil(error)
-                    callbackExpectation.fulfill()
-                }
-            }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }

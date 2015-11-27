@@ -10,71 +10,61 @@ import Foundation
 import Alamofire
 
 
-func retryRequestingObjectOnInvalidTokenError<T: ResponseObjectSerializable>(request: URLRequestConvertible, _ object: T?, _ error: Error?, _ completionHandler: (T?, Error?) -> Void) {
-    guard error != nil else {
-        completionHandler(object, error)
-        return
-    }
-    switch error! {
-    case Error.ServerError(_):
-        refreshAccessToken() { refreshError -> Void in
-            if refreshError == nil {
-                fireRequest(request).responseObject(completionHandler)
-            } else {
-                completionHandler(object, refreshError)
-            }
-        }
-        return
-    default:
-        break
-    }
-    completionHandler(object, error)
-}
-
-func retryRequestingCollectionOnInvalidTokenError<T: ResponseCollectionSerializable>(request: URLRequestConvertible, _ collection: [T]?, _ error: Error?, _ completionHandler: ([T]?, Error?) -> Void) {
-    guard error != nil else {
-        completionHandler(collection, error)
-        return
-    }
-    switch error! {
-    case Error.ServerError(_):
-        refreshAccessToken() { refreshError -> Void in
-            if refreshError == nil {
-                fireRequest(request).responseCollection(completionHandler)
-            } else {
-                completionHandler(collection, refreshError)
-            }
-        }
-        return
-    default:
-        break
-    }
-    completionHandler(collection, error)
-}
+//func retryRequestingObjectOnInvalidTokenError<T: ResponseObjectSerializable>(request: URLRequestConvertible, _ object: T?, _ error: Error?, _ completionHandler: (T?, Error?) -> Void) {
+//    guard error != nil else {
+//        completionHandler(object, error)
+//        return
+//    }
+//    switch error! {
+//    case Error.ServerError(_):
+//        refreshAccessToken() { refreshError -> Void in
+//            if refreshError == nil {
+//                fireRequest(request).responseObject(completionHandler)
+//            } else {
+//                completionHandler(object, refreshError)
+//            }
+//        }
+//        return
+//    default:
+//        break
+//    }
+//    completionHandler(object, error)
+//}
+//
+//func retryRequestingCollectionOnInvalidTokenError<T: ResponseCollectionSerializable>(request: URLRequestConvertible, _ collection: [T]?, _ error: Error?, _ completionHandler: ([T]?, Error?) -> Void) {
+//    guard error != nil else {
+//        completionHandler(collection, error)
+//        return
+//    }
+//    switch error! {
+//    case Error.ServerError(_):
+//        refreshAccessToken() { refreshError -> Void in
+//            if refreshError == nil {
+//                fireRequest(request).responseCollection(completionHandler)
+//            } else {
+//                completionHandler(collection, refreshError)
+//            }
+//        }
+//        return
+//    default:
+//        break
+//    }
+//    completionHandler(collection, error)
+//}
 
 
 extension Request {
     
     func responseWithoutContent(completionHandler: (Error?) -> Void) -> Self {
         let responseSerializer = ResponseSerializer<Bool, Error> { request, response, data, error in
-
-            debugPrintRequest(request, response, data)
-            guard let error = error else {
-                return .Success(true)
-            }
             
-            let stringResponseSerializer = Request.stringResponseSerializer()
-            let stringResult = stringResponseSerializer.serializeResponse(request, response, data, error)
-            if let stringErrorRepresentation = stringResult.value {
-                let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-                let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
-                if let JSONErrorRepresentation = result.value as? [String: String] {
-                    guard let serverError = try? Error(representation: JSONErrorRepresentation) else { return .Failure(Error.ServerError(message: stringErrorRepresentation)) }
-                    return .Failure(serverError)
-                }
-                return .Failure(Error.ServerError(message: stringErrorRepresentation))
-            }
-            return .Failure(Error.NetworkLayerError(error: error))
+            debugPrintRequest(request, response, data)
+            guard let error = error else { return .Success(true) }
+            guard let data = data else { return .Failure(Error.NetworkLayerError(error: error)) }
+            guard let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) else { return .Failure(Error.NetworkLayerError(error: error)) }
+            guard let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) else { return .Failure(Error.ServerError(message: responseAsString)) }
+            guard let serverErrorWithDescription = try? Error(representation: JSON) else { return .Failure(Error.ServerError(message: responseAsString)) }
+            return .Failure(serverErrorWithDescription)
         }
     
         return response(responseSerializer: responseSerializer) { (response: Response<Bool, Error>) in

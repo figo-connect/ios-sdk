@@ -100,6 +100,7 @@ func refreshAccessToken(completionHandler: (error: Error?) -> Void) {
     let request = Endpoint.RefreshToken(token: refreshToken, secret: secret)
     fireRequest(request).responseObject() { (authorization: Authorization?, error: Error?) -> Void in
         Session.sharedInstance.accessToken = authorization?.access_token
+        Session.sharedInstance.refreshToken = authorization?.refresh_token
         completionHandler(error: error)
     }
 }
@@ -152,23 +153,33 @@ public func revokeRefreshToken(refreshToken: String?, completionHandler: (error:
 }
 
 public func retrieveAccount(accountID: String, completionHandler: (account: Account?, error: Error?) -> Void) {
-    let request = Endpoint.RetrieveAccount(accountId: accountID)
-    fireRequest(request).responseObject() { account, error in
-        retryRequestingObjectOnInvalidTokenError(request, account, error, completionHandler)
+    guard Session.sharedInstance.accessToken != nil else {
+        completionHandler(account: nil, error: Error.NoActiveSession)
+        return
     }
+    fireRequest(Endpoint.RetrieveAccount(accountId: accountID))
+        .responseObject() { account, error in
+            completionHandler(account: account, error: error)
+        }
 }
 
 public func retrieveAccounts(completionHandler: (accounts: [Account]?, error: Error?) -> Void) {
-    let request = Endpoint.RetrieveAccounts
-    fireRequest(request).responseCollection() { accounts, error in
-        retryRequestingCollectionOnInvalidTokenError(request, accounts, error, completionHandler)
+    guard Session.sharedInstance.accessToken != nil else {
+        completionHandler(accounts: nil, error: Error.NoActiveSession)
+        return
+    }
+    fireRequest(Endpoint.RetrieveAccounts).responseCollection() { accounts, error in
+        completionHandler(accounts: accounts, error: error)
     }
 }
 
 public func retrieveCurrentUser(completionHandler: (user: User?, error: Error?) -> Void) {
-    let request = Endpoint.RetrieveCurrentUser
-    fireRequest(request).responseObject() { user, error in
-        retryRequestingObjectOnInvalidTokenError(request, user, error, completionHandler)
+    guard Session.sharedInstance.accessToken != nil else {
+        completionHandler(user: nil, error: Error.NoActiveSession)
+        return
+    }
+    fireRequest(Endpoint.RetrieveCurrentUser).responseObject() { user, error in
+        completionHandler(user: user, error: error)
     }
 }
 
