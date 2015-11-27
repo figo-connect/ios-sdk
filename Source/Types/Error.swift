@@ -49,8 +49,8 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
                 return error.localizedFailureReason ?? error.localizedDescription
             case .ServerError(let message):
                 return message
-            case .ServerErrorWithDescrition(_, let description):
-                return description
+            case .ServerErrorWithDescrition(let error, let description):
+                return "Server error: \(error) (\(description))"
             case .UnspecifiedError(let reason):
                 return reason ?? "No failure reason given"
             case .TaskProcessingError(let accountID, let message):

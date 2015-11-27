@@ -42,15 +42,19 @@ class AccountTests: BaseTestCaseWithLogin {
         logout()
     }
     
-    func testThatRetrieveAccountYieldsObject() {
+    func testRemovePin() {
         login()
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         Figo.retrieveAccount("A1079434.5") { account, error in
+            XCTAssertNil(error)
             if let account = account {
                 XCTAssertEqual(account.account_number, "1146174")
+                
+                Figo.removeStoredPinFromBankContact(account.bank_id) { error in
+                    XCTAssertNil(error)
+                    callbackExpectation.fulfill()
+                }
             }
-            XCTAssertNil(error)
-            callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
         logout()
@@ -67,4 +71,6 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
         logout()
     }
+    
+
 }

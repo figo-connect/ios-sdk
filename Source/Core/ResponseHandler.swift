@@ -55,6 +55,33 @@ func retryRequestingCollectionOnInvalidTokenError<T: ResponseCollectionSerializa
 
 extension Request {
     
+    func responseWithoutContent(completionHandler: (Error?) -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<Bool, Error> { request, response, data, error in
+
+            debugPrintRequest(request, response, data)
+            guard let error = error else {
+                return .Success(true)
+            }
+            
+            let stringResponseSerializer = Request.stringResponseSerializer()
+            let stringResult = stringResponseSerializer.serializeResponse(request, response, data, error)
+            if let stringErrorRepresentation = stringResult.value {
+                let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+                let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
+                if let JSONErrorRepresentation = result.value as? [String: String] {
+                    guard let serverError = try? Error(representation: JSONErrorRepresentation) else { return .Failure(Error.ServerError(message: stringErrorRepresentation)) }
+                    return .Failure(serverError)
+                }
+                return .Failure(Error.ServerError(message: stringErrorRepresentation))
+            }
+            return .Failure(Error.NetworkLayerError(error: error))
+        }
+    
+        return response(responseSerializer: responseSerializer) { (response: Response<Bool, Error>) in
+            completionHandler(response.result.error)
+        }
+    }
+    
     func responseObject<T: ResponseObjectSerializable>(completionHandler: (T?, Error?) -> Void) -> Self {
         let responseSerializer = ResponseSerializer<T, Error> { request, response, data, error in
             

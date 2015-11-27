@@ -30,10 +30,11 @@ enum Endpoint: URLRequestConvertible {
     case CreateNewFigoUser(user: NewUser, secret: String)
     case SetupNewAccount(NewAccount)
     case PollTaskState(PollTaskStateParameters)
+    case RemoveStoredPin(bankId: String)
     
     private var method: Alamofire.Method {
         switch self {
-        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupNewAccount, .PollTaskState:
+        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupNewAccount, .PollTaskState, .RemoveStoredPin:
             return .POST
         default:
             return .GET
@@ -54,6 +55,8 @@ enum Endpoint: URLRequestConvertible {
             return "/rest/user"
         case .PollTaskState:
             return "/task/progress"
+        case .RemoveStoredPin(let bankId):
+            return "/rest/banks/\(bankId)/remove_pin"
         }
     }
     
@@ -71,6 +74,8 @@ enum Endpoint: URLRequestConvertible {
             return account.JSONObject
         case .PollTaskState(let parameters):
             return parameters.JSONObject
+        case .RemoveStoredPin(let bankId):
+            return ["bank_id": bankId]
         default:
             return nil
         }

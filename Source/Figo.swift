@@ -19,7 +19,7 @@ public typealias CompletionHandler = (error: Error?) -> Void
 class Session {
     static let sharedInstance = Session()
     private init() {} // This prevents others from using the default '()' initializer for this class.
-
+    
     private var _accessToken: String?
     var accessToken: String? {
         get {
@@ -140,15 +140,14 @@ public func revokeRefreshToken(refreshToken: String?, completionHandler: (error:
         if refreshToken != nil { return refreshToken! }
         else { return Session.sharedInstance.refreshToken ?? "" }
     }()
-    fireRequest(Endpoint.RevokeToken(token: token))
-        .response { request, response, data, error in
-            debugPrintRequest(request, response, data)
-            if let error = error {
-                completionHandler(error: Error.NetworkLayerError(error: error))
-            } else {
-                Session.sharedInstance.accessToken = nil
-                completionHandler(error: nil)
-            }
+    fireRequest(Endpoint.RevokeToken(token: token)).response { request, response, data, error in
+        debugPrintRequest(request, response, data)
+        if let error = error {
+            completionHandler(error: Error.NetworkLayerError(error: error))
+        } else {
+            Session.sharedInstance.accessToken = nil
+            completionHandler(error: nil)
+        }
     }
 }
 
@@ -258,6 +257,12 @@ func processTask(token: String, completionHandler: CompletionHandler) {
         }
     }
     
+}
+
+
+public func removeStoredPinFromBankContact(bankId: String, completionHandler: CompletionHandler) {
+    let request = Endpoint.RemoveStoredPin(bankId: bankId)
+    fireRequest(request).responseWithoutContent(completionHandler)
 }
 
 func fireRequest(request: URLRequestConvertible) -> Request {
