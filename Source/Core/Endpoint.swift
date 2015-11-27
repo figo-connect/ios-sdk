@@ -129,6 +129,7 @@ enum Endpoint: URLRequestConvertible {
         let URL = NSURL(string: Endpoint.baseURLString)!
         let request = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         request.HTTPMethod = self.method.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         encodeParameters(request)
         return request
     }
