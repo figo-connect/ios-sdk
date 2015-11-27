@@ -20,11 +20,12 @@ class BaseTestCaseWithLogin: XCTestCase {
     static let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 
     let figo = FigoSession.init(clientIdentifier: clientID, clientSecret: clientSecret)
-    
+    var refreshToken: String?
     
     func login() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
         figo.loginWithUsername(username, password: password) { refreshToken, error in
+            self.refreshToken = refreshToken
             XCTAssertNotNil(refreshToken)
             XCTAssertNil(error)
             callbackExpectation.fulfill()
@@ -34,7 +35,7 @@ class BaseTestCaseWithLogin: XCTestCase {
     
     func logout() {
         let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        figo.logout() { error in
+        figo.revokeRefreshToken(refreshToken!) { error in
             XCTAssertNil(error)
             callbackExpectation.fulfill()
         }

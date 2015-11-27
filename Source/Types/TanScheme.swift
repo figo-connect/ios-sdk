@@ -22,7 +22,7 @@ public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, Resp
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         medium_name = try mapper.valueForKey(Key.medium_name)
         name = try mapper.valueForKey(Key.name)

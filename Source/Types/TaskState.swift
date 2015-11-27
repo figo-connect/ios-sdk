@@ -43,7 +43,7 @@ public struct TaskState: ResponseObjectSerializable {
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         account_id              = try mapper.valueForKey(Key.account_id)
         message                 = try mapper.valueForKey(Key.message)

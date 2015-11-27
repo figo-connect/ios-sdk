@@ -30,7 +30,7 @@ public struct PaymentParameters {
     }
     
     public init(paymentType: PaymentType, representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         type                    = paymentType
         allowed_recipients      = try mapper.valueForKey(Key.allowed_recipients)

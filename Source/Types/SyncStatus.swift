@@ -24,7 +24,7 @@ public struct SyncStatus: JSONObjectConvertible, ResponseObjectSerializable {
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         code = try mapper.valueForKey(Key.code)
         message = try mapper.valueForKey(Key.message)

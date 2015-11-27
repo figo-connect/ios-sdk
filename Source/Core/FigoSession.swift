@@ -26,9 +26,9 @@ public class FigoSession {
     var accessToken: String?
     var refreshToken: String?
     
+    
     /**
      Initializes a new Figo session
-     
      
      - Parameter clientIdentifier: The figo client identifier
      - Parameter clientSecret: The figo client sclient
@@ -37,13 +37,9 @@ public class FigoSession {
         basicAuthSecret = base64Encode(clientIdentifier, clientSecret)
     }
     
-
-    
-    func figoRequest(requestConvertible: URLRequestConvertible, completion: (data: NSData?, error: Error?) -> Void) {
-                
-        let mutableURLRequest = requestConvertible.URLRequest
-        
-        if requestConvertible.needsBasicAuthHeader {
+    func request(endpoint: Endpoint, completion: (data: NSData?, error: Error?) -> Void) {
+        let mutableURLRequest = endpoint.URLRequest
+        if endpoint.needsBasicAuthHeader {
             mutableURLRequest.setValue("Basic \(self.basicAuthSecret)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
@@ -53,11 +49,10 @@ public class FigoSession {
             mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
         }
 
-        figoPrintRequest(mutableURLRequest)
-        
+        debugPrintRequest(mutableURLRequest)
         session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let response = response as! NSHTTPURLResponse
-            figoPrintResponse(data, response, error)
+            debugPrintResponse(data, response, error)
             
             if case 200..<300 = response.statusCode  {
                 completion(data: data, error: nil)
@@ -77,38 +72,6 @@ public class FigoSession {
             }
         }.resume()
     }
-    
-    func objectForData<T: ResponseObjectSerializable>(data: NSData?) -> (T?, Error?) {
-        guard let data = data else { return (nil, nil) }
-        do {
-            let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
-            if let decodedObject = try? T(representation: JSON) {
-                return (decodedObject, nil)
-            }
-        } catch (let error as NSError) {
-            return (nil, Error.JSONSerializationError(error: error))
-        }
-        return (nil, nil)
-    }
-    
-    func collectionForData<T: ResponseCollectionSerializable>(data: NSData?) -> ([T]?, Error?) {
-        guard let data = data else { return (nil, nil) }
-        do {
-            let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
-            if let decodedCollection = try? T.collection(JSON) {
-                return (decodedCollection, nil)
-            }
-        } catch (let error as NSError) {
-            return (nil, Error.JSONSerializationError(error: error))
-        }
-        return (nil, nil)
-    }
 }
 
-
-private func base64Encode(clientID: String, _ clientSecret: String) -> String {
-    let clientCode: String = clientID + ":" + clientSecret
-    let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
-    return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
-}
 

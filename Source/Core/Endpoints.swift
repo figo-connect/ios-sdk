@@ -1,5 +1,5 @@
 //
-//  Endpoint.swift
+//  Endpoints.swift
 //  Figo
 //
 //  Created by Christian König on 25.11.15.
@@ -9,16 +9,11 @@
 import Foundation
 
 
-protocol URLRequestConvertible {
-    var URLRequest: NSMutableURLRequest { get }
-    var needsBasicAuthHeader: Bool { get }
-}
-
-enum Method: String {
+private enum Method: String {
     case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
 }
 
-enum Endpoint: URLRequestConvertible {
+enum Endpoint {
     private static let baseURLString = "https://api.figo.me"
     
     case LoginUser(username: String, password: String)

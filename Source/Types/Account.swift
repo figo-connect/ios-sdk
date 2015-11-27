@@ -88,31 +88,11 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
 
     
     private enum Key: String, PropertyKey {
-        case account_id
-        case account_number
-        case additional_icons
-        case auto_sync
-        case balance
-        case bank_code
-        case bank_id
-        case bank_name
-        case bic
-        case currency
-        case iban
-        case icon
-        case in_total_balance
-        case name
-        case owner
-        case preferred_tan_scheme
-        case save_pin
-        case status
-        case supported_payments
-        case supported_tan_schemes
-        case type
+        case account_id, account_number, additional_icons, auto_sync, balance, bank_code, bank_id, bank_name, bic, currency, iban, icon, in_total_balance, name, owner, preferred_tan_scheme, save_pin, status, supported_payments, supported_tan_schemes, type
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         account_id              = try mapper.valueForKey(Key.account_id)
         account_number          = try mapper.valueForKey(Key.account_number)

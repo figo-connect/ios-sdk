@@ -72,7 +72,7 @@ public struct User: ResponseObjectSerializable {
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         user_id                 = try mapper.optionalValueForKey(Key.user_id)
         name                    = try mapper.valueForKey(Key.name)

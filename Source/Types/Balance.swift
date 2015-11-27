@@ -24,7 +24,7 @@ public struct Balance: JSONObjectConvertible, ResponseObjectSerializable {
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         balance = try mapper.valueForKey(Key.balance)
         balance_date = try mapper.valueForKey(Key.balance_date)

@@ -12,7 +12,7 @@ import Foundation
 public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertible {
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         let error: String = try mapper.valueForKeyName("error")
         let error_description: String = try mapper.valueForKeyName("error_description")
         self = .ServerErrorWithDescrition(error: error, description: error_description)

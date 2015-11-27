@@ -25,8 +25,8 @@ extension FigoSession {
      - parameter completionHandler: Returns refresh token or error
      */
     public func loginWithUsername(username: String, password: String, completionHandler: (refreshToken: String?, error: Error?) -> Void) {
-        figoRequest(Endpoint.LoginUser(username: username, password: password)) { (data, error) -> Void in
-            let decoded: (Authorization?, Error?) = self.objectForData(data)
+        request(.LoginUser(username: username, password: password)) { (data, error) -> Void in
+            let decoded: (Authorization?, Error?) = decodeObject(data)
             self.accessToken = decoded.0?.access_token
             self.refreshToken = decoded.0?.refresh_token
             completionHandler(refreshToken: decoded.0?.refresh_token, error: decoded.1 ?? error)
@@ -43,7 +43,7 @@ extension FigoSession {
      - parameter completionHandler: Returns nothing or error
      */
     public func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
-        figoRequest(Endpoint.RefreshToken(token: self.accessToken!)) { (data, error) -> Void in
+        request(.RefreshToken(token: self.accessToken!)) { (data, error) -> Void in
             completionHandler(error: error)
         }
     }
@@ -59,24 +59,10 @@ extension FigoSession {
      - Parameter completionHandler: Returns nothing or error
      */
     public func revokeRefreshToken(refreshToken: String, completionHandler: (error: Error?) -> Void) {
-        figoRequest(Endpoint.RevokeToken(token: refreshToken)) { (data, error) -> Void in
+        request(.RevokeToken(token: refreshToken)) { (data, error) -> Void in
             completionHandler(error: error)
         }
     }
     
-    /**
-     REVOKE TOKEN
-     
-     Invalidates the session's access token and refresh token, after that CREDENTIAL LOGIN is required.
-     
-     - Parameter completionHandler: Returns nothing or error
-     */
-    public func logout(completionHandler: (error: Error?) -> Void) {
-        guard let refreshToken = self.refreshToken else {
-            completionHandler(error: Error.NoActiveSession)
-            return
-        }
-        revokeRefreshToken(refreshToken, completionHandler: completionHandler)
-    }
 }
 

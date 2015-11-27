@@ -31,7 +31,7 @@ public struct Address {
         guard let representation = representation else {
             return nil
         }
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         city = try mapper.valueForKey(Key.city)
         company = try mapper.valueForKey(Key.company)
