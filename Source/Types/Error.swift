@@ -24,6 +24,7 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
     case JSONUnexpectedValue(key: String, typeName: String)
     case JSONUnexpectedType(key: String, typeName: String)
     case JSONUnexpectedRootObject(typeName: String)
+    case JSONSerializationError(error: NSError)
     case NetworkLayerError(error: NSError)
     case ServerError(message: String)
     case ServerErrorWithDescrition(error: String, description: String)
@@ -54,7 +55,9 @@ public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertibl
             case .UnspecifiedError(let reason):
                 return reason ?? "No failure reason given"
             case .TaskProcessingError(let accountID, let message):
-                return "Server faild to complete task for account \(accountID): \(message ?? "No message")"
+                return "Server failed to complete task for account \(accountID): \(message ?? "No message")"
+            case .JSONSerializationError(let error):
+                return "Failed to serialize JSON (\(error.localizedDescription))"
             }
         }
     }

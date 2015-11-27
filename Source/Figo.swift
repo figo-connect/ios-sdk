@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 
 public typealias ProgressUpdate = (message: String) -> Void
@@ -215,8 +214,11 @@ func delay(block: () -> Void) {
  The figo Connect server will transparently create or modify a bank contact to add additional bank accounts.
  */
 public func setupNewBankAccount(account: NewAccount, completionHandler: CompletionHandler) {
-    let request = Endpoint.SetupNewAccount(account)
-    fireRequest(request).responseJSON() { response in
+    guard Session.sharedInstance.accessToken != nil else {
+        completionHandler(error: Error.NoActiveSession)
+        return
+    }
+    fireRequest(Endpoint.SetupNewAccount(account)).responseJSON() { response in
         debugPrintRequest(response.request, response.response, response.data)
         switch response.result {
         case .Success(let value):

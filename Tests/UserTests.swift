@@ -45,4 +45,18 @@ class UserTests: BaseTestCaseWithLogin {
         XCTAssertEqual(user.user_id, "U12345")
         XCTAssertEqual(user.verified_email, true)
     }
+    
+
+    
+    func testCreateNewUser() {
+        login()
+        let user = NewUser(name: "Christian König", email: "christian@koenig.systems", password: "b2D59>497'TL", send_newsletter: false, language: "de", affiliate_user: nil, affiliate_client_id: nil)
+        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+        createNewFigoUser(user, clientID: clientID, clientSecret: clientSecret) { (recoveryPassword, error) -> Void in
+            XCTAssertNil(error)
+            callbackExpectation.fulfill()
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+        logout()
+    }
 }
