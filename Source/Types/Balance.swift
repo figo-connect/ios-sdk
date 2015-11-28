@@ -9,43 +9,42 @@
 import Foundation
 
 
-public struct Balance: JSONObjectConvertible, ResponseObjectSerializable {
+public struct Balance: ResponseObjectSerializable, ResponseOptionalObjectSerializable {
     
-    let balance: Float
-    let balance_date: String
+    /// Account balance in cents; This response parameter will be omitted if the balance is not yet known
+    let balance: Int?
+    
+    /// Bank server timestamp of balance; This response parameter will be omitted if the balance is not yet known
+    let balance_date: String?
+    
+    /// Credit line
     let credit_line: Float
+    
+    /// User-defined spending limit
     let monthly_spending_limit: Float
     
+    /// Synchronization status object.
+    let status: SyncStatus?
+    
+    
     private enum Key: String, PropertyKey {
-        case balance
-        case balance_date
-        case credit_line
-        case monthly_spending_limit
+        case balance, balance_date, credit_line, monthly_spending_limit, status
     }
     
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        balance = try mapper.valueForKey(Key.balance)
-        balance_date = try mapper.valueForKey(Key.balance_date)
-        credit_line = try mapper.valueForKey(Key.credit_line)
-        monthly_spending_limit = try mapper.valueForKey(Key.monthly_spending_limit)
+        balance                 = try mapper.optionalForKey(Key.balance)
+        balance_date            = try mapper.optionalForKey(Key.balance_date)
+        credit_line             = try mapper.valueForKey(Key.credit_line)
+        monthly_spending_limit  = try mapper.valueForKey(Key.monthly_spending_limit)
+        status                  = try SyncStatus(optionalRepresentation: mapper.optionalForKey(Key.status))
     }
     
-    public var JSONObject: [String: AnyObject] {
-        get {
-            var dict = Dictionary<String, AnyObject>()
-            dict[Key.balance.rawValue] = balance
-            dict[Key.balance_date.rawValue] = balance_date
-            dict[Key.credit_line.rawValue] = credit_line
-            dict[Key.monthly_spending_limit.rawValue] = monthly_spending_limit
-            return dict
+    public init?(optionalRepresentation: AnyObject?) throws {
+        guard let representation = optionalRepresentation else {
+            return nil
         }
-    }
-    
-    public var description: String {
-        get {
-            return JSONStringFromType(self)
-        }
+        try self.init(representation: representation)
     }
 }

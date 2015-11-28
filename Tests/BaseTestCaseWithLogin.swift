@@ -22,23 +22,33 @@ class BaseTestCaseWithLogin: XCTestCase {
     let figo = FigoSession.init(clientIdentifier: clientID, clientSecret: clientSecret)
     var refreshToken: String?
     
-    func login() {
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
+    func login(completionHandler: () -> Void) {
+        guard refreshToken == nil else {
+            debugPrint("Active session, skipping Login")
+            completionHandler()
+            return
+        }
+        debugPrint("Begin Login")
         figo.loginWithUsername(username, password: password) { refreshToken, error in
             self.refreshToken = refreshToken
             XCTAssertNotNil(refreshToken)
             XCTAssertNil(error)
-            callbackExpectation.fulfill()
+            debugPrint("End Login")
+            completionHandler()
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func logout() {
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        figo.revokeRefreshToken(refreshToken!) { error in
-            XCTAssertNil(error)
-            callbackExpectation.fulfill()
+    func logout(completionHandler: () -> Void) {
+        guard refreshToken != nil else {
+            debugPrint("No active session, skipping Logout")
+            completionHandler()
+            return
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        debugPrint("Begin Logout")
+        figo.revokeRefreshToken(self.refreshToken!) { error in
+            XCTAssertNil(error)
+            debugPrint("End Logout")
+            completionHandler()
+        }
     }
 }

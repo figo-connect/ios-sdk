@@ -15,7 +15,7 @@ struct Decoder {
     
     init(_ representation: AnyObject, typeName: String) throws {
         guard let representation: Dictionary<String, AnyObject> = representation as? Dictionary<String, AnyObject> else {
-            throw Error.JSONUnexpectedRootObject(typeName: typeName)
+            throw FigoError.JSONUnexpectedRootObject(typeName: typeName)
         }
         self.representation = representation
         self.typeName = typeName
@@ -27,22 +27,22 @@ struct Decoder {
     
     func valueForKeyName<T>(keyName: String) throws -> T {
         guard representation[keyName] != nil else {
-            throw Error.JSONMissingMandatoryKey(key: keyName, typeName: typeName)
+            throw FigoError.JSONMissingMandatoryKey(key: keyName, typeName: typeName)
         }
         guard (representation[keyName] as? NSNull) == nil else {
-            throw Error.JSONMissingMandatoryValue(key: keyName, typeName: typeName)
+            throw FigoError.JSONMissingMandatoryValue(key: keyName, typeName: typeName)
         }
         guard let value = representation[keyName] as? T else {
-            throw Error.JSONUnexpectedType(key: keyName, typeName: typeName)
+            throw FigoError.JSONUnexpectedType(key: keyName, typeName: typeName)
         }
         return value
     }
     
-    func optionalValueForKey<T>(key: PropertyKey) throws -> T? {
-        return try optionalValueForKeyName(key.rawValue)
+    func optionalForKey<T>(key: PropertyKey) throws -> T? {
+        return try optionalForKeyName(key.rawValue)
     }
     
-    func optionalValueForKeyName<T>(keyName: String) throws -> T? {
+    func optionalForKeyName<T>(keyName: String) throws -> T? {
         guard representation[keyName] != nil else {
             return nil
         }
@@ -50,13 +50,23 @@ struct Decoder {
             return nil
         }
         guard let value: T? = representation[keyName] as? T? else {
-            throw Error.JSONUnexpectedType(key: keyName, typeName: typeName)
+            throw FigoError.JSONUnexpectedType(key: keyName, typeName: typeName)
         }
         return value
     }
 }
 
-func decodeObject<T: ResponseObjectSerializable>(data: NSData?) -> (T?, Error?) {
+func decodeJSON(data: NSData?) -> ([String: AnyObject]?, FigoError?) {
+    guard let data = data else { return (nil, nil) }
+    do {
+        let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject]
+        return (JSON, nil)
+    } catch (let error as NSError) {
+        return (nil, FigoError.JSONSerializationError(error: error))
+    }
+}
+
+func decodeObject<T: ResponseObjectSerializable>(data: NSData?) -> (T?, FigoError?) {
     guard let data = data else { return (nil, nil) }
     do {
         let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
@@ -64,12 +74,12 @@ func decodeObject<T: ResponseObjectSerializable>(data: NSData?) -> (T?, Error?) 
             return (decodedObject, nil)
         }
     } catch (let error as NSError) {
-        return (nil, Error.JSONSerializationError(error: error))
+        return (nil, FigoError.JSONSerializationError(error: error))
     }
     return (nil, nil)
 }
 
-func decodeCollection<T: ResponseCollectionSerializable>(data: NSData?) -> ([T]?, Error?) {
+func decodeCollection<T: ResponseCollectionSerializable>(data: NSData?) -> ([T]?, FigoError?) {
     guard let data = data else { return (nil, nil) }
     do {
         let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
@@ -77,7 +87,7 @@ func decodeCollection<T: ResponseCollectionSerializable>(data: NSData?) -> ([T]?
             return (decodedCollection, nil)
         }
     } catch (let error as NSError) {
-        return (nil, Error.JSONSerializationError(error: error))
+        return (nil, FigoError.JSONSerializationError(error: error))
     }
     return (nil, nil)
 }

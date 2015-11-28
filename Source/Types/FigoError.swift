@@ -1,5 +1,5 @@
 //
-//  Error.swift
+//  FigoError.swift
 //  Figo
 //
 //  Created by Christian König on 20.11.15.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum Error: ErrorType, ResponseObjectSerializable, CustomStringConvertible {
+public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConvertible {
     
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")

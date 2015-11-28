@@ -17,7 +17,7 @@ import Foundation
  After a successfull login you can call all other functions as long as your session is valid. The first login has to be with credentials, after that you can login using the refresh token which you got from the credential login.
  
  - Important: A session will timeout 60 minutes after login.
-
+ 
  */
 public class FigoSession {
     
@@ -37,38 +37,47 @@ public class FigoSession {
         basicAuthSecret = base64Encode(clientIdentifier, clientSecret)
     }
     
-    func request(endpoint: Endpoint, completion: (data: NSData?, error: Error?) -> Void) {
+    func request(endpoint: Endpoint, completion: (data: NSData?, error: FigoError?) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
         if endpoint.needsBasicAuthHeader {
             mutableURLRequest.setValue("Basic \(self.basicAuthSecret)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
-                completion(data: nil, error: Error.NoActiveSession)
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(data: nil, error: FigoError.NoActiveSession)
+                }
                 return
             }
             mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
         }
-
+        
+        debugPrint(NSThread.currentThread())
         debugPrintRequest(mutableURLRequest)
         session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let response = response as! NSHTTPURLResponse
+            
+            debugPrint(NSThread.currentThread())
             debugPrintResponse(data, response, error)
             
             if case 200..<300 = response.statusCode  {
-                completion(data: data, error: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(data: data, error: nil)
+                }
             } else {
-                var serverError: Error = error != nil ? Error.NetworkLayerError(error: error!) : Error.UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
+                var serverError: FigoError = error != nil ? FigoError.NetworkLayerError(error: error!) : FigoError.UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
                 if let data = data {
                     if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
-                        serverError = Error.ServerError(message: responseAsString)
+                        serverError = FigoError.ServerError(message: responseAsString)
                         if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                            if let decodedError = try? Error(representation: JSON) {
+                            if let decodedError = try? FigoError(representation: JSON) {
                                 serverError = decodedError
                             }
                         }
                     }
                 }
-                completion(data: nil, error: serverError)
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(data: nil, error: serverError)
+                }
             }
         }.resume()
     }

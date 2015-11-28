@@ -74,20 +74,20 @@ public struct User: ResponseObjectSerializable {
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        user_id                 = try mapper.optionalValueForKey(Key.user_id)
+        user_id                 = try mapper.optionalForKey(Key.user_id)
         name                    = try mapper.valueForKey(Key.name)
         email                   = try mapper.valueForKey(Key.email)
-        address                 = try Address(representation: mapper.optionalValueForKey(Key.address))
-        verified_email          = try mapper.optionalValueForKey(Key.verified_email)
-        send_newsletter         = try mapper.optionalValueForKey(Key.send_newsletter)
-        join_date               = try mapper.optionalValueForKey(Key.join_date)
-        language                = try mapper.optionalValueForKey(Key.language)
-        premium                 = try mapper.optionalValueForKey(Key.premium)
-        premium_expires_on      = try mapper.optionalValueForKey(Key.premium_expires_on)
-        premium_subscription    = try mapper.optionalValueForKey(Key.premium_subscription)
-        force_reset             = try mapper.optionalValueForKey(Key.force_reset)
-        recovery_password       = try mapper.optionalValueForKey(Key.recovery_password)
-        filters                 = try mapper.optionalValueForKey(Key.filters)
+        address                 = try Address(representation: mapper.optionalForKey(Key.address))
+        verified_email          = try mapper.optionalForKey(Key.verified_email)
+        send_newsletter         = try mapper.optionalForKey(Key.send_newsletter)
+        join_date               = try mapper.optionalForKey(Key.join_date)
+        language                = try mapper.optionalForKey(Key.language)
+        premium                 = try mapper.optionalForKey(Key.premium)
+        premium_expires_on      = try mapper.optionalForKey(Key.premium_expires_on)
+        premium_subscription    = try mapper.optionalForKey(Key.premium_subscription)
+        force_reset             = try mapper.optionalForKey(Key.force_reset)
+        recovery_password       = try mapper.optionalForKey(Key.recovery_password)
+        filters                 = try mapper.optionalForKey(Key.filters)
     }
     
 }

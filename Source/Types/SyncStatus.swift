@@ -9,7 +9,7 @@
 import Foundation
 
 
-public struct SyncStatus: JSONObjectConvertible, ResponseObjectSerializable {
+public struct SyncStatus: ResponseObjectSerializable, ResponseOptionalObjectSerializable {
     
     let code: Int
     let message: String
@@ -17,10 +17,7 @@ public struct SyncStatus: JSONObjectConvertible, ResponseObjectSerializable {
     let sync_timestamp: String
     
     private enum Key: String, PropertyKey {
-        case code
-        case message
-        case success_timestamp
-        case sync_timestamp
+        case code, message, success_timestamp, sync_timestamp
     }
     
     public init(representation: AnyObject) throws {
@@ -32,20 +29,10 @@ public struct SyncStatus: JSONObjectConvertible, ResponseObjectSerializable {
         sync_timestamp = try mapper.valueForKey(Key.sync_timestamp)
     }
     
-    public var JSONObject: [String: AnyObject] {
-        get {
-            var dict = Dictionary<String, AnyObject>()
-            dict[Key.code.rawValue] = code
-            dict[Key.message.rawValue] = message
-            dict[Key.success_timestamp.rawValue] = success_timestamp
-            dict[Key.sync_timestamp.rawValue] = sync_timestamp
-            return dict
+    public init?(optionalRepresentation: AnyObject?) throws {
+        guard let representation = optionalRepresentation else {
+            return nil
         }
-    }
-    
-    public var description: String {
-        get {
-            return JSONStringFromType(self)
-        }
+        try self.init(representation: representation)
     }
 }

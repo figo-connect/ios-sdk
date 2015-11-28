@@ -20,16 +20,35 @@ extension FigoSession {
      The returned refresh token can be stored by the client for future logins, but only
      in a securely encryped store like the keychain or a SQLCipher database.
      
-     - parameter username: The figo account email address
-     - parameter password: The figo account password
-     - parameter completionHandler: Returns refresh token or error
+     - Parameter username: The figo account email address
+     - Parameter password: The figo account password
+     - Parameter completionHandler: Returns refresh token or error
      */
-    public func loginWithUsername(username: String, password: String, completionHandler: (refreshToken: String?, error: Error?) -> Void) {
-        request(.LoginUser(username: username, password: password)) { (data, error) -> Void in
-            let decoded: (Authorization?, Error?) = decodeObject(data)
+    public func loginWithUsername(username: String, password: String, _ completionHandler: (refreshToken: String?, error: FigoError?) -> Void) {
+        request(.LoginUser(username: username, password: password)) { data, error in
+            let decoded: (Authorization?, FigoError?) = decodeObject(data)
             self.accessToken = decoded.0?.access_token
             self.refreshToken = decoded.0?.refresh_token
             completionHandler(refreshToken: decoded.0?.refresh_token, error: decoded.1 ?? error)
+        }
+    }
+    
+    /**
+     EXCHANGE REFRESH TOKEN
+     
+     Requests new access token with refresh token. New access tokens can be obtained as long
+     as the user has not revoked the access granted to your application.
+     
+     - Parameter refreshToken: The refresh token returned from a previous CREDENTIAL LOGIN
+     - parameter completionHandler: Returns nothing or error
+     */
+    public func loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: (error: FigoError?) -> Void) {
+        //let secret = base64Encode(clientID, clientSecret)
+        request(Endpoint.RefreshToken(token: refreshToken)) { data, error in
+            let decoded: (Authorization?, FigoError?) = decodeObject(data)
+            self.accessToken = decoded.0?.access_token
+            self.refreshToken = decoded.0?.refresh_token
+            completionHandler(error: decoded.1 ?? error)
         }
     }
     
@@ -40,10 +59,14 @@ extension FigoSession {
      
      After revoking the access token, with the next API call a new one is fetched automatically if the refresh token is still valid.
      
-     - parameter completionHandler: Returns nothing or error
+     - Parameter completionHandler: Returns nothing or error
      */
-    public func revokeAccessToken(completionHandler: (error: Error?) -> Void) {
-        request(.RefreshToken(token: self.accessToken!)) { (data, error) -> Void in
+    public func revokeAccessToken(completionHandler: (error: FigoError?) -> Void) {
+        guard let accessToken = self.accessToken else {
+            completionHandler(error: FigoError.NoActiveSession)
+            return
+        }
+        request(.RevokeToken(token: accessToken)) { data, error in
             completionHandler(error: error)
         }
     }
@@ -58,8 +81,8 @@ extension FigoSession {
      - Parameter refreshToken: The client's refresh token, defaults to the session's refresh token
      - Parameter completionHandler: Returns nothing or error
      */
-    public func revokeRefreshToken(refreshToken: String, completionHandler: (error: Error?) -> Void) {
-        request(.RevokeToken(token: refreshToken)) { (data, error) -> Void in
+    public func revokeRefreshToken(refreshToken: String, _ completionHandler: (error: FigoError?) -> Void) {
+        request(.RevokeToken(token: refreshToken)) { data, error in
             completionHandler(error: error)
         }
     }

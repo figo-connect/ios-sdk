@@ -71,6 +71,8 @@ enum Endpoint {
             return parameters.JSONObject
         case .RemoveStoredPin(let bankId):
             return ["bank_id": bankId]
+        case .RetrieveAccount, .RetrieveAccounts:
+            return ["cents": true]
         default:
             return Dictionary<String, AnyObject>()
         }

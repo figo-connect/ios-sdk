@@ -6,9 +6,10 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 
-
+/**
+ Contains the parameters for setting up a new bank account
+*/
 public struct NewAccount {
     
     /// Bank code (optional)
