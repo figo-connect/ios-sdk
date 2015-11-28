@@ -6,10 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 
-
-public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct TanScheme  {
     
     public let medium_name: String
     public let name: String
@@ -20,7 +18,21 @@ public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, Resp
         case name
         case tan_scheme_id
     }
+}
+
+extension TanScheme: JSONObjectConvertible {
     
+    public var JSONObject: [String: AnyObject] {
+        var dict = Dictionary<String, AnyObject>()
+        dict[Key.medium_name.rawValue] = medium_name
+        dict[Key.name.rawValue] = name
+        dict[Key.tan_scheme_id.rawValue] = tan_scheme_id
+        return dict
+    }
+}
+
+extension TanScheme: ResponseObjectSerializable {
+
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
@@ -28,6 +40,9 @@ public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, Resp
         name = try mapper.valueForKey(Key.name)
         tan_scheme_id = try mapper.valueForKey(Key.tan_scheme_id)
     }
+}
+
+extension TanScheme: ResponseCollectionSerializable {
     
     static func collection(representation: AnyObject) throws -> [TanScheme] {
         guard let representation: [[String: AnyObject]] = representation as? [[String: AnyObject]] else {
@@ -39,21 +54,5 @@ public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, Resp
             schemes.append(scheme)
         }
         return schemes
-    }
-    
-    public var JSONObject: [String: AnyObject] {
-        get {
-            var dict = Dictionary<String, AnyObject>()
-            dict[Key.medium_name.rawValue] = medium_name
-            dict[Key.name.rawValue] = name
-            dict[Key.tan_scheme_id.rawValue] = tan_scheme_id
-            return dict
-        }
-    }
-    
-    public var description: String {
-        get {
-            return JSONStringFromType(self)
-        }
     }
 }

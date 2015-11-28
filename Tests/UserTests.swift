@@ -46,8 +46,8 @@ class UserTests: BaseTestCaseWithLogin {
         XCTAssertEqual(user.verified_email, true)
     }
     
-    func testCreateNewUser() {
-        let user = NewUser(name: username, email: username, password: password, send_newsletter: false, language: "de", affiliate_user: nil, affiliate_client_id: nil)
+    func testCreateCreateUserParameters() {
+        let user = CreateUserParameters(name: username, email: username, password: password, send_newsletter: false, language: "de", affiliate_user: nil, affiliate_client_id: nil)
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         figo.createNewFigoUser(user, clientID: "", clientSecret: "") { (recoveryPassword, error) -> Void in
             XCTAssertNil(error)

@@ -6,10 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 
-
-public struct TaskState: ResponseObjectSerializable {
+public struct TaskState {
     
     /// Account ID of currently processed account
     let account_id: String
@@ -31,8 +29,10 @@ public struct TaskState: ResponseObjectSerializable {
     
     /// Challenge object
     let challenge: Challenge?
-    
+}
 
+extension TaskState: ResponseObjectSerializable {
+    
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
@@ -45,7 +45,6 @@ public struct TaskState: ResponseObjectSerializable {
         challenge               = try Challenge(optionalRepresentation: mapper.optionalForKeyName("challenge"))
     }
 }
-
 
 struct PollTaskStateParameters: JSONObjectConvertible {
     

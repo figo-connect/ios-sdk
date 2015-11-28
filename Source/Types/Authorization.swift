@@ -6,31 +6,25 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 
-
-public final class Authorization: ResponseObjectSerializable {
+public struct Authorization {
     
-    var access_token: String?
-    let expires_in: Int?
-    let refresh_token: String?
-    let scope: String?
-    let token_type: String?
+    var access_token: String
+    let expires_in: Int
+    let refresh_token: String
+    let scope: String
+    let token_type: String
+}
+
+extension Authorization: ResponseObjectSerializable {
     
     public init(representation: AnyObject) throws {
-        access_token = representation.valueForKeyPath("access_token") as? String
-        expires_in = representation.valueForKeyPath("access_token") as? Int
-        refresh_token = representation.valueForKeyPath("refresh_token") as? String
-        scope = representation.valueForKeyPath("scope") as? String
-        token_type = representation.valueForKeyPath("token_type") as? String
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
+        
+        access_token    = try mapper.valueForKeyName("access_token")
+        expires_in      = try mapper.valueForKeyName("expires_in")
+        refresh_token   = try mapper.valueForKeyName("refresh_token")
+        scope           = try mapper.valueForKeyName("scope")
+        token_type      = try mapper.valueForKeyName("token_type")
     }
-    
-    public init(token: String) {
-        access_token = nil
-        expires_in = nil
-        refresh_token = token
-        scope = nil
-        token_type = nil
-    }
-    
 }

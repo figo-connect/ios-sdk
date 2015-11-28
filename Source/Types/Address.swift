@@ -6,36 +6,41 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
-
 
 public struct Address {
     
-    let city: String
-    let company: String
-    let postal_code: String
-    let street: String
+    let city: String?
+    let company: String?
+    let postal_code: String?
+    let street: String?
+    let street2: String?
+    let country: String?
+    let vat: AnyObject?
+    let bill: AnyObject?
+}
+
+extension Address: ResponseObjectSerializable {
     
-    private enum Key: String, PropertyKey {
-        case bill
-        case city
-        case company
-        case country
-        case postal_code
-        case street
-        case street2
-        case vat
-    }
-    
-    public init?(representation: AnyObject?) throws {
-        guard let representation = representation else {
-            return nil
-        }
+    public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        city = try mapper.valueForKey(Key.city)
-        company = try mapper.valueForKey(Key.company)
-        postal_code = try mapper.valueForKey(Key.postal_code)
-        street = try mapper.valueForKey(Key.street)
+        city = try mapper.optionalForKeyName("city")
+        company = try mapper.optionalForKeyName("company")
+        postal_code = try mapper.optionalForKeyName("postal_code")
+        street = try mapper.optionalForKeyName("street")
+        street2 = try mapper.optionalForKeyName("street2")
+        country = try mapper.optionalForKeyName("country")
+        vat = try mapper.optionalForKeyName("vat")
+        bill = try mapper.optionalForKeyName("bill")
+    }
+}
+
+extension Address: ResponseOptionalObjectSerializable {
+    
+    public init?(optionalRepresentation: AnyObject?) throws {
+        guard let representation = optionalRepresentation else {
+            return nil
+        }
+        try self.init(representation: representation)
     }
 }

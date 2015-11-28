@@ -6,8 +6,13 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 
+public enum PaymentType: String {
+    case Transfer = "Transfer"
+    case DirectDebit = "Direct debit"
+    case SEPATransfer = "SEPA transfer"
+    case SEPADirectDebit = "SEPA direct debit"
+}
 
 public struct PaymentParameters {
     
@@ -19,33 +24,23 @@ public struct PaymentParameters {
     let supported_file_formats: [String]
     let supported_text_keys: [Int]
     
-    private enum Key: String, PropertyKey {
-        case type
-        case allowed_recipients
-        case can_be_recurring
-        case can_be_scheduled
-        case max_purpose_length
-        case supported_file_formats
-        case supported_text_keys
-    }
-    
     public init(paymentType: PaymentType, representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         type                    = paymentType
-        allowed_recipients      = try mapper.valueForKey(Key.allowed_recipients)
-        can_be_recurring        = try mapper.valueForKey(Key.can_be_recurring)
-        can_be_scheduled        = try mapper.valueForKey(Key.can_be_scheduled)
-        max_purpose_length      = try mapper.valueForKey(Key.max_purpose_length)
-        supported_file_formats  = try mapper.valueForKey(Key.supported_file_formats)
+        allowed_recipients      = try mapper.valueForKeyName("allowed_recipients")
+        can_be_recurring        = try mapper.valueForKeyName("can_be_recurring")
+        can_be_scheduled        = try mapper.valueForKeyName("can_be_scheduled")
+        max_purpose_length      = try mapper.valueForKeyName("max_purpose_length")
+        supported_file_formats  = try mapper.valueForKeyName("supported_file_formats")
         
         // Special treatment for the key "supported_text_keys" because the server sometimes sends
         // numbers and sometimes sends strings for the values
         do {
-            supported_text_keys = try mapper.valueForKey(Key.supported_text_keys)
+            supported_text_keys = try mapper.valueForKeyName("supported_text_keys")
         }
         catch {
-            var stringKeys: [String] = try mapper.valueForKey(Key.supported_text_keys)
+            var stringKeys: [String] = try mapper.valueForKeyName("supported_text_keys")
             stringKeys = stringKeys.filter() { return Int($0) != nil }
             supported_text_keys = stringKeys.map() { return Int($0)! }
         }

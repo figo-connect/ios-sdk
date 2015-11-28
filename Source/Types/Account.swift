@@ -6,13 +6,11 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
-
 
 /**
  Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
 */
-public struct Account: ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct Account {
     
     /// Internal figo Connect account ID
     public let account_id: String
@@ -84,37 +82,38 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     
     /// Account balance; This response parameter will be omitted if the balance is not yet known
     public let balance: Balance?
+}
 
-    
-    private enum Key: String, PropertyKey {
-        case account_id, account_number, additional_icons, auto_sync, balance, bank_code, bank_id, bank_name, bic, currency, iban, icon, in_total_balance, name, owner, preferred_tan_scheme, save_pin, status, supported_payments, supported_tan_schemes, type
-    }
+extension Account: ResponseObjectSerializable {
     
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        account_id              = try mapper.valueForKey(Key.account_id)
-        account_number          = try mapper.valueForKey(Key.account_number)
-        additional_icons        = try mapper.valueForKey(Key.additional_icons)
-        auto_sync               = try mapper.valueForKey(Key.auto_sync)
-        balance                 = try Balance(optionalRepresentation: mapper.optionalForKey(Key.balance))
-        bank_code               = try mapper.valueForKey(Key.bank_code)
-        bank_id                 = try mapper.valueForKey(Key.bank_id)
-        bank_name               = try mapper.valueForKey(Key.bank_name)
-        bic                     = try mapper.valueForKey(Key.bic)
-        currency                = try mapper.valueForKey(Key.currency)
-        iban                    = try mapper.valueForKey(Key.iban)
-        icon                    = try mapper.valueForKey(Key.icon)
-        in_total_balance        = try mapper.valueForKey(Key.in_total_balance)
-        name                    = try mapper.valueForKey(Key.name)
-        owner                   = try mapper.valueForKey(Key.owner)
-        preferred_tan_scheme    = try mapper.optionalForKey(Key.preferred_tan_scheme)
-        save_pin                = try mapper.valueForKey(Key.save_pin)
-        status                  = try SyncStatus(representation: mapper.valueForKey(Key.status))
-        supported_payments      = try PaymentParameters.collection(mapper.valueForKey(Key.supported_payments))
-        supported_tan_schemes   = try TanScheme.collection(mapper.valueForKey(Key.supported_tan_schemes))
-        type                    = try mapper.valueForKey(Key.type)
+        account_id              = try mapper.valueForKeyName("account_id")
+        account_number          = try mapper.valueForKeyName("account_number")
+        additional_icons        = try mapper.valueForKeyName("additional_icons")
+        auto_sync               = try mapper.valueForKeyName("auto_sync")
+        balance                 = try Balance(optionalRepresentation: mapper.optionalForKeyName("balance"))
+        bank_code               = try mapper.valueForKeyName("bank_code")
+        bank_id                 = try mapper.valueForKeyName("bank_id")
+        bank_name               = try mapper.valueForKeyName("bank_name")
+        bic                     = try mapper.valueForKeyName("bic")
+        currency                = try mapper.valueForKeyName("currency")
+        iban                    = try mapper.valueForKeyName("iban")
+        icon                    = try mapper.valueForKeyName("icon")
+        in_total_balance        = try mapper.valueForKeyName("in_total_balance")
+        name                    = try mapper.valueForKeyName("name")
+        owner                   = try mapper.valueForKeyName("owner")
+        preferred_tan_scheme    = try mapper.optionalForKeyName("preferred_tan_scheme")
+        save_pin                = try mapper.valueForKeyName("save_pin")
+        status                  = try SyncStatus(representation: mapper.valueForKeyName("status"))
+        supported_payments      = try PaymentParameters.collection(mapper.valueForKeyName("supported_payments"))
+        supported_tan_schemes   = try TanScheme.collection(mapper.valueForKeyName("supported_tan_schemes"))
+        type                    = try mapper.valueForKeyName("type")
     }
+}
+
+extension Account: ResponseCollectionSerializable {
     
     public static func collection(representation: AnyObject) throws -> [Account] {
         var accounts: [Account] = []
@@ -127,6 +126,47 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
             }
         }
         return accounts
+    }
+}
+
+/**
+ Contains the parameters for setting up a new bank account
+ */
+public struct CreateAccountParameters {
+    
+    /// Bank code (optional)
+    public let bank_code: String?
+    
+    /// IBAN (optional)
+    public let iban: String?
+    
+    /// Two-letter country code (valid values: de)
+    let country: String = "de"
+    
+    /// List of login credential strings. They must be in the same order as in the credentials list from the login settings
+    public let credentials: [String]
+    
+    /// This flag indicates whether the user has chosen to save the PIN on the figo Connect server. It is mandatory if the authentication type in the login settings of the bank code is pin and will be ignored otherwise.
+    public let save_pin: Bool
+    
+    /// This flag indicates whether the initial sync of the transactions and balances of the newly created accounts should be omitted. If this is the case certain listed accounts might actually be invalid (e.g. old creditcards) and will be automatically removed at the first sync. (optional)
+    public let disable_first_sync: Bool?
+    
+    /// List of additional information to be fetched from the bank. Possible values are: standingOrders (optional)
+    public let sync_tasks: [String]?
+    
+    public var JSONObject: [String: AnyObject] {
+        get {
+            var dict = Dictionary<String, AnyObject>()
+            dict["bank_code"] = bank_code
+            dict["iban"] = iban
+            dict["country"] = country
+            dict["credentials"] = credentials
+            dict["save_pin"] = save_pin
+            dict["disable_first_sync"] = disable_first_sync
+            dict["sync_tasks"] = sync_tasks
+            return dict
+        }
     }
 }
 

@@ -14,7 +14,7 @@ extension FigoSession {
     /**
      CREATE NEW FIGO USER
      */
-    public func createNewFigoUser(user: NewUser, clientID: String, clientSecret: String, completionHandler: (recoveryPassword: String?, error: FigoError?) -> Void) {
+    public func createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, completionHandler: (recoveryPassword: String?, error: FigoError?) -> Void) {
         // let secret = base64Encode(clientID, clientSecret)
         request(Endpoint.CreateNewFigoUser(user: user)) { (data, error) -> Void in
             let JSONObject: ([String: AnyObject]?, FigoError?) = decodeJSON(data)

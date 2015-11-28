@@ -9,7 +9,7 @@
 import Foundation
 
 
-public struct Challenge: ResponseObjectSerializable, ResponseOptionalObjectSerializable {
+public struct Challenge {
     
     /// Challenge title
     let title: String
@@ -22,22 +22,21 @@ public struct Challenge: ResponseObjectSerializable, ResponseOptionalObjectSeria
     
     /// Challenge data
     let data: String?
-    
-    private enum Key: String, PropertyKey {
-        case title
-        case label
-        case format
-        case data
-    }
+}
+
+extension Challenge: ResponseObjectSerializable {
     
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        title   = try mapper.valueForKey(Key.title)
-        label   = try mapper.valueForKey(Key.label)
-        format  = try mapper.valueForKey(Key.format)
-        data    = try mapper.valueForKey(Key.data)
+        title   = try mapper.valueForKeyName("title")
+        label   = try mapper.valueForKeyName("label")
+        format  = try mapper.valueForKeyName("format")
+        data    = try mapper.valueForKeyName("data")
     }
+}
+
+extension Challenge: ResponseOptionalObjectSerializable {
     
     public init?(optionalRepresentation: AnyObject?) throws {
         guard let representation = optionalRepresentation else {

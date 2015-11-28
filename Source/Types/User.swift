@@ -9,7 +9,7 @@
 import Foundation
 
 
-public struct User: ResponseObjectSerializable {
+public struct User {
     
     /// Internal figo Connect user ID. Only available when calling with scope user=ro or better.
     public let user_id: String?
@@ -52,42 +52,65 @@ public struct User: ResponseObjectSerializable {
     
     /// Array of filters defined by the user
     public let filters: [AnyObject]?
-    
-    
-    private enum Key: String, PropertyKey {
-        case user_id
-        case address
-        case email
-        case join_date
-        case language
-        case name
-        case premium
-        case premium_expires_on
-        case premium_subscription
-        case send_newsletter
-        case verified_email
-        case force_reset
-        case recovery_password
-        case filters
-    }
-    
+}
+
+extension User: ResponseObjectSerializable {
+
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        user_id                 = try mapper.optionalForKey(Key.user_id)
-        name                    = try mapper.valueForKey(Key.name)
-        email                   = try mapper.valueForKey(Key.email)
-        address                 = try Address(representation: mapper.optionalForKey(Key.address))
-        verified_email          = try mapper.optionalForKey(Key.verified_email)
-        send_newsletter         = try mapper.optionalForKey(Key.send_newsletter)
-        join_date               = try mapper.optionalForKey(Key.join_date)
-        language                = try mapper.optionalForKey(Key.language)
-        premium                 = try mapper.optionalForKey(Key.premium)
-        premium_expires_on      = try mapper.optionalForKey(Key.premium_expires_on)
-        premium_subscription    = try mapper.optionalForKey(Key.premium_subscription)
-        force_reset             = try mapper.optionalForKey(Key.force_reset)
-        recovery_password       = try mapper.optionalForKey(Key.recovery_password)
-        filters                 = try mapper.optionalForKey(Key.filters)
+        user_id                 = try mapper.optionalForKeyName("user_id")
+        name                    = try mapper.valueForKeyName("name")
+        email                   = try mapper.valueForKeyName("email")
+        address                 = try Address(optionalRepresentation: mapper.optionalForKeyName("address)"))
+        verified_email          = try mapper.optionalForKeyName("verified_email")
+        send_newsletter         = try mapper.optionalForKeyName("send_newsletter")
+        join_date               = try mapper.optionalForKeyName("join_date")
+        language                = try mapper.optionalForKeyName("language")
+        premium                 = try mapper.optionalForKeyName("premium")
+        premium_expires_on      = try mapper.optionalForKeyName("premium_expires_on")
+        premium_subscription    = try mapper.optionalForKeyName("premium_subscription")
+        force_reset             = try mapper.optionalForKeyName("force_reset")
+        recovery_password       = try mapper.optionalForKeyName("recovery_password")
+        filters                 = try mapper.optionalForKeyName("filters")
     }
+}
+
+public struct CreateUserParameters: JSONObjectConvertible {
     
+    /// First and last name
+    public let name: String
+    
+    /// Email address; It must obey the figo username & password policy
+    public let email: String
+    
+    /// New figo Account password; It must obey the figo username & password policy
+    public let password: String
+    
+    /// This flag indicates whether the user has agreed to be contacted by email (optional)
+    public let send_newsletter: Bool?
+    
+    /// Two-letter code of preferred language (optional, default: de)
+    public let language: String?
+    
+    /// Base64 encoded email address of the user promoting the new user (optional)
+    public let affiliate_user: String?
+    
+    /// Client ID of the figo Connect partner from which the user was redirected to the registration form (optional)
+    public let affiliate_client_id: String?
+    
+    
+    public var JSONObject: [String: AnyObject] {
+        get {
+            var dict = Dictionary<String, AnyObject>()
+            dict["name"] = name
+            dict["email"] = email
+            dict["send_newsletter"] = send_newsletter
+            dict["language"] = language
+            dict["password"] = password
+            dict["affiliate_user"] = affiliate_user
+            dict["affiliate_client_id"] = affiliate_client_id
+            return dict
+        }
+    }
 }

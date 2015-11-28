@@ -16,13 +16,13 @@ private enum Method: String {
 enum Endpoint {
     private static let baseURLString = "https://api.figo.me"
     
-    case CreateNewFigoUser(user: NewUser)
+    case CreateNewFigoUser(user: CreateUserParameters)
     case LoginUser(username: String, password: String)
     case DeleteCurrentUser
     case RetrieveCurrentUser
     case RefreshToken(token: String)
     case RevokeToken(token: String)
-    case SetupNewAccount(NewAccount)
+    case SetupCreateAccountParameters(CreateAccountParameters)
     case RetrieveAccounts
     case RetrieveAccount(accountId: String)
     case RemoveStoredPin(bankId: String)
@@ -32,7 +32,7 @@ enum Endpoint {
     
     private var method: Method {
         switch self {
-        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupNewAccount, .PollTaskState, .RemoveStoredPin:
+        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin:
             return .POST
         case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask:
             return .GET
@@ -49,7 +49,7 @@ enum Endpoint {
             return "/auth/revoke"
         case .RetrieveAccount(let accountId):
             return "/rest/accounts/" + accountId
-        case .RetrieveAccounts, .SetupNewAccount:
+        case .RetrieveAccounts, .SetupCreateAccountParameters:
             return "/rest/accounts"
         case .RetrieveCurrentUser, .DeleteCurrentUser:
             return "/rest/user"
@@ -74,7 +74,7 @@ enum Endpoint {
             return ["token": token, "cascade": false]
         case .CreateNewFigoUser(let user):
             return user.JSONObject
-        case .SetupNewAccount(let account):
+        case .SetupCreateAccountParameters(let account):
             return account.JSONObject
         case .PollTaskState(let parameters):
             return parameters.JSONObject

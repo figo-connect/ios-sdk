@@ -72,11 +72,11 @@ class AccountTests: BaseTestCaseWithLogin {
     }
     
     
-    func testSetupNewAccount() {
+    func testSetupCreateAccountParameters() {
 
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            let account = NewAccount(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
+            let account = CreateAccountParameters(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
             self.figo.setupNewBankAccount(account) { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
