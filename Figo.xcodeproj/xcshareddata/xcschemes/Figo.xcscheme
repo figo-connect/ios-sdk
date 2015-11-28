@@ -39,10 +39,19 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "AccountTests/testDeleteBankAccount()">
+               </Test>
+               <Test
+                  Identifier = "AccountTests/testSetupAccount()">
+               </Test>
+               <Test
                   Identifier = "BaseTestCase/testLoginUser()">
                </Test>
                <Test
                   Identifier = "UserTests/testCreateNewUser()">
+               </Test>
+               <Test
+                  Identifier = "UserTests/testCreateUser()">
                </Test>
                <Test
                   Identifier = "UserTests/testDeleteUser()">

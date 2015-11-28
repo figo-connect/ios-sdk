@@ -84,15 +84,21 @@ func decodeJSON(data: NSData?) -> ([String: AnyObject]?, FigoError?) {
 
 func decodeObject<T: ResponseObjectSerializable>(data: NSData?) -> (T?, FigoError?) {
     guard let data = data else { return (nil, nil) }
+    var JSON: AnyObject
+    var decodedObject: T
     do {
-        let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
-        if let decodedObject = try? T(representation: JSON) {
-            return (decodedObject, nil)
-        }
+        JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
     } catch (let error as NSError) {
         return (nil, FigoError.JSONSerializationError(error: error))
     }
-    return (nil, nil)
+    do {
+        decodedObject = try T(representation: JSON)
+        return (decodedObject, nil)
+    } catch (let error as FigoError) {
+        return (nil, error)
+    } catch {
+        return (nil, FigoError.UnspecifiedError(reason: "Failed to serialize type: \(T.self)"))
+    }
 }
 
 func decodeCollection<T: ResponseCollectionSerializable>(data: NSData?) -> ([T]?, FigoError?) {

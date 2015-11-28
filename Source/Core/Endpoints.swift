@@ -26,6 +26,7 @@ enum Endpoint {
     case RetrieveAccounts
     case RetrieveAccount(accountId: String)
     case RemoveStoredPin(bankId: String)
+    case DeleteAccount(accountID: String)
     case BeginTask(taskToken: String)
     case PollTaskState(PollTaskStateParameters)
 
@@ -36,7 +37,7 @@ enum Endpoint {
             return .POST
         case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask:
             return .GET
-        case .DeleteCurrentUser:
+        case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
         }
     }
@@ -48,6 +49,8 @@ enum Endpoint {
         case .RevokeToken:
             return "/auth/revoke"
         case .RetrieveAccount(let accountId):
+            return "/rest/accounts/" + accountId
+        case .DeleteAccount(let accountId):
             return "/rest/accounts/" + accountId
         case .RetrieveAccounts, .SetupCreateAccountParameters:
             return "/rest/accounts"

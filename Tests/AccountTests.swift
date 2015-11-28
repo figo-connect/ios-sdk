@@ -48,13 +48,15 @@ class AccountTests: BaseTestCaseWithLogin {
     func testThatRetrieveAccountYieldsObject() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveAccount("A1182805.1") { account, error in
+            self.figo.retrieveAccount("A1182805.2") { account, error in
                 XCTAssertNil(error)
                 if let account = account {
-                    XCTAssertEqual(account.account_number, "4711951500")
+                    XCTAssertEqual(account.account_number, "4711951501")
                     XCTAssertNil(error)
-                    expectation.fulfill()
+                } else {
+                    XCTFail()
                 }
+                expectation.fulfill()
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
@@ -63,8 +65,8 @@ class AccountTests: BaseTestCaseWithLogin {
     func testRemovePin() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.removeStoredPinFromBankContact("B1182805.1") { error in
-                XCTAssertNil(error)
+            self.figo.removeStoredPinFromBankContact("B1182805.1") { result in
+                XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
@@ -81,7 +83,17 @@ class AccountTests: BaseTestCaseWithLogin {
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
-
+    }
+    
+    func testDeleteBankAccount() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.deleteAccount("A1182805.1") { result in
+                XCTAssertNil(result.error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
 

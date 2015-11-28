@@ -11,7 +11,7 @@ public struct Authorization {
     
     var access_token: String
     let expires_in: Int
-    let refresh_token: String
+    let refresh_token: String?
     let scope: String
     let token_type: String
 }
@@ -23,7 +23,7 @@ extension Authorization: ResponseObjectSerializable {
         
         access_token    = try mapper.valueForKeyName("access_token")
         expires_in      = try mapper.valueForKeyName("expires_in")
-        refresh_token   = try mapper.valueForKeyName("refresh_token")
+        refresh_token   = try mapper.optionalForKeyName("refresh_token")
         scope           = try mapper.valueForKeyName("scope")
         token_type      = try mapper.valueForKeyName("token_type")
     }

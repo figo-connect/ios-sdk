@@ -9,6 +9,9 @@
 import Foundation
 
 
+public typealias VoidCompletionHandler = (result: FigoResult<Void>) -> Void
+
+
 /**
  Represents a Figo session, which has to be initialized with your client identifier and client secret.
  

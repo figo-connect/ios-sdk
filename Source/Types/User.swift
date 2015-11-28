@@ -62,7 +62,7 @@ extension User: ResponseObjectSerializable {
         user_id                 = try mapper.optionalForKeyName("user_id")
         name                    = try mapper.valueForKeyName("name")
         email                   = try mapper.valueForKeyName("email")
-        address                 = try Address(optionalRepresentation: mapper.optionalForKeyName("address)"))
+        address                 = try Address(optionalRepresentation: mapper.optionalForKeyName("address"))
         verified_email          = try mapper.optionalForKeyName("verified_email")
         send_newsletter         = try mapper.optionalForKeyName("send_newsletter")
         join_date               = try mapper.optionalForKeyName("join_date")

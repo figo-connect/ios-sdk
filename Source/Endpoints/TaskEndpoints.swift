@@ -13,7 +13,7 @@ public typealias PinResponder = (message: String, accountID: String) -> String
 public typealias ChallengeResponder = (message: String, accountID: String, challenge: Challenge) -> String
 
 public typealias CompletionHandler = (error: FigoError?) -> Void
-public typealias VoidCompletionHandler = (result: FigoResult<Void>) -> Void
+
 
 
 extension FigoSession {

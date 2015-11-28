@@ -10,7 +10,7 @@
 public struct SyncStatus {
     
     let code: Int
-    let message: String
+    let message: String?
     let success_timestamp: String
     let sync_timestamp: String
 }
@@ -21,7 +21,7 @@ extension SyncStatus: ResponseObjectSerializable {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         code = try mapper.valueForKeyName("code")
-        message = try mapper.valueForKeyName("message")
+        message = try mapper.optionalForKeyName("message")
         success_timestamp = try mapper.valueForKeyName("success_timestamp")
         sync_timestamp = try mapper.valueForKeyName("sync_timestamp")
     }

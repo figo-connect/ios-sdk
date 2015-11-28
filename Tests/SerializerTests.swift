@@ -74,6 +74,25 @@ class SerializerTests: XCTestCase {
         XCTAssertEqual(account.type, "Unknown")
     }
     
+    func testThatUserSerializerYieldsObject() {
+        let JSONObject = Resources.User.JSONObject
+        let user = try! User(representation: JSONObject)
+        
+        XCTAssertEqual(user.address?.city, "Berlin")
+        XCTAssertEqual(user.address?.company, "figo")
+        XCTAssertEqual(user.address?.postal_code, "10969")
+        XCTAssertEqual(user.address?.street, "Ritterstr. 2-3")
+        XCTAssertEqual(user.email, "demo@figo.me")
+        XCTAssertEqual(user.join_date, "2012-04-19T17:25:54.000Z")
+        XCTAssertEqual(user.language, "en")
+        XCTAssertEqual(user.name, "John Doe")
+        XCTAssertEqual(user.premium, true)
+        XCTAssertEqual(user.premium_expires_on, "2014-04-19T17:25:54.000Z")
+        XCTAssertEqual(user.premium_subscription, "paymill")
+        XCTAssertEqual(user.send_newsletter, true)
+        XCTAssertEqual(user.user_id, "U12345")
+        XCTAssertEqual(user.verified_email, true)
+    }
     
     func testThatSerializerThrowsCorrectErrorForMissingMandatoryKeys() {
         var JSONJSONObject = Resources.Account.JSONObject

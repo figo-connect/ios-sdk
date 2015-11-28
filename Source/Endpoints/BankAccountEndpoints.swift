@@ -46,9 +46,13 @@ extension FigoSession {
      - Parameter bankIdenitifier Internal ID of the bank
      - Parameter completionHandler: Returns nothing or error
     */
-    public func removeStoredPinFromBankContact(bankIdenitifier: String, _ completionHandler: (error: FigoError?) -> Void) {
+    public func removeStoredPinFromBankContact(bankIdenitifier: String, _ completionHandler: VoidCompletionHandler) {
         request(.RemoveStoredPin(bankId: bankIdenitifier)) { (data, error) -> Void in
-            completionHandler(error: error)
+            if let error = error {
+                completionHandler(result: .Failure(error))
+            } else {
+                completionHandler(result: .Success())
+            }
         }
     }
     
@@ -57,7 +61,7 @@ extension FigoSession {
      
      The figo Connect server will transparently create or modify a bank contact to add additional bank accounts.
      */
-    public func setupNewBankAccount(account: CreateAccountParameters, _ completionHandler: (result: FigoResult<Void>) -> Void) {
+    public func setupNewBankAccount(account: CreateAccountParameters, _ completionHandler: VoidCompletionHandler) {
         request(Endpoint.SetupCreateAccountParameters(account)) { data, error in
             switch decodeTaskToken(data) {
             case .Success(let taskToken):
@@ -75,6 +79,21 @@ extension FigoSession {
             }
         }
         
+    }
+    
+    /**
+     DELETE BANK ACCOUNT
+     
+     Once the last remaining account of a bank contact has been removed, the bank contact will be automatically removed as well
+     */
+    public func deleteAccount(accountID: String, _ completionHandler: VoidCompletionHandler) {
+        request(.DeleteAccount(accountID: accountID)) { (data, error) -> Void in
+            if let error = error {
+                completionHandler(result: .Failure(error))
+            } else {
+                completionHandler(result: .Success())
+            }
+        }
     }
 }
 
