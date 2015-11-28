@@ -56,6 +56,22 @@ struct Decoder {
     }
 }
 
+func decodeTaskToken(data: NSData?) -> FigoResult<String> {
+    do {
+        if let data = data {
+            if let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject] {
+                if let token: String = JSON["task_token"] as? String {
+                    return FigoResult.Success(token)
+                }
+            }
+        }
+        return FigoResult.Failure(FigoError.JSONMissingMandatoryValue(key: "task_token", typeName: ""))
+
+    } catch (let error as NSError) {
+        return FigoResult.Failure(FigoError.JSONSerializationError(error: error))
+    }
+}
+
 func decodeJSON(data: NSData?) -> ([String: AnyObject]?, FigoError?) {
     guard let data = data else { return (nil, nil) }
     do {

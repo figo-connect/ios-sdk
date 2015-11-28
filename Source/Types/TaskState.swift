@@ -32,31 +32,17 @@ public struct TaskState: ResponseObjectSerializable {
     /// Challenge object
     let challenge: Challenge?
     
-    private enum Key: String, PropertyKey {
-        case account_id
-        case message
-        case is_waiting_for_pin
-        case is_waiting_for_response
-        case is_erroneous
-        case is_ended
-        case challenge
-    }
-    
+
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        account_id              = try mapper.valueForKey(Key.account_id)
-        message                 = try mapper.valueForKey(Key.message)
-        is_waiting_for_pin      = try mapper.valueForKey(Key.is_waiting_for_pin)
-        is_waiting_for_response = try mapper.valueForKey(Key.is_waiting_for_pin)
-        is_erroneous            = try mapper.valueForKey(Key.is_erroneous)
-        is_ended                = try mapper.valueForKey(Key.is_ended)
-        
-        if let challengeRepresentation: AnyObject = try mapper.optionalForKey(Key.challenge) {
-            challenge = try Challenge(representation: challengeRepresentation)
-        } else {
-            challenge = nil
-        }
+        account_id              = try mapper.valueForKeyName("account_id")
+        message                 = try mapper.valueForKeyName("message")
+        is_waiting_for_pin      = try mapper.valueForKeyName("is_waiting_for_pin")
+        is_waiting_for_response = try mapper.valueForKeyName("is_waiting_for_response")
+        is_erroneous            = try mapper.valueForKeyName("is_erroneous")
+        is_ended                = try mapper.valueForKeyName("is_ended")
+        challenge               = try Challenge(optionalRepresentation: mapper.optionalForKeyName("challenge"))
     }
 }
 
@@ -78,17 +64,15 @@ struct PollTaskStateParameters: JSONObjectConvertible {
     /// Submit response to challenge. (optional)
     let response: String?
     
-
+    
     var JSONObject: [String: AnyObject] {
-        get {
-            var dict = Dictionary<String, AnyObject>()
-            dict["id"] = id
-            dict["pin"] = pin
-            dict["continue"] = continueAfterError
-            dict["save_pin"] = savePin
-            dict["response"] = response
-            return dict
-        }
+        var dict = Dictionary<String, AnyObject>()
+        dict["id"] = id
+        dict["pin"] = pin
+        dict["continue"] = continueAfterError
+        dict["save_pin"] = savePin
+        dict["response"] = response
+        return dict    
     }
 }
 

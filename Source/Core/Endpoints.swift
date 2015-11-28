@@ -26,12 +26,13 @@ enum Endpoint {
     case SetupNewAccount(NewAccount)
     case PollTaskState(PollTaskStateParameters)
     case RemoveStoredPin(bankId: String)
+    case BeginTask(taskToken: String)
     
     private var method: Method {
         switch self {
         case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupNewAccount, .PollTaskState, .RemoveStoredPin:
             return .POST
-        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser:
+        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask:
             return .GET
         }
     }
@@ -52,6 +53,8 @@ enum Endpoint {
             return "/task/progress"
         case .RemoveStoredPin(let bankId):
             return "/rest/banks/\(bankId)/remove_pin"
+        case .BeginTask:
+            return "/task/start"
         }
     }
     
@@ -73,6 +76,8 @@ enum Endpoint {
             return ["bank_id": bankId]
         case .RetrieveAccount, .RetrieveAccounts:
             return ["cents": true]
+        case .BeginTask(let taskToken):
+            return ["id": taskToken]
         default:
             return Dictionary<String, AnyObject>()
         }

@@ -51,5 +51,30 @@ extension FigoSession {
             completionHandler(error: error)
         }
     }
+    
+    /**
+     SETUP NEW BANK ACCOUNT
+     
+     The figo Connect server will transparently create or modify a bank contact to add additional bank accounts.
+     */
+    public func setupNewBankAccount(account: NewAccount, _ completionHandler: (result: FigoResult<Void>) -> Void) {
+        request(Endpoint.SetupNewAccount(account)) { data, error in
+            switch decodeTaskToken(data) {
+            case .Success(let taskToken):
+                self.beginTask(taskToken, { error in
+                    if let error = error {
+                        completionHandler(result: FigoResult.Failure(error))
+                    } else {
+                        completionHandler(result: FigoResult.Success())
+                    }
+                })
+                break
+            case .Failure(let decodingError):
+                completionHandler(result: FigoResult.Failure(decodingError))
+                break
+            }
+        }
+        
+    }
 }
 

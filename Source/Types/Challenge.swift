@@ -9,7 +9,7 @@
 import Foundation
 
 
-public struct Challenge: ResponseObjectSerializable {
+public struct Challenge: ResponseObjectSerializable, ResponseOptionalObjectSerializable {
     
     /// Challenge title
     let title: String
@@ -37,5 +37,12 @@ public struct Challenge: ResponseObjectSerializable {
         label   = try mapper.valueForKey(Key.label)
         format  = try mapper.valueForKey(Key.format)
         data    = try mapper.valueForKey(Key.data)
+    }
+    
+    public init?(optionalRepresentation: AnyObject?) throws {
+        guard let representation = optionalRepresentation else {
+            return nil
+        }
+        try self.init(representation: representation)
     }
 }

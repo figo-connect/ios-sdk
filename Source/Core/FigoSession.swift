@@ -23,6 +23,13 @@ public class FigoSession {
     
     let session: NSURLSession = NSURLSession.sharedSession()
     let basicAuthSecret: String
+
+    /// Milliseconds between polling task states
+    let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
+    
+    /// Number of task state polling requests before giving up
+    let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
+    
     var accessToken: String?
     var refreshToken: String?
     
@@ -51,12 +58,10 @@ public class FigoSession {
             mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
         }
         
-        debugPrint(NSThread.currentThread())
         debugPrintRequest(mutableURLRequest)
         session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let response = response as! NSHTTPURLResponse
             
-            debugPrint(NSThread.currentThread())
             debugPrintResponse(data, response, error)
             
             if case 200..<300 = response.statusCode  {

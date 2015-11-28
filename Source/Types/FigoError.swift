@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConvertible {
+public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConvertible, CustomDebugStringConvertible {
     
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
@@ -30,6 +30,7 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
     case ServerErrorWithDescrition(error: String, description: String)
     case UnspecifiedError(reason: String?)
     case TaskProcessingError(accountID: String, message: String?)
+    case TaskProcessingTimeout
 
     public var failureReason: String {
         get {
@@ -58,11 +59,17 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
                 return "Server failed to complete task for account \(accountID): \(message ?? "No message")"
             case .JSONSerializationError(let error):
                 return "Failed to serialize JSON (\(error.localizedDescription))"
+            case .TaskProcessingTimeout:
+                return "Task processing timeout"
             }
         }
     }
     
     public var description: String {
-        get { return failureReason }
+         return failureReason
+    }
+    
+    public var debugDescription: String {
+         return failureReason
     }
 }
