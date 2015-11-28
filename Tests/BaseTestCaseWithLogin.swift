@@ -15,7 +15,7 @@ import Figo
 class BaseTestCaseWithLogin: XCTestCase {
     
     let username = "christian@koenig.systems"
-    let password = "eVPVdiL7a8EUAP"
+    let password = "eVPVdiL7"
     static let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
     static let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 

@@ -46,6 +46,8 @@ public class FigoSession {
     
     func request(endpoint: Endpoint, completion: (data: NSData?, error: FigoError?) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
+        mutableURLRequest.setValue("2014-01-01", forHTTPHeaderField: "Figo-Version")
+        
         if endpoint.needsBasicAuthHeader {
             mutableURLRequest.setValue("Basic \(self.basicAuthSecret)", forHTTPHeaderField: "Authorization")
         } else {

@@ -19,7 +19,7 @@ public struct NewAccount {
     public let iban: String?
     
     /// Two-letter country code (valid values: de)
-    let country: String = "de"
+    let country: String = "en-US"
     
     /// List of login credential strings. They must be in the same order as in the credentials list from the login settings
     public let credentials: [String]

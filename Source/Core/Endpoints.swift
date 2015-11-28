@@ -16,17 +16,19 @@ private enum Method: String {
 enum Endpoint {
     private static let baseURLString = "https://api.figo.me"
     
+    case CreateNewFigoUser(user: NewUser)
     case LoginUser(username: String, password: String)
+    case DeleteCurrentUser
+    case RetrieveCurrentUser
     case RefreshToken(token: String)
     case RevokeToken(token: String)
-    case RetrieveAccount(accountId: String)
-    case RetrieveAccounts
-    case RetrieveCurrentUser
-    case CreateNewFigoUser(user: NewUser)
     case SetupNewAccount(NewAccount)
-    case PollTaskState(PollTaskStateParameters)
+    case RetrieveAccounts
+    case RetrieveAccount(accountId: String)
     case RemoveStoredPin(bankId: String)
     case BeginTask(taskToken: String)
+    case PollTaskState(PollTaskStateParameters)
+
     
     private var method: Method {
         switch self {
@@ -34,6 +36,8 @@ enum Endpoint {
             return .POST
         case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask:
             return .GET
+        case .DeleteCurrentUser:
+            return .DELETE
         }
     }
     
@@ -47,8 +51,10 @@ enum Endpoint {
             return "/rest/accounts/" + accountId
         case .RetrieveAccounts, .SetupNewAccount:
             return "/rest/accounts"
-        case .RetrieveCurrentUser, .CreateNewFigoUser:
+        case .RetrieveCurrentUser, .DeleteCurrentUser:
             return "/rest/user"
+        case .CreateNewFigoUser:
+            return "/auth/user"
         case .PollTaskState:
             return "/task/progress"
         case .RemoveStoredPin(let bankId):
@@ -92,7 +98,7 @@ enum Endpoint {
                 request.HTTPBody = data
             } catch { }
             break
-        case .GET:
+        case .GET, .DELETE:
             if parameters.count > 0 {
 
             if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {

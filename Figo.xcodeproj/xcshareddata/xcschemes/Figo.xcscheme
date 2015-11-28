@@ -41,6 +41,12 @@
                <Test
                   Identifier = "BaseTestCase/testLoginUser()">
                </Test>
+               <Test
+                  Identifier = "UserTests/testCreateNewUser()">
+               </Test>
+               <Test
+                  Identifier = "UserTests/testDeleteUser()">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
