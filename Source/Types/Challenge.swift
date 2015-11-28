@@ -12,13 +12,13 @@ import Foundation
 public struct Challenge {
     
     /// Challenge title
-    let title: String
+    let title: String?
     
     /// Response label
-    let label: String
+    let label: String?
     
     /// Challenge data format. Possible values are Text, HTML, HHD or Matrix.
-    let format: String
+    let format: String?
     
     /// Challenge data
     let data: String?
@@ -29,10 +29,10 @@ extension Challenge: ResponseObjectSerializable {
     public init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
-        title   = try mapper.valueForKeyName("title")
-        label   = try mapper.valueForKeyName("label")
-        format  = try mapper.valueForKeyName("format")
-        data    = try mapper.valueForKeyName("data")
+        title   = try mapper.optionalForKeyName("title")
+        label   = try mapper.optionalForKeyName("label")
+        format  = try mapper.optionalForKeyName("format")
+        data    = try mapper.optionalForKeyName("data")
     }
 }
 

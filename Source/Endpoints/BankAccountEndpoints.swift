@@ -61,13 +61,13 @@ extension FigoSession {
         request(Endpoint.SetupCreateAccountParameters(account)) { data, error in
             switch decodeTaskToken(data) {
             case .Success(let taskToken):
-                self.beginTask(taskToken, { error in
+                self.pollTaskState(taskToken, self.POLLING_COUNTDOWN_INITIAL_VALUE) { error in
                     if let error = error {
                         completionHandler(result: FigoResult.Failure(error))
                     } else {
                         completionHandler(result: FigoResult.Success())
                     }
-                })
+                }
                 break
             case .Failure(let decodingError):
                 completionHandler(result: FigoResult.Failure(decodingError))

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83017B781C0A2FE80062FC08 /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
 		830E63D91C05A4050048F7BF /* TanScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TanScheme.swift */; };
 		830E63DA1C05A4050048F7BF /* TanScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TanScheme.swift */; };
 		830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
@@ -88,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
 		830E63D81C05A4050048F7BF /* TanScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TanScheme.swift; path = Types/TanScheme.swift; sourceTree = "<group>"; };
 		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
 		830E63DD1C05A7070048F7BF /* SyncStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncStatus.swift; path = Types/SyncStatus.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				830E63DB1C05A4960048F7BF /* TanScheme.json */,
 				83E95C851C0740C90013ED1F /* PaymentParametersIntTextKeys.json */,
 				83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */,
+				83017B771C0A2FE80062FC08 /* TaskState.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			files = (
 				83CEDB831C05F43D0008CEF8 /* User.json in Resources */,
 				830E63E11C05A7AE0048F7BF /* SyncStatus.json in Resources */,
+				83017B781C0A2FE80062FC08 /* TaskState.json in Resources */,
 				830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */,
 				833285EF1C04D45900A9FE73 /* Balance.json in Resources */,
 				83E750901C037CC300545DF6 /* Account.json in Resources */,

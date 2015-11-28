@@ -92,6 +92,9 @@ enum Endpoint {
     private func encodeParameters(request: NSMutableURLRequest) {
         switch self.method {
         case .POST:
+            if case .PollTaskState(let parameters) = self {
+                encodeURLParameters(request, ["id": parameters.id])
+            }
             do {
                 let data = try NSJSONSerialization.dataWithJSONObject(self.parameters, options: NSJSONWritingOptions())
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -99,15 +102,8 @@ enum Endpoint {
             } catch { }
             break
         case .GET, .DELETE:
-            if parameters.count > 0 {
-
-            if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {
-                let percentEncodedQuery = (URLComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + query(parameters)
-                URLComponents.percentEncodedQuery = percentEncodedQuery
-                request.URL = URLComponents.URL
-            }
+            encodeURLParameters(request, parameters)
             request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            }
             break
         default:
             break
@@ -133,6 +129,17 @@ enum Endpoint {
     }
 }
 
+
+
+private func encodeURLParameters(request: NSMutableURLRequest, _ parameters: [String: AnyObject]) {
+    guard parameters.count > 0 else { return }
+    
+    if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {
+        let percentEncodedQuery = (URLComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + query(parameters)
+        URLComponents.percentEncodedQuery = percentEncodedQuery
+        request.URL = URLComponents.URL
+    }
+}
 
 private func query(parameters: [String: AnyObject]) -> String {
     var components: [(String, String)] = []

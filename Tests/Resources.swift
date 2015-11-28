@@ -18,6 +18,7 @@ enum Resources: String {
     case User
     case PaymentParametersIntTextKeys
     case PaymentParametersStringTextKeys
+    case TaskState
     
     var JSONObject: [String: AnyObject] {
         let bundle = NSBundle(forClass: BaseTestCaseWithLogin.classForCoder())

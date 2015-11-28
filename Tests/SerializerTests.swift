@@ -146,5 +146,11 @@ class SerializerTests: XCTestCase {
         XCTAssertEqual(scheme.name, "chipTAN optisch")
         XCTAssertEqual(scheme.tan_scheme_id, "M1.2")
     }
+    
+    func testThatSerializerYieldsTaskStateObject() {
+        let JSONObject = Resources.TaskState.JSONObject
+        let scheme = try! TaskState(representation: JSONObject)
+        XCTAssertEqual(scheme.account_id, "A1182805.0")
+    }
 }
 
