@@ -16,80 +16,73 @@ class AccountTests: BaseTestCaseWithLogin {
     let demoCredentials = ["demo", "demo"]
     
     func testShowsSimplestRetrieveAccountsCallWithoutErrorHandling() {
-        login()
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.retrieveAccounts() { accounts, _ in
-            if let accounts = accounts {
-                XCTAssertGreaterThan(accounts.count, 0)
+        
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveAccounts() { accounts, _ in
+                if let accounts = accounts {
+                    XCTAssertGreaterThan(accounts.count, 0)
+                }
+                expectation.fulfill()
             }
-            callbackExpectation.fulfill()
         }
+
         self.waitForExpectationsWithTimeout(30, handler: nil)
-        logout()
+
     }
     
     func testThatRetrieveAccountsYieldsObjects() {
-        login()
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.retrieveAccounts() { accounts, error in
-            if let accounts = accounts {
-                XCTAssertGreaterThan(accounts.count, 0)
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveAccounts() { accounts, error in
+                if let accounts = accounts {
+                    XCTAssertGreaterThan(accounts.count, 0)
+                }
+                XCTAssertNil(error)
+                expectation.fulfill()
             }
-            XCTAssertNil(error)
-            callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
-        logout()
     }
     
     func testThatRetrieveAccountYieldsObject() {
-        login()
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.retrieveAccount("A1079434.5") { account, error in
-            XCTAssertNil(error)
-            if let account = account {
-                XCTAssertEqual(account.account_number, "1146174")
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveAccount("A1079434.5") { account, error in
                 XCTAssertNil(error)
-                callbackExpectation.fulfill()
+                if let account = account {
+                    XCTAssertEqual(account.account_number, "1146174")
+                    XCTAssertNil(error)
+                    expectation.fulfill()
+                }
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
-        logout()
     }
     
     func testRemovePin() {
-        login()
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.removeStoredPinFromBankContact("B1079434.3") { error in
-            XCTAssertNil(error)
-            callbackExpectation.fulfill()
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.removeStoredPinFromBankContact("B1079434.3") { error in
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
-        logout()
     }
     
-    func testErrorHandlingWithNoContentResponse() {
-
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.removeStoredPinFromBankContact("B1079434.3") { error in
-            XCTAssertNotNil(error)
-            callbackExpectation.fulfill()
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-
-    }
     
-    func testSetupNewAccount() {
-        login()
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        let account = NewAccount(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
-        setupNewBankAccount(account) { error in
-            XCTAssertNil(error)
-            callbackExpectation.fulfill()
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-        logout()
-    }
+//    func testSetupNewAccount() {
+//        testLogin()
+//        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+//        let account = NewAccount(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
+//        setupNewBankAccount(account) { error in
+//            XCTAssertNil(error)
+//            expectation.fulfill()
+//        }
+//        self.waitForExpectationsWithTimeout(30, handler: nil)
+//        testLogout()
+//    }
     
 
 }

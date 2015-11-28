@@ -1,5 +1,5 @@
 //
-//  Endpoint.swift
+//  Endpoints.swift
 //  Figo
 //
 //  Created by Christian König on 25.11.15.
@@ -7,36 +7,31 @@
 //
 
 import Foundation
-import Alamofire
 
 
-
-
-func base64Encode(clientID: String, _ clientSecret: String) -> String {
-    let clientCode: String = clientID + ":" + clientSecret
-    let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
-    return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
+private enum Method: String {
+    case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
 }
 
-enum Endpoint: URLRequestConvertible {
+enum Endpoint {
     private static let baseURLString = "https://api.figo.me"
     
-    case LoginUser(username: String, password: String, secret: String)
-    case RefreshToken(token: String, secret: String)
+    case LoginUser(username: String, password: String)
+    case RefreshToken(token: String)
     case RevokeToken(token: String)
     case RetrieveAccount(accountId: String)
     case RetrieveAccounts
     case RetrieveCurrentUser
-    case CreateNewFigoUser(user: NewUser, secret: String)
+    case CreateNewFigoUser(user: NewUser)
     case SetupNewAccount(NewAccount)
     case PollTaskState(PollTaskStateParameters)
     case RemoveStoredPin(bankId: String)
     
-    private var method: Alamofire.Method {
+    private var method: Method {
         switch self {
         case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupNewAccount, .PollTaskState, .RemoveStoredPin:
             return .POST
-        default:
+        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser:
             return .GET
         }
     }
@@ -60,15 +55,15 @@ enum Endpoint: URLRequestConvertible {
         }
     }
     
-    private var parameters: [String : AnyObject]? {
+    private var parameters: [String: AnyObject] {
         switch self {
-        case .LoginUser(let username, let password, _):
+        case .LoginUser(let username, let password):
             return ["username": username, "password": password, "grant_type": "password"]
-        case .RefreshToken(let token, _):
+        case .RefreshToken(let token):
             return ["refresh_token": token, "grant_type": "refresh_token"]
         case .RevokeToken(let token):
             return ["token": token, "cascade": false]
-        case .CreateNewFigoUser(let user, _):
+        case .CreateNewFigoUser(let user):
             return user.JSONObject
         case .SetupNewAccount(let account):
             return account.JSONObject
@@ -76,58 +71,65 @@ enum Endpoint: URLRequestConvertible {
             return parameters.JSONObject
         case .RemoveStoredPin(let bankId):
             return ["bank_id": bankId]
+        case .RetrieveAccount, .RetrieveAccounts:
+            return ["cents": true]
         default:
-            return nil
+            return Dictionary<String, AnyObject>()
         }
     }
     
-    private func encodeParameters(request: NSMutableURLRequest) -> NSMutableURLRequest {
+    private func encodeParameters(request: NSMutableURLRequest) {
         switch self.method {
+        case .POST:
+            do {
+                let data = try NSJSONSerialization.dataWithJSONObject(self.parameters, options: NSJSONWritingOptions())
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = data
+            } catch { }
+            break
         case .GET:
-            return Alamofire.ParameterEncoding.URL.encode(request, parameters: parameters).0
+            if parameters.count > 0 {
+
+            if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {
+                let percentEncodedQuery = (URLComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + query(parameters)
+                URLComponents.percentEncodedQuery = percentEncodedQuery
+                request.URL = URLComponents.URL
+            }
+            request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            }
+            break
         default:
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            return Alamofire.ParameterEncoding.JSON.encode(request, parameters: parameters).0
+            break
+        }
+    }
+    
+    var needsBasicAuthHeader: Bool {
+        switch self {
+        case .LoginUser, .RefreshToken, .RevokeToken, .CreateNewFigoUser:
+            return true
+        default:
+            return false
         }
     }
     
     var URLRequest: NSMutableURLRequest {
         let URL = NSURL(string: Endpoint.baseURLString)!
         let request = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
-        
         request.HTTPMethod = self.method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        if let token = Session.sharedInstance.accessToken {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            debugPrint("Bearer has been set")
-        } else {
-            debugPrint("❗️Failed to set Bearer due to missing access token")
-        }
-        
-        switch self {
-        case .LoginUser(_, _, let secret):
-            addSecretToHeader(secret, request)
-            break
-        case .RefreshToken(_, let secret):
-            addSecretToHeader(secret, request)
-            break
-        case .RevokeToken(_):
-            addSecretToHeader(Session.sharedInstance.secret ?? "", request)
-            break
-        case .CreateNewFigoUser(_, let secret):
-            addSecretToHeader(secret, request)
-            break
-        default:
-            break
-        }
-        
-        return self.encodeParameters(request)
-    }
-    
-    private func addSecretToHeader(secret: String, _ request: NSMutableURLRequest) {
-        request.setValue("Basic \(secret)", forHTTPHeaderField: "Authorization")
-        debugPrint("Basic has been set")
+        encodeParameters(request)
+        return request
     }
 }
+
+
+private func query(parameters: [String: AnyObject]) -> String {
+    var components: [(String, String)] = []
+    for key in parameters.keys.sort(<) {
+        components.append((key, "\(parameters[key]!)"))
+    }
+    return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
+}
+
+
 

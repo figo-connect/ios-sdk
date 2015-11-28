@@ -30,7 +30,7 @@ public struct PaymentParameters {
     }
     
     public init(paymentType: PaymentType, representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         type                    = paymentType
         allowed_recipients      = try mapper.valueForKey(Key.allowed_recipients)
@@ -56,12 +56,12 @@ extension PaymentParameters: ResponseCollectionSerializable {
     
     public static func collection(representation: AnyObject) throws -> [PaymentParameters] {
         guard let representation: [String: [String: AnyObject]] = representation as? [String: [String: AnyObject]] else {
-            throw Error.JSONUnexpectedType(key: "supported_payments", typeName: "\(self.dynamicType)")
+            throw FigoError.JSONUnexpectedType(key: "supported_payments", typeName: "\(self.dynamicType)")
         }
         var paymentParameters = [PaymentParameters]()
         for (key, value) in representation {
             guard let type: PaymentType = PaymentType(rawValue: key) else {
-                throw Error.JSONUnexpectedValue(key: "supported_payments", typeName: "\(self.dynamicType)")
+                throw FigoError.JSONUnexpectedValue(key: "supported_payments", typeName: "\(self.dynamicType)")
             }
             let parameters = try PaymentParameters(paymentType: type, representation: value)
             paymentParameters.append(parameters)

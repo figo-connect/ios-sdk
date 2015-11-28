@@ -6,9 +6,10 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 
-
+/**
+ Contains the parameters for setting up a new bank account
+*/
 public struct NewAccount {
     
     /// Bank code (optional)
@@ -33,36 +34,16 @@ public struct NewAccount {
     public let sync_tasks: [String]?
     
     
-    private enum Key: String, PropertyKey {
-        case bank_code
-        case iban
-        case country
-        case credentials
-        case save_pin
-        case disable_first_sync
-        case sync_tasks
-    }
-    
-}
-
-extension NewAccount: JSONObjectConvertible {
-    
-//    func addOptional(optional: AnyObject?, var dict: Dictionary<String, AnyObject>, key: PropertyKey) {
-//        if optional != nil {
-//            dict[key.rawValue] = optional
-//        }
-//    }
-    
     public var JSONObject: [String: AnyObject] {
         get {
             var dict = Dictionary<String, AnyObject>()
-            dict[Key.bank_code.rawValue] = bank_code
-            dict[Key.iban.rawValue] = iban
-            dict[Key.country.rawValue] = country
-            dict[Key.credentials.rawValue] = credentials
-            dict[Key.save_pin.rawValue] = save_pin
-            dict[Key.disable_first_sync.rawValue] = disable_first_sync
-            dict[Key.sync_tasks.rawValue] = sync_tasks
+            dict["bank_code"] = bank_code
+            dict["iban"] = iban
+            dict["country"] = country
+            dict["credentials"] = credentials
+            dict["save_pin"] = save_pin
+            dict["disable_first_sync"] = disable_first_sync
+            dict["sync_tasks"] = sync_tasks
             return dict
         }
     }

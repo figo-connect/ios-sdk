@@ -9,24 +9,27 @@
 import Foundation
 
 
-func debugPrintRequest(request: NSURLRequest?, _ response: NSHTTPURLResponse?, _ data: NSData?) {
-    debugPrint("⬆️")
-    if let request = request {
-        debugPrint("\(request.HTTPMethod!) \(request.URLString)")
-        if let fields = request.allHTTPHeaderFields {
-            for (key, value) in fields {
-                debugPrint(key + ": " + value)
-            }
-        }
-        if let data = request.HTTPBody {
-            if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                debugPrint(JSON)
-            }
+func debugPrintRequest(request: NSURLRequest) {
+    debugPrint("⬆️ \(request.HTTPMethod!) \(request.URL!)")
+    if let fields = request.allHTTPHeaderFields {
+        for (key, value) in fields {
+            debugPrint(key + ": " + value)
         }
     }
-    debugPrint("⬇️")
+    if let data = request.HTTPBody {
+        if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
+            debugPrint(JSON)
+        }
+    }
+}
+
+
+func debugPrintResponse(data: NSData?, _ response: NSHTTPURLResponse?, _ error: NSError?) {
     if let response = response {
-        debugPrint(response)
+        debugPrint("⬇️ \(response.statusCode)")
+    }
+    if let error = error {
+        debugPrint(error.localizedDescription)
     }
     if let data = data {
         if let string = String(data: data, encoding: NSUTF8StringEncoding) {

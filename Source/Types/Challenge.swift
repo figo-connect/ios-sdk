@@ -31,7 +31,7 @@ public struct Challenge: ResponseObjectSerializable {
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         title   = try mapper.valueForKey(Key.title)
         label   = try mapper.valueForKey(Key.label)

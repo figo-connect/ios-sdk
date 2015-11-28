@@ -80,45 +80,24 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
     public let save_pin: Bool
 
     /// Synchronization status
-    public let status: SyncStatus
+    public let status: SyncStatus?
     
     /// Account balance; This response parameter will be omitted if the balance is not yet known
-    /// TODO: Verify, make optional
-    public let balance: Balance
+    public let balance: Balance?
 
     
     private enum Key: String, PropertyKey {
-        case account_id
-        case account_number
-        case additional_icons
-        case auto_sync
-        case balance
-        case bank_code
-        case bank_id
-        case bank_name
-        case bic
-        case currency
-        case iban
-        case icon
-        case in_total_balance
-        case name
-        case owner
-        case preferred_tan_scheme
-        case save_pin
-        case status
-        case supported_payments
-        case supported_tan_schemes
-        case type
+        case account_id, account_number, additional_icons, auto_sync, balance, bank_code, bank_id, bank_name, bic, currency, iban, icon, in_total_balance, name, owner, preferred_tan_scheme, save_pin, status, supported_payments, supported_tan_schemes, type
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         account_id              = try mapper.valueForKey(Key.account_id)
         account_number          = try mapper.valueForKey(Key.account_number)
         additional_icons        = try mapper.valueForKey(Key.additional_icons)
         auto_sync               = try mapper.valueForKey(Key.auto_sync)
-        balance                 = try Balance(representation: mapper.valueForKey(Key.balance))
+        balance                 = try Balance(optionalRepresentation: mapper.optionalForKey(Key.balance))
         bank_code               = try mapper.valueForKey(Key.bank_code)
         bank_id                 = try mapper.valueForKey(Key.bank_id)
         bank_name               = try mapper.valueForKey(Key.bank_name)
@@ -129,14 +108,14 @@ public struct Account: ResponseObjectSerializable, ResponseCollectionSerializabl
         in_total_balance        = try mapper.valueForKey(Key.in_total_balance)
         name                    = try mapper.valueForKey(Key.name)
         owner                   = try mapper.valueForKey(Key.owner)
-        preferred_tan_scheme    = try mapper.optionalValueForKey(Key.preferred_tan_scheme)
+        preferred_tan_scheme    = try mapper.optionalForKey(Key.preferred_tan_scheme)
         save_pin                = try mapper.valueForKey(Key.save_pin)
         status                  = try SyncStatus(representation: mapper.valueForKey(Key.status))
         supported_payments      = try PaymentParameters.collection(mapper.valueForKey(Key.supported_payments))
         supported_tan_schemes   = try TanScheme.collection(mapper.valueForKey(Key.supported_tan_schemes))
         type                    = try mapper.valueForKey(Key.type)
     }
-
+    
     public static func collection(representation: AnyObject) throws -> [Account] {
         var accounts: [Account] = []
         if let representation = representation as? [String: AnyObject] {

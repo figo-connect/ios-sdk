@@ -22,7 +22,7 @@ public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, Resp
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         medium_name = try mapper.valueForKey(Key.medium_name)
         name = try mapper.valueForKey(Key.name)
@@ -31,7 +31,7 @@ public struct TanScheme: JSONObjectConvertible, ResponseObjectSerializable, Resp
     
     static func collection(representation: AnyObject) throws -> [TanScheme] {
         guard let representation: [[String: AnyObject]] = representation as? [[String: AnyObject]] else {
-            throw Error.JSONUnexpectedType(key: "supported_tan_schemes", typeName: "Account")
+            throw FigoError.JSONUnexpectedType(key: "supported_tan_schemes", typeName: "Account")
         }
         var schemes = [TanScheme]()
         for value in representation {

@@ -9,38 +9,46 @@
 import Foundation
 import XCTest
 
-@testable import Figo
+import Figo
 
 
 class BaseTestCaseWithLogin: XCTestCase {
     
     let username = "christian@koenig.systems"
     let password = "eVPVdiL7a8EUAP"
-    let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
-    let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
+    static let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
+    static let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 
-    func login() {
-        
-        guard Session.sharedInstance.accessToken == nil else { return }
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { refreshToken, error in
+    let figo = FigoSession.init(clientIdentifier: clientID, clientSecret: clientSecret)
+    var refreshToken: String?
+    
+    func login(completionHandler: () -> Void) {
+        guard refreshToken == nil else {
+            debugPrint("Active session, skipping Login")
+            completionHandler()
+            return
+        }
+        debugPrint("Begin Login")
+        figo.loginWithUsername(username, password: password) { refreshToken, error in
+            self.refreshToken = refreshToken
             XCTAssertNotNil(refreshToken)
             XCTAssertNil(error)
-            callbackExpectation.fulfill()
+            debugPrint("End Login")
+            completionHandler()
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func logout() {
-        
-        guard Session.sharedInstance.accessToken == nil else { return }
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.revokeAccessToken { (error) -> Void in
-            XCTAssertNil(error)
-            XCTAssertNil(Session.sharedInstance.accessToken)
-            callbackExpectation.fulfill()
+    func logout(completionHandler: () -> Void) {
+        guard refreshToken != nil else {
+            debugPrint("No active session, skipping Logout")
+            completionHandler()
+            return
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-        XCTAssertNil(Session.sharedInstance.accessToken)
+        debugPrint("Begin Logout")
+        figo.revokeRefreshToken(self.refreshToken!) { error in
+            XCTAssertNil(error)
+            debugPrint("End Logout")
+            completionHandler()
+        }
     }
 }

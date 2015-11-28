@@ -42,8 +42,8 @@ class SerializerTests: XCTestCase {
         XCTAssertEqual(account.account_number, "4711951500")
         XCTAssertEqual(account.additional_icons.count, 2)
         XCTAssertEqual(account.auto_sync, false)
-        XCTAssertTrue(nearlyEqual(account.balance.balance, b: 3250.31))
-        XCTAssertEqual(account.balance.balance_date, "2013-09-11T00:00:00.000Z")
+        XCTAssertEqual(account.balance!.balance, Int(325031))
+        XCTAssertEqual(account.balance!.balance_date, "2013-09-11T00:00:00.000Z")
         XCTAssertEqual(account.bank_code, "90090042")
         XCTAssertEqual(account.bank_id, "B1.1")
         XCTAssertEqual(account.bank_name, "Demobank")
@@ -56,10 +56,10 @@ class SerializerTests: XCTestCase {
         XCTAssertEqual(account.owner, "figo")
         XCTAssertNil(account.preferred_tan_scheme)
         XCTAssertEqual(account.save_pin, false)
-        XCTAssertEqual(account.status.code, -1)
-        XCTAssertEqual(account.status.message, "Cannot load credential 8f084858-e1c6-4642-87f8-540b530b6e0f: UUID does not exist.")
-        XCTAssertEqual(account.status.success_timestamp, "2013-09-11T00:00:00.000Z")
-        XCTAssertEqual(account.status.sync_timestamp, "2014-07-09T10:04:40.000Z")
+        XCTAssertEqual(account.status!.code, -1)
+        XCTAssertEqual(account.status!.message, "Cannot load credential 8f084858-e1c6-4642-87f8-540b530b6e0f: UUID does not exist.")
+        XCTAssertEqual(account.status!.success_timestamp, "2013-09-11T00:00:00.000Z")
+        XCTAssertEqual(account.status!.sync_timestamp, "2014-07-09T10:04:40.000Z")
         XCTAssertEqual(account.supported_payments.count, 1)
         XCTAssertEqual(account.supported_payments.first?.allowed_recipients.count, 0)
         XCTAssertEqual(account.supported_payments.first?.can_be_recurring, false)
@@ -84,7 +84,7 @@ class SerializerTests: XCTestCase {
             XCTAssertNil(account)
             XCTFail()
         }
-        catch (let error as Error) {
+        catch (let error as FigoError) {
             XCTAssert(error.failureReason.containsString("Account"))
             XCTAssert(error.failureReason.containsString("account_id"))
             print(error)
@@ -102,7 +102,7 @@ class SerializerTests: XCTestCase {
             XCTAssertNil(account)
             XCTFail()
         }
-        catch (let error as Error) {
+        catch (let error as FigoError) {
             XCTAssert(error.failureReason.containsString("Account"))
             XCTAssert(error.failureReason.containsString("unexpected root object type"))
             print(error)
@@ -120,7 +120,7 @@ class SerializerTests: XCTestCase {
             XCTAssertNil(account)
             XCTFail()
         }
-        catch (let error as Error) {
+        catch (let error as FigoError) {
             XCTAssert(error.failureReason.containsString("Account"))
             XCTAssert(error.failureReason.containsString("account_number"))
             XCTAssert(error.failureReason.containsString("unexpected value type"))
@@ -134,7 +134,7 @@ class SerializerTests: XCTestCase {
     func testThatSerializerYieldsBalanceObject() {
         let JSONObject = Resources.Balance.JSONObject
         let balance = try! Balance(representation: JSONObject)
-        XCTAssertTrue(nearlyEqual(balance.balance, b: 3250.31))
+        XCTAssertEqual(balance.balance, 325031)
         let date = dateFromString(balance.balance_date)
         XCTAssertNotNil(date)
     }

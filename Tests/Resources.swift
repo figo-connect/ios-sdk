@@ -32,7 +32,8 @@ func nearlyEqual(a: Float, b: Float, epsilon: Float = 0.0001) -> Bool {
     return a - b < epsilon && b - a < epsilon
 }
 
-func dateFromString(string: String) -> NSDate? {
+func dateFromString(string: String?) -> NSDate? {
+    guard let string = string else { return nil }
     let formatter = NSDateFormatter()
     formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
     formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"

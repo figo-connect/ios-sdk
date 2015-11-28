@@ -11,19 +11,19 @@ import Figo
 
 
 class UserTests: BaseTestCaseWithLogin {
-
+    
     func testThatRetrieveCurrentUserYieldsObject() {
-        login()
-        let callbackExpectation = self.expectationWithDescription("callback has been executed")
-        Figo.retrieveCurrentUser() { user, error in
-            if let user = user {
-                XCTAssertEqual(user.email, "christian@koenig.systems")
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveCurrentUser() { user, error in
+                if let user = user {
+                    XCTAssertEqual(user.email, "christian@koenig.systems")
+                }
+                XCTAssertNil(error)
+                expectation.fulfill()
             }
-            XCTAssertNil(error)
-            callbackExpectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
-        logout()
     }
     
     func testThatUserSerializerYieldsObject() {
@@ -45,4 +45,18 @@ class UserTests: BaseTestCaseWithLogin {
         XCTAssertEqual(user.user_id, "U12345")
         XCTAssertEqual(user.verified_email, true)
     }
+    
+    
+    
+    //    func testCreateNewUser() {
+    //
+    //        let user = NewUser(name: "Christian König", email: "christian@koenig.systems", password: "b2D59>497'TL", send_newsletter: false, language: "de", affiliate_user: nil, affiliate_client_id: nil)
+    //        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+    //        figo.createNewFigoUser(user, clientID: "", clientSecret: "") { (recoveryPassword, error) -> Void in
+    //            XCTAssertNil(error)
+    //            expectation.fulfill()
+    //        }
+    //        self.waitForExpectationsWithTimeout(30, handler: nil)
+    //
+    //    }
 }

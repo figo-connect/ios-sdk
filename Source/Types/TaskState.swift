@@ -43,7 +43,7 @@ public struct TaskState: ResponseObjectSerializable {
     }
     
     public init(representation: AnyObject) throws {
-        let mapper = try PropertyMapper(representation, typeName: "\(self.dynamicType)")
+        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         account_id              = try mapper.valueForKey(Key.account_id)
         message                 = try mapper.valueForKey(Key.message)
@@ -52,7 +52,7 @@ public struct TaskState: ResponseObjectSerializable {
         is_erroneous            = try mapper.valueForKey(Key.is_erroneous)
         is_ended                = try mapper.valueForKey(Key.is_ended)
         
-        if let challengeRepresentation: AnyObject = try mapper.optionalValueForKey(Key.challenge) {
+        if let challengeRepresentation: AnyObject = try mapper.optionalForKey(Key.challenge) {
             challenge = try Challenge(representation: challengeRepresentation)
         } else {
             challenge = nil
