@@ -16,10 +16,10 @@ class BaseTestCaseWithLogin: XCTestCase {
     
     let username = "christian@koenig.systems"
     let password = "eVPVdiL7"
-    static let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
-    static let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
+    let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
+    let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 
-    let figo = FigoSession.init(clientIdentifier: clientID, clientSecret: clientSecret)
+    let figo = FigoSession.init()
     var refreshToken: String?
     
     func login(completionHandler: () -> Void) {
@@ -29,10 +29,10 @@ class BaseTestCaseWithLogin: XCTestCase {
             return
         }
         debugPrint("Begin Login")
-        figo.loginWithUsername(username, password: password) { refreshToken, error in
-            self.refreshToken = refreshToken
-            XCTAssertNotNil(refreshToken)
-            XCTAssertNil(error)
+        figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { refreshToken in
+            self.refreshToken = refreshToken.value
+            XCTAssertNotNil(refreshToken.value)
+            XCTAssertNil(refreshToken.error)
             debugPrint("End Login")
             completionHandler()
         }
@@ -45,8 +45,8 @@ class BaseTestCaseWithLogin: XCTestCase {
             return
         }
         debugPrint("Begin Logout")
-        figo.revokeRefreshToken(self.refreshToken!) { error in
-            XCTAssertNil(error)
+        figo.revokeRefreshToken(self.refreshToken!) { result in
+            XCTAssertNil(result.error)
             debugPrint("End Logout")
             completionHandler()
         }

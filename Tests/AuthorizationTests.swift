@@ -24,9 +24,11 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     
     func testThatLoginWithWrongPasswordYieldsCorrectError() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        figo.loginWithUsername(username, password: "foo") { authorization, error in
-            XCTAssertNotNil(error)
-            XCTAssert(error!.failureReason.containsString("Invalid credentials"))
+        figo.loginWithUsername(username, password: "foo", clientID: clientID, clientSecret: clientSecret) { result in
+            XCTAssertNotNil(result.error)
+            if case .Failure(let error) = result {
+                XCTAssert(error.failureReason.containsString("Invalid credentials"))
+            }
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
@@ -34,13 +36,10 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveWithoutLoginYieldsCorrectError() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        figo.retrieveAccounts() { _, error in
-            XCTAssertNotNil(error)
-            switch error! {
-            case .NoActiveSession:
-                break
-            default:
-                XCTFail()
+        figo.retrieveAccounts() { result in
+            XCTAssertNotNil(result.error)
+            if case .Failure(let error) = result {
+                XCTAssert(error.failureReason.hasPrefix("No Figo session active"))
             }
             expectation.fulfill()
         }
@@ -51,10 +50,10 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login {
-            self.figo.revokeRefreshToken(self.refreshToken!) { error in
-                XCTAssertNil(error)
-                self.figo.retrieveAccounts() { _, error in
-                    XCTAssertNotNil(error)
+            self.figo.revokeRefreshToken(self.refreshToken!) { result in
+                XCTAssertNil(result.error)
+                self.figo.retrieveAccounts() { result in
+                    XCTAssertNotNil(result.error)
                     self.logout() {
                         expectation.fulfill()
                     }
@@ -67,10 +66,10 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     func testThatLoginWithRefreshTokenYieldsAccessToken() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.revokeAccessToken { (error) -> Void in
-                XCTAssertNil(error)
-                self.figo.loginWithRefreshToken(self.figo.refreshToken!, clientID: "", clientSecret: "") { error in
-                    XCTAssertNil(error)
+            self.figo.revokeAccessToken { result in
+                XCTAssertNil(result.error)
+                self.figo.loginWithRefreshToken(self.figo.refreshToken!, clientID: self.clientID, clientSecret: self.clientSecret) { result in
+                    XCTAssertNil(result.error)
                     self.logout() {
                         expectation.fulfill()
                     }

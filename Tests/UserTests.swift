@@ -15,28 +15,28 @@ class UserTests: BaseTestCaseWithLogin {
     func testThatRetrieveCurrentUserYieldsObject() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveCurrentUser() { user, error in
-                if let user = user {
+            self.figo.retrieveCurrentUser() { result in
+                if let user = result.value {
                     XCTAssertEqual(user.email, "christian@koenig.systems")
                 }
-                XCTAssertNil(error)
+                XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testCreateUser() {
+    func xtestCreateUser() {
         let user = CreateUserParameters(name: username, email: username, password: password, send_newsletter: false, language: "de", affiliate_user: nil, affiliate_client_id: nil)
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        figo.createNewFigoUser(user, clientID: "", clientSecret: "") { (recoveryPassword, error) -> Void in
-            XCTAssertNil(error)
+        figo.createNewFigoUser(user, clientID: clientID, clientSecret: clientSecret) { result in
+            XCTAssertNil(result.error)
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(60, handler: nil)
     }
     
-    func testDeleteUser() {
+    func xtestDeleteUser() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
             self.figo.deleteCurrentUser({ (result) -> Void in

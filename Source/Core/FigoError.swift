@@ -19,6 +19,7 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
     }
     
     case NoActiveSession
+    case EmptyResponse
     case JSONMissingMandatoryKey(key: String, typeName: String)
     case JSONMissingMandatoryValue(key: String, typeName: String)
     case JSONUnexpectedValue(key: String, typeName: String)
@@ -37,6 +38,8 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
             switch self {
             case .NoActiveSession:
                 return "No Figo session active. Login with credentials or refresh token."
+            case .EmptyResponse:
+                return "Server returned empty response"
             case .JSONMissingMandatoryKey(let key, let typeName):
                 return "Failed to create object '\(typeName)' from JSON because of missing mandatory key: \(key)"
             case .JSONMissingMandatoryValue(let key, let typeName):

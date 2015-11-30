@@ -25,64 +25,40 @@ extension FigoSession {
     }
     
     
-    /**
-     BEGIN TASK
-
-     Start communication with bank server.
-     */
-    func beginTask(token: String, _ completionHandler: CompletionHandler) {
-        request(Endpoint.BeginTask(taskToken: token)) { data, error in
-            guard error == nil else {
-                completionHandler(error: error)
-                return
-            }
-            self.pollTaskState(token, self.POLLING_COUNTDOWN_INITIAL_VALUE, completionHandler)
-        }
-    }
     
     /**
      POLL TASK STATE
      
      While the figo Connect server communicates with a bank server, your application can monitor its progress by periodically polling this method
      */
-    func pollTaskState(token: String, _ countdown: Int, _ completionHandler: CompletionHandler) {
+    func pollTaskState(token: String, _ countdown: Int, _ completionHandler: VoidCompletionHandler) {
         guard countdown > 0 else {
-            completionHandler(error: FigoError.TaskProcessingTimeout)
+            completionHandler(.Failure(.TaskProcessingTimeout))
             return
         }
         let parameters = PollTaskStateParameters(id: token, pin: nil, continueAfterError: nil, savePin: nil, response: nil)
-        request(Endpoint.PollTaskState(parameters)) { data, error in
-            guard error == nil else {
-                completionHandler(error: error!)
-                return
-            }
-            let decoded: (TaskState?, FigoError?) = decodeObject(data)
-            if let decodingError = decoded.1 {
-                completionHandler(error: decodingError)
-                return
-            }
-            else if let state = decoded.0 {
+        request(Endpoint.PollTaskState(parameters)) { response in
+            let decoded: FigoResult<TaskState> = decodeObjectResponse(response)
+            switch decoded {
+            case .Failure(let error):
+                completionHandler(.Failure(error))
+                break
+            case .Success(let state):
                 if state.is_ended {
                     if state.is_erroneous {
-                        completionHandler(error: FigoError.TaskProcessingError(accountID: state.account_id, message: state.message))
-                        return
+                        completionHandler(.Failure(.TaskProcessingError(accountID: state.account_id, message: state.message)))
                     } else {
-                        completionHandler(error: nil)
-                        return
+                        completionHandler(.Success())
                     }
                 } else {
                     print(state.message)
                     self.delay() {
                         self.pollTaskState(token, countdown - 1, completionHandler)
                     }
-                    return
                 }
-            } else {
-                completionHandler(error: FigoError.UnspecifiedError(reason: "Failed to poll task state"))
-                return
+                break
             }
         }
-        
     }
     
 }

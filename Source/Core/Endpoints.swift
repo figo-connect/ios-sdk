@@ -27,6 +27,7 @@ enum Endpoint {
     case RetrieveAccount(accountId: String)
     case RemoveStoredPin(bankId: String)
     case DeleteAccount(accountID: String)
+    case RetrieveLoginSettings(countryCode: String, bankCode: String)
     case BeginTask(taskToken: String)
     case PollTaskState(PollTaskStateParameters)
 
@@ -35,7 +36,7 @@ enum Endpoint {
         switch self {
         case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin:
             return .POST
-        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask:
+        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask, .RetrieveLoginSettings:
             return .GET
         case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
@@ -64,6 +65,8 @@ enum Endpoint {
             return "/rest/banks/\(bankId)/remove_pin"
         case .BeginTask:
             return "/task/start"
+        case .RetrieveLoginSettings(let countryCode, let bankCode):
+            return "/rest/catalog/banks/\(countryCode)/\(bankCode)"
         }
     }
     

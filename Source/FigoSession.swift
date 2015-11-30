@@ -9,7 +9,7 @@
 import Foundation
 
 
-public typealias VoidCompletionHandler = (result: FigoResult<Void>) -> Void
+public typealias VoidCompletionHandler = (FigoResult<Void>) -> Void
 
 
 /**
@@ -25,7 +25,7 @@ public typealias VoidCompletionHandler = (result: FigoResult<Void>) -> Void
 public class FigoSession {
     
     let session: NSURLSession = NSURLSession.sharedSession()
-    let basicAuthSecret: String
+    var basicAuthSecret: String?
 
     /// Milliseconds between polling task states
     let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
@@ -37,26 +37,22 @@ public class FigoSession {
     var refreshToken: String?
     
     
-    /**
-     Initializes a new Figo session
-     
-     - Parameter clientIdentifier: The figo client identifier
-     - Parameter clientSecret: The figo client sclient
-     */
-    public init(clientIdentifier: String, clientSecret: String) {
-        basicAuthSecret = base64Encode(clientIdentifier, clientSecret)
-    }
-    
-    func request(endpoint: Endpoint, completion: (data: NSData?, error: FigoError?) -> Void) {
+    func request(endpoint: Endpoint, completion: (FigoResult<NSData>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
         mutableURLRequest.setValue("2014-01-01", forHTTPHeaderField: "Figo-Version")
         
         if endpoint.needsBasicAuthHeader {
-            mutableURLRequest.setValue("Basic \(self.basicAuthSecret)", forHTTPHeaderField: "Authorization")
+            guard self.basicAuthSecret != nil else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(.Failure(FigoError.NoActiveSession))
+                }
+                return
+            }
+            mutableURLRequest.setValue("Basic \(self.basicAuthSecret!)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(data: nil, error: FigoError.NoActiveSession)
+                    completion(.Failure(FigoError.NoActiveSession))
                 }
                 return
             }
@@ -71,7 +67,7 @@ public class FigoSession {
             
             if case 200..<300 = response.statusCode  {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(data: data, error: nil)
+                    completion(.Success(data ?? NSData()))
                 }
             } else {
                 var serverError: FigoError = error != nil ? FigoError.NetworkLayerError(error: error!) : FigoError.UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
@@ -86,7 +82,7 @@ public class FigoSession {
                     }
                 }
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(data: nil, error: serverError)
+                    completion(.Failure(serverError))
                 }
             }
         }.resume()

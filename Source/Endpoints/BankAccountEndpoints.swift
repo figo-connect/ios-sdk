@@ -18,10 +18,10 @@ extension FigoSession {
      
      - Parameter completionHandler: Returns accounts or error
      */
-    public func retrieveAccounts(completionHandler: (accounts: [Account]?, error: FigoError?) -> Void) {
-        request(.RetrieveAccounts) { data, error in
-            let decoded: ([Account]?, FigoError?) = decodeCollection(data)
-            completionHandler(accounts: decoded.0, error: decoded.1 ?? error)
+    public func retrieveAccounts(completionHandler: (FigoResult<[Account]>) -> Void) {
+        request(.RetrieveAccounts) { response in
+            let decoded: FigoResult<[Account]> = decodeCollectionResponse(response)
+            completionHandler(decoded)
         }
     }
     
@@ -31,10 +31,10 @@ extension FigoSession {
      - Parameter accountID: Internal figo Connect account ID
      - Parameter completionHandler: Returns account or error
     */
-    public func retrieveAccount(accountID: String, _ completionHandler: (account: Account?, error: FigoError?) -> Void) {
-        request(Endpoint.RetrieveAccount(accountId: accountID)) { data, error in
-            let decoded: (Account?, FigoError?) = decodeObject(data)
-            completionHandler(account: decoded.0, error: decoded.1 ?? error)
+    public func retrieveAccount(accountID: String, _ completionHandler: (FigoResult<Account>) -> Void) {
+        request(Endpoint.RetrieveAccount(accountId: accountID)) { response in
+            let decoded: FigoResult<Account> = decodeObjectResponse(response)
+            completionHandler(decoded)
         }
     }
     
@@ -47,12 +47,8 @@ extension FigoSession {
      - Parameter completionHandler: Returns nothing or error
     */
     public func removeStoredPinFromBankContact(bankIdenitifier: String, _ completionHandler: VoidCompletionHandler) {
-        request(.RemoveStoredPin(bankId: bankIdenitifier)) { (data, error) -> Void in
-            if let error = error {
-                completionHandler(result: .Failure(error))
-            } else {
-                completionHandler(result: .Success())
-            }
+        request(.RemoveStoredPin(bankId: bankIdenitifier)) { response in
+            completionHandler(decodeVoidResponse(response))
         }
     }
     
@@ -62,19 +58,15 @@ extension FigoSession {
      The figo Connect server will transparently create or modify a bank contact to add additional bank accounts.
      */
     public func setupNewBankAccount(account: CreateAccountParameters, _ completionHandler: VoidCompletionHandler) {
-        request(Endpoint.SetupCreateAccountParameters(account)) { data, error in
-            switch decodeTaskToken(data) {
+        request(Endpoint.SetupCreateAccountParameters(account)) { response in
+            switch decodeTaskTokenResponse(response) {
             case .Success(let taskToken):
-                self.pollTaskState(taskToken, self.POLLING_COUNTDOWN_INITIAL_VALUE) { error in
-                    if let error = error {
-                        completionHandler(result: FigoResult.Failure(error))
-                    } else {
-                        completionHandler(result: FigoResult.Success())
-                    }
+                self.pollTaskState(taskToken, self.POLLING_COUNTDOWN_INITIAL_VALUE) { result in
+                    completionHandler(result)
                 }
                 break
             case .Failure(let decodingError):
-                completionHandler(result: FigoResult.Failure(decodingError))
+                completionHandler(.Failure(decodingError))
                 break
             }
         }
@@ -87,12 +79,8 @@ extension FigoSession {
      Once the last remaining account of a bank contact has been removed, the bank contact will be automatically removed as well
      */
     public func deleteAccount(accountID: String, _ completionHandler: VoidCompletionHandler) {
-        request(.DeleteAccount(accountID: accountID)) { (data, error) -> Void in
-            if let error = error {
-                completionHandler(result: .Failure(error))
-            } else {
-                completionHandler(result: .Success())
-            }
+        request(.DeleteAccount(accountID: accountID)) { response in
+            completionHandler(decodeVoidResponse(response))
         }
     }
 }

@@ -19,10 +19,11 @@ class AccountTests: BaseTestCaseWithLogin {
         
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveAccounts() { accounts, _ in
-                if let accounts = accounts {
+            self.figo.retrieveAccounts() { result in
+                if let accounts = result.value {
                     XCTAssertGreaterThan(accounts.count, 0)
                 }
+                XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
@@ -34,11 +35,11 @@ class AccountTests: BaseTestCaseWithLogin {
     func testThatRetrieveAccountsYieldsObjects() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveAccounts() { accounts, error in
-                if let accounts = accounts {
+            self.figo.retrieveAccounts() { result in
+                if let accounts = result.value {
                     XCTAssertGreaterThan(accounts.count, 0)
                 }
-                XCTAssertNil(error)
+                XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
@@ -48,13 +49,11 @@ class AccountTests: BaseTestCaseWithLogin {
     func testThatRetrieveAccountYieldsObject() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveAccount("A1182805.2") { account, error in
-                XCTAssertNil(error)
-                if let account = account {
+            self.figo.retrieveAccount("A1182805.2") { result in
+                XCTAssertNil(result.error)
+                if let account = result.value {
                     XCTAssertEqual(account.account_number, "4711951501")
-                    XCTAssertNil(error)
-                } else {
-                    XCTFail()
+
                 }
                 expectation.fulfill()
             }
@@ -73,7 +72,7 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testSetupAccount() {
+    func xtestSetupAccount() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
             let account = CreateAccountParameters(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
@@ -85,7 +84,7 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testDeleteBankAccount() {
+    func xtestDeleteBankAccount() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
             self.figo.deleteAccount("A1182805.1") { result in
