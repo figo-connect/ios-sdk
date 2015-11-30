@@ -95,5 +95,21 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
+    
+    func testRetrieveLoginSettings() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveLoginSettings(bankCode: "66450050") { result in
+                XCTAssertNil(result.error)
+                if case .Success(let settings) = result {
+                    XCTAssertTrue(settings.supported)
+                    XCTAssertEqual(settings.auth_type, "pin")
+                }
+                
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
 
 }
