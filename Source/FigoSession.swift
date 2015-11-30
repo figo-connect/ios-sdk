@@ -9,7 +9,12 @@
 import Foundation
 
 
+
 public typealias VoidCompletionHandler = (FigoResult<Void>) -> Void
+
+
+// Server's SHA1 fingerprints
+private let trustedFingerprints = Set(["cfc1bc7f6a16092b10838ab0224f3a65d270d73e"])
 
 
 /**
@@ -24,9 +29,12 @@ public typealias VoidCompletionHandler = (FigoResult<Void>) -> Void
  */
 public class FigoSession {
     
-    let session: NSURLSession = NSURLSession.sharedSession()
+    let sessionDelegate = FigoURLSessionDelegate()
+    let session: NSURLSession
+    
+    // Used for Basic HTTP authentication, derived from CliendID and ClientSecret
     var basicAuthSecret: String?
-
+    
     /// Milliseconds between polling task states
     let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
     
@@ -36,6 +44,10 @@ public class FigoSession {
     var accessToken: String?
     var refreshToken: String?
     
+
+    init() {
+        session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
+    }
     
     func request(endpoint: Endpoint, completion: (FigoResult<NSData>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
@@ -60,33 +72,108 @@ public class FigoSession {
         }
         
         debugPrintRequest(mutableURLRequest)
-        session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            let response = response as! NSHTTPURLResponse
-            
-            debugPrintResponse(data, response, error)
-            
-            if case 200..<300 = response.statusCode  {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(.Success(data ?? NSData()))
-                }
-            } else {
-                var serverError: FigoError = error != nil ? FigoError.NetworkLayerError(error: error!) : FigoError.UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
-                if let data = data {
-                    if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
-                        serverError = FigoError.ServerError(message: responseAsString)
-                        if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                            if let decodedError = try? FigoError(representation: JSON) {
-                                serverError = decodedError
+        let task = session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            if let response = response as? NSHTTPURLResponse {
+                
+                debugPrintResponse(data, response, error)
+                
+                if case 200..<300 = response.statusCode  {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(.Success(data ?? NSData()))
+                    }
+                } else {
+                    var serverError: FigoError = error != nil ? FigoError.NetworkLayerError(error: error!) : FigoError.UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
+                    if let data = data {
+                        if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
+                            serverError = FigoError.ServerError(message: responseAsString)
+                            if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
+                                if let decodedError = try? FigoError(representation: JSON) {
+                                    serverError = decodedError
+                                }
                             }
                         }
                     }
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(.Failure(serverError))
+                    }
                 }
+            } else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(.Failure(serverError))
+                    if let error = error {
+                        completion(.Failure(FigoError.NetworkLayerError(error: error)))
+                    } else {
+                        completion(.Failure(.EmptyResponse))
+                    }
                 }
             }
-        }.resume()
+        }
+        task.resume()
     }
 }
+
+
+class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
+
+    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        
+        var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+        
+        if let serverTrust = challenge.protectionSpace.serverTrust
+        {
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                let certificateData = certificateDataForTrust(serverTrust)
+                let serverFingerprints = Set(certificateData.map() { return sha1($0) })
+                if serverFingerprints.isDisjointWith(trustedFingerprints) {
+                    disposition = .CancelAuthenticationChallenge
+                }
+            }
+            if !trustIsValid(serverTrust) {
+                disposition = .CancelAuthenticationChallenge
+            }
+        } else {
+            if challenge.previousFailureCount > 0 {
+                disposition = .CancelAuthenticationChallenge
+            }
+        }
+        
+        completionHandler(disposition, nil)
+    }
+
+    private func sha1(data: NSData) -> String {
+        var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
+        CC_SHA1(data.bytes, CC_LONG(data.length), &digest)
+        let hexBytes = digest.map { String(format: "%02hhx", $0) }
+        return hexBytes.joinWithSeparator("")
+    }
+    
+    private func trustIsValid(trust: SecTrust) -> Bool {
+        var isValid = false
+        var result = SecTrustResultType(kSecTrustResultInvalid)
+        let status = SecTrustEvaluate(trust, &result)
+        
+        if status == errSecSuccess {
+            let unspecified = SecTrustResultType(kSecTrustResultUnspecified)
+            let proceed = SecTrustResultType(kSecTrustResultProceed)
+            isValid = result == unspecified || result == proceed
+        }
+        return isValid
+    }
+    
+    private func certificateDataForTrust(trust: SecTrust) -> [NSData] {
+        var certificates: [SecCertificate] = []
+        
+        for index in 0 ..< SecTrustGetCertificateCount(trust) {
+            if let certificate = SecTrustGetCertificateAtIndex(trust, index) {
+                certificates.append(certificate)
+            }
+        }
+        return certificateDataForCertificates(certificates)
+    }
+    
+    private func certificateDataForCertificates(certificates: [SecCertificate]) -> [NSData] {
+        return certificates.map { SecCertificateCopyData($0) as NSData }
+    }
+}
+
 
 
