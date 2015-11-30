@@ -30,13 +30,14 @@ enum Endpoint {
     case RetrieveLoginSettings(countryCode: String, bankCode: String)
     case BeginTask(taskToken: String)
     case PollTaskState(PollTaskStateParameters)
-
+    case RetrieveSupportedBanks(countryCode: String)
+    case RetrieveSupportedServices(countryCode: String)
     
     private var method: Method {
         switch self {
         case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin:
             return .POST
-        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask, .RetrieveLoginSettings:
+        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask, .RetrieveLoginSettings, .RetrieveSupportedBanks, .RetrieveSupportedServices:
             return .GET
         case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
@@ -67,6 +68,10 @@ enum Endpoint {
             return "/task/start"
         case .RetrieveLoginSettings(let countryCode, let bankCode):
             return "/rest/catalog/banks/\(countryCode)/\(bankCode)"
+        case .RetrieveSupportedBanks(let countryCode):
+            return "/rest/catalog/\(countryCode)"
+        case .RetrieveSupportedServices(let countryCode):
+            return "/rest/catalog/services/\(countryCode)"
         }
     }
     

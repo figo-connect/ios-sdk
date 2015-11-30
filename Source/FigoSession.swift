@@ -75,7 +75,7 @@ public class FigoSession {
         let task = session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let response = response as? NSHTTPURLResponse {
                 
-                debugPrintResponse(data, response, error)
+//                debugPrintResponse(data, response, error)
                 
                 if case 200..<300 = response.statusCode  {
                     dispatch_async(dispatch_get_main_queue()) {

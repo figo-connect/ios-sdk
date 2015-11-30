@@ -27,4 +27,33 @@ extension FigoSession {
             completionHandler(decoded)
         }
     }
+    
+    /**
+     RETRIEVE LIST OF SUPPORTED BANKS, CREDIT CARDS, OTHER PAYMENT SERVICES
+     
+     - Parameter countryCode: The country the service comes from (Valid values: de)
+     */
+    public func retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedBank]>) -> Void) {
+        request(Endpoint.RetrieveSupportedBanks(countryCode: countryCode)) { response in
+            let decoded: FigoResult<[SupportedBank]> = decodeCollectionResponse(response)
+            completionHandler(decoded)
+        }
+    }
+    
+    
+    /**
+     RETRIEVE LIST OF SUPPORTED CREDIT CARDS AND OTHER PAYMENT SERVICES
+     
+     These services do not use bank codes and are therefore listed seperatly. In order to provide a uniform interface for the remaining process, part of the response is a fake bank code, used as a surrogate for these services in our other calls.
+     
+     - Parameter countryCode: The country the service comes from (Valid values: de)
+     */
+    public func retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedService]>) -> Void) {
+        request(Endpoint.RetrieveSupportedServices(countryCode: countryCode)) { response in
+            let decoded: FigoResult<[SupportedService]> = decodeCollectionResponse(response)
+            completionHandler(decoded)
+        }
+    }
+    
+    
 }

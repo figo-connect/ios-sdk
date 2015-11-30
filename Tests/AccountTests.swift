@@ -112,4 +112,34 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
 
+    func testRetrieveSupportedBanks() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveSupportedBanks() { result in
+                XCTAssertNil(result.error)
+                if case .Success(let banks) = result {
+                    let bank = banks.first!
+                    debugPrint(bank)
+                }
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
+    func testRetrieveSupportedServices() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveSupportedServices() { result in
+                XCTAssertNil(result.error)
+                if case .Success(let services) = result {
+                    let service = services.first!
+                    debugPrint(service)
+                }
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
 }
