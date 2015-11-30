@@ -7,31 +7,18 @@
 //
 
 
-public struct SyncStatus {
+public struct SyncStatus: Unboxable {
     
     public let code: Int
     public let message: String?
     public let success_timestamp: String
     public let sync_timestamp: String
-}
-
-extension SyncStatus: ResponseObjectSerializable {
     
-    init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        code = try mapper.valueForKeyName("code")
-        message = try mapper.optionalForKeyName("message")
-        success_timestamp = try mapper.valueForKeyName("success_timestamp")
-        sync_timestamp = try mapper.valueForKeyName("sync_timestamp")
-    }
-}
-
-extension SyncStatus: ResponseOptionalObjectSerializable {
-    init?(optionalRepresentation: AnyObject?) throws {
-        guard let representation = optionalRepresentation else {
-            return nil
-        }
-        try self.init(representation: representation)
+    
+    init(unboxer: Unboxer) {
+        code                = unboxer.unbox("code")
+        message             = unboxer.unbox("message")
+        success_timestamp   = unboxer.unbox("success_timestamp")
+        sync_timestamp      = unboxer.unbox("sync_timestamp")
     }
 }

@@ -9,12 +9,11 @@
 import Foundation
 
 
-public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConvertible, CustomDebugStringConvertible {
+public enum FigoError: ErrorType, CustomStringConvertible, Unboxable {
     
-    public init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        let error: String = try mapper.valueForKeyName("error")
-        let error_description: String = try mapper.valueForKeyName("error_description")
+    init(unboxer: Unboxer) {
+        let error: String = unboxer.unbox("error")
+        let error_description: String = unboxer.unbox("error_description")
         self = .ServerErrorWithDescrition(error: error, description: error_description)
     }
     
@@ -32,8 +31,10 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
     case UnspecifiedError(reason: String?)
     case TaskProcessingError(accountID: String, message: String?)
     case TaskProcessingTimeout
+    case UnboxingError(String)
 
-    public var failureReason: String {
+    
+    public var description: String {
         get {
             switch self {
             case .NoActiveSession:
@@ -64,15 +65,10 @@ public enum FigoError: ErrorType, ResponseObjectSerializable, CustomStringConver
                 return "Failed to serialize JSON (\(error.localizedDescription))"
             case .TaskProcessingTimeout:
                 return "Task processing timeout"
+            case .UnboxingError(let description):
+                return description
             }
         }
     }
     
-    public var description: String {
-         return failureReason
-    }
-    
-    public var debugDescription: String {
-         return failureReason
-    }
 }

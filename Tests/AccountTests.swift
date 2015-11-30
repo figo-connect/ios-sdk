@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Figo
+@testable import Figo
 
 
 class AccountTests: BaseTestCaseWithLogin {
@@ -112,10 +112,23 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
 
+    func testSupportedBanksUnboxing() {
+        let data = Resources.SupportedBanks.data
+        do {
+            let envelope: BanksListEnvelope = try UnboxOrThrow(data)
+            XCTAssertEqual(envelope.banks.first!.bank_code, 10000000)
+            
+        } catch (let error) {
+            XCTAssertNil(error)
+        }
+    }
+    
     func testRetrieveSupportedBanks() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
+            FigoLoggingEnabled = false
             self.figo.retrieveSupportedBanks() { result in
+            FigoLoggingEnabled = true
                 XCTAssertNil(result.error)
                 if case .Success(let banks) = result {
                     let bank = banks.first!
@@ -124,7 +137,7 @@ class AccountTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectationsWithTimeout(60, handler: nil)
     }
     
     func testRetrieveSupportedServices() {

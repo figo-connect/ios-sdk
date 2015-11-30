@@ -7,7 +7,7 @@
 //
 
 
-public struct Address {
+public struct Address: Unboxable {
     
     public let city: String?
     public let company: String?
@@ -15,32 +15,18 @@ public struct Address {
     public let street: String?
     public let street2: String?
     public let country: String?
-    public let vat: AnyObject?
-    public let bill: AnyObject?
-}
-
-extension Address: ResponseObjectSerializable {
+    public let vat: Float?
+    public let bill: Bool?
     
-    init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        city = try mapper.optionalForKeyName("city")
-        company = try mapper.optionalForKeyName("company")
-        postal_code = try mapper.optionalForKeyName("postal_code")
-        street = try mapper.optionalForKeyName("street")
-        street2 = try mapper.optionalForKeyName("street2")
-        country = try mapper.optionalForKeyName("country")
-        vat = try mapper.optionalForKeyName("vat")
-        bill = try mapper.optionalForKeyName("bill")
+    init(unboxer: Unboxer) {
+        city        = unboxer.unbox("city")
+        company     = unboxer.unbox("company")
+        postal_code = unboxer.unbox("postal_code")
+        street      = unboxer.unbox("street")
+        street2     = unboxer.unbox("street2")
+        country     = unboxer.unbox("country")
+        vat         = unboxer.unbox("vat")
+        bill        = unboxer.unbox("bill")
     }
 }
 
-extension Address: ResponseOptionalObjectSerializable {
-    
-    init?(optionalRepresentation: AnyObject?) throws {
-        guard let representation = optionalRepresentation else {
-            return nil
-        }
-        try self.init(representation: representation)
-    }
-}

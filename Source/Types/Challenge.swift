@@ -6,10 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
 
-
-public struct Challenge {
+public struct Challenge: Unboxable {
     
     /// Challenge title
     public let title: String?
@@ -22,26 +20,12 @@ public struct Challenge {
     
     /// Challenge data
     public let data: String?
-}
-
-extension Challenge: ResponseObjectSerializable {
     
-    init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        title   = try mapper.optionalForKeyName("title")
-        label   = try mapper.optionalForKeyName("label")
-        format  = try mapper.optionalForKeyName("format")
-        data    = try mapper.optionalForKeyName("data")
-    }
-}
-
-extension Challenge: ResponseOptionalObjectSerializable {
     
-    init?(optionalRepresentation: AnyObject?) throws {
-        guard let representation = optionalRepresentation else {
-            return nil
-        }
-        try self.init(representation: representation)
+    init(unboxer: Unboxer) {
+        title   = unboxer.unbox("title")
+        label   = unboxer.unbox("label")
+        format  = unboxer.unbox("format")
+        data    = unboxer.unbox("data")
     }
 }

@@ -10,7 +10,7 @@
 /**
  Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
 */
-public struct Account {
+public struct Account: Unboxable {
     
     /// Internal figo Connect account ID
     public let account_id: String
@@ -63,7 +63,7 @@ public struct Account {
     public let additional_icons: [String: String]
     
     /// List of payment types with payment parameters
-    public let supported_payments: [PaymentParameters]
+    public let supported_payments: [SupportedPayment]
 
     // List of TAN schemes
     public let supported_tan_schemes: [TanScheme]
@@ -82,52 +82,35 @@ public struct Account {
     
     /// Account balance; This response parameter will be omitted if the balance is not yet known
     public let balance: Balance?
-}
-
-extension Account: ResponseObjectSerializable {
     
-    public init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        account_id              = try mapper.valueForKeyName("account_id")
-        account_number          = try mapper.valueForKeyName("account_number")
-        additional_icons        = try mapper.valueForKeyName("additional_icons")
-        auto_sync               = try mapper.valueForKeyName("auto_sync")
-        balance                 = try Balance(optionalRepresentation: mapper.optionalForKeyName("balance"))
-        bank_code               = try mapper.valueForKeyName("bank_code")
-        bank_id                 = try mapper.valueForKeyName("bank_id")
-        bank_name               = try mapper.valueForKeyName("bank_name")
-        bic                     = try mapper.valueForKeyName("bic")
-        currency                = try mapper.valueForKeyName("currency")
-        iban                    = try mapper.valueForKeyName("iban")
-        icon                    = try mapper.valueForKeyName("icon")
-        in_total_balance        = try mapper.valueForKeyName("in_total_balance")
-        name                    = try mapper.valueForKeyName("name")
-        owner                   = try mapper.valueForKeyName("owner")
-        preferred_tan_scheme    = try mapper.optionalForKeyName("preferred_tan_scheme")
-        save_pin                = try mapper.valueForKeyName("save_pin")
-        status                  = try SyncStatus(representation: mapper.valueForKeyName("status"))
-        supported_payments      = try PaymentParameters.collection(mapper.valueForKeyName("supported_payments"))
-        supported_tan_schemes   = try TanScheme.collection(mapper.valueForKeyName("supported_tan_schemes"))
-        type                    = try mapper.valueForKeyName("type")
-    }
-}
-
-extension Account: ResponseCollectionSerializable {
     
-    public static func collection(representation: AnyObject) throws -> [Account] {
-        var accounts: [Account] = []
-        if let representation = representation as? [String: AnyObject] {
-            if let representation = representation["accounts"] as? [[String: AnyObject]] {
-                for userRepresentation in representation {
-                    let account = try Account(representation: userRepresentation)
-                    accounts.append(account)
-                }
-            }
+    init(unboxer: Unboxer) {
+        account_id              = unboxer.unbox("account_id")
+        account_number          = unboxer.unbox("account_number")
+        additional_icons        = unboxer.unbox("additional_icons")
+        auto_sync               = unboxer.unbox("auto_sync")
+        balance                 = unboxer.unbox("balance")
+        bank_code               = unboxer.unbox("bank_code")
+        bank_id                 = unboxer.unbox("bank_id")
+        bank_name               = unboxer.unbox("bank_name")
+        bic                     = unboxer.unbox("bic")
+        currency                = unboxer.unbox("currency")
+        iban                    = unboxer.unbox("iban")
+        icon                    = unboxer.unbox("icon")
+        in_total_balance        = unboxer.unbox("in_total_balance")
+        name                    = unboxer.unbox("name")
+        owner                   = unboxer.unbox("owner")
+        preferred_tan_scheme    = unboxer.unbox("preferred_tan_scheme")
+        save_pin                = unboxer.unbox("save_pin")
+        status                  = unboxer.unbox("status")
+        supported_tan_schemes   = unboxer.unbox("supported_tan_schemes")
+        type                    = unboxer.unbox("type")
+        supported_payments      = (unboxer.unbox("supported_payments") as [String: AnyObject]).keys.map() { paymentType in
+            return SupportedPayment(rawValue: paymentType, parameters: unboxer.unbox("supported_payments.\(paymentType)"))
         }
-        return accounts
     }
 }
+
 
 /**
  Contains the parameters for setting up a new bank account
@@ -154,6 +137,7 @@ public struct CreateAccountParameters {
     
     /// List of additional information to be fetched from the bank. Possible values are: standingOrders (optional)
     public let sync_tasks: [String]?
+    
     
     public var JSONObject: [String: AnyObject] {
         get {

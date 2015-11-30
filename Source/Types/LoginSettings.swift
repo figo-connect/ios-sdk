@@ -7,7 +7,7 @@
 //
 
 
-public struct LoginSettings {
+public struct LoginSettings: Unboxable {
     
     /// Human readable name of the bank
     public let bank_name: String
@@ -29,20 +29,15 @@ public struct LoginSettings {
     
     /// Any additional advice useful to locate the required credentials
     public let advice: String?
-}
-
-extension LoginSettings: ResponseObjectSerializable {
     
-    init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        bank_name           = try mapper.valueForKeyName("bank_name")
-        supported           = try mapper.valueForKeyName("supported")
-        icon                = try mapper.valueForKeyName("icon")
-        additional_icons    = try mapper.valueForKeyName("additional_icons")
-        credentials         = try LoginCredentials.collection(mapper.valueForKeyName("credentials"))
-        auth_type           = try mapper.valueForKeyName("auth_type")
-        advice              = try mapper.optionalForKeyName("advice")
+    
+    init(unboxer: Unboxer) {
+        bank_name           = unboxer.unbox("bank_name")
+        supported           = unboxer.unbox("supported")
+        icon                = unboxer.unbox("icon")
+        additional_icons    = unboxer.unbox("additional_icons")
+        credentials         = unboxer.unbox("credentials")
+        auth_type           = unboxer.unbox("auth_type")
+        advice              = unboxer.unbox("advice")
     }
 }
-

@@ -38,7 +38,7 @@ extension FigoSession {
      */
     public func retrieveCurrentUser(completionHandler: (FigoResult<User>) -> Void) {
         request(Endpoint.RetrieveCurrentUser) { response in
-            let decoded: FigoResult<User> = decodeObjectResponse(response)
+            let decoded: FigoResult<User> = responseUnboxed(response)
             completionHandler(decoded)
         }
     }

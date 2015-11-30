@@ -38,7 +38,7 @@ extension FigoSession {
         }
         let parameters = PollTaskStateParameters(id: token, pin: nil, continueAfterError: nil, savePin: nil, response: nil)
         request(Endpoint.PollTaskState(parameters)) { response in
-            let decoded: FigoResult<TaskState> = decodeObjectResponse(response)
+            let decoded: FigoResult<TaskState> = responseUnboxed(response)
             switch decoded {
             case .Failure(let error):
                 completionHandler(.Failure(error))

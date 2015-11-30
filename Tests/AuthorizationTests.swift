@@ -27,7 +27,7 @@ class AuthorizationTests: BaseTestCaseWithLogin {
         figo.loginWithUsername(username, password: "foo", clientID: clientID, clientSecret: clientSecret) { result in
             XCTAssertNotNil(result.error)
             if case .Failure(let error) = result {
-                XCTAssert(error.failureReason.containsString("Invalid credentials"))
+                XCTAssert(error.description.containsString("Invalid credentials"))
             }
             expectation.fulfill()
         }
@@ -39,7 +39,7 @@ class AuthorizationTests: BaseTestCaseWithLogin {
         figo.retrieveAccounts() { result in
             XCTAssertNotNil(result.error)
             if case .Failure(let error) = result {
-                XCTAssert(error.failureReason.hasPrefix("No Figo session active"))
+                XCTAssert(error.description.hasPrefix("No Figo session active"))
             }
             expectation.fulfill()
         }

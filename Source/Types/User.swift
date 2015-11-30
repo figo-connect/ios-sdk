@@ -7,7 +7,7 @@
 //
 
 
-public struct User {
+public struct User: Unboxable {
     
     /// Internal figo Connect user ID. Only available when calling with scope user=ro or better.
     public let user_id: String?
@@ -50,29 +50,26 @@ public struct User {
     
     /// Array of filters defined by the user
     public let filters: [AnyObject]?
-}
-
-extension User: ResponseObjectSerializable {
-
-    init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        user_id                 = try mapper.optionalForKeyName("user_id")
-        name                    = try mapper.valueForKeyName("name")
-        email                   = try mapper.valueForKeyName("email")
-        address                 = try Address(optionalRepresentation: mapper.optionalForKeyName("address"))
-        verified_email          = try mapper.optionalForKeyName("verified_email")
-        send_newsletter         = try mapper.optionalForKeyName("send_newsletter")
-        join_date               = try mapper.optionalForKeyName("join_date")
-        language                = try mapper.optionalForKeyName("language")
-        premium                 = try mapper.optionalForKeyName("premium")
-        premium_expires_on      = try mapper.optionalForKeyName("premium_expires_on")
-        premium_subscription    = try mapper.optionalForKeyName("premium_subscription")
-        force_reset             = try mapper.optionalForKeyName("force_reset")
-        recovery_password       = try mapper.optionalForKeyName("recovery_password")
-        filters                 = try mapper.optionalForKeyName("filters")
+    
+    
+    init(unboxer: Unboxer) {
+        user_id                 = unboxer.unbox("user_id")
+        name                    = unboxer.unbox("name")
+        email                   = unboxer.unbox("email")
+        address                 = unboxer.unbox("address")
+        verified_email          = unboxer.unbox("verified_email")
+        send_newsletter         = unboxer.unbox("send_newsletter")
+        join_date               = unboxer.unbox("join_date")
+        language                = unboxer.unbox("language")
+        premium                 = unboxer.unbox("premium")
+        premium_expires_on      = unboxer.unbox("premium_expires_on")
+        premium_subscription    = unboxer.unbox("premium_subscription")
+        force_reset             = unboxer.unbox("force_reset")
+        recovery_password       = unboxer.unbox("recovery_password")
+        filters                 = unboxer.unbox("filters")
     }
 }
+
 
 public struct CreateUserParameters: JSONObjectConvertible {
     

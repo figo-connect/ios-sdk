@@ -74,7 +74,7 @@ func decodeTaskTokenResponse(response: FigoResult<NSData>) -> FigoResult<String>
     }
 }
 
-func decodeJSONResponse(response: FigoResult<NSData>) -> FigoResult<[String: AnyObject]> {
+func decodeJSONResponse(response: FigoResult<NSData>) -> FigoResult<UnboxableDictionary> {
     switch response {
     case .Failure(let error):
         return .Failure(error)
@@ -100,49 +100,38 @@ func decodeVoidResponse(response: FigoResult<NSData>) -> FigoResult<Void> {
     }
 }
 
-func decodeObjectResponse<T: ResponseObjectSerializable>(response: FigoResult<NSData>) -> FigoResult<T> {
-    switch response {
+func responseUnboxed<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<T> {
+    switch data {
+    case .Success(let data):
+        do {
+            let unboxed: T = try UnboxOrThrow(data)
+            return .Success(unboxed)
+        } catch (let error as UnboxError) {
+            return .Failure(.UnboxingError(error.description))
+        } catch {
+            return .Failure(.UnboxingError("Unboxer did throw unexpected error while unboxing object of type \(T.self)"))
+        }
     case .Failure(let error):
         return .Failure(error)
-    case .Success(let data):
-        var JSON: AnyObject
-        do {
-            JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
-        } catch (let error as NSError) {
-            return .Failure(.JSONSerializationError(error: error))
-        }
-        do {
-            let decodedObject = try T(representation: JSON)
-            return .Success(decodedObject)
-        } catch (let error as FigoError) {
-            return .Failure(error)
-        } catch {
-            return .Failure(.UnspecifiedError(reason: "Failed to serialize type: \(T.self)"))
-        }
     }
 }
 
-func decodeCollectionResponse<T: ResponseCollectionSerializable>(response: FigoResult<NSData>) -> FigoResult<[T]> {
-    switch response {
+func responseUnboxed<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<[T]> {
+    switch data {
+    case .Success(let data):
+        do {
+            let unboxed: [T] = try UnboxOrThrow(data)
+            return .Success(unboxed)
+        } catch (let error as UnboxError) {
+            return .Failure(.UnboxingError(error.description))
+        } catch {
+            return .Failure(.UnboxingError("Unboxer did throw unexpected error while unboxing collection of type \(T.self)"))
+        }
     case .Failure(let error):
         return .Failure(error)
-    case .Success(let data):
-        var JSON: AnyObject
-        do {
-            JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
-        } catch (let error as NSError) {
-            return .Failure(.JSONSerializationError(error: error))
-        }
-        do {
-            let decodedCollection = try T.collection(JSON)
-            return .Success(decodedCollection)
-        } catch (let error as FigoError) {
-            return .Failure(error)
-        } catch {
-            return .Failure(.UnspecifiedError(reason: "Failed to serialize type: \(T.self)"))
-        }
     }
 }
+
 
 func base64Encode(clientID: String, _ clientSecret: String) -> String {
     let clientCode: String = clientID + ":" + clientSecret

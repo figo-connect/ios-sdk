@@ -13,18 +13,6 @@ protocol JSONObjectConvertible {
     var JSONObject: [String: AnyObject] { get }
 }
 
-protocol ResponseObjectSerializable {
-    init(representation: AnyObject) throws
-}
-
-protocol ResponseOptionalObjectSerializable {
-    init?(optionalRepresentation: AnyObject?) throws
-}
-
-protocol ResponseCollectionSerializable {
-    static func collection(representation: AnyObject) throws -> [Self]
-}
-
 protocol PropertyKey {
     var rawValue: String { get }
 }

@@ -6,7 +6,15 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
+
+
+struct AccountsEnvelope: Unboxable {
+    let accounts: [Account]
+    
+    init(unboxer: Unboxer) {
+        accounts = unboxer.unbox("accounts")
+    }
+}
 
 
 extension FigoSession {
@@ -20,8 +28,15 @@ extension FigoSession {
      */
     public func retrieveAccounts(completionHandler: (FigoResult<[Account]>) -> Void) {
         request(.RetrieveAccounts) { response in
-            let decoded: FigoResult<[Account]> = decodeCollectionResponse(response)
-            completionHandler(decoded)
+            let envelopeUnboxingResult: FigoResult<AccountsEnvelope> = responseUnboxed(response)
+            switch envelopeUnboxingResult {
+            case .Success(let envelope):
+                completionHandler(.Success(envelope.accounts))
+                break
+            case .Failure(let error):
+                completionHandler(.Failure(error))
+                break
+            }
         }
     }
     
@@ -33,7 +48,7 @@ extension FigoSession {
     */
     public func retrieveAccount(accountID: String, _ completionHandler: (FigoResult<Account>) -> Void) {
         request(Endpoint.RetrieveAccount(accountId: accountID)) { response in
-            let decoded: FigoResult<Account> = decodeObjectResponse(response)
+            let decoded: FigoResult<Account> = responseUnboxed(response)
             completionHandler(decoded)
         }
     }

@@ -7,7 +7,7 @@
 //
 
 
-public struct Balance {
+public struct Balance: Unboxable {
     
     /// Account balance in cents; This response parameter will be omitted if the balance is not yet known
     public let balance: Int?
@@ -23,27 +23,14 @@ public struct Balance {
     
     /// Synchronization status object.
     public let status: SyncStatus?
-}
-
-extension Balance: ResponseObjectSerializable {
-
-    public init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        balance                 = try mapper.optionalForKeyName("balance")
-        balance_date            = try mapper.optionalForKeyName("balance_date")
-        credit_line             = try mapper.valueForKeyName("credit_line")
-        monthly_spending_limit  = try mapper.valueForKeyName("monthly_spending_limit")
-        status                  = try SyncStatus(optionalRepresentation: mapper.optionalForKeyName("status"))
-    }
-}
-
-extension Balance: ResponseOptionalObjectSerializable {
     
-    public init?(optionalRepresentation: AnyObject?) throws {
-        guard let representation = optionalRepresentation else {
-            return nil
-        }
-        try self.init(representation: representation)
+    
+    init(unboxer: Unboxer) {
+        balance                 = unboxer.unbox("balance")
+        balance_date            = unboxer.unbox("balance_date")
+        credit_line             = unboxer.unbox("credit_line")
+        monthly_spending_limit  = unboxer.unbox("monthly_spending_limit")
+        status                  = unboxer.unbox("status")
+        
     }
 }

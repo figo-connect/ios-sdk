@@ -9,7 +9,12 @@
 import Foundation
 
 
+public var FigoLoggingEnabled = true
+
+
 func debugPrintRequest(request: NSURLRequest) {
+    guard FigoLoggingEnabled else { return }
+    
     debugPrint("⬆️ \(request.HTTPMethod!) \(request.URL!)")
     if let fields = request.allHTTPHeaderFields {
         for (key, value) in fields {
@@ -25,6 +30,8 @@ func debugPrintRequest(request: NSURLRequest) {
 
 
 func debugPrintResponse(data: NSData?, _ response: NSHTTPURLResponse?, _ error: NSError?) {
+    guard FigoLoggingEnabled else { return }
+    
     if let response = response {
         debugPrint("⬇️ \(response.statusCode)")
     }

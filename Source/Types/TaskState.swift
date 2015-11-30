@@ -7,7 +7,7 @@
 //
 
 
-internal struct TaskState {
+internal struct TaskState: Unboxable {
     
     /// Account ID of currently processed account
     let account_id: String
@@ -29,22 +29,19 @@ internal struct TaskState {
     
     /// Challenge object
     let challenge: Challenge?
-}
-
-extension TaskState: ResponseObjectSerializable {
     
-    init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        account_id              = try mapper.valueForKeyName("account_id")
-        message                 = try mapper.valueForKeyName("message")
-        is_waiting_for_pin      = try mapper.valueForKeyName("is_waiting_for_pin")
-        is_waiting_for_response = try mapper.valueForKeyName("is_waiting_for_response")
-        is_erroneous            = try mapper.valueForKeyName("is_erroneous")
-        is_ended                = try mapper.valueForKeyName("is_ended")
-        challenge               = try Challenge(optionalRepresentation: mapper.optionalForKeyName("challenge"))
+    
+    init(unboxer: Unboxer) {
+        account_id              = unboxer.unbox("account_id")
+        message                 = unboxer.unbox("message")
+        is_waiting_for_pin      = unboxer.unbox("is_waiting_for_pin")
+        is_waiting_for_response = unboxer.unbox("is_waiting_for_response")
+        is_erroneous            = unboxer.unbox("is_erroneous")
+        is_ended                = unboxer.unbox("is_ended")
+        challenge               = unboxer.unbox("challenge")
     }
 }
+
 
 internal struct PollTaskStateParameters: JSONObjectConvertible {
     

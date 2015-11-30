@@ -44,7 +44,7 @@ public class FigoSession {
     var accessToken: String?
     var refreshToken: String?
     
-
+    
     init() {
         session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
     }
@@ -55,56 +55,46 @@ public class FigoSession {
         
         if endpoint.needsBasicAuthHeader {
             guard self.basicAuthSecret != nil else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(.Failure(FigoError.NoActiveSession))
-                }
+                completion(.Failure(FigoError.NoActiveSession))
                 return
             }
             mutableURLRequest.setValue("Basic \(self.basicAuthSecret!)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(.Failure(FigoError.NoActiveSession))
-                }
+                completion(.Failure(FigoError.NoActiveSession))
                 return
             }
             mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
         }
         
         debugPrintRequest(mutableURLRequest)
+        
         let task = session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let response = response as? NSHTTPURLResponse {
                 
-//                debugPrintResponse(data, response, error)
+                debugPrintResponse(data, response, error)
                 
                 if case 200..<300 = response.statusCode  {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        completion(.Success(data ?? NSData()))
-                    }
+                    completion(.Success(data ?? NSData()))
                 } else {
-                    var serverError: FigoError = error != nil ? FigoError.NetworkLayerError(error: error!) : FigoError.UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
+                    var serverError: FigoError = error != nil ? .NetworkLayerError(error: error!) : .UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
                     if let data = data {
                         if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
-                            serverError = FigoError.ServerError(message: responseAsString)
-                            if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                                if let decodedError = try? FigoError(representation: JSON) {
-                                    serverError = decodedError
-                                }
+                            serverError = .ServerError(message: responseAsString)
+                            if let unboxedError: FigoError = Unbox(data) {
+                                serverError = unboxedError
                             }
                         }
                     }
-                    dispatch_async(dispatch_get_main_queue()) {
-                        completion(.Failure(serverError))
-                    }
+                    completion(.Failure(serverError))
                 }
             } else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    if let error = error {
-                        completion(.Failure(FigoError.NetworkLayerError(error: error)))
-                    } else {
-                        completion(.Failure(.EmptyResponse))
-                    }
+                if let error = error {
+                    completion(.Failure(.NetworkLayerError(error: error)))
+                } else {
+                    completion(.Failure(.EmptyResponse))
                 }
+
             }
         }
         task.resume()
@@ -113,7 +103,7 @@ public class FigoSession {
 
 
 class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
-
+    
     func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         
         var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
@@ -138,7 +128,7 @@ class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
         
         completionHandler(disposition, nil)
     }
-
+    
     private func sha1(data: NSData) -> String {
         var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
         CC_SHA1(data.bytes, CC_LONG(data.length), &digest)

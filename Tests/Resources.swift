@@ -19,13 +19,18 @@ enum Resources: String {
     case PaymentParametersIntTextKeys
     case PaymentParametersStringTextKeys
     case TaskState
+    case SupportedBanks
     
     var JSONObject: [String: AnyObject] {
+        let JSON: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! [String: AnyObject]
+        return JSON
+    }
+    
+    var data: NSData {
         let bundle = NSBundle(forClass: BaseTestCaseWithLogin.classForCoder())
         let path = bundle.pathForResource(self.rawValue, ofType: "json")!
         let data = NSData(contentsOfFile: path)!
-        let JSON: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! [String: AnyObject]
-        return JSON
+        return data
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 
-public struct LoginCredentials {
+public struct LoginCredentials: Unboxable {
     
     /// Label for text input field
     public let label: String
@@ -17,27 +17,11 @@ public struct LoginCredentials {
     
     /// This flag indicates whether this text input field is allowed to contain the empty string
     public let optional: Bool?
-}
-
-extension LoginCredentials: ResponseObjectSerializable {
     
-    init(representation: AnyObject) throws {
-        let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
-        
-        label       = try mapper.valueForKeyName("label")
-        masked      = try mapper.optionalForKeyName("masked")
-        optional    = try mapper.optionalForKeyName("optional")
-    }
-}
-
-extension LoginCredentials: ResponseCollectionSerializable {
     
-    static func collection(representation: AnyObject) throws -> [LoginCredentials] {
-        var accounts: [LoginCredentials] = []
-        if let representation = representation as? [String: AnyObject] {
-            let account = try LoginCredentials(representation: representation)
-            accounts.append(account)
-        }
-        return accounts
+    init(unboxer: Unboxer) {
+        label = unboxer.unbox("label")
+        masked = unboxer.unbox("masked")
+        optional = unboxer.unbox("optional")
     }
 }
