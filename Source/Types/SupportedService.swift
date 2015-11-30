@@ -10,15 +10,15 @@
 public struct SupportedService {
     
     /// Human readable name of the service
-    let name: String
+    public let name: String
     
     /// surrogate bank code used for this service
-    let bank_code: String
+    public let bank_code: String
     
-    let additional_icons: AnyObject
+    public let additional_icons: AnyObject
     
     /// URL to an logo of the bank, e.g. as a badge icon
-    let icon: AnyObject
+    public let icon: AnyObject
 }
 
 extension SupportedService: ResponseObjectSerializable {
@@ -30,7 +30,6 @@ extension SupportedService: ResponseObjectSerializable {
         bank_code           = try mapper.valueForKeyName("bank_code")
         additional_icons    = try mapper.valueForKeyName("additional_icons")
         icon                = try mapper.valueForKeyName("icon")
-        
     }
 }
 

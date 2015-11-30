@@ -10,19 +10,19 @@
 public struct Balance {
     
     /// Account balance in cents; This response parameter will be omitted if the balance is not yet known
-    let balance: Int?
+    public let balance: Int?
     
     /// Bank server timestamp of balance; This response parameter will be omitted if the balance is not yet known
-    let balance_date: String?
+    public let balance_date: String?
     
     /// Credit line
-    let credit_line: Float
+    public let credit_line: Float
     
     /// User-defined spending limit
-    let monthly_spending_limit: Float
+    public let monthly_spending_limit: Float
     
     /// Synchronization status object.
-    let status: SyncStatus?
+    public let status: SyncStatus?
 }
 
 extension Balance: ResponseObjectSerializable {

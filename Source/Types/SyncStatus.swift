@@ -9,15 +9,15 @@
 
 public struct SyncStatus {
     
-    let code: Int
-    let message: String?
-    let success_timestamp: String
-    let sync_timestamp: String
+    public let code: Int
+    public let message: String?
+    public let success_timestamp: String
+    public let sync_timestamp: String
 }
 
 extension SyncStatus: ResponseObjectSerializable {
     
-    public init(representation: AnyObject) throws {
+    init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         code = try mapper.valueForKeyName("code")
@@ -28,7 +28,7 @@ extension SyncStatus: ResponseObjectSerializable {
 }
 
 extension SyncStatus: ResponseOptionalObjectSerializable {
-    public init?(optionalRepresentation: AnyObject?) throws {
+    init?(optionalRepresentation: AnyObject?) throws {
         guard let representation = optionalRepresentation else {
             return nil
         }

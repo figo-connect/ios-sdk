@@ -14,15 +14,13 @@ public struct TanScheme  {
     public let tan_scheme_id: String
     
     private enum Key: String, PropertyKey {
-        case medium_name
-        case name
-        case tan_scheme_id
+        case medium_name, name, tan_scheme_id
     }
 }
 
 extension TanScheme: JSONObjectConvertible {
     
-    public var JSONObject: [String: AnyObject] {
+    var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
         dict[Key.medium_name.rawValue] = medium_name
         dict[Key.name.rawValue] = name
@@ -33,7 +31,7 @@ extension TanScheme: JSONObjectConvertible {
 
 extension TanScheme: ResponseObjectSerializable {
 
-    public init(representation: AnyObject) throws {
+    init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         medium_name = try mapper.valueForKey(Key.medium_name)

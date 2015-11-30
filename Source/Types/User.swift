@@ -6,8 +6,6 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
-
 
 public struct User {
     
@@ -56,7 +54,7 @@ public struct User {
 
 extension User: ResponseObjectSerializable {
 
-    public init(representation: AnyObject) throws {
+    init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         user_id                 = try mapper.optionalForKeyName("user_id")
@@ -100,7 +98,7 @@ public struct CreateUserParameters: JSONObjectConvertible {
     public let affiliate_client_id: String?
     
     
-    public var JSONObject: [String: AnyObject] {
+    var JSONObject: [String: AnyObject] {
         get {
             var dict = Dictionary<String, AnyObject>()
             dict["name"] = name

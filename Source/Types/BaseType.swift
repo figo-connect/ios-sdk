@@ -9,13 +9,9 @@
 import Foundation
 
 
-// MARK: Public
-
-public protocol JSONObjectConvertible {
+protocol JSONObjectConvertible {
     var JSONObject: [String: AnyObject] { get }
 }
-
-// MARK: Internal
 
 protocol ResponseObjectSerializable {
     init(representation: AnyObject) throws

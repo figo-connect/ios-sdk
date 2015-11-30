@@ -9,19 +9,19 @@
 
 public struct Address {
     
-    let city: String?
-    let company: String?
-    let postal_code: String?
-    let street: String?
-    let street2: String?
-    let country: String?
-    let vat: AnyObject?
-    let bill: AnyObject?
+    public let city: String?
+    public let company: String?
+    public let postal_code: String?
+    public let street: String?
+    public let street2: String?
+    public let country: String?
+    public let vat: AnyObject?
+    public let bill: AnyObject?
 }
 
 extension Address: ResponseObjectSerializable {
     
-    public init(representation: AnyObject) throws {
+    init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         city = try mapper.optionalForKeyName("city")
@@ -37,7 +37,7 @@ extension Address: ResponseObjectSerializable {
 
 extension Address: ResponseOptionalObjectSerializable {
     
-    public init?(optionalRepresentation: AnyObject?) throws {
+    init?(optionalRepresentation: AnyObject?) throws {
         guard let representation = optionalRepresentation else {
             return nil
         }

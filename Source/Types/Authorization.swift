@@ -7,7 +7,7 @@
 //
 
 
-public struct Authorization {
+internal struct Authorization {
     
     var access_token: String
     let expires_in: Int
@@ -18,7 +18,7 @@ public struct Authorization {
 
 extension Authorization: ResponseObjectSerializable {
     
-    public init(representation: AnyObject) throws {
+    init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         access_token    = try mapper.valueForKeyName("access_token")

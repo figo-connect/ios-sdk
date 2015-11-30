@@ -7,7 +7,7 @@
 //
 
 
-public struct TaskState {
+internal struct TaskState {
     
     /// Account ID of currently processed account
     let account_id: String
@@ -33,7 +33,7 @@ public struct TaskState {
 
 extension TaskState: ResponseObjectSerializable {
     
-    public init(representation: AnyObject) throws {
+    init(representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         account_id              = try mapper.valueForKeyName("account_id")
@@ -46,7 +46,7 @@ extension TaskState: ResponseObjectSerializable {
     }
 }
 
-struct PollTaskStateParameters: JSONObjectConvertible {
+internal struct PollTaskStateParameters: JSONObjectConvertible {
     
     /// Task token
     let id: String

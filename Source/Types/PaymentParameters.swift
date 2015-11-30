@@ -16,15 +16,15 @@ public enum PaymentType: String {
 
 public struct PaymentParameters {
     
-    let type: PaymentType
-    let allowed_recipients: [String]
-    let can_be_recurring: Bool
-    let can_be_scheduled: Bool
-    let max_purpose_length: Int
-    let supported_file_formats: [String]
-    let supported_text_keys: [Int]
+    public let type: PaymentType
+    public let allowed_recipients: [String]
+    public let can_be_recurring: Bool
+    public let can_be_scheduled: Bool
+    public let max_purpose_length: Int
+    public let supported_file_formats: [String]
+    public let supported_text_keys: [Int]
     
-    public init(paymentType: PaymentType, representation: AnyObject) throws {
+    init(paymentType: PaymentType, representation: AnyObject) throws {
         let mapper = try Decoder(representation, typeName: "\(self.dynamicType)")
         
         type                    = paymentType
@@ -49,7 +49,7 @@ public struct PaymentParameters {
 
 extension PaymentParameters: ResponseCollectionSerializable {
     
-    public static func collection(representation: AnyObject) throws -> [PaymentParameters] {
+    static func collection(representation: AnyObject) throws -> [PaymentParameters] {
         guard let representation: [String: [String: AnyObject]] = representation as? [String: [String: AnyObject]] else {
             throw FigoError.JSONUnexpectedType(key: "supported_payments", typeName: "\(self.dynamicType)")
         }

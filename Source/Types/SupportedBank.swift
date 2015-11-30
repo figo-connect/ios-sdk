@@ -9,17 +9,17 @@
 
 public struct SupportedBank {
     
-    let bank_name: String
+    public let bank_name: String
 
-    let bank_code: Int
+    public let bank_code: Int
     
-    let bic: String
+    public let bic: String
     
-    let icon: AnyObject
+    public let icon: AnyObject
     
-    let credentials: [LoginCredentials]
+    public let credentials: [LoginCredentials]
     
-    let advice: String
+    public let advice: String
 }
 
 extension SupportedBank: ResponseObjectSerializable {
