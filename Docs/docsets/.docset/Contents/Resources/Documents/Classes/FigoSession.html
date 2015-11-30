@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FigoSession Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/FigoSession" class="dashAnchor"></a>
+    <a title="FigoSession Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (54% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        FigoSession Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/FigoSession.html">FigoSession</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/FigoError.html">FigoError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FigoResult.html">FigoResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PaymentType.html">PaymentType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Balance.html">Balance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Challenge.html">Challenge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateAccountParameters.html">CreateAccountParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateUserParameters.html">CreateUserParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginCredentials.html">LoginCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginSettings.html">LoginSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PaymentParameters.html">PaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedBank.html">SupportedBank</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedService.html">SupportedService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SyncStatus.html">SyncStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TanScheme.html">TanScheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>FigoSession</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FigoSession</span></code></pre>
+
+                </div>
+              </div>
+            <p>Represents a Figo session, which has to be initialized with your client identifier and client secret.</p>
+
+<p>Applications that would like to access the figo Connect have to register with us beforehand. If you would like to use figo Connect in your application, please email us. We would love to hear from you what you have in mind and will generate a client identifier and client secret for your application without any bureaucracy.</p>
+
+<p>After a successfull login you can call all other functions as long as your session is valid. The first login has to be with credentials, after that you can login using the refresh token which you got from the credential login.</p>
+
+<div class="aside aside-important">
+          <p class="aside-title">Important</p>
+          A session will timeout 60 minutes after login.
+
+        </div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession21retrieveLoginSettingsFS0_FTSS8bankCodeSSFGOS_10FigoResultVS_13LoginSettings_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveLoginSettings(_:bankCode:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession21retrieveLoginSettingsFS0_FTSS8bankCodeSSFGOS_10FigoResultVS_13LoginSettings_T__T_">retrieveLoginSettings(_:bankCode:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE LOGIN SETTINGS FOR A BANK OR SERVICE</p>
+
+<p>This only returns the bank accounts the user has chosen to share with your application</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter countryCode: The country the service comes from (Valid values: de)
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter bankCode: Bank code
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter completionHandler: Returns login settings or error
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveLoginSettings</span><span class="p">(</span><span class="nv">countryCode</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"de"</span><span class="p">,</span> <span class="nv">bankCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="kt">LoginSettings</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>countryCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The country the service comes from (Valid values: de)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bankCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bank code</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns login settings or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession22retrieveSupportedBanksFS0_FTSSFGOS_10FigoResultGSaVS_13SupportedBank__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveSupportedBanks(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession22retrieveSupportedBanksFS0_FTSSFGOS_10FigoResultGSaVS_13SupportedBank__T__T_">retrieveSupportedBanks(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE LIST OF SUPPORTED BANKS, CREDIT CARDS, OTHER PAYMENT SERVICES</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter countryCode: The country the service comes from (Valid values: de)
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveSupportedBanks</span><span class="p">(</span><span class="nv">countryCode</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"de"</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">SupportedBank</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>countryCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The country the service comes from (Valid values: de)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession25retrieveSupportedServicesFS0_FTSSFGOS_10FigoResultGSaVS_16SupportedService__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveSupportedServices(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession25retrieveSupportedServicesFS0_FTSSFGOS_10FigoResultGSaVS_16SupportedService__T__T_">retrieveSupportedServices(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE LIST OF SUPPORTED CREDIT CARDS AND OTHER PAYMENT SERVICES</p>
+
+<p>These services do not use bank codes and are therefore listed seperatly. In order to provide a uniform interface for the remaining process, part of the response is a fake bank code, used as a surrogate for these services in our other calls.</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter countryCode: The country the service comes from (Valid values: de)
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveSupportedServices</span><span class="p">(</span><span class="nv">countryCode</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"de"</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">SupportedService</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>countryCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The country the service comes from (Valid values: de)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession16retrieveAccountsFS0_FFGOS_10FigoResultGSaVS_7Account__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveAccounts(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession16retrieveAccountsFS0_FFGOS_10FigoResultGSaVS_7Account__T_T_">retrieveAccounts(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE ALL BANK ACCOUNTS</p>
+
+<p>This only returns the bank accounts the user has chosen to share with your application</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter completionHandler: Returns accounts or error
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveAccounts</span><span class="p">(</span><span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">Account</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns accounts or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession15retrieveAccountFS0_FTSSFGOS_10FigoResultVS_7Account_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveAccount(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession15retrieveAccountFS0_FTSSFGOS_10FigoResultVS_7Account_T__T_">retrieveAccount(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE A BANK ACCOUNT</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter accountID: Internal figo Connect account ID
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter completionHandler: Returns account or error
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveAccount</span><span class="p">(</span><span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="kt">Account</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Internal figo Connect account ID</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns account or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession30removeStoredPinFromBankContactFS0_FTSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/removeStoredPinFromBankContact(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession30removeStoredPinFromBankContactFS0_FTSSFGOS_10FigoResultT__T__T_">removeStoredPinFromBankContact(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>REMOVE STORED PIN FROM BANK CONTACT</p>
+
+<p>Removes the stored PIN of a bank contact from the figo Connect server</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter bankIdenitifier Internal ID of the bank
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter completionHandler: Returns nothing or error
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeStoredPinFromBankContact</span><span class="p">(</span><span class="nv">bankIdenitifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bankIdenitifier Internal ID of the bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession19setupNewBankAccountFS0_FTVS_23CreateAccountParametersFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/setupNewBankAccount(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession19setupNewBankAccountFS0_FTVS_23CreateAccountParametersFGOS_10FigoResultT__T__T_">setupNewBankAccount(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>SETUP NEW BANK ACCOUNT</p>
+
+<p>The figo Connect server will transparently create or modify a bank contact to add additional bank accounts.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setupNewBankAccount</span><span class="p">(</span><span class="nv">account</span><span class="p">:</span> <span class="kt">CreateAccountParameters</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession13deleteAccountFS0_FTSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteAccount(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession13deleteAccountFS0_FTSSFGOS_10FigoResultT__T__T_">deleteAccount(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DELETE BANK ACCOUNT</p>
+
+<p>Once the last remaining account of a bank contact has been removed, the bank contact will be automatically removed as well</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteAccount</span><span class="p">(</span><span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession17createNewFigoUserFS0_FTVS_20CreateUserParameters8clientIDSS12clientSecretSSFGOS_10FigoResultSS_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/createNewFigoUser(_:clientID:clientSecret:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession17createNewFigoUserFS0_FTVS_20CreateUserParameters8clientIDSS12clientSecretSSFGOS_10FigoResultSS_T__T_">createNewFigoUser(_:clientID:clientSecret:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CREATE NEW FIGO USER</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createNewFigoUser</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">CreateUserParameters</span><span class="p">,</span> <span class="nv">clientID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">clientSecret</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession19retrieveCurrentUserFS0_FFGOS_10FigoResultVS_4User_T_T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveCurrentUser(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession19retrieveCurrentUserFS0_FFGOS_10FigoResultVS_4User_T_T_">retrieveCurrentUser(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE CURRENT USER</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveCurrentUser</span><span class="p">(</span><span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="kt">User</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession17deleteCurrentUserFS0_FFGOS_10FigoResultT__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteCurrentUser(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession17deleteCurrentUserFS0_FFGOS_10FigoResultT__T_T_">deleteCurrentUser(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DELETE CURRENT USER</p>
+
+<p>Users with an active premium subscription cannot be deleted. The subscription needs to be canceled first.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteCurrentUser</span><span class="p">(</span><span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession17loginWithUsernameFS0_FTSS8passwordSS8clientIDSS12clientSecretSSFGOS_10FigoResultSS_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/loginWithUsername(_:password:clientID:clientSecret:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession17loginWithUsernameFS0_FTSS8passwordSS8clientIDSS12clientSecretSSFGOS_10FigoResultSS_T__T_">loginWithUsername(_:password:clientID:clientSecret:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CREDENTIAL LOGIN</p>
+
+<p>Requests authorization with credentials. Authorization can be obtained as long
+as the user has not revoked the access granted to your application.</p>
+
+<p>The returned refresh token can be stored by the client for future logins, but only
+in a securely encryped store like the keychain or a SQLCipher database.</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter username: The figo account email address
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter password: The figo account password
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter clientID: Client ID
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter clientSecret: Client secret
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter completionHandler: Returns refresh token or error
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loginWithUsername</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">clientID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">clientSecret</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(</span><span class="kt">FigoResult</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The figo account email address</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The figo account password</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client ID</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientSecret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client secret</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns refresh token or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession21loginWithRefreshTokenFS0_FTSS8clientIDSS12clientSecretSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/loginWithRefreshToken(_:clientID:clientSecret:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession21loginWithRefreshTokenFS0_FTSS8clientIDSS12clientSecretSSFGOS_10FigoResultT__T__T_">loginWithRefreshToken(_:clientID:clientSecret:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>EXCHANGE REFRESH TOKEN</p>
+
+<p>Requests new access token with refresh token. New access tokens can be obtained as long
+as the user has not revoked the access granted to your application.</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter refreshToken: The refresh token returned from a previous CREDENTIAL LOGIN
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter clientID: Client ID
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter clientSecret: Client secret
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loginWithRefreshToken</span><span class="p">(</span><span class="nv">refreshToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">clientID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">clientSecret</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>refreshToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The refresh token returned from a previous CREDENTIAL LOGIN</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client ID</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientSecret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client secret</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession17revokeAccessTokenFS0_FFGOS_10FigoResultT__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/revokeAccessToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession17revokeAccessTokenFS0_FFGOS_10FigoResultT__T_T_">revokeAccessToken(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>REVOKE TOKEN</p>
+
+<p>Invalidates the session&rsquo;s access token for simulating an expired access token.</p>
+
+<p>After revoking the access token, with the next API call a new one is fetched automatically if the refresh token is still valid.</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter completionHandler: Returns nothing or error
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">revokeAccessToken</span><span class="p">(</span><span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo11FigoSession18revokeRefreshTokenFS0_FTSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/revokeRefreshToken(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo11FigoSession18revokeRefreshTokenFS0_FTSSFGOS_10FigoResultT__T__T_">revokeRefreshToken(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>REVOKE TOKEN</p>
+
+<p>Invalidates access token and refresh token, after that CREDENTIAL LOGIN is required.</p>
+
+<p>You might call this <strong>LOGOUT</strong>.</p>
+
+<div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter refreshToken: The client&rsquo;s refresh token, defaults to the session&rsquo;s refresh token
+
+        </div><div class="aside aside-parameter">
+          <p class="aside-title">Parameter</p>
+          Parameter completionHandler: Returns nothing or error
+
+        </div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">revokeRefreshToken</span><span class="p">(</span><span class="nv">refreshToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>refreshToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The client&rsquo;s refresh token, defaults to the session&rsquo;s refresh token</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-11-30)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
