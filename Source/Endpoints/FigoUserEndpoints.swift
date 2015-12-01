@@ -15,7 +15,7 @@ extension FigoSession {
      CREATE NEW FIGO USER
      */
     public func createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void) {
-        self.basicAuthSecret = base64Encode(clientID, clientSecret)
+        self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(Endpoint.CreateNewFigoUser(user: user)) { response in
             let decoded = decodeJSONResponse(response)
             switch decoded {
@@ -38,7 +38,7 @@ extension FigoSession {
      */
     public func retrieveCurrentUser(completionHandler: (FigoResult<User>) -> Void) {
         request(Endpoint.RetrieveCurrentUser) { response in
-            let decoded: FigoResult<User> = responseUnboxed(response)
+            let decoded: FigoResult<User> = decodeUnboxableResponse(response)
             completionHandler(decoded)
         }
     }

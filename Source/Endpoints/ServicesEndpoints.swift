@@ -20,7 +20,7 @@ extension FigoSession {
      */
     public func retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (FigoResult<LoginSettings>) -> Void) {
         request(Endpoint.RetrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
-            let decoded: FigoResult<LoginSettings> = responseUnboxed(response)
+            let decoded: FigoResult<LoginSettings> = decodeUnboxableResponse(response)
             completionHandler(decoded)
         }
     }
@@ -32,7 +32,7 @@ extension FigoSession {
      */
     public func retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedBank]>) -> Void) {
         request(Endpoint.RetrieveSupportedBanks(countryCode: countryCode)) { response in
-            let envelopeUnboxingResult: FigoResult<BanksListEnvelope> = responseUnboxed(response)
+            let envelopeUnboxingResult: FigoResult<BanksListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
             case .Success(let envelope):
@@ -55,7 +55,7 @@ extension FigoSession {
      */
     public func retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedService]>) -> Void) {
         request(Endpoint.RetrieveSupportedServices(countryCode: countryCode)) { response in
-            let envelopeUnboxingResult: FigoResult<ServicesListEnvelope> = responseUnboxed(response)
+            let envelopeUnboxingResult: FigoResult<ServicesListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
             case .Success(let envelope):

@@ -27,10 +27,10 @@ extension FigoSession {
      - Parameter completionHandler: Returns refresh token or error
      */
     public func loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void) {
-        self.basicAuthSecret = base64Encode(clientID, clientSecret)
+        self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(.LoginUser(username: username, password: password)) { response in
             
-            let decoded: FigoResult<Authorization> = responseUnboxed(response)
+            let decoded: FigoResult<Authorization> = decodeUnboxableResponse(response)
             switch decoded {
             case .Success(let authorization):
                 self.accessToken = authorization.access_token
@@ -56,9 +56,9 @@ extension FigoSession {
      - parameter completionHandler: Returns nothing or error
      */
     public func loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: VoidCompletionHandler) {
-        self.basicAuthSecret = base64Encode(clientID, clientSecret)
+        self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(Endpoint.RefreshToken(token: refreshToken)) { response in
-            let decoded: FigoResult<Authorization> = responseUnboxed(response)
+            let decoded: FigoResult<Authorization> = decodeUnboxableResponse(response)
             switch decoded {
             case .Success(let authorization):
                 self.accessToken = authorization.access_token

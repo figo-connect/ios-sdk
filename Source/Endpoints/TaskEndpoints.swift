@@ -36,7 +36,7 @@ extension FigoSession {
         }
 
         request(Endpoint.PollTaskState(parameters)) { response in
-            let decoded: FigoResult<TaskState> = responseUnboxed(response)
+            let decoded: FigoResult<TaskState> = decodeUnboxableResponse(response)
             
             switch decoded {
             case .Failure(let error):
@@ -105,7 +105,7 @@ extension FigoSession {
      - Parameter pinHandler: Is called when the server needs a PIN
      - Parameter completionHandler: Is called on completion returning nothing or error
      */
-    public func synchronize(parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler) {
+    public func synchronize(parameters parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler) {
         request(.Synchronize(parameters: parameters.JSONObject)) { response in
             
             switch decodeTaskTokenResponse(response) {
@@ -140,7 +140,7 @@ public struct CreateSyncTaskParameters: JSONObjectConvertible {
     /// Any kind of string that will be forwarded in the callback response message. It serves two purposes: The value is used to maintain state between this request and the callback, e.g. it might contain a session ID from your application. The value should also contain a random component, which your application checks to mitigate cross-site request forgery.
     let state: String
     
-    /// (optional) Automatically acknowledge and ignore any errors
+    /// (optional) Automatically acknowledge and ignore any errors (default: false)
     public let auto_continue: Bool?
     
     /// (optional) Only sync the accounts with these IDs
@@ -151,16 +151,16 @@ public struct CreateSyncTaskParameters: JSONObjectConvertible {
 
     
     public init () {
-        self.init(ifNotSyncedSince: nil, autoContinue: nil, accountIDs: nil, syncTasks: nil)
+        self.init(ifNotSyncedSince: nil, autoContinue: false, accountIDs: nil, syncTasks: nil)
     }
     
     /**
      - Parameter ifNotSyncedSince: (optional) If this parameter is set, only those accounts will be synchronized, which have not been synchronized within the specified number of minutes.
-     - Parameter autoContinue: (optional) Automatically acknowledge and ignore any errors
+     - Parameter autoContinue: (optional) Automatically acknowledge and ignore any errors (default: false)
      - Parameter accountIDs: (optional) Only sync the accounts with these IDs
      - Parameter syncTasks: (optional) List of additional information to be fetched from the bank. (Possible values are: standingOrders)
      */
-    public init(ifNotSyncedSince: Int?, autoContinue: Bool?, accountIDs: [String]?, syncTasks: [String]?){
+    public init(ifNotSyncedSince: Int?, autoContinue: Bool? = false, accountIDs: [String]?, syncTasks: [String]?){
         disable_notifications = nil
         if_not_synced_since = ifNotSyncedSince
         auto_continue = autoContinue

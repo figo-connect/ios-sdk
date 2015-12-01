@@ -8,30 +8,34 @@
 
 
 /**
+
 Contains the parameters for setting up a new bank account
+
+- Note: At least one of bank code or IBAN has to be set
+
 */
 public struct CreateAccountParameters {
     
-    /// Bank code (optional)
-    public let bank_code: String?
+    /// **optional** Bank code
+    public var bank_code: String?
     
-    /// IBAN (optional)
-    public let iban: String?
+    /// **optional** IBAN
+    public var iban: String?
     
-    /// Two-letter country code (valid values: de)
-    let country: String = "de"
+    /// **required** Two-letter country code (default: de)
+    public var country: String = "de"
     
-    /// List of login credential strings. They must be in the same order as in the credentials list from the login settings
-    public let credentials: [String]
+    /// **required** List of login credential strings. They must be in the same order as in the credentials list from the login settings
+    public var credentials: [String]
     
-    /// This flag indicates whether the user has chosen to save the PIN on the figo Connect server. It is mandatory if the authentication type in the login settings of the bank code is pin and will be ignored otherwise.
-    public let save_pin: Bool
+    /// **required** This flag indicates whether the user has chosen to save the PIN on the figo Connect server. It is mandatory if the authentication type in the login settings of the bank code is pin and will be ignored otherwise.
+    public var save_pin: Bool
     
-    /// This flag indicates whether the initial sync of the transactions and balances of the newly created accounts should be omitted. If this is the case certain listed accounts might actually be invalid (e.g. old creditcards) and will be automatically removed at the first sync. (optional)
-    public let disable_first_sync: Bool?
+    /// **optional** This flag indicates whether the initial sync of the transactions and balances of the newly created accounts should be omitted. If this is the case certain listed accounts might actually be invalid (e.g. old creditcards) and will be automatically removed at the first sync.
+    public var disable_first_sync: Bool?
     
-    /// List of additional information to be fetched from the bank. Possible values are: standingOrders (optional)
-    public let sync_tasks: [String]?
+    /// **optional** List of additional information to be fetched from the bank. Possible values are: standingOrders
+    public var sync_tasks: [String]?
     
     
     public var JSONObject: [String: AnyObject] {

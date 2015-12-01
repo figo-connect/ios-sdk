@@ -33,12 +33,15 @@ enum Endpoint {
     case RetrieveSupportedBanks(countryCode: String)
     case RetrieveSupportedServices(countryCode: String)
     case Synchronize(parameters: [String: AnyObject])
+    case RetrieveTransactions(parameters: RetrieveTransactionsParameters?)
+    case RetrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters?)
+    case RetrieveTransaction(transactionID: String)
     
     private var method: Method {
         switch self {
         case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin, .Synchronize:
             return .POST
-        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask, .RetrieveLoginSettings, .RetrieveSupportedBanks, .RetrieveSupportedServices:
+        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask, .RetrieveLoginSettings, .RetrieveSupportedBanks, .RetrieveSupportedServices, .RetrieveTransactions, .RetrieveTransactionsForAccount, .RetrieveTransaction:
             return .GET
         case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
@@ -75,10 +78,16 @@ enum Endpoint {
             return "/rest/catalog/services/\(countryCode)"
         case .Synchronize:
             return "/rest/sync"
+        case .RetrieveTransactions:
+            return "/rest/transactions"
+        case .RetrieveTransactionsForAccount(let accountID, _):
+            return "/rest/accounts/\(accountID)/transactions"
+        case .RetrieveTransaction(let transactionID):
+            return "/rest/transactions/\(transactionID)"
         }
     }
     
-    private var parameters: [String: AnyObject] {
+    private var parameters: [String: AnyObject]? {
         switch self {
         case .LoginUser(let username, let password):
             return ["username": username, "password": password, "grant_type": "password"]
@@ -100,8 +109,14 @@ enum Endpoint {
             return ["id": taskToken]
         case .Synchronize(let parameters):
             return parameters
+        case .RetrieveTransactions(let parameters):
+            return parameters?.JSONObject
+        case .RetrieveTransactionsForAccount(_, let parameters):
+            return parameters?.JSONObject
+        case .RetrieveTransaction:
+            return ["cents" : true]
         default:
-            return Dictionary<String, AnyObject>()
+            return nil
         }
     }
     
@@ -111,8 +126,9 @@ enum Endpoint {
             if case .PollTaskState(let parameters) = self {
                 encodeURLParameters(request, ["id": parameters.taskToken])
             }
+            guard let parameters = self.parameters else { return }
             do {
-                let data = try NSJSONSerialization.dataWithJSONObject(self.parameters, options: NSJSONWritingOptions())
+                let data = try NSJSONSerialization.dataWithJSONObject(parameters, options: [.PrettyPrinted])
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.HTTPBody = data
             } catch { }
@@ -147,7 +163,8 @@ enum Endpoint {
 
 
 
-private func encodeURLParameters(request: NSMutableURLRequest, _ parameters: [String: AnyObject]) {
+private func encodeURLParameters(request: NSMutableURLRequest, _ parameters: [String: AnyObject]?) {
+    guard let parameters = parameters else { return }
     guard parameters.count > 0 else { return }
     
     if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {

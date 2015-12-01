@@ -22,12 +22,13 @@ class TaskTests: BaseTestCaseWithLogin {
             }
             
             let pinHandler: PinResponder = { message, accountID in
-                print(message)
-                print("Need PIN for account with ID \(accountID)")
-                return ("demo", false)
+                print("\(message) (\(accountID))")
+                return (pin: "demo", savePin: true)
             }
+
+            let parameters = CreateSyncTaskParameters(ifNotSyncedSince: nil, autoContinue: false, accountIDs: nil, syncTasks: nil)
             
-            self.figo.synchronize(progressHandler: progressHandler, pinHandler: pinHandler) { result in
+            self.figo.synchronize(parameters: parameters, progressHandler: progressHandler, pinHandler: pinHandler) { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }

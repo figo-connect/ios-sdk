@@ -64,7 +64,7 @@ public class FigoSession {
     let session: NSURLSession
     
     // Used for Basic HTTP authentication, derived from CliendID and ClientSecret
-    var basicAuthSecret: String?
+    var basicAuthCredentials: String?
     
     /// Milliseconds between polling task states
     let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
@@ -83,14 +83,14 @@ public class FigoSession {
     
     func request(endpoint: Endpoint, completion: (FigoResult<NSData>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
-        mutableURLRequest.setValue("2014-01-01", forHTTPHeaderField: "Figo-Version")
+//        mutableURLRequest.setValue("2014-01-01", forHTTPHeaderField: "Figo-Version")
         
         if endpoint.needsBasicAuthHeader {
-            guard self.basicAuthSecret != nil else {
+            guard self.basicAuthCredentials != nil else {
                 completion(.Failure(FigoError.NoActiveSession))
                 return
             }
-            mutableURLRequest.setValue("Basic \(self.basicAuthSecret!)", forHTTPHeaderField: "Authorization")
+            mutableURLRequest.setValue("Basic \(self.basicAuthCredentials!)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
                 completion(.Failure(FigoError.NoActiveSession))

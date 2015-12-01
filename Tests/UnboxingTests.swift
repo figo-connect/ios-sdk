@@ -1,5 +1,5 @@
 //
-//  SerializerTests.swift
+//  UnboxingTests.swift
 //  Figo
 //
 //  Created by Christian König on 23.11.15.
@@ -10,7 +10,7 @@ import XCTest
 import Figo
 
 
-class SerializerTests: XCTestCase {
+class UnboxingTests: XCTestCase {
     
     func testIntTextKeys() {
         let JSONObject = Resources.PaymentParametersIntTextKeys.JSONObject
@@ -131,6 +131,36 @@ class SerializerTests: XCTestCase {
         let JSONObject = Resources.TaskState.JSONObject
         let scheme: TaskState = Unbox(JSONObject)!
         XCTAssertEqual(scheme.account_id, "A1182805.0")
+    }
+    
+    func testTransactionUnboxing(){
+        let data = Resources.Transaction.data
+        do {
+            let t: Transaction = try UnboxOrThrow(data)
+            XCTAssertEqual(t.account_id, "A1.1")
+            XCTAssertEqual(t.account_number, "4711951501")
+            XCTAssertEqual(t.amount, -300000)
+            XCTAssertEqual(t.bank_code, "90090042")
+            XCTAssertEqual(t.bank_name, "Demobank")
+            XCTAssertEqual(t.booked, true)
+            XCTAssertEqual(t.booking_date, "2013-04-10T12:00:00.000Z")
+            XCTAssertEqual(t.booking_text, "Lastschrift")
+            XCTAssertEqual(t.creation_timestamp, "2013-04-10T08:21:36.000Z")
+            XCTAssertEqual(t.currency, "EUR")
+            XCTAssertEqual(t.modification_timestamp, "2013-04-11T13:54:02.000Z")
+            XCTAssertEqual(t.name, "Dr. House Solutions GmbH")
+            XCTAssertEqual(t.purpose, "Miete Vertragsnr. 12993")
+            XCTAssertEqual(t.transaction_id, "T1.24")
+            XCTAssertEqual(t.type, "Direct debit")
+            XCTAssertEqual(t.value_date, "2013-04-10T12:00:00.000Z")
+            XCTAssertEqual(t.visited, true)
+        }
+        catch (let error as UnboxError) {
+            XCTFail(error.description)
+        }
+        catch {
+            XCTFail()
+        }
     }
 }
 

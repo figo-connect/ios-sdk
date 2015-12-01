@@ -17,9 +17,8 @@ func debugPrintRequest(request: NSURLRequest) {
         }
     }
     if let data = request.HTTPBody {
-        if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-            log.verbose("\(JSON)")
-        }
+        let string = String(data: data, encoding: NSUTF8StringEncoding)
+        log.verbose(string)
     }
 }
 
@@ -33,11 +32,7 @@ func debugPrintResponse(data: NSData?, _ response: NSHTTPURLResponse?, _ error: 
     }
     if let data = data {
         if let string = String(data: data, encoding: NSUTF8StringEncoding) {
-            if let JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) {
-                log.verbose("\(JSON)")
-            } else {
-                log.error(string)
-            }
+            log.verbose(string)
         }
     }
 }

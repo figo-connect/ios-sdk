@@ -1,0 +1,19 @@
+{
+    "account_id": "A1.1",
+    "account_number": "4711951501",
+    "amount": -300000,
+    "bank_code": "90090042",
+    "bank_name": "Demobank",
+    "booked": true,
+    "booking_date": "2013-04-10T12:00:00.000Z",
+    "booking_text": "Lastschrift",
+    "creation_timestamp": "2013-04-10T08:21:36.000Z",
+    "currency": "EUR",
+    "modification_timestamp": "2013-04-11T13:54:02.000Z",
+    "name": "Dr. House Solutions GmbH",
+    "purpose": "Miete Vertragsnr. 12993",
+    "transaction_id": "T1.24",
+    "type": "Direct debit",
+    "value_date": "2013-04-10T12:00:00.000Z",
+    "visited": true
+}

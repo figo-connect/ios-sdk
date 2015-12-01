@@ -21,7 +21,7 @@ extension FigoSession {
     public func retrieveAccounts(completionHandler: (FigoResult<[Account]>) -> Void) {
         request(.RetrieveAccounts) { response in
             
-            let envelopeUnboxingResult: FigoResult<AccountsEnvelope> = responseUnboxed(response)
+            let envelopeUnboxingResult: FigoResult<AccountsEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
             case .Success(let envelope):
                 completionHandler(.Success(envelope.accounts))
@@ -40,8 +40,8 @@ extension FigoSession {
      - Parameter completionHandler: Returns account or error
     */
     public func retrieveAccount(accountID: String, _ completionHandler: (FigoResult<Account>) -> Void) {
-        request(Endpoint.RetrieveAccount(accountId: accountID)) { response in
-            let decoded: FigoResult<Account> = responseUnboxed(response)
+        request(.RetrieveAccount(accountId: accountID)) { response in
+            let decoded: FigoResult<Account> = decodeUnboxableResponse(response)
             completionHandler(decoded)
         }
     }
@@ -70,7 +70,7 @@ extension FigoSession {
      - Parameter completionHandler: Returns nothing or error
      */
     public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate?, _ completionHandler: VoidCompletionHandler) {
-        request(Endpoint.SetupCreateAccountParameters(parameters)) { response in
+        request(.SetupCreateAccountParameters(parameters)) { response in
             
             switch decodeTaskTokenResponse(response) {
             case .Success(let taskToken):

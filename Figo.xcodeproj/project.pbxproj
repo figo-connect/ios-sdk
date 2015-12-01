@@ -20,7 +20,7 @@
 		833285ED1C04D2E700A9FE73 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285EB1C04D2E700A9FE73 /* Logging.swift */; };
 		833285EF1C04D45900A9FE73 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = 833285EE1C04D45900A9FE73 /* Balance.json */; };
 		833285F11C04D48E00A9FE73 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285F01C04D48E00A9FE73 /* Resources.swift */; };
-		8346AAB51C09E32000F9F0DE /* SerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750911C037D3400545DF6 /* SerializerTests.swift */; };
+		8346AAB51C09E32000F9F0DE /* UnboxingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750911C037D3400545DF6 /* UnboxingTests.swift */; };
 		8346AAB61C09F21E00F9F0DE /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */; };
 		8346AAB91C09F97D00F9F0DE /* FigoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8346AAB81C09F97D00F9F0DE /* FigoResult.swift */; };
 		8346AABA1C09F97D00F9F0DE /* FigoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8346AAB81C09F97D00F9F0DE /* FigoResult.swift */; };
@@ -51,6 +51,14 @@
 		838FD9DB1C0DA44500525E1D /* CreateAccountParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9D91C0DA44500525E1D /* CreateAccountParameters.swift */; };
 		838FD9DD1C0DA47500525E1D /* CreateUserParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9DC1C0DA47500525E1D /* CreateUserParameters.swift */; };
 		838FD9DE1C0DA47500525E1D /* CreateUserParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9DC1C0DA47500525E1D /* CreateUserParameters.swift */; };
+		838FD9E01C0DAC7800525E1D /* TransactionEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */; };
+		838FD9E11C0DAC7800525E1D /* TransactionEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */; };
+		838FD9E31C0DACBE00525E1D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9E21C0DACBE00525E1D /* Transaction.swift */; };
+		838FD9E41C0DACBE00525E1D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9E21C0DACBE00525E1D /* Transaction.swift */; };
+		838FD9E61C0DACE300525E1D /* Transaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FD9E51C0DACE300525E1D /* Transaction.json */; };
+		838FD9E81C0DB19500525E1D /* RetrieveTransactionsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9E71C0DB19500525E1D /* RetrieveTransactionsParameters.swift */; };
+		838FD9E91C0DB19500525E1D /* RetrieveTransactionsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9E71C0DB19500525E1D /* RetrieveTransactionsParameters.swift */; };
+		838FD9EC1C0DE74B00525E1D /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9EA1C0DE74B00525E1D /* TransactionTests.swift */; };
 		83A6DA171C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
 		83A6DA181C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
 		83CEDB7E1C05DA7B0008CEF8 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEDB7D1C05DA7B0008CEF8 /* Endpoints.swift */; };
@@ -139,6 +147,11 @@
 		838FD9D61C0DA42C00525E1D /* PollTaskStateParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollTaskStateParameters.swift; sourceTree = "<group>"; };
 		838FD9D91C0DA44500525E1D /* CreateAccountParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountParameters.swift; sourceTree = "<group>"; };
 		838FD9DC1C0DA47500525E1D /* CreateUserParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserParameters.swift; sourceTree = "<group>"; };
+		838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionEndpoints.swift; sourceTree = "<group>"; };
+		838FD9E21C0DACBE00525E1D /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Types/Transaction.swift; sourceTree = "<group>"; };
+		838FD9E51C0DACE300525E1D /* Transaction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Transaction.json; path = Resources/Transaction.json; sourceTree = "<group>"; };
+		838FD9E71C0DB19500525E1D /* RetrieveTransactionsParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveTransactionsParameters.swift; sourceTree = "<group>"; };
+		838FD9EA1C0DE74B00525E1D /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		83A6DA161C059E7E0060FA8F /* BaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseType.swift; path = Types/BaseType.swift; sourceTree = "<group>"; };
 		83CEDB7D1C05DA7B0008CEF8 /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoints.swift; path = Core/Endpoints.swift; sourceTree = "<group>"; };
 		83CEDB801C05DD3D0008CEF8 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
@@ -155,7 +168,7 @@
 		83D3A7201C03471D003EDE45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		83E7508B1C037ABE00545DF6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Types/User.swift; sourceTree = "<group>"; };
 		83E7508F1C037CC300545DF6 /* Account.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Account.json; path = Resources/Account.json; sourceTree = "<group>"; };
-		83E750911C037D3400545DF6 /* SerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializerTests.swift; sourceTree = "<group>"; };
+		83E750911C037D3400545DF6 /* UnboxingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxingTests.swift; sourceTree = "<group>"; };
 		83E750961C04507000545DF6 /* BaseTestCaseWithLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTestCaseWithLogin.swift; sourceTree = "<group>"; };
 		83E95C851C0740C90013ED1F /* PaymentParametersIntTextKeys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = PaymentParametersIntTextKeys.json; path = Resources/PaymentParametersIntTextKeys.json; sourceTree = "<group>"; };
 		83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = PaymentParametersStringTextKeys.json; path = Resources/PaymentParametersStringTextKeys.json; sourceTree = "<group>"; };
@@ -196,6 +209,7 @@
 				838FD9D91C0DA44500525E1D /* CreateAccountParameters.swift */,
 				838FD9DC1C0DA47500525E1D /* CreateUserParameters.swift */,
 				838FD9D61C0DA42C00525E1D /* PollTaskStateParameters.swift */,
+				838FD9E71C0DB19500525E1D /* RetrieveTransactionsParameters.swift */,
 			);
 			name = "Request Parameters";
 			path = "Types/Request Parameters";
@@ -208,6 +222,7 @@
 				83F0E46B1C08A91400FB3709 /* FigoSession.swift */,
 				83D3A7161C031EC4003EDE45 /* Core */,
 				83F0E4721C08D9EA00FB3709 /* Endpoints */,
+				838FD9D51C0DA42C00525E1D /* Request Parameters */,
 				83D3A6FA1BFF684C003EDE45 /* Types */,
 				83D3A6801BFF2953003EDE45 /* Supporting Files */,
 			);
@@ -237,7 +252,6 @@
 		83D3A6FA1BFF684C003EDE45 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				838FD9D51C0DA42C00525E1D /* Request Parameters */,
 				83A6DA161C059E7E0060FA8F /* BaseType.swift */,
 				83D3A70C1BFFB71D003EDE45 /* Account.swift */,
 				83F0E4761C08DA2800FB3709 /* Address.swift */,
@@ -254,6 +268,7 @@
 				83648D621C0C705700286FFB /* SupportedBank.swift */,
 				83648D651C0C75E600286FFB /* SupportedService.swift */,
 				83648D681C0C7B4200286FFB /* LoginCredentials.swift */,
+				838FD9E21C0DACBE00525E1D /* Transaction.swift */,
 			);
 			name = Types;
 			sourceTree = "<group>";
@@ -266,8 +281,9 @@
 				83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */,
 				83D3A71D1C033512003EDE45 /* AuthorizationTests.swift */,
 				83CEDB801C05DD3D0008CEF8 /* UserTests.swift */,
-				83E750911C037D3400545DF6 /* SerializerTests.swift */,
+				83E750911C037D3400545DF6 /* UnboxingTests.swift */,
 				838FD9D01C0D9FB500525E1D /* TaskTests.swift */,
+				838FD9EA1C0DE74B00525E1D /* TransactionTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -298,6 +314,7 @@
 				83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */,
 				83017B771C0A2FE80062FC08 /* TaskState.json */,
 				83648D711C0CF0AF00286FFB /* SupportedBanks.json */,
+				838FD9E51C0DACE300525E1D /* Transaction.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -310,6 +327,7 @@
 				83648D591C0C32BE00286FFB /* ServicesEndpoints.swift */,
 				83F0E4831C09C60600FB3709 /* FigoUserEndpoints.swift */,
 				8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */,
+				838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -426,6 +444,7 @@
 			files = (
 				83CEDB831C05F43D0008CEF8 /* User.json in Resources */,
 				83648D731C0CF0AF00286FFB /* SupportedBanks.json in Resources */,
+				838FD9E61C0DACE300525E1D /* Transaction.json in Resources */,
 				830E63E11C05A7AE0048F7BF /* SyncStatus.json in Resources */,
 				83017B781C0A2FE80062FC08 /* TaskState.json in Resources */,
 				830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */,
@@ -452,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83648D581C0A42B700286FFB /* LoginSettings.swift in Sources */,
+				838FD9EC1C0DE74B00525E1D /* TransactionTests.swift in Sources */,
 				838FD9CF1C0D905500525E1D /* XCGLogger.swift in Sources */,
 				83F0E47F1C08DB8400FB3709 /* AuthorizationTests.swift in Sources */,
 				83D3A7111BFFB71D003EDE45 /* FigoError.swift in Sources */,
@@ -478,8 +498,9 @@
 				830E63DF1C05A7070048F7BF /* SyncStatus.swift in Sources */,
 				8346AAC01C0A03A700F9F0DE /* TaskEndpoints.swift in Sources */,
 				83CEDB7F1C05DA7B0008CEF8 /* Endpoints.swift in Sources */,
+				838FD9E11C0DAC7800525E1D /* TransactionEndpoints.swift in Sources */,
 				83648D671C0C75E600286FFB /* SupportedService.swift in Sources */,
-				8346AAB51C09E32000F9F0DE /* SerializerTests.swift in Sources */,
+				8346AAB51C09E32000F9F0DE /* UnboxingTests.swift in Sources */,
 				83648D6A1C0C7B4200286FFB /* LoginCredentials.swift in Sources */,
 				8346AABA1C09F97D00F9F0DE /* FigoResult.swift in Sources */,
 				838FD9D81C0DA42C00525E1D /* PollTaskStateParameters.swift in Sources */,
@@ -489,6 +510,8 @@
 				83D3A70F1BFFB71D003EDE45 /* Account.swift in Sources */,
 				8346AAB61C09F21E00F9F0DE /* AccountTests.swift in Sources */,
 				83E95C951C076C190013ED1F /* Challenge.swift in Sources */,
+				838FD9E41C0DACBE00525E1D /* Transaction.swift in Sources */,
+				838FD9E91C0DB19500525E1D /* RetrieveTransactionsParameters.swift in Sources */,
 				830E63DA1C05A4050048F7BF /* TanScheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +526,8 @@
 				83648D5A1C0C32BE00286FFB /* ServicesEndpoints.swift in Sources */,
 				8346AAB91C09F97D00F9F0DE /* FigoResult.swift in Sources */,
 				830E63E31C05AB890048F7BF /* PaymentParameters.swift in Sources */,
+				838FD9E31C0DACBE00525E1D /* Transaction.swift in Sources */,
+				838FD9E01C0DAC7800525E1D /* TransactionEndpoints.swift in Sources */,
 				83648D691C0C7B4200286FFB /* LoginCredentials.swift in Sources */,
 				838FD9D71C0DA42C00525E1D /* PollTaskStateParameters.swift in Sources */,
 				83F0E4781C08DA2800FB3709 /* Address.swift in Sources */,
@@ -521,6 +546,7 @@
 				83E95C911C0768E50013ED1F /* TaskState.swift in Sources */,
 				83E7508C1C037ABE00545DF6 /* User.swift in Sources */,
 				830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */,
+				838FD9E81C0DB19500525E1D /* RetrieveTransactionsParameters.swift in Sources */,
 				83F0E47A1C08DA2800FB3709 /* Balance.swift in Sources */,
 				838FD9CE1C0D905500525E1D /* XCGLogger.swift in Sources */,
 				83F0E4811C08DD0000FB3709 /* Decoder.swift in Sources */,

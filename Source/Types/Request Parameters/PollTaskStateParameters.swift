@@ -7,6 +7,10 @@
 //
 
 
+/**
+ Defines the parameters for task state polling
+
+*/
 internal struct PollTaskStateParameters: JSONObjectConvertible {
     
     /// Task token
@@ -38,7 +42,9 @@ internal struct PollTaskStateParameters: JSONObjectConvertible {
         dict["id"] = taskToken
         dict["pin"] = pin
         dict["continue"] = continueAfterError
-//        dict["save_pin"] = savePin
+        if let savePin = savePin {
+            dict["save_pin"] = savePin ? "1" : "0"
+        }
         dict["response"] = response
         return dict
     }
