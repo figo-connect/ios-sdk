@@ -15,8 +15,7 @@ class AccountTests: BaseTestCaseWithLogin {
     let demoBankCode = "90090042"
     let demoCredentials = ["demo", "demo"]
     
-    func testShowsSimplestRetrieveAccountsCallWithoutErrorHandling() {
-        
+    func testShowsRetrieveAccountsWithoutErrorHandling() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
             self.figo.retrieveAccounts() { result in
@@ -27,9 +26,29 @@ class AccountTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-
         self.waitForExpectationsWithTimeout(30, handler: nil)
-
+    }
+    
+    func testShowsRetrieveAccountsWithErrorHandling() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            self.figo.retrieveAccounts() { result in
+                switch result {
+                case .Success(let accounts):
+                    XCTAssertGreaterThan(accounts.count, 0)
+                    print("\(accounts.count) accounts:")
+                    for account in accounts {
+                        print("\(account.account_id) \(account.bank_id)")
+                    }
+                    break
+                case .Failure(let error):
+                    XCTFail(error.description)
+                    break
+                }
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
     func testThatRetrieveAccountsYieldsObjects() {
@@ -72,17 +91,17 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func xtestSetupAccount() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        login() {
-            let account = CreateAccountParameters(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
-            self.figo.setupNewBankAccount(account) { result in
-                XCTAssertNil(result.error)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-    }
+//    func xtestSetupAccount() {
+//        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+//        login() {
+//            let account = CreateAccountParameters(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
+//            self.figo.setupNewBankAccount(account) { result in
+//                XCTAssertNil(result.error)
+//                expectation.fulfill()
+//            }
+//        }
+//        self.waitForExpectationsWithTimeout(30, handler: nil)
+//    }
     
     func xtestDeleteBankAccount() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
@@ -126,9 +145,7 @@ class AccountTests: BaseTestCaseWithLogin {
     func testRetrieveSupportedBanks() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            FigoLoggingEnabled = false
             self.figo.retrieveSupportedBanks() { result in
-            FigoLoggingEnabled = true
                 XCTAssertNil(result.error)
                 if case .Success(let banks) = result {
                     let bank = banks.first!

@@ -43,32 +43,5 @@ internal struct TaskState: Unboxable {
 }
 
 
-internal struct PollTaskStateParameters: JSONObjectConvertible {
-    
-    /// Task token
-    let id: String
-    
-    /// Submit PIN. If this parameter is set, then the parameter save_pin must be set, too. (optional)
-    let pin: String?
-    
-    /// This flag signals to continue after an error condition or to skip a PIN or challenge-response entry (optional)
-    let continueAfterError: Bool?
-    
-    /// This flag indicates whether the user has chosen to save the PIN on the figo Connect server (optional)
-    let savePin: Bool?
-    
-    /// Submit response to challenge. (optional)
-    let response: String?
-    
-    
-    var JSONObject: [String: AnyObject] {
-        var dict = Dictionary<String, AnyObject>()
-        dict["id"] = id
-        dict["pin"] = pin
-        dict["continue"] = continueAfterError
-        dict["save_pin"] = savePin
-        dict["response"] = response
-        return dict    
-    }
-}
+
 

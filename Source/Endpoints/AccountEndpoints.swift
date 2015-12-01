@@ -6,15 +6,7 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-
-
-struct AccountsEnvelope: Unboxable {
-    let accounts: [Account]
-    
-    init(unboxer: Unboxer) {
-        accounts = unboxer.unbox("accounts")
-    }
-}
+import Foundation
 
 
 extension FigoSession {
@@ -28,6 +20,7 @@ extension FigoSession {
      */
     public func retrieveAccounts(completionHandler: (FigoResult<[Account]>) -> Void) {
         request(.RetrieveAccounts) { response in
+            
             let envelopeUnboxingResult: FigoResult<AccountsEnvelope> = responseUnboxed(response)
             switch envelopeUnboxingResult {
             case .Success(let envelope):
@@ -71,12 +64,18 @@ extension FigoSession {
      SETUP NEW BANK ACCOUNT
      
      The figo Connect server will transparently create or modify a bank contact to add additional bank accounts.
+
+     - Parameter parameters: CreateAccountParameters
+     - Parameter progressHandler: (optional) Is called periodically with a message from the server
+     - Parameter completionHandler: Returns nothing or error
      */
-    public func setupNewBankAccount(account: CreateAccountParameters, _ completionHandler: VoidCompletionHandler) {
-        request(Endpoint.SetupCreateAccountParameters(account)) { response in
+    public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate?, _ completionHandler: VoidCompletionHandler) {
+        request(Endpoint.SetupCreateAccountParameters(parameters)) { response in
+            
             switch decodeTaskTokenResponse(response) {
             case .Success(let taskToken):
-                self.pollTaskState(taskToken, self.POLLING_COUNTDOWN_INITIAL_VALUE) { result in
+                    let nextParameters = PollTaskStateParameters(taskToken: taskToken)
+                self.pollTaskState(nextParameters, self.POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, nil, nil) { result in
                     completionHandler(result)
                 }
                 break
@@ -98,5 +97,17 @@ extension FigoSession {
             completionHandler(decodeVoidResponse(response))
         }
     }
+    
 }
+
+
+struct AccountsEnvelope: Unboxable {
+    let accounts: [Account]
+    
+    init(unboxer: Unboxer) {
+        accounts = unboxer.unbox("accounts")
+    }
+}
+
+
 

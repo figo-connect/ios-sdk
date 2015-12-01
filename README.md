@@ -1,14 +1,40 @@
 
 
-# Figo iOS SDK
+# figo iOS SDK
 
-The Figo Framework supports iOS, OSX, watchOS and tvOS. Take a look at the test cases to see more examples of interaction with the API.
+This Framework wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece. It supports iOS, OSX, watchOS and tvOS targets.
+
+
+## figo Connect API
+
+The figo Connect API allows you to easily access your bank account including transaction history and submitting payments.
+
+For a general introduction to figo and figo Connect please visit our [main page](http://figo.io).
+
+Albeit figo offers an interface to submit wire transfers, payment processing is not our focus. Our main interest is bringing peoples bank accounts into applications allowing a more seamless and rich user experience.
+
+API Reference: [http://docs.figo.io](http://docs.figo.io)
+
+
+## Registering your application
+
+Applications that would like to access the figo Connect have to register with us beforehand. If you would like to use figo Connect in your application, please [email](business@figo.me) us. We would love to hear from you what you have in mind and will generate a client identifier and client secret for your application without any bureaucracy.
 
 Website: [http://figo.io](http://figo.io)
 
-API Docs: [http://docs.figo.io](http://docs.figo.io)
+
+## Credits
+
+The Figo Framework uses the following 3rd-party utilities, but is not exporting their symbols:
+
+- [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger)
+- [JohnSundell/Unbox](https://github.com/JohnSundell/Unbox)
+
 
 ## Usage
+
+Take a look at the test cases to see more examples of interaction with the API.
+
 ### Retrieve all accounts
         Figo.retrieveAccounts() { accounts, _ in
             if let accounts = accounts {
@@ -26,7 +52,7 @@ API Docs: [http://docs.figo.io](http://docs.figo.io)
         
 
 ## Installation
-The Figo Framework depends on Alamofire, so you need to make sure that you add that to your project too.
+
 
 
 ### Carthage
@@ -54,9 +80,8 @@ The Figo Framework depends on Alamofire, so you need to make sure that you add t
     
     `/usr/local/bin/carthage copy-frameworks`
     
-    and an entry for each framework:
+    and an entry for the Figo framework:
     
-    `$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework`
     `$(SRCROOT)/Carthage/Build/iOS/Figo.framework`
 
 

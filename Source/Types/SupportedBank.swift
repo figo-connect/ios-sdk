@@ -7,6 +7,18 @@
 //
 
 
+internal struct BanksListEnvelope: Unboxable {
+    let banks: [SupportedBank]
+    //    let services: [SupportedService]
+    
+    
+    init(unboxer: Unboxer) {
+        banks = unboxer.unbox("banks")
+        //        services = unboxer.unbox("services")
+    }
+}
+
+
 public struct SupportedBank: Unboxable {
     
     public let bank_name: String

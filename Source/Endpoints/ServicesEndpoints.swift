@@ -7,26 +7,6 @@
 //
 
 
-struct BanksListEnvelope: Unboxable {
-    let banks: [SupportedBank]
-//    let services: [SupportedService]
-    
-    
-    init(unboxer: Unboxer) {
-        banks = unboxer.unbox("banks")
-//        services = unboxer.unbox("services")
-    }
-}
-
-private struct ServicesListEnvelope: Unboxable {
-    let services: [SupportedService]
-    
-    init(unboxer: Unboxer) {
-        services = unboxer.unbox("services")
-    }
-}
-
-
 extension FigoSession {
     
     /**

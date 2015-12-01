@@ -7,6 +7,15 @@
 //
 
 
+internal struct ServicesListEnvelope: Unboxable {
+    let services: [SupportedService]
+    
+    init(unboxer: Unboxer) {
+        services = unboxer.unbox("services")
+    }
+}
+
+
 public struct SupportedService: Unboxable {
     
     /// Human readable name of the service

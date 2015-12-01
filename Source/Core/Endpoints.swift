@@ -32,10 +32,11 @@ enum Endpoint {
     case PollTaskState(PollTaskStateParameters)
     case RetrieveSupportedBanks(countryCode: String)
     case RetrieveSupportedServices(countryCode: String)
+    case Synchronize(parameters: [String: AnyObject])
     
     private var method: Method {
         switch self {
-        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin:
+        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin, .Synchronize:
             return .POST
         case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask, .RetrieveLoginSettings, .RetrieveSupportedBanks, .RetrieveSupportedServices:
             return .GET
@@ -72,6 +73,8 @@ enum Endpoint {
             return "/rest/catalog/\(countryCode)"
         case .RetrieveSupportedServices(let countryCode):
             return "/rest/catalog/services/\(countryCode)"
+        case .Synchronize:
+            return "/rest/sync"
         }
     }
     
@@ -95,6 +98,8 @@ enum Endpoint {
             return ["cents": true]
         case .BeginTask(let taskToken):
             return ["id": taskToken]
+        case .Synchronize(let parameters):
+            return parameters
         default:
             return Dictionary<String, AnyObject>()
         }
@@ -104,7 +109,7 @@ enum Endpoint {
         switch self.method {
         case .POST:
             if case .PollTaskState(let parameters) = self {
-                encodeURLParameters(request, ["id": parameters.id])
+                encodeURLParameters(request, ["id": parameters.taskToken])
             }
             do {
                 let data = try NSJSONSerialization.dataWithJSONObject(self.parameters, options: NSJSONWritingOptions())

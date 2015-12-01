@@ -9,12 +9,42 @@
 import Foundation
 
 
-
-public typealias VoidCompletionHandler = (FigoResult<Void>) -> Void
-
-
 // Server's SHA1 fingerprints
 private let trustedFingerprints = Set(["cfc1bc7f6a16092b10838ab0224f3a65d270d73e"])
+
+// Internal logger instance
+internal let log = XCGLogger.defaultInstance()
+
+/**
+ A closure which is used for API calls that return nothing
+ */
+public typealias VoidCompletionHandler = (FigoResult<Void>) -> Void
+
+/**
+ A closure which is called periodically during task state polling with a status message from the server
+
+ - Parameter message: Status message or error message for currently processed account
+*/
+public typealias ProgressUpdate = (message: String) -> Void
+
+/**
+ A closure which is called when the server needs a PIN from the user to continue
+ 
+ - Parameter message: Status message or error message for currently processed account
+ - Parameter accountID: Account ID of currently processed account
+ */
+public typealias PinResponder = (message: String, accountID: String) -> (pin: String, savePin: Bool)
+
+/**
+ A closure which is called when the server needs a response to a challenge from the user
+ 
+ - Parameter message: Status message or error message for currently processed account
+ - Parameter accountID: Account ID of currently processed account
+ - Parameter challenge: Challenge object
+ */
+public typealias ChallengeResponder = (message: String, accountID: String, challenge: Challenge) -> String
+
+
 
 
 /**
@@ -25,6 +55,7 @@ private let trustedFingerprints = Set(["cfc1bc7f6a16092b10838ab0224f3a65d270d73e
  After a successfull login you can call all other functions as long as your session is valid. The first login has to be with credentials, after that you can login using the refresh token which you got from the credential login.
  
  - Important: A session will timeout 60 minutes after login.
+ - Important: Completion handlers are not executed on the main queue
  
  */
 public class FigoSession {
@@ -47,6 +78,7 @@ public class FigoSession {
     
     init() {
         session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
+        log.setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
     }
     
     func request(endpoint: Endpoint, completion: (FigoResult<NSData>) -> Void) {

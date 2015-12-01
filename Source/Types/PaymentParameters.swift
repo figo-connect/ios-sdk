@@ -7,8 +7,6 @@
 //
 
 
-
-
 public struct PaymentParameters: Unboxable {
     
     public let allowed_recipients: [String]
