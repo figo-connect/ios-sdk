@@ -63,7 +63,7 @@ public struct Account: Unboxable {
     public let additional_icons: [String: String]
     
     /// List of payment types with payment parameters
-    public let supported_payments: [SupportedPayment]
+    public let supported_payments: [(PaymentType, PaymentParameters)]
 
     // List of TAN schemes
     public let supported_tan_schemes: [TanScheme]
@@ -106,7 +106,7 @@ public struct Account: Unboxable {
         supported_tan_schemes   = unboxer.unbox("supported_tan_schemes")
         type                    = unboxer.unbox("type")
         supported_payments      = (unboxer.unbox("supported_payments") as [String: AnyObject]).keys.map() { paymentType in
-            return SupportedPayment(rawValue: paymentType, parameters: unboxer.unbox("supported_payments.\(paymentType)"))
+            return (PaymentType(rawValue: paymentType) ?? PaymentType.Unknown, unboxer.unbox("supported_payments.\(paymentType)"))
         }
     }
 }

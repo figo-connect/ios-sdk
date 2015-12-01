@@ -53,19 +53,14 @@ class UnboxingTests: XCTestCase {
         XCTAssertEqual(account.status!.success_timestamp, "2013-09-11T00:00:00.000Z")
         XCTAssertEqual(account.status!.sync_timestamp, "2014-07-09T10:04:40.000Z")
         XCTAssertEqual(account.supported_payments.count, 1)
-
-        let p = account.supported_payments.first!
-        if case .Transfer(let parameters) = p {
-            XCTAssertEqual(parameters.allowed_recipients.count, 0)
-            XCTAssertEqual(parameters.can_be_recurring, false)
-            XCTAssertEqual(parameters.can_be_scheduled, true)
-            XCTAssertEqual(parameters.max_purpose_length, 108)
-            XCTAssertEqual(parameters.supported_text_keys![0], 51)
-            XCTAssertEqual(parameters.supported_text_keys![1], 53)
-        } else {
-            XCTFail()
-        }
-        
+        let (type, parameters) = account.supported_payments.first!
+        XCTAssertEqual(type.rawValue, "Transfer")
+        XCTAssertEqual(parameters.allowed_recipients.count, 0)
+        XCTAssertEqual(parameters.can_be_recurring, false)
+        XCTAssertEqual(parameters.can_be_scheduled, true)
+        XCTAssertEqual(parameters.max_purpose_length, 108)
+        XCTAssertEqual(parameters.supported_text_keys![0], 51)
+        XCTAssertEqual(parameters.supported_text_keys![1], 53)
         XCTAssertEqual(account.supported_tan_schemes.count, 3)
         XCTAssertEqual(account.supported_tan_schemes.first?.medium_name, "")
         XCTAssertEqual(account.supported_tan_schemes.first?.name, "iTAN")
@@ -151,7 +146,7 @@ class UnboxingTests: XCTestCase {
             XCTAssertEqual(t.name, "Dr. House Solutions GmbH")
             XCTAssertEqual(t.purpose, "Miete Vertragsnr. 12993")
             XCTAssertEqual(t.transaction_id, "T1.24")
-            XCTAssertEqual(t.type, "Direct debit")
+            XCTAssertEqual(t.type.rawValue, "Direct debit")
             XCTAssertEqual(t.value_date, "2013-04-10T12:00:00.000Z")
             XCTAssertEqual(t.visited, true)
         }

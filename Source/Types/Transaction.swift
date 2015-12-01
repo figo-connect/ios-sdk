@@ -86,7 +86,7 @@ public struct Transaction: Unboxable {
     public let transaction_id: String
     
     /// Transaction type
-    public let type: String
+    public let type: PaymentType
     
     /// Value date
     public let value_date: String
