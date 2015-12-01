@@ -9,6 +9,10 @@
 import Foundation
 
 
+// Internal logger instance
+internal let log = XCGLogger.defaultInstance()
+
+
 func debugPrintRequest(request: NSURLRequest) {
     log.debug("⬆️ \(request.HTTPMethod!) \(request.URL!)")
     if let fields = request.allHTTPHeaderFields {

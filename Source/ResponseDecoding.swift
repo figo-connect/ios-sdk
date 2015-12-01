@@ -1,5 +1,5 @@
 //
-//  Decoder.swift
+//  ResponseDecoding.swift
 //  Figo
 //
 //  Created by Christian König on 27.11.15.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-func decodeTaskTokenResponse(response: FigoResult<NSData>) -> FigoResult<String> {
+internal func decodeTaskTokenResponse(response: FigoResult<NSData>) -> FigoResult<String> {
     switch response {
     case .Failure(let error):
         return .Failure(error)
@@ -27,7 +27,7 @@ func decodeTaskTokenResponse(response: FigoResult<NSData>) -> FigoResult<String>
     }
 }
 
-func decodeJSONResponse(response: FigoResult<NSData>) -> FigoResult<UnboxableDictionary> {
+internal func decodeJSONResponse(response: FigoResult<NSData>) -> FigoResult<UnboxableDictionary> {
     switch response {
     case .Failure(let error):
         return .Failure(error)
@@ -44,7 +44,7 @@ func decodeJSONResponse(response: FigoResult<NSData>) -> FigoResult<UnboxableDic
     }
 }
 
-func decodeVoidResponse(response: FigoResult<NSData>) -> FigoResult<Void> {
+internal func decodeVoidResponse(response: FigoResult<NSData>) -> FigoResult<Void> {
     switch response {
     case .Failure(let error):
         return .Failure(error)
@@ -53,7 +53,7 @@ func decodeVoidResponse(response: FigoResult<NSData>) -> FigoResult<Void> {
     }
 }
 
-func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<T> {
+internal func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<T> {
     switch data {
     case .Success(let data):
         do {
@@ -69,7 +69,7 @@ func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: An
     }
 }
 
-func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<[T]> {
+internal func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<[T]> {
     switch data {
     case .Success(let data):
         do {
@@ -85,7 +85,7 @@ func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: An
     }
 }
 
-func base64EncodeBasicAuthCredentials(clientID: String, _ clientSecret: String) -> String {
+internal func base64EncodeBasicAuthCredentials(clientID: String, _ clientSecret: String) -> String {
     let clientCode: String = clientID + ":" + clientSecret
     let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
     return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)

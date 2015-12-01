@@ -6,11 +6,9 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
-
-
 
 public enum FigoResult<Value>: CustomStringConvertible, CustomDebugStringConvertible {
+    
     case Success(Value)
     case Failure(FigoError)
     

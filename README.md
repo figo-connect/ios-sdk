@@ -1,5 +1,8 @@
 
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/figome/ios-sdk)
+
+
 # figo iOS SDK
 
 This Framework wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece. It supports iOS, OSX, watchOS and tvOS targets.
