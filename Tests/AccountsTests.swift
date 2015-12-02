@@ -24,7 +24,7 @@ class AccountsTests: BaseTestCaseWithLogin {
                     XCTAssertGreaterThan(accounts.count, 0)
                     print("\(accounts.count) accounts:")
                     for account in accounts {
-                        print("\(account.accountID) \(account.bankID)")
+                        print("\(account.accountID) \(account.bankID) \(account.balanceFormatted ?? "")")
                     }
                     break
                 case .Failure(let error):

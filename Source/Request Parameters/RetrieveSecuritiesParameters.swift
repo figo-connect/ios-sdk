@@ -90,9 +90,6 @@ public struct RetrieveSecuritiesParameters: JSONObjectConvertible {
     /// **optional** Offset into the implicit list of securities used as starting point for the returned securities. In combination with the count parameter this can be used to paginate the result list.
     public var offset: Int?
     
-    /// **optional** If true, the balance will be shown in cents
-    internal let cents: Bool = true
-    
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
@@ -101,7 +98,7 @@ public struct RetrieveSecuritiesParameters: JSONObjectConvertible {
         dict["since_type"] = sinceType?.rawValue
         dict["count"] = count
         dict["offset"] = offset
-        dict["cents"] = cents
+        dict["cents"] = true
         return dict
     }
 }

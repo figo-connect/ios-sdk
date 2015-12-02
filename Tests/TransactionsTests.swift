@@ -40,6 +40,9 @@ class TransactionsTests: BaseTestCaseWithLogin {
             self.figo.retrieveTransactions(parameters) { result in
                 if case .Success(let envelope) = result {
                     print("Retrieved \(envelope.transactions.count) transactions")
+                    for t in envelope.transactions {
+                        print("\(t.name) \(t.amountFormatted)")
+                    }
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()

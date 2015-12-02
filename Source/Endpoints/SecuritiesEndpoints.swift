@@ -17,7 +17,7 @@ extension FigoSession {
      - Parameter parameters: (optional) `RetrieveSecuritiesParameters`
      - Parameter completionHandler: Returns `SecurityListEnvelope` or error
      */
-    public func retrieveSecurities(parameters: RetrieveSecuritiesParameters? = nil, _ completionHandler: (FigoResult<SecurityListEnvelope>) -> Void) {
+    public func retrieveSecurities(parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (FigoResult<SecurityListEnvelope>) -> Void) {
         request(.RetrieveSecurities(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -32,7 +32,7 @@ extension FigoSession {
      - Parameter parameters: (optional) `RetrieveSecuritiesParameters`
      - Parameter completionHandler: Returns `SecurityListEnvelope` or error
      */
-    public func retrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters? = nil, _ completionHandler: (FigoResult<SecurityListEnvelope>) -> Void) {
+    public func retrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (FigoResult<SecurityListEnvelope>) -> Void) {
         request(.RetrieveSecuritiesForAccount(accountID, parameters: parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }

@@ -35,6 +35,9 @@ class SecuritiesTests: BaseTestCaseWithLogin {
             self.figo.retrieveSecurities() { result in
                 if case .Success(let envelope) = result {
                     print("Retrieved \(envelope.securities.count) securities")
+                    for s in envelope.securities {
+                        print("\(s.name) (current price: \(s.priceFormatted))")
+                    }
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()

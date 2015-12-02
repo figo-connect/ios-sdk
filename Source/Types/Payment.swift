@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Foundation
+
 
 internal struct PaymentListEnvelope: Unboxable {
     let payments: [Payment]
@@ -15,7 +17,11 @@ internal struct PaymentListEnvelope: Unboxable {
     }
 }
 
-
+/**
+ 
+- Note: Amounts in cents: NO (server problem)
+ 
+*/
 public struct Payment: Unboxable {
     
     /// Internal figo Connect payment ID
@@ -47,6 +53,19 @@ public struct Payment: Unboxable {
     
     /// Order amount
     public var amount: Float
+    
+    /// String representation of the amount
+    public var amountFormatted: String {
+        currencyFormatter.currencyCode = self.currency
+        return currencyFormatter.stringFromNumber(NSNumber(float: Float(amount)))!
+    }
+    
+    private var currencyFormatter: NSNumberFormatter {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+        return formatter
+    }
     
     /// Three-character currency code
     public var currency: String

@@ -43,12 +43,12 @@ internal enum Endpoint {
     case PollTaskState(PollTaskStateParameters)
     case Synchronize([String: AnyObject])
     
-    case RetrieveTransactions(RetrieveTransactionsParameters?)
-    case RetrieveTransactionsForAccount(String, parameters: RetrieveTransactionsParameters?)
+    case RetrieveTransactions(RetrieveTransactionsParameters)
+    case RetrieveTransactionsForAccount(String, parameters: RetrieveTransactionsParameters)
     case RetrieveTransaction(String)
     
-    case RetrieveSecurities(RetrieveSecuritiesParameters?)
-    case RetrieveSecuritiesForAccount(String, parameters: RetrieveSecuritiesParameters?)
+    case RetrieveSecurities(RetrieveSecuritiesParameters)
+    case RetrieveSecuritiesForAccount(String, parameters: RetrieveSecuritiesParameters)
     case RetrieveSecurity(String, accountID: String)
     
     case RetrieveStandingOrders
@@ -161,15 +161,15 @@ internal enum Endpoint {
         case .Synchronize(let parameters):
             return parameters
         case .RetrieveTransactions(let parameters):
-            return parameters?.JSONObject
+            return parameters.JSONObject
         case .RetrieveTransactionsForAccount(_, let parameters):
-            return parameters?.JSONObject
+            return parameters.JSONObject
         case .RetrieveTransaction:
             return ["cents" : true]
         case .RetrieveSecurities(let parameters):
-            return parameters?.JSONObject
+            return parameters.JSONObject
         case .RetrieveSecuritiesForAccount(_, let parameters):
-            return parameters?.JSONObject
+            return parameters.JSONObject
         case .RetrieveSecurity:
             return ["cents" : true]
         case .CreatePayment(let parameters):
@@ -178,7 +178,8 @@ internal enum Endpoint {
             return parameters.JSONObject
         case .SubmitPayment(_, let tanSchemeID):
             return ["tan_scheme_id": tanSchemeID, "state": NSUUID().UUIDString]
-
+        case .RetrievePayments, .RetrievePayment, .RetrievePaymentsForAccount:
+            return ["cents" : false]
         default:
             return nil
         }

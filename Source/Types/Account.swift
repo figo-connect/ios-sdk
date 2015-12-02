@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Foundation
+
 
 internal struct AccountListEnvelope: Unboxable {
     let accounts: [Account]
@@ -33,8 +35,8 @@ public struct Account: Unboxable {
     /// Account owner
     public let owner: String
     
-    public /// This flag indicates whether the account will be automatically synchronized
-    let autoSync: Bool
+    /// This flag indicates whether the account will be automatically synchronized
+    public let autoSync: Bool
     
     /// Account number
     public let accountNumber: String
@@ -91,6 +93,21 @@ public struct Account: Unboxable {
     /// Account balance; This response parameter will be omitted if the balance is not yet known
     public let balance: Balance?
     
+    /// String representation of the account balance
+    public var balanceFormatted: String? {
+        if let cents = balance?.balance {
+            currencyFormatter.currencyCode = self.currency
+            return currencyFormatter.stringFromNumber(NSNumber(double: Double(cents)/100.0))
+        }
+        return nil
+    }
+    
+    private var currencyFormatter: NSNumberFormatter {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+        return formatter
+    }
     
     init(unboxer: Unboxer) {
         accountID           = unboxer.unbox("account_id")

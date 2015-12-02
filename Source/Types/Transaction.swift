@@ -6,6 +6,7 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Foundation
 
 
 public struct TransactionListEnvelope: Unboxable {
@@ -40,6 +41,8 @@ PENDING TRANSACTIONS
 
 Some banks provide information on transaction, which have not yet been executed. These transactions are called pending. Figo marks them with the booked flag being false. As soon as the bank reports the execution of these transactions, this flag changes to true. If such a pending transaction fails to execute, it is automatically removed from the transaction list.
 
+- Note: Amounts in cents: YES
+ 
 */
 public struct Transaction: Unboxable {
     
@@ -51,6 +54,19 @@ public struct Transaction: Unboxable {
     
     /// Transaction amount in cents
     public let amount: Int
+    
+    /// String representation of the amount
+    public var amountFormatted: String {
+        currencyFormatter.currencyCode = self.currency
+        return currencyFormatter.stringFromNumber(NSNumber(double: Double(amount)/100.0))!
+    }
+    
+    private var currencyFormatter: NSNumberFormatter {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+        return formatter
+    }
     
     /// Bank code of originator or recipient. This field might be empty if the transaction has no bank code, e.g. interest transactions.
     public let bankCode: String

@@ -6,6 +6,7 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Foundation
 
 
 public struct SecurityListEnvelope: Unboxable {
@@ -26,7 +27,7 @@ public struct SecurityListEnvelope: Unboxable {
  
 Each depot account has a list of securities associated with it. In general the information provided for each security should be roughly similar to the contents of the printed or online depot listings available from the respective bank. Please note that not all banks provide the same level of detail.
  
-- Note: All amounts are in cents
+- Note: Amounts in cents: YES
  
  */
 public struct Security: Unboxable {
@@ -48,7 +49,7 @@ public struct Security: Unboxable {
     
     public let market: String
     
-    /// Three-character currency code
+    /// Three-character currency code when measured in currency (and not pieces)
     public let currency: String
     
     /// Number of pieces or value
@@ -69,11 +70,23 @@ public struct Security: Unboxable {
     /// Currency of current price
     public let priceCurrency: String
     
+    /// String representation of current price
+    public var priceFormatted: String {
+        currencyFormatter.currencyCode = self.currency
+        return currencyFormatter.stringFromNumber(NSNumber(float: Float(price)/100.0))!
+    }
+    
     /// Purchase price
     public let purchasePrice: Int
     
     /// Currency of purchase price
     public let purchasePriceCurrency: String
+    
+    /// String representation of purchase price
+    public var purchasePriceFormatted: String {
+        currencyFormatter.currencyCode = self.currency
+        return currencyFormatter.stringFromNumber(NSNumber(float: Float(purchasePrice)/100.0))!
+    }
     
     /// This flag indicates whether the security has already been marked as visited by the user
     public let visited: Bool
@@ -86,6 +99,14 @@ public struct Security: Unboxable {
     
     /// Internal modification timestamp on the figo Connect server
     public let modificationDate: FigoDate
+    
+    
+    private var currencyFormatter: NSNumberFormatter {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+        return formatter
+    }
     
 
     init(unboxer: Unboxer) {

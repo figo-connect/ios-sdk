@@ -9,26 +9,26 @@
 import Foundation
 
 
+/// Provides a NSDate representation for the server's timestamps
 public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
     
     internal typealias UnboxRawValueType = String
     
     public let date: NSDate
     public let timestamp: String
-    public var description: String
+    public var formatted: String
 
-    
     private init() {
         self.date = NSDate.distantPast()
         self.timestamp = ""
-        self.description = "Invalid date"
+        self.formatted = "Invalid date"
     }
     
     private init? (timestamp: String) {
         if let date = FigoDate.posixFormatter.dateFromString(timestamp) {
             self.date = date
             self.timestamp = timestamp
-            self.description = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
+            self.formatted = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
         }
         else {
             return nil
@@ -50,6 +50,10 @@ public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
         formatter.timeZone = NSTimeZone(name: "Europe/Berlin")
         return formatter
     }()
+    
+    public var description: String {
+        return self.formatted
+    }
     
 }
 

@@ -19,6 +19,9 @@ class PaymentsTests: BaseTestCaseWithLogin {
             self.figo.retrievePayments() { result in
                 if case .Success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
+                    for p in payments {
+                        print("\(p.name) \(p.amountFormatted)")
+                    }
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()
