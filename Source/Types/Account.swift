@@ -22,10 +22,10 @@ internal struct AccountListEnvelope: Unboxable {
 public struct Account: Unboxable {
     
     /// Internal figo Connect account ID
-    public let account_id: String
+    public let accountID: String
     
     /// Internal figo Connect bank ID
-    public let bank_id: String
+    public let bankID: String
     
     /// Account name
     public let name: String
@@ -34,16 +34,16 @@ public struct Account: Unboxable {
     public let owner: String
     
     public /// This flag indicates whether the account will be automatically synchronized
-    let auto_sync: Bool
+    let autoSync: Bool
     
     /// Account number
-    public let account_number: String
+    public let accountNumber: String
     
     /// Bank code
-    public let bank_code: String
+    public let bankCode: String
     
     /// Bank name
-    public let bank_name: String
+    public let bankName: String
     
     /// Three-character currency code
     public let currency: String
@@ -59,32 +59,31 @@ public struct Account: Unboxable {
      
      Independent of the integration of the bank account into figo, the following kinds of bank accounts are defined: Giro account, Savings account, Credit card, Loan account, PayPal, Cash book, Depot and Unknown.
      */
-    public let type: String
+    public let type: AccountType
 
     /// Account icon URL
     public let icon: String
     
     /**
      Dictionary mapping from resolution to URL for additional resolutions of the banks icon. Currently supports the following sizes:
-     
      48x48 60x60 72x72 84x84 96x96 120x120 144x144 192x192 256x256
      */
-    public let additional_icons: [String: String]
+    public let additionalIcons: [String: String]
     
     /// List of payment types with payment parameters
-    public let supported_payments: [(PaymentType, PaymentParameters)]
+    public let supportedPayments: [(PaymentType, PaymentParameters)]
 
     // List of TAN schemes
-    public let supported_tan_schemes: [TanScheme]
+    public let supportedTANSchemes: [TanScheme]
     
     /// ID of the TAN scheme preferred by the user
-    public let preferred_tan_scheme: String?
+    public let preferredTANScheme: String?
 
     // This flag indicates whether the balance of this account is added to the total balance of accounts
-    public let in_total_balance: Bool
+    public let inTotalBalance: Bool
 
     /// This flag indicates whether the user has chosen to save the PIN on the figo Connect server
-    public let save_pin: Bool
+    public let savePin: Bool
 
     /// Synchronization status
     public let status: SyncStatus?
@@ -94,27 +93,29 @@ public struct Account: Unboxable {
     
     
     init(unboxer: Unboxer) {
-        account_id              = unboxer.unbox("account_id")
-        account_number          = unboxer.unbox("account_number")
-        additional_icons        = unboxer.unbox("additional_icons")
-        auto_sync               = unboxer.unbox("auto_sync")
+        accountID              = unboxer.unbox("account_id")
+        accountNumber          = unboxer.unbox("account_number")
+        additionalIcons        = unboxer.unbox("additional_icons")
+        autoSync               = unboxer.unbox("auto_sync")
         balance                 = unboxer.unbox("balance")
-        bank_code               = unboxer.unbox("bank_code")
-        bank_id                 = unboxer.unbox("bank_id")
-        bank_name               = unboxer.unbox("bank_name")
+        bankCode               = unboxer.unbox("bank_code")
+        bankID                 = unboxer.unbox("bank_id")
+        bankName               = unboxer.unbox("bank_name")
         bic                     = unboxer.unbox("bic")
         currency                = unboxer.unbox("currency")
         iban                    = unboxer.unbox("iban")
         icon                    = unboxer.unbox("icon")
-        in_total_balance        = unboxer.unbox("in_total_balance")
+        inTotalBalance        = unboxer.unbox("in_total_balance")
         name                    = unboxer.unbox("name")
         owner                   = unboxer.unbox("owner")
-        preferred_tan_scheme    = unboxer.unbox("preferred_tan_scheme")
-        save_pin                = unboxer.unbox("save_pin")
+        preferredTANScheme    = unboxer.unbox("preferred_tan_scheme")
+        savePin                = unboxer.unbox("save_pin")
         status                  = unboxer.unbox("status")
-        supported_tan_schemes   = unboxer.unbox("supported_tan_schemes")
+        supportedTANSchemes   = unboxer.unbox("supported_tan_schemes")
         type                    = unboxer.unbox("type")
-        supported_payments      = (unboxer.unbox("supported_payments") as [String: AnyObject]).keys.map() { paymentType in
+        
+        // Special treatment for supported_payments because the payment type values are stored in keys instead of values
+        supportedPayments      = (unboxer.unbox("supported_payments") as [String: AnyObject]).keys.map() { paymentType in
             return (PaymentType(rawValue: paymentType) ?? PaymentType.Unknown, unboxer.unbox("supported_payments.\(paymentType)"))
         }
     }

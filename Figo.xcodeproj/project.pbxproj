@@ -92,8 +92,8 @@
 		838FDA371C0EFC0300525E1D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA351C0EFC0300525E1D /* Payment.swift */; };
 		838FDA3E1C0F28BB00525E1D /* PaymentProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */; };
 		838FDA3F1C0F28BB00525E1D /* PaymentProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */; };
-		83A6DA171C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
-		83A6DA181C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
+		838FDA411C0F348C00525E1D /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA401C0F348C00525E1D /* AccountType.swift */; };
+		838FDA421C0F348C00525E1D /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA401C0F348C00525E1D /* AccountType.swift */; };
 		83CEDB831C05F43D0008CEF8 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 83CEDB821C05F43D0008CEF8 /* User.json */; };
 		83D3A6EF1BFF5BA4003EDE45 /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
 		83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */; };
@@ -198,7 +198,7 @@
 		838FDA321C0EFB1100525E1D /* PaymentsEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsEndpoints.swift; sourceTree = "<group>"; };
 		838FDA351C0EFC0300525E1D /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Payment.swift; path = Types/Payment.swift; sourceTree = "<group>"; };
 		838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProposal.swift; path = Types/PaymentProposal.swift; sourceTree = "<group>"; };
-		83A6DA161C059E7E0060FA8F /* BaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseType.swift; path = Types/BaseType.swift; sourceTree = "<group>"; };
+		838FDA401C0F348C00525E1D /* AccountType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountType.swift; path = Types/AccountType.swift; sourceTree = "<group>"; };
 		83CEDB801C05DD3D0008CEF8 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		83CEDB821C05F43D0008CEF8 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = Resources/User.json; sourceTree = "<group>"; };
 		83D3A6811BFF2953003EDE45 /* Figo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figo.h; sourceTree = "<group>"; };
@@ -302,8 +302,8 @@
 		83D3A6FA1BFF684C003EDE45 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				83A6DA161C059E7E0060FA8F /* BaseType.swift */,
 				83D3A70C1BFFB71D003EDE45 /* Account.swift */,
+				838FDA401C0F348C00525E1D /* AccountType.swift */,
 				83F0E4761C08DA2800FB3709 /* Address.swift */,
 				83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */,
 				83F0E4771C08DA2800FB3709 /* Balance.swift */,
@@ -532,7 +532,6 @@
 				83F0E47F1C08DB8400FB3709 /* AuthorizationTests.swift in Sources */,
 				838FDA0C1C0DF90100525E1D /* FigoResult.swift in Sources */,
 				83F0E4701C08BBE800FB3709 /* BaseTestCaseWithLogin.swift in Sources */,
-				83A6DA181C059E7E0060FA8F /* BaseType.swift in Sources */,
 				838FDA311C0EF4A400525E1D /* PaymentsTests.swift in Sources */,
 				83F0E4861C09C63500FB3709 /* UserTests.swift in Sources */,
 				83D3A7001BFF8E97003EDE45 /* Authorization.swift in Sources */,
@@ -569,6 +568,7 @@
 				83648D6A1C0C7B4200286FFB /* LoginCredentials.swift in Sources */,
 				838FDA201C0EDC3B00525E1D /* SecuritiesTests.swift in Sources */,
 				838FDA081C0DF90100525E1D /* Endpoints.swift in Sources */,
+				838FDA421C0F348C00525E1D /* AccountType.swift in Sources */,
 				838FDA141C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift in Sources */,
 				83648D5B1C0C32BE00286FFB /* ServicesEndpoints.swift in Sources */,
 				83F0E4751C08D9FD00FB3709 /* AuthorizationEndpoints.swift in Sources */,
@@ -622,13 +622,13 @@
 				83E7508C1C037ABE00545DF6 /* User.swift in Sources */,
 				830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */,
 				838FDA271C0EED1500525E1D /* StandingOrdersEndpoints.swift in Sources */,
+				838FDA411C0F348C00525E1D /* AccountType.swift in Sources */,
 				838FDA0D1C0DF90100525E1D /* Logging.swift in Sources */,
 				83F0E47A1C08DA2800FB3709 /* Balance.swift in Sources */,
 				838FD9CE1C0D905500525E1D /* XCGLogger.swift in Sources */,
 				838FDA0B1C0DF90100525E1D /* FigoResult.swift in Sources */,
 				838FDA3E1C0F28BB00525E1D /* PaymentProposal.swift in Sources */,
 				838FD9FD1C0DF8D900525E1D /* CreateUserParameters.swift in Sources */,
-				83A6DA171C059E7E0060FA8F /* BaseType.swift in Sources */,
 				838FDA1C1C0EDA8800525E1D /* SecuritiesEndpoints.swift in Sources */,
 				83F0E46C1C08A91400FB3709 /* FigoSession.swift in Sources */,
 				838FDA101C0DF92500525E1D /* ResponseDecoding.swift in Sources */,

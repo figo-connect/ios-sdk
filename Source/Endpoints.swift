@@ -13,6 +13,10 @@ private enum Method: String {
     case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
 }
 
+internal protocol JSONObjectConvertible {
+    var JSONObject: [String: AnyObject] { get }
+}
+
 
 internal enum Endpoint {
     
@@ -226,13 +230,13 @@ private func encodeURLParameters(request: NSMutableURLRequest, _ parameters: [St
     guard parameters.count > 0 else { return }
     
     if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {
-        let percentEncodedQuery = (URLComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + query(parameters)
+        let percentEncodedQuery = (URLComponents.percentEncodedQuery.map { $0 + "&" } ?? "") + queryStringForParameters(parameters)
         URLComponents.percentEncodedQuery = percentEncodedQuery
         request.URL = URLComponents.URL
     }
 }
 
-private func query(parameters: [String: AnyObject]) -> String {
+private func queryStringForParameters(parameters: [String: AnyObject]) -> String {
     var components: [(String, String)] = []
     for key in parameters.keys.sort(<) {
         components.append((key, "\(parameters[key]!)"))

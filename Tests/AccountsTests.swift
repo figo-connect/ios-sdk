@@ -15,21 +15,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     let demoBankCode = "90090042"
     let demoCredentials = ["demo", "demo"]
     
-    func testShowsRetrieveAccountsWithoutErrorHandling() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        login() {
-            self.figo.retrieveAccounts() { result in
-                if let accounts = result.value {
-                    XCTAssertGreaterThan(accounts.count, 0)
-                }
-                XCTAssertNil(result.error)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-    }
-    
-    func testShowsRetrieveAccountsWithErrorHandling() {
+    func testThatRetrieveAccountsYieldsObjects() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
             self.figo.retrieveAccounts() { result in
@@ -38,7 +24,7 @@ class AccountsTests: BaseTestCaseWithLogin {
                     XCTAssertGreaterThan(accounts.count, 0)
                     print("\(accounts.count) accounts:")
                     for account in accounts {
-                        print("\(account.account_id) \(account.bank_id)")
+                        print("\(account.accountID) \(account.bankID)")
                     }
                     break
                 case .Failure(let error):
@@ -51,28 +37,13 @@ class AccountsTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testThatRetrieveAccountsYieldsObjects() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        login() {
-            self.figo.retrieveAccounts() { result in
-                if let accounts = result.value {
-                    XCTAssertGreaterThan(accounts.count, 0)
-                }
-                XCTAssertNil(result.error)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-    }
-    
     func testThatRetrieveAccountYieldsObject() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
             self.figo.retrieveAccount("A1182805.2") { result in
                 XCTAssertNil(result.error)
                 if let account = result.value {
-                    XCTAssertEqual(account.account_number, "4711951501")
-
+                    XCTAssertEqual(account.accountNumber, "4711951501")
                 }
                 expectation.fulfill()
             }
