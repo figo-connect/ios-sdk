@@ -111,7 +111,7 @@ internal enum Endpoint {
             return "/rest/securities"
         case .RetrieveSecuritiesForAccount(let accountID, _):
             return "/rest/accounts/\(accountID)/securities"
-        case .RetrieveSecurity(let accountID, let securityID):
+        case .RetrieveSecurity(let securityID, let accountID):
             return "/rest/accounts/\(accountID)/securities/\(securityID)"
         case .RetrieveStandingOrders:
             return "/rest/standing_orders"
@@ -131,7 +131,7 @@ internal enum Endpoint {
             return "/rest/payments"
         case .RetrievePaymentsForAccount(let accountID):
             return "/rest/accounts/\(accountID)/payments"
-        case .RetrievePayment(let accountID, let paymentID):
+        case .RetrievePayment(let paymentID, let accountID):
             return "/rest/accounts/\(accountID)/payments/\(paymentID)"
         }
     }
