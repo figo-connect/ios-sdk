@@ -74,26 +74,26 @@ extension FigoSession {
                     progressHandler(message: state.message)
                 }
                 
-                if state.is_ended {
-                    if state.is_erroneous {
-                        completionHandler(.Failure(.TaskProcessingError(accountID: state.account_id, message: state.message)))
+                if state.isEnded {
+                    if state.isErroneous {
+                        completionHandler(.Failure(.TaskProcessingError(accountID: state.accountID, message: state.message)))
                     } else {
                         completionHandler(.Success())
                     }
                 }
                     
-                else if state.is_waiting_for_pin {
+                else if state.isWaitingForPIN {
                     guard let pinHandler = pinHandler else {
                         completionHandler(.Failure(FigoError.UnspecifiedError(reason: "No PinResponder")))
                         return
                     }
                     
-                    let pin = pinHandler(message: state.message, accountID: state.account_id)
+                    let pin = pinHandler(message: state.message, accountID: state.accountID)
                     let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken, pin: pin.pin, savePin: pin.savePin)
                     self.pollTaskState(nextParameters, countdown - 1, progressHandler, pinHandler, challengeHandler, completionHandler)
                 }
                     
-                else if state.is_waiting_for_response {
+                else if state.isWaitingForResponse {
                     guard let challengeHandler = challengeHandler else {
                         completionHandler(.Failure(FigoError.UnspecifiedError(reason: "No ChallengeResponder")))
                         return
@@ -103,7 +103,7 @@ extension FigoSession {
                         return
                     }
                     
-                    let response = challengeHandler(message: state.message, accountID: state.account_id, challenge: challenge)
+                    let response = challengeHandler(message: state.message, accountID: state.accountID, challenge: challenge)
                     let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken, response: response)
                     self.pollTaskState(nextParameters, countdown - 1, progressHandler, pinHandler, challengeHandler, completionHandler)
                 }

@@ -9,18 +9,17 @@
 
 internal struct Authorization: Unboxable {
     
-    var access_token: String
+    var accessToken: String
     let expires_in: Int
-    let refresh_token: String?
+    let refreshToken: String?
     let scope: String
-    let token_type: String
-    
+    let tokenType: String
     
     init(unboxer: Unboxer) {
-        access_token    = unboxer.unbox("access_token")
+        accessToken    = unboxer.unbox("access_token")
         expires_in      = unboxer.unbox("expires_in")
-        refresh_token   = unboxer.unbox("refresh_token")
+        refreshToken   = unboxer.unbox("refresh_token")
         scope           = unboxer.unbox("scope")
-        token_type      = unboxer.unbox("token_type")
+        tokenType      = unboxer.unbox("token_type")
     }
 }

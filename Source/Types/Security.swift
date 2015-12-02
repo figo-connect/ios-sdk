@@ -32,10 +32,10 @@ Each depot account has a list of securities associated with it. In general the i
 public struct Security: Unboxable {
     
     /// Internal figo Connect security ID
-    public let security_id: String
+    public let securityID: String
     
     /// Internal figo Connect account ID
-    public let account_id: String
+    public let accountID: String
     
     /// Name of the security
     public let name: String
@@ -58,55 +58,55 @@ public struct Security: Unboxable {
     public let amount: Int
     
     /// Monetary value in trading currency
-    public let amount_original_currency: Int
+    public let amountOriginalCurrency: Int
     
     /// Exchange rate between trading and account currency
-    public let exchange_rate: Float
+    public let exchangeRate: Float
     
     /// Current price
     public let price: Int
     
     /// Currency of current price
-    public let price_currency: String
+    public let priceCurrency: String
     
     /// Purchase price
-    public let purchase_price: Int
+    public let purchasePrice: Int
     
     /// Currency of purchase price
-    public let purchase_price_currency: String
+    public let purchasePriceCurrency: String
     
     /// This flag indicates whether the security has already been marked as visited by the user
     public let visited: Bool
     
     /// Trading timestamp
-    public let trade_timestamp: String
+    public let tradeDate: FigoDate
     
     /// Internal creation timestamp on the figo Connect server
-    public let creation_timestamp: String
+    public let creationDate: FigoDate
     
     /// Internal modification timestamp on the figo Connect server
-    public let modification_timestamp: String
+    public let modificationDate: FigoDate
     
 
     init(unboxer: Unboxer) {
-        security_id = unboxer.unbox("security_id")
-        account_id = unboxer.unbox("account_id")
+        securityID = unboxer.unbox("security_id")
+        accountID = unboxer.unbox("account_id")
         name = unboxer.unbox("name")
         isin = unboxer.unbox("isin")
         wkn = unboxer.unbox("wkn")
         currency = unboxer.unbox("currency")
         quantity = unboxer.unbox("quantity")
         amount = unboxer.unbox("amount")
-        amount_original_currency = unboxer.unbox("amount_original_currency")
-        exchange_rate = unboxer.unbox("exchange_rate")
+        amountOriginalCurrency = unboxer.unbox("amount_original_currency")
+        exchangeRate = unboxer.unbox("exchange_rate")
         price = unboxer.unbox("price")
-        price_currency = unboxer.unbox("price_currency")
-        purchase_price = unboxer.unbox("purchase_price")
-        purchase_price_currency = unboxer.unbox("purchase_price_currency")
+        priceCurrency = unboxer.unbox("price_currency")
+        purchasePrice = unboxer.unbox("purchase_price")
+        purchasePriceCurrency = unboxer.unbox("purchase_price_currency")
         visited = unboxer.unbox("visited")
-        trade_timestamp = unboxer.unbox("trade_timestamp")
-        creation_timestamp = unboxer.unbox("creation_timestamp")
-        modification_timestamp = unboxer.unbox("modification_timestamp")
+        tradeDate = unboxer.unbox("trade_timestamp")
+        creationDate = unboxer.unbox("creation_timestamp")
+        modificationDate = unboxer.unbox("modification_timestamp")
         market = unboxer.unbox("market")
     }
     

@@ -93,7 +93,7 @@ class AccountsTests: BaseTestCaseWithLogin {
                 XCTAssertNil(result.error)
                 if case .Success(let settings) = result {
                     XCTAssertTrue(settings.supported)
-                    XCTAssertEqual(settings.auth_type, "pin")
+                    XCTAssertEqual(settings.authType, "pin")
                 }
                 
                 expectation.fulfill()
@@ -106,7 +106,7 @@ class AccountsTests: BaseTestCaseWithLogin {
         let data = Resources.SupportedBanks.data
         do {
             let envelope: BanksListEnvelope = try UnboxOrThrow(data)
-            XCTAssertEqual(envelope.banks.first!.bank_code, 10000000)
+            XCTAssertEqual(envelope.banks.first!.bankCode, 10000000)
             
         } catch (let error) {
             XCTAssertNil(error)

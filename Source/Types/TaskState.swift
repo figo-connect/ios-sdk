@@ -20,34 +20,34 @@ internal struct TaskTokenEvelope: Unboxable {
 internal struct TaskState: Unboxable {
     
     /// Account ID of currently processed account
-    let account_id: String
+    let accountID: String
 
     /// Status message or error message for currently processed account
     let message: String
     
     /// If this flag is set, then the figo Connect server waits for a PIN
-    let is_waiting_for_pin: Bool
+    let isWaitingForPIN: Bool
 
     /// If this flag is set, then the figo Connect server waits for a response to the parameter challenge
-    let is_waiting_for_response: Bool
+    let isWaitingForResponse: Bool
     
     /// If this flag is set, then an error occurred and the figo Connect server waits for a continuation
-    let is_erroneous: Bool
+    let isErroneous: Bool
     
     /// If this flag is set, then the communication with the bank server has been completed
-    let is_ended: Bool
+    let isEnded: Bool
     
     /// Challenge object
     let challenge: Challenge?
     
     
     init(unboxer: Unboxer) {
-        account_id              = unboxer.unbox("account_id")
+        accountID              = unboxer.unbox("account_id")
         message                 = unboxer.unbox("message")
-        is_waiting_for_pin      = unboxer.unbox("is_waiting_for_pin")
-        is_waiting_for_response = unboxer.unbox("is_waiting_for_response")
-        is_erroneous            = unboxer.unbox("is_erroneous")
-        is_ended                = unboxer.unbox("is_ended")
+        isWaitingForPIN         = unboxer.unbox("is_waiting_for_pin")
+        isWaitingForResponse    = unboxer.unbox("is_waiting_for_response")
+        isErroneous             = unboxer.unbox("is_erroneous")
+        isEnded                 = unboxer.unbox("is_ended")
         challenge               = unboxer.unbox("challenge")
     }
 }

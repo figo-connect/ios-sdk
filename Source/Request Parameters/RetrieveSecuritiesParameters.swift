@@ -54,7 +54,7 @@ public enum SecuritySinceType: String, UnboxableEnum {
  
      The value of the parameter since will be compared to the last modification time of the security on the figo Connect server.
  
- - Parameter count: **optional** Limit the number of returned transactions. In combination with the start_id parameter this can be used to paginate the result list. (default: 1000)
+ - Parameter count: **optional** Limit the number of returned transactions. In combination with the offset parameter this can be used to paginate the result list. (default: 1000)
  
  - Parameter offset: **optional** Offset into the implicit list of transactions used as starting point for the returned transactions. In combination with the count parameter this can be used to paginate the result list.
  
@@ -84,7 +84,7 @@ public struct RetrieveSecuritiesParameters: JSONObjectConvertible {
      */
     public var sinceType: TransactionSinceType?
     
-    /// **optional** Limit the number of returned securities. In combination with the start_id parameter this can be used to paginate the result list. (default: 1000)
+    /// **optional** Limit the number of returned securities. In combination with the offset parameter this can be used to paginate the result list. (default: 1000)
     public var count: Int?
     
     /// **optional** Offset into the implicit list of securities used as starting point for the returned securities. In combination with the count parameter this can be used to paginate the result list.

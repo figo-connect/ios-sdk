@@ -19,9 +19,9 @@ internal struct BanksListEnvelope: Unboxable {
 
 public struct SupportedBank: Unboxable {
     
-    public let bank_name: String
+    public let bankName: String
 
-    public let bank_code: Int
+    public let bankCode: Int
     
     public let bic: String
     
@@ -33,8 +33,8 @@ public struct SupportedBank: Unboxable {
     
     
     init(unboxer: Unboxer) {
-        bank_name   = unboxer.unbox("bank_name")
-        bank_code   = unboxer.unbox("bank_code")
+        bankName    = unboxer.unbox("bank_name")
+        bankCode    = unboxer.unbox("bank_code")
         bic         = unboxer.unbox("bic")
         icon        = unboxer.unbox("icon")
         credentials = unboxer.unbox("credentials")

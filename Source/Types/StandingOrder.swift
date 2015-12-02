@@ -56,19 +56,19 @@ internal struct StandingOrderListEnvelope: Unboxable {
 public struct StandingOrder: Unboxable {
 
     /// Internal figo Connect standing order ID
-    let standing_order_id: String
+    let standingOrderID: String
     
     /// Internal figo Connect account ID
-    let account_id: String
+    let accountID: String
     
     /// First execution date of the standing order
-    let first_execution_date: String
+    let firstExecutionDate: String
     
     /// Last execution date of the standing order. This field might be emtpy, if no last execution date is set
-    let last_execution_date: String?
+    let lastExecutionDate: String?
     
     /// The day the standing order gets executed
-    let execution_day: String
+    let executionDay: String
     
     /// The interval the standing order gets executed. Possible values are weekly, monthly, two monthly, quarterly, half yearly and yearly
     let interval: StandingOrderInterval
@@ -77,13 +77,13 @@ public struct StandingOrder: Unboxable {
     let name: String
     
     /// Account number recipient
-    let account_number: String
+    let accountNumber: String
     
     /// Bank code of recipient
-    let bank_code: String
+    let bankCode: String
     
     /// Bank name of recipient
-    let bank_name: String
+    let bankName: String
     
     /// Standing order amount in cents
     let amount: Int
@@ -95,28 +95,28 @@ public struct StandingOrder: Unboxable {
     let purpose: String
     
     /// Internal creation timestamp on the figo Connect server
-    let creation_timestamp: String
+    let creationDate: FigoDate
     
     /// Internal modification timestamp on the figo Connect server
-    let modification_timestamp: String?
+    let modificationDate: FigoDate?
     
     
     init(unboxer: Unboxer) {
-        standing_order_id = unboxer.unbox("standing_order_id")
-        account_id = unboxer.unbox("account_id")
-        first_execution_date = unboxer.unbox("first_execution_date")
-        last_execution_date = unboxer.unbox("last_execution_date")
-        execution_day = unboxer.unbox("execution_day")
+        standingOrderID = unboxer.unbox("standing_order_id")
+        accountID = unboxer.unbox("account_id")
+        firstExecutionDate = unboxer.unbox("first_execution_date")
+        lastExecutionDate = unboxer.unbox("last_execution_date")
+        executionDay = unboxer.unbox("execution_day")
         interval = unboxer.unbox("interval")
         name = unboxer.unbox("name")
-        account_number = unboxer.unbox("account_number")
-        bank_code = unboxer.unbox("bank_code")
-        bank_name = unboxer.unbox("bank_name")
+        accountNumber = unboxer.unbox("account_number")
+        bankCode = unboxer.unbox("bank_code")
+        bankName = unboxer.unbox("bank_name")
         amount = unboxer.unbox("amount")
         currency = unboxer.unbox("currency")
         purpose = unboxer.unbox("purpose")
-        creation_timestamp = unboxer.unbox("creation_timestamp")
-        modification_timestamp = unboxer.unbox("modification_timestamp")
+        creationDate = unboxer.unbox("creation_timestamp")
+        modificationDate = unboxer.unbox("modification_timestamp")
     }
 }
 

@@ -44,37 +44,37 @@ Some banks provide information on transaction, which have not yet been executed.
 public struct Transaction: Unboxable {
     
     /// Internal figo Connect account ID
-    public let account_id: String
+    public let accountID: String
     
     /// Account number of originator or recipient. This field might be empty if the transaction has no account number, e.g. interest transactions.
-    public let account_number: String
+    public let accountNumber: String
     
     /// Transaction amount in cents
     public let amount: Int
     
     /// Bank code of originator or recipient. This field might be empty if the transaction has no bank code, e.g. interest transactions.
-    public let bank_code: String
+    public let bankCode: String
     
     /// Bank name of originator or recipient. This field might be empty if the transaction has no bank code, e.g. interest transactions.
-    public let bank_name: String
+    public let bankName: String
     
     /// This flag indicates whether the transaction is booked or pending
     public let booked: Bool
     
     /// Booking date
-    public let booking_date: String
+    public let bookingDate: FigoDate
 
     /// Booking text. This field might be empty if the transaction has no booking text.
-    public let booking_text: String
+    public let bookingText: String
     
     /// Internal creation timestamp on the figo Connect server
-    public let creation_timestamp: String
+    public let creationDate: FigoDate
     
     /// Three-character currency code
     public let currency: String
     
     /// Internal modification timestamp on the figo Connect server
-    public let modification_timestamp: String
+    public let modificationDate: FigoDate
     
     /// Name of originator or recipient
     public let name: String
@@ -83,40 +83,40 @@ public struct Transaction: Unboxable {
     public let purpose: String
     
     /// Internal figo Connect transaction ID
-    public let transaction_id: String
+    public let transactionID: String
     
     /// Transaction type
     public let type: PaymentType
     
     /// Value date
-    public let value_date: String
+    public let valueDate: FigoDate
     
     /// This flag indicates whether the transaction has already been marked as visited by the user
     public let visited: Bool
     
     /// (optional) Provides more info about the transaction if available, depends on the account type
-    public let additional_info: [String: AnyObject]?
+    public let additionalInfo: [String: AnyObject]?
     
     
     init(unboxer: Unboxer) {
-        account_id = unboxer.unbox("account_id")
-        account_number = unboxer.unbox("account_number")
+        accountID = unboxer.unbox("account_id")
+        accountNumber = unboxer.unbox("account_number")
         amount = unboxer.unbox("amount")
-        bank_code = unboxer.unbox("bank_code")
-        bank_name = unboxer.unbox("bank_name")
+        bankCode = unboxer.unbox("bank_code")
+        bankName = unboxer.unbox("bank_name")
         booked = unboxer.unbox("booked")
-        booking_date = unboxer.unbox("booking_date")
-        booking_text = unboxer.unbox("booking_text")
-        creation_timestamp = unboxer.unbox("creation_timestamp")
+        bookingDate = unboxer.unbox("booking_date")
+        bookingText = unboxer.unbox("booking_text")
+        creationDate = unboxer.unbox("creation_timestamp")
         currency = unboxer.unbox("currency")
-        modification_timestamp = unboxer.unbox("modification_timestamp")
+        modificationDate = unboxer.unbox("modification_timestamp")
         name = unboxer.unbox("name")
         purpose = unboxer.unbox("purpose")
-        transaction_id = unboxer.unbox("transaction_id")
+        transactionID = unboxer.unbox("transaction_id")
         type = unboxer.unbox("type")
-        value_date = unboxer.unbox("value_date")
+        valueDate = unboxer.unbox("value_date")
         visited = unboxer.unbox("visited")
-        additional_info = unboxer.unbox("additional_info")
+        additionalInfo = unboxer.unbox("additional_info")
     }
     
 }

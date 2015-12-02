@@ -22,19 +22,19 @@ public struct SupportedService: Unboxable {
     public let name: String
     
     /// surrogate bank code used for this service
-    public let bank_code: String
+    public let bankCode: String
     
-    public let additional_icons: [String: String]
+    public let additionalIcons: [String: String]
     
     /// URL to an logo of the bank, e.g. as a badge icon
     public let icon: String
     
     
     init(unboxer: Unboxer) {
-        name                = unboxer.unbox("name")
-        bank_code           = unboxer.unbox("bank_code")
-        additional_icons    = unboxer.unbox("additional_icons")
-        icon                = unboxer.unbox("icon")
+        name               = unboxer.unbox("name")
+        bankCode           = unboxer.unbox("bank_code")
+        additionalIcons    = unboxer.unbox("additional_icons")
+        icon               = unboxer.unbox("icon")
     }
 }
 

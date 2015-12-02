@@ -48,6 +48,9 @@
                   Identifier = "BaseTestCase/testLoginUser()">
                </Test>
                <Test
+                  Identifier = "UserTests/testCreateAndDeleteUser()">
+               </Test>
+               <Test
                   Identifier = "UserTests/testCreateNewUser()">
                </Test>
                <Test

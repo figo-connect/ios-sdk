@@ -126,9 +126,9 @@ internal enum Endpoint {
         case .CreatePayment(let parameters):
             return "/rest/accounts/\(parameters.accountID)/payments"
         case .ModifyPayment(let payment):
-            return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)"
+            return "/rest/accounts/\(payment.accountID)/payments/\(payment.paymentID)"
         case .SubmitPayment(let payment, _):
-            return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)/submit"
+            return "/rest/accounts/\(payment.accountID)/payments/\(payment.paymentID)/submit"
         case .RetrievePaymentProposals:
             return "/rest/address_book"
         case .RetrievePayments:

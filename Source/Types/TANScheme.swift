@@ -1,5 +1,5 @@
 //
-//  TanScheme.swift
+//  TANScheme.swift
 //  Figo
 //
 //  Created by Christian König on 25.11.15.
@@ -7,16 +7,16 @@
 //
 
 
-public struct TanScheme: Unboxable  {
+public struct TANScheme: Unboxable  {
     
-    public let medium_name: String
+    public let mediumName: String
     public let name: String
-    public let tan_scheme_id: String
+    public let TANSchemeID: String
     
     
     init(unboxer: Unboxer) {
-        medium_name     = unboxer.unbox("medium_name")
+        mediumName     = unboxer.unbox("medium_name")
         name            = unboxer.unbox("name")
-        tan_scheme_id   = unboxer.unbox("tan_scheme_id")
+        TANSchemeID   = unboxer.unbox("tan_scheme_id")
     }
 }

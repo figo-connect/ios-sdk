@@ -10,7 +10,7 @@
 public struct LoginSettings: Unboxable {
     
     /// Human readable name of the bank
-    public let bank_name: String
+    public let bankName: String
     
     /// Flag showing whether figo supports the bank
     public let supported: Bool
@@ -25,19 +25,19 @@ public struct LoginSettings: Unboxable {
     public let credentials: [LoginCredentials]
     
     /// Kind of authentication used by the bank, commonly PIN
-    public let auth_type: String
+    public let authType: String
     
     /// Any additional advice useful to locate the required credentials
     public let advice: String?
     
     
     init(unboxer: Unboxer) {
-        bank_name           = unboxer.unbox("bank_name")
+        bankName            = unboxer.unbox("bank_name")
         supported           = unboxer.unbox("supported")
         icon                = unboxer.unbox("icon")
         additional_icons    = unboxer.unbox("additional_icons")
         credentials         = unboxer.unbox("credentials")
-        auth_type           = unboxer.unbox("auth_type")
+        authType            = unboxer.unbox("auth_type")
         advice              = unboxer.unbox("advice")
     }
 }

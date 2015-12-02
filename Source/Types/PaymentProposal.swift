@@ -9,17 +9,17 @@
 
 public struct PaymentProposal: Unboxable {
 
-    public let account_number: String
-    public let bank_code: String
+    public let accountNumber: String
+    public let bankCode: String
     public let name: String
-    public let additional_icons: [String: String]?
+    public let additionalIcons: [String: String]?
     public let icon: String
     
     init(unboxer: Unboxer) {
-        account_number = unboxer.unbox("account_number")
-        bank_code = unboxer.unbox("bank_code")
+        accountNumber = unboxer.unbox("account_number")
+        bankCode = unboxer.unbox("bank_code")
         name = unboxer.unbox("name")
-        additional_icons = unboxer.unbox("additional_icons")
+        additionalIcons = unboxer.unbox("additional_icons")
         icon = unboxer.unbox("icon")
     }
 

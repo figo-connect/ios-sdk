@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		83017B781C0A2FE80062FC08 /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
-		830E63D91C05A4050048F7BF /* TanScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TanScheme.swift */; };
-		830E63DA1C05A4050048F7BF /* TanScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TanScheme.swift */; };
+		830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
+		830E63DA1C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
 		830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
 		830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
 		830E63DF1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
@@ -94,6 +94,8 @@
 		838FDA3F1C0F28BB00525E1D /* PaymentProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */; };
 		838FDA411C0F348C00525E1D /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA401C0F348C00525E1D /* AccountType.swift */; };
 		838FDA421C0F348C00525E1D /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA401C0F348C00525E1D /* AccountType.swift */; };
+		838FDA471C0F403700525E1D /* FigoDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA461C0F403700525E1D /* FigoDate.swift */; };
+		838FDA481C0F403700525E1D /* FigoDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA461C0F403700525E1D /* FigoDate.swift */; };
 		83CEDB831C05F43D0008CEF8 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 83CEDB821C05F43D0008CEF8 /* User.json */; };
 		83D3A6EF1BFF5BA4003EDE45 /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
 		83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */; };
@@ -150,7 +152,7 @@
 
 /* Begin PBXFileReference section */
 		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
-		830E63D81C05A4050048F7BF /* TanScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TanScheme.swift; path = Types/TanScheme.swift; sourceTree = "<group>"; };
+		830E63D81C05A4050048F7BF /* TANScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TANScheme.swift; path = Types/TANScheme.swift; sourceTree = "<group>"; };
 		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
 		830E63DD1C05A7070048F7BF /* SyncStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncStatus.swift; path = Types/SyncStatus.swift; sourceTree = "<group>"; };
 		830E63E01C05A7AE0048F7BF /* SyncStatus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SyncStatus.json; path = Resources/SyncStatus.json; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		838FDA351C0EFC0300525E1D /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Payment.swift; path = Types/Payment.swift; sourceTree = "<group>"; };
 		838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProposal.swift; path = Types/PaymentProposal.swift; sourceTree = "<group>"; };
 		838FDA401C0F348C00525E1D /* AccountType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountType.swift; path = Types/AccountType.swift; sourceTree = "<group>"; };
+		838FDA461C0F403700525E1D /* FigoDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FigoDate.swift; sourceTree = "<group>"; };
 		83CEDB801C05DD3D0008CEF8 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		83CEDB821C05F43D0008CEF8 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = Resources/User.json; sourceTree = "<group>"; };
 		83D3A6811BFF2953003EDE45 /* Figo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figo.h; sourceTree = "<group>"; };
@@ -267,6 +270,7 @@
 				83F0E46B1C08A91400FB3709 /* FigoSession.swift */,
 				838FDA031C0DF90100525E1D /* Endpoints.swift */,
 				838FDA041C0DF90100525E1D /* FigoError.swift */,
+				838FDA461C0F403700525E1D /* FigoDate.swift */,
 				838FDA051C0DF90100525E1D /* FigoResult.swift */,
 				838FDA0F1C0DF92500525E1D /* ResponseDecoding.swift */,
 				838FDA061C0DF90100525E1D /* Logging.swift */,
@@ -319,7 +323,7 @@
 				83648D621C0C705700286FFB /* SupportedBank.swift */,
 				83648D651C0C75E600286FFB /* SupportedService.swift */,
 				830E63DD1C05A7070048F7BF /* SyncStatus.swift */,
-				830E63D81C05A4050048F7BF /* TanScheme.swift */,
+				830E63D81C05A4050048F7BF /* TANScheme.swift */,
 				83E95C901C0768E50013ED1F /* TaskState.swift */,
 				838FD9E21C0DACBE00525E1D /* Transaction.swift */,
 				83E7508B1C037ABE00545DF6 /* User.swift */,
@@ -566,6 +570,7 @@
 				83648D671C0C75E600286FFB /* SupportedService.swift in Sources */,
 				8346AAB51C09E32000F9F0DE /* UnboxingTests.swift in Sources */,
 				83648D6A1C0C7B4200286FFB /* LoginCredentials.swift in Sources */,
+				838FDA481C0F403700525E1D /* FigoDate.swift in Sources */,
 				838FDA201C0EDC3B00525E1D /* SecuritiesTests.swift in Sources */,
 				838FDA081C0DF90100525E1D /* Endpoints.swift in Sources */,
 				838FDA421C0F348C00525E1D /* AccountType.swift in Sources */,
@@ -579,7 +584,7 @@
 				838FD9FA1C0DF8D900525E1D /* CreateAccountParameters.swift in Sources */,
 				838FD9E41C0DACBE00525E1D /* Transaction.swift in Sources */,
 				838FDA111C0DF92500525E1D /* ResponseDecoding.swift in Sources */,
-				830E63DA1C05A4050048F7BF /* TanScheme.swift in Sources */,
+				830E63DA1C05A4050048F7BF /* TANScheme.swift in Sources */,
 				838FDA281C0EED1500525E1D /* StandingOrdersEndpoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,11 +613,12 @@
 				838FDA131C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift in Sources */,
 				83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83F0E47D1C08DA6C00FB3709 /* AccountsEndpoints.swift in Sources */,
-				830E63D91C05A4050048F7BF /* TanScheme.swift in Sources */,
+				830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */,
 				83D3A70E1BFFB71D003EDE45 /* Account.swift in Sources */,
 				83648D571C0A42B700286FFB /* LoginSettings.swift in Sources */,
 				83F0E4841C09C60600FB3709 /* FigoUserEndpoints.swift in Sources */,
 				838FD9FB1C0DF8D900525E1D /* CreateSyncTaskParameters.swift in Sources */,
+				838FDA471C0F403700525E1D /* FigoDate.swift in Sources */,
 				838FD9FF1C0DF8D900525E1D /* PollTaskStateParameters.swift in Sources */,
 				83E95C911C0768E50013ED1F /* TaskState.swift in Sources */,
 				838FDA331C0EFB1100525E1D /* PaymentsEndpoints.swift in Sources */,

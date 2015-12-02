@@ -16,14 +16,14 @@ class UnboxingTests: XCTestCase {
         let JSONObject = Resources.PaymentParametersIntTextKeys.JSONObject
         let p: PaymentParameters? = Unbox(JSONObject)
         XCTAssertNotNil(p)
-        XCTAssertEqual(p?.supported_text_keys?.count, 6)
+        XCTAssertEqual(p?.supportedTextKeys?.count, 6)
     }
     
     func testStringTextKeys() {
         let JSONObject = Resources.PaymentParametersStringTextKeys.JSONObject
         let p: PaymentParameters? = Unbox(JSONObject)
         XCTAssertNotNil(p)
-        XCTAssertEqual(p?.supported_text_keys_strings?.count, 6)
+        XCTAssertEqual(p?.supportedTextKeysStrings?.count, 6)
     }
     
     func testThatAccountSerializerYieldsObject() {
@@ -35,7 +35,7 @@ class UnboxingTests: XCTestCase {
         XCTAssertEqual(account.additionalIcons.count, 2)
         XCTAssertEqual(account.autoSync, false)
         XCTAssertEqual(account.balance!.balance, Int(325031))
-        XCTAssertEqual(account.balance!.balance_date, "2013-09-11T00:00:00.000Z")
+        XCTAssertEqual(account.balance!.balanceDate?.timestamp, "2013-09-11T00:00:00.000Z")
         XCTAssertEqual(account.bankCode, "90090042")
         XCTAssertEqual(account.bankID, "B1.1")
         XCTAssertEqual(account.bankName, "Demobank")
@@ -50,21 +50,21 @@ class UnboxingTests: XCTestCase {
         XCTAssertEqual(account.savePin, false)
         XCTAssertEqual(account.status!.code, -1)
         XCTAssertEqual(account.status!.message, "Cannot load credential 8f084858-e1c6-4642-87f8-540b530b6e0f: UUID does not exist.")
-        XCTAssertEqual(account.status!.success_timestamp, "2013-09-11T00:00:00.000Z")
-        XCTAssertEqual(account.status!.sync_timestamp, "2014-07-09T10:04:40.000Z")
+        XCTAssertEqual(account.status!.successDate.timestamp, "2013-09-11T00:00:00.000Z")
+        XCTAssertEqual(account.status!.syncDate.timestamp, "2014-07-09T10:04:40.000Z")
         XCTAssertEqual(account.supportedPayments.count, 1)
         let (type, parameters) = account.supportedPayments.first!
         XCTAssertEqual(type.rawValue, "Transfer")
-        XCTAssertEqual(parameters.allowed_recipients.count, 0)
-        XCTAssertEqual(parameters.can_be_recurring, false)
-        XCTAssertEqual(parameters.can_be_scheduled, true)
-        XCTAssertEqual(parameters.max_purpose_length, 108)
-        XCTAssertEqual(parameters.supported_text_keys![0], 51)
-        XCTAssertEqual(parameters.supported_text_keys![1], 53)
+        XCTAssertEqual(parameters.allowedRecipients.count, 0)
+        XCTAssertEqual(parameters.canBeRecurring, false)
+        XCTAssertEqual(parameters.canBeScheduled, true)
+        XCTAssertEqual(parameters.maxPurposeLength, 108)
+        XCTAssertEqual(parameters.supportedTextKeys![0], 51)
+        XCTAssertEqual(parameters.supportedTextKeys![1], 53)
         XCTAssertEqual(account.supportedTANSchemes.count, 3)
-        XCTAssertEqual(account.supportedTANSchemes.first?.medium_name, "")
+        XCTAssertEqual(account.supportedTANSchemes.first?.mediumName, "")
         XCTAssertEqual(account.supportedTANSchemes.first?.name, "iTAN")
-        XCTAssertEqual(account.supportedTANSchemes.last?.tan_scheme_id, "M1.3")
+        XCTAssertEqual(account.supportedTANSchemes.last?.TANSchemeID, "M1.3")
         XCTAssertEqual(account.type, AccountType.Unknown)
 
     }
@@ -75,18 +75,18 @@ class UnboxingTests: XCTestCase {
         
         XCTAssertEqual(user.address?.city, "Berlin")
         XCTAssertEqual(user.address?.company, "figo")
-        XCTAssertEqual(user.address?.postal_code, "10969")
+        XCTAssertEqual(user.address?.postalCode, "10969")
         XCTAssertEqual(user.address?.street, "Ritterstr. 2-3")
         XCTAssertEqual(user.email, "demo@figo.me")
-        XCTAssertEqual(user.join_date, "2012-04-19T17:25:54.000Z")
+        XCTAssertEqual(user.joinDate?.timestamp, "2012-04-19T17:25:54.000Z")
         XCTAssertEqual(user.language, "en")
         XCTAssertEqual(user.name, "John Doe")
         XCTAssertEqual(user.premium, true)
-        XCTAssertEqual(user.premium_expires_on, "2014-04-19T17:25:54.000Z")
-        XCTAssertEqual(user.premium_subscription, "paymill")
-        XCTAssertEqual(user.send_newsletter, true)
-        XCTAssertEqual(user.user_id, "U12345")
-        XCTAssertEqual(user.verified_email, true)
+        XCTAssertEqual(user.premiumExpiresOn?.timestamp, "2014-04-19T17:25:54.000Z")
+        XCTAssertEqual(user.premiumSubscription, "paymill")
+        XCTAssertEqual(user.sendNewsletter, true)
+        XCTAssertEqual(user.userID, "U12345")
+        XCTAssertEqual(user.verifiedEmail, true)
     }
     
     func testThatSerializerThrowsCorrectErrorForMissingMandatoryKeys() {
@@ -111,44 +111,44 @@ class UnboxingTests: XCTestCase {
         let JSONObject = Resources.Balance.JSONObject
         let balance: Balance = Unbox(JSONObject)!
         XCTAssertEqual(balance.balance, 325031)
-        let date = dateFromString(balance.balance_date)
-        XCTAssertNotNil(date)
+        XCTAssertNotNil(balance.balanceDate?.date)
+        print(balance.balanceDate!)
     }
     
     func testThatSerializerYieldsTanSchemeObject() {
         let JSONObject = Resources.TanScheme.JSONObject
-        let scheme: TanScheme = Unbox(JSONObject)!
-        XCTAssertEqual(scheme.medium_name, "Girocard")
+        let scheme: TANScheme = Unbox(JSONObject)!
+        XCTAssertEqual(scheme.mediumName, "Girocard")
         XCTAssertEqual(scheme.name, "chipTAN optisch")
-        XCTAssertEqual(scheme.tan_scheme_id, "M1.2")
+        XCTAssertEqual(scheme.TANSchemeID, "M1.2")
     }
     
     func testThatSerializerYieldsTaskStateObject() {
         let JSONObject = Resources.TaskState.JSONObject
         let scheme: TaskState = Unbox(JSONObject)!
-        XCTAssertEqual(scheme.account_id, "A1182805.0")
+        XCTAssertEqual(scheme.accountID, "A1182805.0")
     }
     
     func testTransactionUnboxing(){
         let data = Resources.Transaction.data
         do {
             let t: Transaction = try UnboxOrThrow(data)
-            XCTAssertEqual(t.account_id, "A1.1")
-            XCTAssertEqual(t.account_number, "4711951501")
+            XCTAssertEqual(t.accountID, "A1.1")
+            XCTAssertEqual(t.accountNumber, "4711951501")
             XCTAssertEqual(t.amount, -300000)
-            XCTAssertEqual(t.bank_code, "90090042")
-            XCTAssertEqual(t.bank_name, "Demobank")
+            XCTAssertEqual(t.bankCode, "90090042")
+            XCTAssertEqual(t.bankName, "Demobank")
             XCTAssertEqual(t.booked, true)
-            XCTAssertEqual(t.booking_date, "2013-04-10T12:00:00.000Z")
-            XCTAssertEqual(t.booking_text, "Lastschrift")
-            XCTAssertEqual(t.creation_timestamp, "2013-04-10T08:21:36.000Z")
+            XCTAssertEqual(t.bookingDate.timestamp, "2013-04-10T12:00:00.000Z")
+            XCTAssertEqual(t.bookingText, "Lastschrift")
+            XCTAssertEqual(t.creationDate.timestamp, "2013-04-10T08:21:36.000Z")
             XCTAssertEqual(t.currency, "EUR")
-            XCTAssertEqual(t.modification_timestamp, "2013-04-11T13:54:02.000Z")
+            XCTAssertEqual(t.modificationDate.timestamp, "2013-04-11T13:54:02.000Z")
             XCTAssertEqual(t.name, "Dr. House Solutions GmbH")
             XCTAssertEqual(t.purpose, "Miete Vertragsnr. 12993")
-            XCTAssertEqual(t.transaction_id, "T1.24")
+            XCTAssertEqual(t.transactionID, "T1.24")
             XCTAssertEqual(t.type.rawValue, "Direct debit")
-            XCTAssertEqual(t.value_date, "2013-04-10T12:00:00.000Z")
+            XCTAssertEqual(t.valueDate.timestamp, "2013-04-10T12:00:00.000Z")
             XCTAssertEqual(t.visited, true)
         }
         catch (let error as UnboxError) {
@@ -163,23 +163,23 @@ class UnboxingTests: XCTestCase {
         let data = Resources.Security.data
         do {
             let s: Security = try UnboxOrThrow(data)
-            XCTAssertEqual(s.account_id, "A1182805.3")
+            XCTAssertEqual(s.accountID, "A1182805.3")
             XCTAssertEqual(s.amount, 629465)
-            XCTAssertEqual(s.amount_original_currency, 1050000)
-            XCTAssertEqual(s.creation_timestamp, "2015-11-28T18:30:21.000Z")
+            XCTAssertEqual(s.amountOriginalCurrency, 1050000)
+            XCTAssertEqual(s.creationDate.timestamp, "2015-11-28T18:30:21.000Z")
             XCTAssertEqual(s.currency, "AUD")
-            XCTAssertEqual(s.exchange_rate, 0.60)
+            XCTAssertEqual(s.exchangeRate, 0.60)
             XCTAssertEqual(s.isin, "AU9876543210")
             XCTAssertEqual(s.market, "XASX")
-            XCTAssertEqual(s.modification_timestamp, "2015-11-28T18:30:21.000Z")
+            XCTAssertEqual(s.modificationDate.timestamp, "2015-11-28T18:30:21.000Z")
             XCTAssertEqual(s.name, "Australian Domestic Bonds 1993 (2003) Ser. 10")
             XCTAssertEqual(s.price, 10500)
-            XCTAssertEqual(s.price_currency, "EUR")
-            XCTAssertEqual(s.purchase_price, 9975)
-            XCTAssertEqual(s.purchase_price_currency, "EUR")
+            XCTAssertEqual(s.priceCurrency, "EUR")
+            XCTAssertEqual(s.purchasePrice, 9975)
+            XCTAssertEqual(s.purchasePriceCurrency, "EUR")
             XCTAssertEqual(s.quantity, 10000)
-            XCTAssertEqual(s.security_id, "S1182805.1")
-            XCTAssertEqual(s.trade_timestamp, "1999-05-28T22:59:59.000Z")
+            XCTAssertEqual(s.securityID, "S1182805.1")
+            XCTAssertEqual(s.tradeDate.timestamp, "1999-05-28T22:59:59.000Z")
             XCTAssertEqual(s.visited, false)
             XCTAssertEqual(s.wkn, "")
         }
@@ -195,7 +195,7 @@ class UnboxingTests: XCTestCase {
         let data = Resources.StandingOrder.data
         do {
             let s: StandingOrder = try UnboxOrThrow(data)
-            XCTAssertEqual(s.account_id, "A1.1")
+            XCTAssertEqual(s.accountID, "A1.1")
         }
         catch (let error as UnboxError) {
             XCTFail(error.description)

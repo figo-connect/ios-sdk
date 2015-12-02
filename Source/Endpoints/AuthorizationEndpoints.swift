@@ -33,9 +33,9 @@ extension FigoSession {
             let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .Success(let authorization):
-                self.accessToken = authorization.access_token
-                self.refreshToken = authorization.refresh_token
-                completionHandler(FigoResult.Success(authorization.refresh_token!))
+                self.accessToken = authorization.accessToken
+                self.refreshToken = authorization.refreshToken
+                completionHandler(FigoResult.Success(authorization.refreshToken!))
                 break
             case .Failure(let error):
                 completionHandler(.Failure(error))
@@ -62,8 +62,8 @@ extension FigoSession {
             let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .Success(let authorization):
-                self.accessToken = authorization.access_token
-                self.refreshToken = authorization.refresh_token
+                self.accessToken = authorization.accessToken
+                self.refreshToken = authorization.refreshToken
                 completionHandler(.Success())
                 break
             case .Failure(let error):

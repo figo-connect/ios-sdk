@@ -67,7 +67,7 @@ Parameters for RETRIEVE TRANSACTIONS endpoints
  
 - Parameter filter: **optional** Filter expression to narrow down the returned transactions
  
-- Parameter count: **optional** Limit the number of returned transactions. In combination with the start_id parameter this can be used to paginate the result list. (default: 1000)
+- Parameter count: **optional** Limit the number of returned transactions. In combination with the offset parameter this can be used to paginate the result list. (default: 1000)
  
 - Parameter offset: **optional** Offset into the implicit list of transactions used as starting point for the returned transactions. In combination with the count parameter this can be used to paginate the result list.
  

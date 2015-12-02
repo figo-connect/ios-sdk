@@ -55,3 +55,8 @@ internal func base64EncodeBasicAuthCredentials(clientID: String, _ clientSecret:
     let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
     return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
 }
+
+
+
+
+

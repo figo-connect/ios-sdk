@@ -11,14 +11,14 @@ public struct SyncStatus: Unboxable {
     
     public let code: Int
     public let message: String?
-    public let success_timestamp: String
-    public let sync_timestamp: String
+    public let successDate: FigoDate
+    public let syncDate: FigoDate
     
     
     init(unboxer: Unboxer) {
-        code                = unboxer.unbox("code")
-        message             = unboxer.unbox("message")
-        success_timestamp   = unboxer.unbox("success_timestamp")
-        sync_timestamp      = unboxer.unbox("sync_timestamp")
+        code          = unboxer.unbox("code")
+        message       = unboxer.unbox("message")
+        successDate   = unboxer.unbox("success_timestamp")
+        syncDate      = unboxer.unbox("sync_timestamp")
     }
 }

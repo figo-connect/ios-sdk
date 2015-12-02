@@ -17,7 +17,7 @@ Parameters for the endpoint CREATE NEW FIGO USER
 - Parameter sendNewsletter: **optional** This flag indicates whether the user has agreed to be contacted by email (optional)
 - Parameter language: **optional** Two-letter code of preferred language (default: de)
 - Parameter affiliateUser: **optional** Base64 encoded email address of the user promoting the new user
-- Parameter affiliateClientId: **optional** Client ID of the figo Connect partner from which the user was redirected to the registration form
+- Parameter affiliateClientID: **optional** Client ID of the figo Connect partner from which the user was redirected to the registration form
 
 */
 public struct CreateUserParameters: JSONObjectConvertible {
@@ -41,17 +41,17 @@ public struct CreateUserParameters: JSONObjectConvertible {
     public let affiliateUser: String?
     
     /// **optional** Client ID of the figo Connect partner from which the user was redirected to the registration form
-    public let affiliateClientId: String?
+    public let affiliateClientID: String?
     
 
-    init(name: String, email: String, password: String, send_newsletter: Bool? = false, language: String? = "de", affiliate_user: String? = nil, affiliate_client_id: String? = nil) {
+    init(name: String, email: String, password: String, send_newsletter: Bool? = false, language: String? = "de", affiliate_user: String? = nil, affiliateClientID: String? = nil) {
         self.name = name
         self.email = email
         self.password = password
         self.sendNewsletter = send_newsletter
         self.language = language
         self.affiliateUser = affiliate_user
-        self.affiliateClientId = affiliate_client_id
+        self.affiliateClientID = affiliateClientID
     }
     
     var JSONObject: [String: AnyObject] {
@@ -63,7 +63,7 @@ public struct CreateUserParameters: JSONObjectConvertible {
             dict["language"] = language
             dict["password"] = password
             dict["affiliate_user"] = affiliateUser
-            dict["affiliate_client_id"] = affiliateClientId
+            dict["affiliate_client_id"] = affiliateClientID
             return dict
         }
     }

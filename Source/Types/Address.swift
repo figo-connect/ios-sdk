@@ -11,7 +11,7 @@ public struct Address: Unboxable {
     
     public let city: String?
     public let company: String?
-    public let postal_code: String?
+    public let postalCode: String?
     public let street: String?
     public let street2: String?
     public let country: String?
@@ -21,7 +21,7 @@ public struct Address: Unboxable {
     init(unboxer: Unboxer) {
         city        = unboxer.unbox("city")
         company     = unboxer.unbox("company")
-        postal_code = unboxer.unbox("postal_code")
+        postalCode = unboxer.unbox("postal_code")
         street      = unboxer.unbox("street")
         street2     = unboxer.unbox("street2")
         country     = unboxer.unbox("country")
