@@ -38,7 +38,7 @@ public struct CreateAccountParameters {
     public var sync_tasks: [String]?
     
     
-    public var JSONObject: [String: AnyObject] {
+    var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
         dict["bank_code"] = bank_code
         dict["iban"] = iban

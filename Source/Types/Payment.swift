@@ -19,13 +19,13 @@ public struct Payment: Unboxable {
     public let type: PaymentType
     
     /// Name of creditor or debtor
-    public let name: String
+    public var name: String
     
     /// Account number of creditor or debtor
-    public let account_number: String
+    public var account_number: String
     
     /// Bank code of creditor or debtor
-    public let bank_code: String
+    public var bank_code: String
     
     /// Bank name of creditor or debtor
     public let bank_name: String
@@ -37,19 +37,19 @@ public struct Payment: Unboxable {
     public let bank_additional_icons: [String: String]
     
     /// Order amount
-    public let amount: Int
+    public var amount: Float
     
     /// Three-character currency code
-    public let currency: String
+    public var currency: String
     
     /// Purpose text. This field might be empty if the transaction has no purpose.
-    public let purpose: String
+    public var purpose: String
     
     /// DTA text key
-    public let textKey: Int
+    public var textKey: Int
     
     /// DTA text key extension
-    public let textKeyExtension: Int
+    public var textKeyExtension: Int
     
     /// If this payment object is a container for multiple payments, then this field is set and contains a list of payment objects
     public let container: [Payment]?
@@ -62,6 +62,10 @@ public struct Payment: Unboxable {
     
     /// Internal modification timestamp on the figo Connect server
     public let modification_timestamp: String
+    
+    /// **optional** Recipient of the payment notification, should be an email address
+    /// - Note: Only used when modifying an existing payment
+    public var notificationRecipient: String?
     
     
     init(unboxer: Unboxer) {
@@ -83,6 +87,23 @@ public struct Payment: Unboxable {
         submission_timestamp = unboxer.unbox("submission_timestamp")
         creation_timestamp = unboxer.unbox("creation_timestamp")
         modification_timestamp = unboxer.unbox("modification_timestamp")
+    }
+    
+    
+    // Used when modifying a payment
+    var JSONObject: [String: AnyObject] {
+        var dict = Dictionary<String, AnyObject>()
+        dict["name"] = name
+        dict["account_number"] = account_number
+        dict["bank_code"] = bank_code
+        dict["amount"] = amount
+        dict["currency"] = currency
+        dict["purpose"] = purpose
+        dict["text_key"] = textKey
+        dict["text_key_extension"] = textKeyExtension
+        dict["notification_recipient"] = notificationRecipient
+//        dict["cents"] = true
+        return dict
     }
     
 }

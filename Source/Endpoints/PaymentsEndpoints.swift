@@ -13,10 +13,22 @@ extension FigoSession {
      CREATE A SINGLE PAYMENT
      
      - Parameter parameters: `CreatePaymentParameters`
-     - Parameter completionHandler: Returns nothing or error
+     - Parameter completionHandler: Returns payment or error
      */
     public func createPayment(parameters: CreatePaymentParameters, _ completionHandler: FigoResult<Payment> -> Void) {
         request(.CreatePayment(parameters)) { response in
+            completionHandler(decodeUnboxableResponse(response))
+        }
+    }
+    
+    /**
+     MODIFY A PAYMENT
+     
+     - Parameter payment: `Payment`
+     - Parameter completionHandler: Returns nothing or error
+     */
+    public func modifyPayment(payment: Payment, _ completionHandler: FigoResult<Payment> -> Void) {
+        request(.ModifyPayment(payment)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }

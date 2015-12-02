@@ -42,6 +42,7 @@ enum Endpoint {
     case RetrieveStandingOrdersForAccount(String)
     case RetrieveStandingOrder(String)
     case CreatePayment(CreatePaymentParameters)
+    case ModifyPayment(Payment)
     case SubmitPayment(Payment, tanSchemeID: String)
     
     private var method: Method {
@@ -50,6 +51,8 @@ enum Endpoint {
             return .POST
         case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
+        case .ModifyPayment:
+            return .PUT
         default:
             return .GET
         }
@@ -103,6 +106,8 @@ enum Endpoint {
             return "/rest/standing_orders/\(standingOrderID)"
         case .CreatePayment(let parameters):
             return "/rest/accounts/\(parameters.accountID)/payments"
+        case .ModifyPayment(let payment):
+            return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)"
         case .SubmitPayment(let payment, _):
             return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)/submit"
         }
@@ -142,6 +147,8 @@ enum Endpoint {
             return ["cents" : true]
         case .CreatePayment(let parameters):
             return parameters.JSONObject
+        case .ModifyPayment(let parameters):
+            return parameters.JSONObject
         case .SubmitPayment(_, let tanSchemeID):
             return ["tan_scheme_id": tanSchemeID, "state": NSUUID().UUIDString]
         default:
@@ -151,7 +158,7 @@ enum Endpoint {
     
     private func encodeParameters(request: NSMutableURLRequest) {
         switch self.method {
-        case .POST:
+        case .POST, .PUT:
             if case .PollTaskState(let parameters) = self {
                 encodeURLParameters(request, ["id": parameters.taskToken])
             }

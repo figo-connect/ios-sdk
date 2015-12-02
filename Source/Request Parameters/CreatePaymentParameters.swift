@@ -15,7 +15,7 @@ Parameters for creating a payment
     - accountID: **required** Internal figo connect ID of the account
     - type: **required** Payment type (valid values: Transfer, Direct debit, SEPA transfer, SEPA direct debit, SEPA standing order, Modify SEPA standing order)
     - name: **required** Name of creditor or debtor
-    - amount: **required** Order amount in cents
+    - amount: **required** Order amount
     - purpose: **required** Purpose text
     - accountNumber: **optional** Account number of creditor or debtor
     - bankCode: **optional** Bank code of creditor or debtor
@@ -39,8 +39,8 @@ public struct CreatePaymentParameters: JSONObjectConvertible {
     /// **required** Name of creditor or debtor
     public let name: String
     
-    /// **required** Order amount in cents
-    public let amount: Int
+    /// **required** Order amount
+    public let amount: Float
     
     /// **required** Purpose text
     public let purpose: String
@@ -65,12 +65,9 @@ public struct CreatePaymentParameters: JSONObjectConvertible {
 
     /// **optional** Recipient of the payment notification, should be an email address
     public var notificationRecipient: String?
-
-    /// **optional** If true, the balance will be shown in cents
-    private let cents: Bool = true
     
     
-    init(accountID: String, type: PaymentType, name: String, amount: Int, purpose: String, accountNumber: String? = nil, bankCode: String? = nil, iban: String? = nil, currency: String? = nil, textKey: Int? = nil, textKeyExtension: Int? = nil, notificationRecipient: String? = nil) {
+    init(accountID: String, type: PaymentType, name: String, amount: Float, purpose: String, accountNumber: String? = nil, bankCode: String? = nil, iban: String? = nil, currency: String? = nil, textKey: Int? = nil, textKeyExtension: Int? = nil, notificationRecipient: String? = nil) {
         self.accountID = accountID
         self.type = type
         self.name = name
@@ -85,7 +82,7 @@ public struct CreatePaymentParameters: JSONObjectConvertible {
         self.notificationRecipient = notificationRecipient
     }
     
-    public var JSONObject: [String: AnyObject] {
+    var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
         dict["account_id"] = accountID
         dict["type"] = type.rawValue
@@ -99,8 +96,9 @@ public struct CreatePaymentParameters: JSONObjectConvertible {
         dict["text_key"] = textKey
         dict["text_key_extension"] = textKeyExtension
         dict["notification_recipient"] = notificationRecipient
-        dict["cents"] = cents
+//        dict["cents"] = true
         return dict
     }
+    
 }
 

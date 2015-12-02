@@ -28,10 +28,10 @@ class PaymentsTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testSubmitPayment() {
+    func testCreateModifyAndSubmitPayment() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
-        var params = CreatePaymentParameters(accountID: "A1182805.4", type: .Transfer, name: "Christian König", amount: 999, purpose: "Test")
+        var params = CreatePaymentParameters(accountID: "A1182805.4", type: .Transfer, name: "Christian König", amount: 222, purpose: "Test")
         params.bankCode = "66450050"
         params.accountNumber = "66450050"
         
@@ -47,17 +47,32 @@ class PaymentsTests: BaseTestCaseWithLogin {
         }
         
         login() {
-            self.figo.createPayment(params) { result in
-                switch result {
-                case .Success(let payment):
+            
+            self.figo.createPayment(params) { createResult in
+                switch createResult {
                     
-                    self.figo.submitPayment(payment, tanSchemeID: "M1182805.9", pinHandler: pinHandler, challengeHandler: challengeHandler) { result in
-                        XCTAssertNil(result.error)
-                        expectation.fulfill()
+                case .Success(var payment):
+                    payment.amount = 666
+                    
+                    self.figo.modifyPayment(payment) { modifyResult in
+                        switch modifyResult {
+                            
+                        case .Success(let payment):
+                            self.figo.submitPayment(payment, tanSchemeID: "M1182805.9", pinHandler: pinHandler, challengeHandler: challengeHandler) { submitResult in
+                                XCTAssertNil(submitResult.error)
+                                expectation.fulfill()
+                            }
+                            break
+                            
+                        case .Failure(let error):
+                            XCTAssertNil(error)
+                            expectation.fulfill()
+                            break
+                        }
                     }
                     break
-                case .Failure(let error):
                     
+                case .Failure(let error):
                     XCTAssertNil(error)
                     expectation.fulfill()
                     break
@@ -66,7 +81,7 @@ class PaymentsTests: BaseTestCaseWithLogin {
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
-
+    
     
 }
 
