@@ -90,6 +90,8 @@
 		838FDA341C0EFB1100525E1D /* PaymentsEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA321C0EFB1100525E1D /* PaymentsEndpoints.swift */; };
 		838FDA361C0EFC0300525E1D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA351C0EFC0300525E1D /* Payment.swift */; };
 		838FDA371C0EFC0300525E1D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA351C0EFC0300525E1D /* Payment.swift */; };
+		838FDA3E1C0F28BB00525E1D /* PaymentProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */; };
+		838FDA3F1C0F28BB00525E1D /* PaymentProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */; };
 		83A6DA171C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
 		83A6DA181C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
 		83CEDB831C05F43D0008CEF8 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 83CEDB821C05F43D0008CEF8 /* User.json */; };
@@ -195,6 +197,7 @@
 		838FDA301C0EF4A400525E1D /* PaymentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsTests.swift; sourceTree = "<group>"; };
 		838FDA321C0EFB1100525E1D /* PaymentsEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsEndpoints.swift; sourceTree = "<group>"; };
 		838FDA351C0EFC0300525E1D /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Payment.swift; path = Types/Payment.swift; sourceTree = "<group>"; };
+		838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProposal.swift; path = Types/PaymentProposal.swift; sourceTree = "<group>"; };
 		83A6DA161C059E7E0060FA8F /* BaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseType.swift; path = Types/BaseType.swift; sourceTree = "<group>"; };
 		83CEDB801C05DD3D0008CEF8 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		83CEDB821C05F43D0008CEF8 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = Resources/User.json; sourceTree = "<group>"; };
@@ -310,6 +313,7 @@
 				838FDA351C0EFC0300525E1D /* Payment.swift */,
 				838FD9ED1C0DEEFD00525E1D /* PaymentType.swift */,
 				830E63E21C05AB890048F7BF /* PaymentParameters.swift */,
+				838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */,
 				838FDA151C0ED4CB00525E1D /* Security.swift */,
 				838FDA211C0EE54000525E1D /* StandingOrder.swift */,
 				83648D621C0C705700286FFB /* SupportedBank.swift */,
@@ -535,6 +539,7 @@
 				83648D641C0C705700286FFB /* SupportedBank.swift in Sources */,
 				83F0E4791C08DA2800FB3709 /* Address.swift in Sources */,
 				838FDA231C0EE54000525E1D /* StandingOrder.swift in Sources */,
+				838FDA3F1C0F28BB00525E1D /* PaymentProposal.swift in Sources */,
 				838FDA371C0EFC0300525E1D /* Payment.swift in Sources */,
 				83E7508D1C037ABE00545DF6 /* User.swift in Sources */,
 				83F0E46D1C08A91400FB3709 /* FigoSession.swift in Sources */,
@@ -621,6 +626,7 @@
 				83F0E47A1C08DA2800FB3709 /* Balance.swift in Sources */,
 				838FD9CE1C0D905500525E1D /* XCGLogger.swift in Sources */,
 				838FDA0B1C0DF90100525E1D /* FigoResult.swift in Sources */,
+				838FDA3E1C0F28BB00525E1D /* PaymentProposal.swift in Sources */,
 				838FD9FD1C0DF8D900525E1D /* CreateUserParameters.swift in Sources */,
 				83A6DA171C059E7E0060FA8F /* BaseType.swift in Sources */,
 				838FDA1C1C0EDA8800525E1D /* SecuritiesEndpoints.swift in Sources */,

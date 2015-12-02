@@ -44,6 +44,7 @@ enum Endpoint {
     case CreatePayment(CreatePaymentParameters)
     case ModifyPayment(Payment)
     case SubmitPayment(Payment, tanSchemeID: String)
+    case RetrievePaymentProposals
     
     private var method: Method {
         switch self {
@@ -110,6 +111,8 @@ enum Endpoint {
             return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)"
         case .SubmitPayment(let payment, _):
             return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)/submit"
+        case .RetrievePaymentProposals:
+            return "/rest/address_book"
         }
     }
     

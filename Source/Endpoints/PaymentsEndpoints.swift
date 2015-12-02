@@ -10,6 +10,19 @@
 extension FigoSession {
     
     /**
+     RETRIEVE PAYMENT PROPOSALS
+     
+     Provides a address book-like list of proposed wire transfer partners
+     
+     - Parameter completionHandler: Returns payment proposals or error
+     */
+    public func retrievePaymentProposals(completionHandler: FigoResult<[PaymentProposal]> -> Void) {
+        request(.RetrievePaymentProposals) { response in
+            completionHandler(decodeUnboxableResponse(response))
+        }
+    }
+    
+    /**
      CREATE A SINGLE PAYMENT
      
      - Parameter parameters: `CreatePaymentParameters`

@@ -28,6 +28,21 @@ class PaymentsTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
+    func testThatRetrievePaymentProposalsYieldsNoErrors() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        
+        login() {
+            self.figo.retrievePaymentProposals() { result in
+                if case .Success(let proposals) = result {
+                    print("Retrieved \(proposals.count) payment proposals")
+                }
+                XCTAssertNil(result.error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
     func testCreateModifyAndSubmitPayment() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
