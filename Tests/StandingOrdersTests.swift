@@ -13,7 +13,7 @@ import Figo
 
 class StandingOrdersTests: BaseTestCaseWithLogin {
     
-    func testThatRetrieveSecuritiesForAccountYieldsNoErrors() {
+    func testThatRetrieveStandingOrdersForAccountYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
@@ -42,18 +42,5 @@ class StandingOrdersTests: BaseTestCaseWithLogin {
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
-    
-//    func testThatRetrieveSecurityYieldsNoErrors() {
-//        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-//        
-//        login() {
-//            
-//            self.figo.retrieveSecurity(accountID: "A1182805.3", securityID: "S1182805.2") { result in
-//                XCTAssertNil(result.error)
-//                expectation.fulfill()
-//            }
-//        }
-//        self.waitForExpectationsWithTimeout(30, handler: nil)
-//    }
     
 }

@@ -41,12 +41,12 @@ extension FigoSession {
     /**
      RETRIEVE A SECURITY
 
-     - Parameter accountID: ID of the account the security belongs to
      - Parameter securityID: ID of the securitiy to retrieve
+     - Parameter accountID: ID of the account the security belongs to
      - Parameter completionHandler: Returns security or error
      */
-    public func retrieveSecurity(accountID accountID: String, securityID: String, _ completionHandler: (FigoResult<Security>) -> Void) {
-        request(.RetrieveSecurity(accountID: accountID, securityID: securityID)) { response in
+    public func retrieveSecurity(securityID: String, accountID: String, _ completionHandler: (FigoResult<Security>) -> Void) {
+        request(.RetrieveSecurity(securityID, accountID: accountID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }

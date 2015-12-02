@@ -12,14 +12,13 @@ import Figo
 
 class PaymentsTests: BaseTestCaseWithLogin {
     
-    
-    func testThatRetrieveSecuritiesForAccountYieldsNoErrors() {
+    func testThatRetrievePaymentsYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrieveStandingOrdersForAccount("A1182805.4") { result in
-                if case .Success(let orders) = result {
-                    print("Retrieved \(orders.count) standing orders")
+            self.figo.retrievePayments() { result in
+                if case .Success(let payments) = result {
+                    print("Retrieved \(payments.count) payments")
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()
@@ -28,14 +27,28 @@ class PaymentsTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testThatRetrievePaymentProposalsYieldsNoErrors() {
+    
+    func testThatRetrievePaymentsForAccountYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrievePaymentProposals() { result in
-                if case .Success(let proposals) = result {
-                    print("Retrieved \(proposals.count) payment proposals")
+            self.figo.retrievePaymentsForAccount("A1182805.4") { result in
+                if case .Success(let payments) = result {
+                    print("Retrieved \(payments.count) payments")
                 }
+                XCTAssertNil(result.error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+
+
+    func testThatRetrievePaymentYieldsNoErrors() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        
+        login() {
+            self.figo.retrievePayment("P1182805.12", accountID: "A1182805.4") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }

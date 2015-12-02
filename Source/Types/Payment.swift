@@ -7,6 +7,15 @@
 //
 
 
+internal struct PaymentListEnvelope: Unboxable {
+    let payments: [Payment]
+    
+    init(unboxer: Unboxer) {
+        payments = unboxer.unbox("payments")
+    }
+}
+
+
 public struct Payment: Unboxable {
     
     /// Internal figo Connect payment ID

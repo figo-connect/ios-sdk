@@ -68,7 +68,7 @@ extension FigoSession {
      - Parameter completionHandler: Returns nothing or error
      */
     public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate?, _ completionHandler: VoidCompletionHandler) {
-        request(.SetupCreateAccountParameters(parameters)) { response in
+        request(.SetupAccount(parameters)) { response in
             
             let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {

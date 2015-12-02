@@ -13,42 +13,56 @@ private enum Method: String {
     case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
 }
 
-enum Endpoint {
+
+internal enum Endpoint {
+    
     private static let baseURLString = "https://api.figo.me"
     
     case CreateNewFigoUser(CreateUserParameters)
     case LoginUser(username: String, password: String)
     case DeleteCurrentUser
     case RetrieveCurrentUser
+    
     case RefreshToken(String)
     case RevokeToken(String)
-    case SetupCreateAccountParameters(CreateAccountParameters)
+    
+    case SetupAccount(CreateAccountParameters)
     case RetrieveAccounts
     case RetrieveAccount(String)
     case RemoveStoredPin(bankID: String)
     case DeleteAccount(String)
+    
     case RetrieveLoginSettings(countryCode: String, bankCode: String)
-    case PollTaskState(PollTaskStateParameters)
     case RetrieveSupportedBanks(countryCode: String)
     case RetrieveSupportedServices(countryCode: String)
+
+    case PollTaskState(PollTaskStateParameters)
     case Synchronize([String: AnyObject])
+    
     case RetrieveTransactions(RetrieveTransactionsParameters?)
     case RetrieveTransactionsForAccount(String, parameters: RetrieveTransactionsParameters?)
     case RetrieveTransaction(String)
+    
     case RetrieveSecurities(RetrieveSecuritiesParameters?)
     case RetrieveSecuritiesForAccount(String, parameters: RetrieveSecuritiesParameters?)
-    case RetrieveSecurity(accountID: String, securityID: String)
+    case RetrieveSecurity(String, accountID: String)
+    
     case RetrieveStandingOrders
     case RetrieveStandingOrdersForAccount(String)
     case RetrieveStandingOrder(String)
+
+    case RetrievePaymentProposals
+    case RetrievePayments
+    case RetrievePaymentsForAccount(String)
+    case RetrievePayment(String, accountID: String)
     case CreatePayment(CreatePaymentParameters)
     case ModifyPayment(Payment)
     case SubmitPayment(Payment, tanSchemeID: String)
-    case RetrievePaymentProposals
-    
+
+
     private var method: Method {
         switch self {
-        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin, .Synchronize, .CreatePayment, .SubmitPayment:
+        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupAccount, .PollTaskState, .RemoveStoredPin, .Synchronize, .CreatePayment, .SubmitPayment:
             return .POST
         case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
@@ -69,7 +83,7 @@ enum Endpoint {
             return "/rest/accounts/" + accountId
         case .DeleteAccount(let accountId):
             return "/rest/accounts/" + accountId
-        case .RetrieveAccounts, .SetupCreateAccountParameters:
+        case .RetrieveAccounts, .SetupAccount:
             return "/rest/accounts"
         case .RetrieveCurrentUser, .DeleteCurrentUser:
             return "/rest/user"
@@ -113,6 +127,12 @@ enum Endpoint {
             return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)/submit"
         case .RetrievePaymentProposals:
             return "/rest/address_book"
+        case .RetrievePayments:
+            return "/rest/payments"
+        case .RetrievePaymentsForAccount(let accountID):
+            return "/rest/accounts/\(accountID)/payments"
+        case .RetrievePayment(let accountID, let paymentID):
+            return "/rest/accounts/\(accountID)/payments/\(paymentID)"
         }
     }
     
@@ -126,7 +146,7 @@ enum Endpoint {
             return ["token": token, "cascade": false]
         case .CreateNewFigoUser(let user):
             return user.JSONObject
-        case .SetupCreateAccountParameters(let account):
+        case .SetupAccount(let account):
             return account.JSONObject
         case .PollTaskState(let parameters):
             return parameters.JSONObject
@@ -154,6 +174,7 @@ enum Endpoint {
             return parameters.JSONObject
         case .SubmitPayment(_, let tanSchemeID):
             return ["tan_scheme_id": tanSchemeID, "state": NSUUID().UUIDString]
+
         default:
             return nil
         }

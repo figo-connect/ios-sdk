@@ -23,6 +23,59 @@ extension FigoSession {
     }
     
     /**
+     RETRIEVE PAYMENTS OF ALL ACCOUNTS
+     
+     - Parameter completionHandler: Returns payments or error
+     */
+    public func retrievePayments(completionHandler: FigoResult<[Payment]> -> Void) {
+        request(.RetrievePayments) { response in
+            let unboxingResult: FigoResult<PaymentListEnvelope> = decodeUnboxableResponse(response)
+            
+            switch unboxingResult {
+            case .Success(let envelope):
+                completionHandler(.Success(envelope.payments))
+                break
+            case .Failure(let error):
+                completionHandler(.Failure(error))
+                break
+            }
+        }
+    }
+    
+    /**
+     RETRIEVE PAYMENTS OF ONE ACCOUNT
+     
+     - Parameter completionHandler: Returns payments or error
+     */
+    public func retrievePaymentsForAccount(accountID: String, _ completionHandler: FigoResult<[Payment]> -> Void) {
+        request(.RetrievePaymentsForAccount(accountID)) { response in
+            let unboxingResult: FigoResult<PaymentListEnvelope> = decodeUnboxableResponse(response)
+            
+            switch unboxingResult {
+            case .Success(let envelope):
+                completionHandler(.Success(envelope.payments))
+                break
+            case .Failure(let error):
+                completionHandler(.Failure(error))
+                break
+            }
+        }
+    }
+    
+    /**
+     RETRIEVE A PAYMENT
+     
+     - Parameter paymentID: Internal figo connect ID of the payment
+     - Parameter accountID: Internal figo connect ID of the account
+     - Parameter completionHandler: Returns payments or error
+     */
+    public func retrievePayment(paymentID: String, accountID: String, _ completionHandler: FigoResult<Payment> -> Void) {
+        request(.RetrievePayment(paymentID, accountID: accountID)) { response in
+            completionHandler(decodeUnboxableResponse(response))
+        }
+    }
+    
+    /**
      CREATE A SINGLE PAYMENT
      
      - Parameter parameters: `CreatePaymentParameters`

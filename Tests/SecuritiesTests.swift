@@ -48,7 +48,7 @@ class SecuritiesTests: BaseTestCaseWithLogin {
         
         login() {
             
-            self.figo.retrieveSecurity(accountID: "A1182805.3", securityID: "S1182805.2") { result in
+            self.figo.retrieveSecurity("S1182805.2", accountID: "A1182805.3") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
