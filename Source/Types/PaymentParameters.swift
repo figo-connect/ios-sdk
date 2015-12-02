@@ -14,8 +14,7 @@ public struct PaymentParameters: Unboxable {
     public let canBeScheduled: Bool
     public let maxPurposeLength: Int
     public let supportedFileFormats: [String]
-    public let supportedTextKeys: [Int]?
-    public let supportedTextKeysStrings: [String]?
+    public let supportedTextKeys: [Int]
     
     init(unboxer: Unboxer) {
         allowedRecipients      = unboxer.unbox("allowed_recipients")
@@ -26,8 +25,15 @@ public struct PaymentParameters: Unboxable {
         
         // Special treatment for the key "supported_text_keys" because the server sometimes sends
         // numbers and sometimes sends strings for the values
-        supportedTextKeys = unboxer.unbox("supported_text_keys")
-        supportedTextKeysStrings = unboxer.unbox("supported_text_keys")
+        let supportedTextKeysInt: [Int]? = unboxer.unbox("supported_text_keys")
+        let supportedTextKeysStrings: [String]? = unboxer.unbox("supported_text_keys")
+        if let textKeys = supportedTextKeysInt {
+            supportedTextKeys = textKeys
+        } else if let textKeys = supportedTextKeysStrings {
+            supportedTextKeys = textKeys.map() { return Int($0) ?? 0 }
+        } else {
+            supportedTextKeys = []
+        }
     }
 }
 

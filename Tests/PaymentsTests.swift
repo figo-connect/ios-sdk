@@ -51,7 +51,7 @@ class PaymentsTests: BaseTestCaseWithLogin {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrievePayment("P1182805.12", accountID: "A1182805.4") { result in
+            self.figo.retrievePayment("P1182805.15", accountID: "A1182805.4") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }

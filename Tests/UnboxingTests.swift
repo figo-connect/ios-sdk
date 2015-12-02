@@ -16,14 +16,14 @@ class UnboxingTests: XCTestCase {
         let JSONObject = Resources.PaymentParametersIntTextKeys.JSONObject
         let p: PaymentParameters? = Unbox(JSONObject)
         XCTAssertNotNil(p)
-        XCTAssertEqual(p?.supportedTextKeys?.count, 6)
+        XCTAssertEqual(p?.supportedTextKeys.count, 6)
     }
     
     func testStringTextKeys() {
         let JSONObject = Resources.PaymentParametersStringTextKeys.JSONObject
         let p: PaymentParameters? = Unbox(JSONObject)
         XCTAssertNotNil(p)
-        XCTAssertEqual(p?.supportedTextKeysStrings?.count, 6)
+        XCTAssertEqual(p?.supportedTextKeys.count, 6)
     }
     
     func testThatAccountSerializerYieldsObject() {
@@ -59,8 +59,8 @@ class UnboxingTests: XCTestCase {
         XCTAssertEqual(parameters.canBeRecurring, false)
         XCTAssertEqual(parameters.canBeScheduled, true)
         XCTAssertEqual(parameters.maxPurposeLength, 108)
-        XCTAssertEqual(parameters.supportedTextKeys![0], 51)
-        XCTAssertEqual(parameters.supportedTextKeys![1], 53)
+        XCTAssertEqual(parameters.supportedTextKeys[0], 51)
+        XCTAssertEqual(parameters.supportedTextKeys[1], 53)
         XCTAssertEqual(account.supportedTANSchemes.count, 3)
         XCTAssertEqual(account.supportedTANSchemes.first?.mediumName, "")
         XCTAssertEqual(account.supportedTANSchemes.first?.name, "iTAN")
