@@ -38,7 +38,7 @@ extension FigoSession {
      - Parameter completionHandler: Returns account or error
     */
     public func retrieveAccount(accountID: String, _ completionHandler: (FigoResult<Account>) -> Void) {
-        request(.RetrieveAccount(accountId: accountID)) { response in
+        request(.RetrieveAccount(accountID)) { response in
             let decoded: FigoResult<Account> = decodeUnboxableResponse(response)
             completionHandler(decoded)
         }
@@ -49,11 +49,11 @@ extension FigoSession {
      
      Removes the stored PIN of a bank contact from the figo Connect server
      
-     - Parameter bankIdenitifier Internal ID of the bank
+     - Parameter bankID Internal ID of the bank
      - Parameter completionHandler: Returns nothing or error
     */
-    public func removeStoredPinFromBankContact(bankIdenitifier: String, _ completionHandler: VoidCompletionHandler) {
-        request(.RemoveStoredPin(bankId: bankIdenitifier)) { response in
+    public func removeStoredPinFromBankContact(bankID: String, _ completionHandler: VoidCompletionHandler) {
+        request(.RemoveStoredPin(bankID: bankID)) { response in
             completionHandler(decodeVoidResponse(response))
         }
     }
@@ -94,7 +94,7 @@ extension FigoSession {
      Once the last remaining account of a bank contact has been removed, the bank contact will be automatically removed as well
      */
     public func deleteAccount(accountID: String, _ completionHandler: VoidCompletionHandler) {
-        request(.DeleteAccount(accountID: accountID)) { response in
+        request(.DeleteAccount(accountID)) { response in
             completionHandler(decodeVoidResponse(response))
         }
     }

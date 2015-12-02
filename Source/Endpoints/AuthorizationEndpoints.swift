@@ -57,7 +57,7 @@ extension FigoSession {
      */
     public func loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: VoidCompletionHandler) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
-        request(Endpoint.RefreshToken(token: refreshToken)) { response in
+        request(Endpoint.RefreshToken(refreshToken)) { response in
 
             let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
@@ -87,7 +87,7 @@ extension FigoSession {
             completionHandler(.Failure(FigoError.NoActiveSession))
             return
         }
-        request(.RevokeToken(token: accessToken)) { response in
+        request(.RevokeToken(accessToken)) { response in
             completionHandler(decodeVoidResponse(response))
         }
     }
@@ -103,7 +103,7 @@ extension FigoSession {
      - Parameter completionHandler: Returns nothing or error
      */
     public func revokeRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler) {
-        request(.RevokeToken(token: refreshToken)) { response in
+        request(.RevokeToken(refreshToken)) { response in
             completionHandler(decodeVoidResponse(response))
         }
     }

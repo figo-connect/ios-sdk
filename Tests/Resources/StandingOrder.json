@@ -1,0 +1,15 @@
+{
+    "account_id": "A1.1",
+    "account_number": "4711951501",
+    "amount": -17.899999999999999,
+    "bank_code": "90090042",
+    "bank_name": "Demobank",
+    "creation_timestamp": "2013-04-11T13:54:02.000Z",
+    "currency": "EUR",
+    "execution_day": "11",
+    "first_execution_date": "2013-04-11T12:00:00.000Z",
+    "interval": "monthly",
+    "name": "Rogers Shipping, Inc.",
+    "purpose": "XYZ contract",
+    "standing_order_id": "SO1.1.2"
+}

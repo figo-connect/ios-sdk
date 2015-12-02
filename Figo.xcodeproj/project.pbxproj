@@ -76,6 +76,12 @@
 		838FDA1C1C0EDA8800525E1D /* SecuritiesEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1B1C0EDA8800525E1D /* SecuritiesEndpoints.swift */; };
 		838FDA1D1C0EDA8800525E1D /* SecuritiesEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1B1C0EDA8800525E1D /* SecuritiesEndpoints.swift */; };
 		838FDA201C0EDC3B00525E1D /* SecuritiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1E1C0EDC3B00525E1D /* SecuritiesTests.swift */; };
+		838FDA221C0EE54000525E1D /* StandingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA211C0EE54000525E1D /* StandingOrder.swift */; };
+		838FDA231C0EE54000525E1D /* StandingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA211C0EE54000525E1D /* StandingOrder.swift */; };
+		838FDA251C0EE59B00525E1D /* StandingOrder.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA241C0EE59B00525E1D /* StandingOrder.json */; };
+		838FDA271C0EED1500525E1D /* StandingOrdersEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA261C0EED1500525E1D /* StandingOrdersEndpoints.swift */; };
+		838FDA281C0EED1500525E1D /* StandingOrdersEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA261C0EED1500525E1D /* StandingOrdersEndpoints.swift */; };
+		838FDA2A1C0EEE9F00525E1D /* StandingOrdersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA291C0EEE9F00525E1D /* StandingOrdersTests.swift */; };
 		83A6DA171C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
 		83A6DA181C059E7E0060FA8F /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6DA161C059E7E0060FA8F /* BaseType.swift */; };
 		83CEDB831C05F43D0008CEF8 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 83CEDB821C05F43D0008CEF8 /* User.json */; };
@@ -172,6 +178,10 @@
 		838FDA181C0ED5E700525E1D /* Security.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Security.json; path = Resources/Security.json; sourceTree = "<group>"; };
 		838FDA1B1C0EDA8800525E1D /* SecuritiesEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecuritiesEndpoints.swift; sourceTree = "<group>"; };
 		838FDA1E1C0EDC3B00525E1D /* SecuritiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecuritiesTests.swift; sourceTree = "<group>"; };
+		838FDA211C0EE54000525E1D /* StandingOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StandingOrder.swift; path = Types/StandingOrder.swift; sourceTree = "<group>"; };
+		838FDA241C0EE59B00525E1D /* StandingOrder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = StandingOrder.json; path = Resources/StandingOrder.json; sourceTree = "<group>"; };
+		838FDA261C0EED1500525E1D /* StandingOrdersEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingOrdersEndpoints.swift; sourceTree = "<group>"; };
+		838FDA291C0EEE9F00525E1D /* StandingOrdersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingOrdersTests.swift; sourceTree = "<group>"; };
 		83A6DA161C059E7E0060FA8F /* BaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseType.swift; path = Types/BaseType.swift; sourceTree = "<group>"; };
 		83CEDB801C05DD3D0008CEF8 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		83CEDB821C05F43D0008CEF8 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = Resources/User.json; sourceTree = "<group>"; };
@@ -286,6 +296,7 @@
 				838FD9ED1C0DEEFD00525E1D /* PaymentType.swift */,
 				830E63E21C05AB890048F7BF /* PaymentParameters.swift */,
 				838FDA151C0ED4CB00525E1D /* Security.swift */,
+				838FDA211C0EE54000525E1D /* StandingOrder.swift */,
 				83648D621C0C705700286FFB /* SupportedBank.swift */,
 				83648D651C0C75E600286FFB /* SupportedService.swift */,
 				830E63DD1C05A7070048F7BF /* SyncStatus.swift */,
@@ -309,6 +320,7 @@
 				838FD9D01C0D9FB500525E1D /* TaskTests.swift */,
 				838FD9EA1C0DE74B00525E1D /* TransactionsTests.swift */,
 				838FDA1E1C0EDC3B00525E1D /* SecuritiesTests.swift */,
+				838FDA291C0EEE9F00525E1D /* StandingOrdersTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -329,6 +341,7 @@
 				83648D711C0CF0AF00286FFB /* SupportedBanks.json */,
 				838FD9E51C0DACE300525E1D /* Transaction.json */,
 				838FDA181C0ED5E700525E1D /* Security.json */,
+				838FDA241C0EE59B00525E1D /* StandingOrder.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -343,6 +356,7 @@
 				8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */,
 				838FD9DF1C0DAC7800525E1D /* TransactionsEndpoints.swift */,
 				838FDA1B1C0EDA8800525E1D /* SecuritiesEndpoints.swift */,
+				838FDA261C0EED1500525E1D /* StandingOrdersEndpoints.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -459,6 +473,7 @@
 			files = (
 				83CEDB831C05F43D0008CEF8 /* User.json in Resources */,
 				838FDA1A1C0ED5E700525E1D /* Security.json in Resources */,
+				838FDA251C0EE59B00525E1D /* StandingOrder.json in Resources */,
 				83648D731C0CF0AF00286FFB /* SupportedBanks.json in Resources */,
 				838FD9E61C0DACE300525E1D /* Transaction.json in Resources */,
 				830E63E11C05A7AE0048F7BF /* SyncStatus.json in Resources */,
@@ -499,6 +514,7 @@
 				83D3A7001BFF8E97003EDE45 /* Authorization.swift in Sources */,
 				83648D641C0C705700286FFB /* SupportedBank.swift in Sources */,
 				83F0E4791C08DA2800FB3709 /* Address.swift in Sources */,
+				838FDA231C0EE54000525E1D /* StandingOrder.swift in Sources */,
 				83E7508D1C037ABE00545DF6 /* User.swift in Sources */,
 				83F0E46D1C08A91400FB3709 /* FigoSession.swift in Sources */,
 				838FDA171C0ED4CB00525E1D /* Security.swift in Sources */,
@@ -514,6 +530,7 @@
 				838FD9D11C0D9FB500525E1D /* TaskTests.swift in Sources */,
 				838FD9EF1C0DEEFD00525E1D /* PaymentType.swift in Sources */,
 				83F0E4851C09C60600FB3709 /* FigoUserEndpoints.swift in Sources */,
+				838FDA2A1C0EEE9F00525E1D /* StandingOrdersTests.swift in Sources */,
 				830E63DF1C05A7070048F7BF /* SyncStatus.swift in Sources */,
 				8346AAC01C0A03A700F9F0DE /* TaskEndpoints.swift in Sources */,
 				838FDA0E1C0DF90100525E1D /* Logging.swift in Sources */,
@@ -535,6 +552,7 @@
 				838FD9E41C0DACBE00525E1D /* Transaction.swift in Sources */,
 				838FDA111C0DF92500525E1D /* ResponseDecoding.swift in Sources */,
 				830E63DA1C05A4050048F7BF /* TanScheme.swift in Sources */,
+				838FDA281C0EED1500525E1D /* StandingOrdersEndpoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +570,7 @@
 				83648D691C0C7B4200286FFB /* LoginCredentials.swift in Sources */,
 				838FDA011C0DF8D900525E1D /* RetrieveTransactionsParameters.swift in Sources */,
 				83F0E4781C08DA2800FB3709 /* Address.swift in Sources */,
+				838FDA221C0EE54000525E1D /* StandingOrder.swift in Sources */,
 				83648D661C0C75E600286FFB /* SupportedService.swift in Sources */,
 				838FD9F91C0DF8D900525E1D /* CreateAccountParameters.swift in Sources */,
 				83648D631C0C705700286FFB /* SupportedBank.swift in Sources */,
@@ -571,6 +590,7 @@
 				838FDA071C0DF90100525E1D /* Endpoints.swift in Sources */,
 				83E7508C1C037ABE00545DF6 /* User.swift in Sources */,
 				830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */,
+				838FDA271C0EED1500525E1D /* StandingOrdersEndpoints.swift in Sources */,
 				838FDA0D1C0DF90100525E1D /* Logging.swift in Sources */,
 				83F0E47A1C08DA2800FB3709 /* Balance.swift in Sources */,
 				838FD9CE1C0D905500525E1D /* XCGLogger.swift in Sources */,

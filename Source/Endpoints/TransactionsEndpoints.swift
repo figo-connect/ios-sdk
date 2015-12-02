@@ -18,7 +18,7 @@ extension FigoSession {
      - Parameter completionHandler: Returns `TransactionListEnvelope` or error
      */
     public func retrieveTransactions(parameters: RetrieveTransactionsParameters? = nil, _ completionHandler: (FigoResult<TransactionListEnvelope>) -> Void) {
-        request(.RetrieveTransactions(parameters: parameters)) { response in
+        request(.RetrieveTransactions(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -33,7 +33,7 @@ extension FigoSession {
      - Parameter completionHandler: Returns `TransactionListEnvelope` or error
      */
     public func retrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters? = nil, _ completionHandler: (FigoResult<TransactionListEnvelope>) -> Void) {
-        request(.RetrieveTransactionsForAccount(accountID: accountID, parameters: parameters)) { response in
+        request(.RetrieveTransactionsForAccount(accountID, parameters: parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -45,9 +45,10 @@ extension FigoSession {
      - Parameter completionHandler: Returns transactions or error
      */
     public func retrieveTransaction(transactionID: String, _ completionHandler: (FigoResult<Transaction>) -> Void) {
-        request(.RetrieveTransaction(transactionID: transactionID)) { response in
+        request(.RetrieveTransaction(transactionID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
     
 }
+

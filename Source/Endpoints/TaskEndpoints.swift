@@ -131,7 +131,7 @@ extension FigoSession {
      - Parameter completionHandler: Is called on completion returning nothing or error
      */
     public func synchronize(parameters parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler) {
-        request(.Synchronize(parameters: parameters.JSONObject)) { response in
+        request(.Synchronize(parameters.JSONObject)) { response in
             
             let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {

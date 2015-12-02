@@ -16,29 +16,31 @@ private enum Method: String {
 enum Endpoint {
     private static let baseURLString = "https://api.figo.me"
     
-    case CreateNewFigoUser(user: CreateUserParameters)
+    case CreateNewFigoUser(CreateUserParameters)
     case LoginUser(username: String, password: String)
     case DeleteCurrentUser
     case RetrieveCurrentUser
-    case RefreshToken(token: String)
-    case RevokeToken(token: String)
+    case RefreshToken(String)
+    case RevokeToken(String)
     case SetupCreateAccountParameters(CreateAccountParameters)
     case RetrieveAccounts
-    case RetrieveAccount(accountId: String)
-    case RemoveStoredPin(bankId: String)
-    case DeleteAccount(accountID: String)
+    case RetrieveAccount(String)
+    case RemoveStoredPin(bankID: String)
+    case DeleteAccount(String)
     case RetrieveLoginSettings(countryCode: String, bankCode: String)
-    case BeginTask(taskToken: String)
     case PollTaskState(PollTaskStateParameters)
     case RetrieveSupportedBanks(countryCode: String)
     case RetrieveSupportedServices(countryCode: String)
-    case Synchronize(parameters: [String: AnyObject])
-    case RetrieveTransactions(parameters: RetrieveTransactionsParameters?)
-    case RetrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters?)
-    case RetrieveTransaction(transactionID: String)
-    case RetrieveSecurities(parameters: RetrieveSecuritiesParameters?)
-    case RetrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters?)
+    case Synchronize([String: AnyObject])
+    case RetrieveTransactions(RetrieveTransactionsParameters?)
+    case RetrieveTransactionsForAccount(String, parameters: RetrieveTransactionsParameters?)
+    case RetrieveTransaction(String)
+    case RetrieveSecurities(RetrieveSecuritiesParameters?)
+    case RetrieveSecuritiesForAccount(String, parameters: RetrieveSecuritiesParameters?)
     case RetrieveSecurity(accountID: String, securityID: String)
+    case RetrieveStandingOrders
+    case RetrieveStandingOrdersForAccount(String)
+    case RetrieveStandingOrder(String)
     
     private var method: Method {
         switch self {
@@ -71,8 +73,6 @@ enum Endpoint {
             return "/task/progress"
         case .RemoveStoredPin(let bankId):
             return "/rest/banks/\(bankId)/remove_pin"
-        case .BeginTask:
-            return "/task/start"
         case .RetrieveLoginSettings(let countryCode, let bankCode):
             return "/rest/catalog/banks/\(countryCode)/\(bankCode)"
         case .RetrieveSupportedBanks(let countryCode):
@@ -93,6 +93,12 @@ enum Endpoint {
             return "/rest/accounts/\(accountID)/securities"
         case .RetrieveSecurity(let accountID, let securityID):
             return "/rest/accounts/\(accountID)/securities/\(securityID)"
+        case .RetrieveStandingOrders:
+            return "/rest/standing_orders"
+        case .RetrieveStandingOrdersForAccount(let accountID):
+            return "/rest/accounts/\(accountID)/standing_orders"
+        case .RetrieveStandingOrder(let standingOrderID):
+            return "/rest/standing_orders/\(standingOrderID)"
         }
     }
     
@@ -114,8 +120,6 @@ enum Endpoint {
             return ["bank_id": bankId]
         case .RetrieveAccount, .RetrieveAccounts:
             return ["cents": true]
-        case .BeginTask(let taskToken):
-            return ["id": taskToken]
         case .Synchronize(let parameters):
             return parameters
         case .RetrieveTransactions(let parameters):

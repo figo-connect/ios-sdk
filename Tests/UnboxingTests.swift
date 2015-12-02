@@ -158,7 +158,7 @@ class UnboxingTests: XCTestCase {
         }
     }
     
-    func testSecurityUnboxing(){
+    func testSecurityUnboxing() {
         let data = Resources.Security.data
         do {
             let s: Security = try UnboxOrThrow(data)
@@ -190,6 +190,19 @@ class UnboxingTests: XCTestCase {
         }
     }
     
+    func testStandingOrderUnboxing() {
+        let data = Resources.StandingOrder.data
+        do {
+            let s: StandingOrder = try UnboxOrThrow(data)
+            XCTAssertEqual(s.account_id, "A1.1")
+        }
+        catch (let error as UnboxError) {
+            XCTFail(error.description)
+        }
+        catch {
+            XCTFail()
+        }
+    }
     
 }
 

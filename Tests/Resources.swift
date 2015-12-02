@@ -22,6 +22,7 @@ enum Resources: String {
     case SupportedBanks
     case Transaction
     case Security
+    case StandingOrder
     
     var JSONObject: [String: AnyObject] {
         let JSON: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! [String: AnyObject]
