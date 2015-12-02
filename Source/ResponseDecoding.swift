@@ -9,41 +9,6 @@
 import Foundation
 
 
-internal func decodeTaskTokenResponse(response: FigoResult<NSData>) -> FigoResult<String> {
-    switch response {
-    case .Failure(let error):
-        return .Failure(error)
-    case .Success(let data):
-        do {
-            if let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject] {
-                if let token: String = JSON["task_token"] as? String {
-                    return .Success(token)
-                }
-            }
-            return .Failure(.JSONMissingMandatoryValue(key: "task_token", typeName: ""))
-        } catch (let error as NSError) {
-            return .Failure(.JSONSerializationError(error: error))
-        }
-    }
-}
-
-internal func decodeJSONResponse(response: FigoResult<NSData>) -> FigoResult<UnboxableDictionary> {
-    switch response {
-    case .Failure(let error):
-        return .Failure(error)
-    case .Success(let data):
-        do {
-            if let JSON: [String: AnyObject] = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject] {
-                return .Success(JSON)
-            } else {
-                return .Failure(.JSONUnexpectedRootObject(typeName: "JSONResponse"))
-            }
-        } catch (let error as NSError) {
-            return .Failure(.JSONSerializationError(error: error))
-        }
-    }
-}
-
 internal func decodeVoidResponse(response: FigoResult<NSData>) -> FigoResult<Void> {
     switch response {
     case .Failure(let error):

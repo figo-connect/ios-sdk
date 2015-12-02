@@ -20,8 +20,7 @@ extension FigoSession {
      */
     public func retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (FigoResult<LoginSettings>) -> Void) {
         request(Endpoint.RetrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
-            let decoded: FigoResult<LoginSettings> = decodeUnboxableResponse(response)
-            completionHandler(decoded)
+            completionHandler(decodeUnboxableResponse(response))
         }
     }
     
@@ -36,7 +35,6 @@ extension FigoSession {
             
             switch envelopeUnboxingResult {
             case .Success(let envelope):
-//                completionHandler(.Success([]))
                 completionHandler(.Success(envelope.banks))
                 break
             case .Failure(let error):

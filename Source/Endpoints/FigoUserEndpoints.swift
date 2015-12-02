@@ -6,7 +6,14 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
+
+internal struct RecoveryPasswordEnvelope: Unboxable {
+    let recoveryPassword: String
+    
+    init(unboxer: Unboxer) {
+        recoveryPassword = unboxer.unbox("recovery_password")
+    }
+}
 
 
 extension FigoSession {
@@ -17,17 +24,14 @@ extension FigoSession {
     public func createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(Endpoint.CreateNewFigoUser(user: user)) { response in
-            let decoded = decodeJSONResponse(response)
-            switch decoded {
+            
+            let envelopeUnboxingResult: FigoResult<RecoveryPasswordEnvelope> = decodeUnboxableResponse(response)
+            switch envelopeUnboxingResult {
+            case .Success(let envelope):
+                completionHandler(.Success(envelope.recoveryPassword))
+                break
             case .Failure(let error):
                 completionHandler(.Failure(error))
-                break
-            case .Success(let JSONObject):
-                if let recoveryPassword: String = JSONObject["recovery_password"] as? String {
-                    completionHandler(.Success(recoveryPassword))
-                } else {
-                    completionHandler(.Failure(.JSONMissingMandatoryKey(key: "recovery_password", typeName: "JSONResponse")))
-                }
                 break
             }
         }
@@ -38,8 +42,7 @@ extension FigoSession {
      */
     public func retrieveCurrentUser(completionHandler: (FigoResult<User>) -> Void) {
         request(Endpoint.RetrieveCurrentUser) { response in
-            let decoded: FigoResult<User> = decodeUnboxableResponse(response)
-            completionHandler(decoded)
+            completionHandler(decodeUnboxableResponse(response))
         }
     }
     

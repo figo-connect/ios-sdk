@@ -133,17 +133,18 @@ extension FigoSession {
     public func synchronize(parameters parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler) {
         request(.Synchronize(parameters: parameters.JSONObject)) { response in
             
-            switch decodeTaskTokenResponse(response) {
-            case .Success(let taskToken):
+            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            switch unboxingResult {
+            case .Success(let envelope):
                 
-                let nextParameters = PollTaskStateParameters(taskToken: taskToken)
+                let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
                 self.pollTaskState(nextParameters, self.POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, pinHandler, nil) { result in
                     completionHandler(result)
                 }
                 break
-            case .Failure(let decodingError):
+            case .Failure(let error):
                 
-                completionHandler(.Failure(decodingError))
+                completionHandler(.Failure(error))
                 break
             }
         }

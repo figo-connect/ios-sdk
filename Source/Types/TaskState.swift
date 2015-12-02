@@ -7,6 +7,16 @@
 //
 
 
+internal struct TaskTokenEvelope: Unboxable {
+ 
+    let taskToken: String
+    
+    init(unboxer: Unboxer) {
+        taskToken = unboxer.unbox("task_token")
+    }
+}
+
+
 internal struct TaskState: Unboxable {
     
     /// Account ID of currently processed account

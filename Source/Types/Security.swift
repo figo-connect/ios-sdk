@@ -46,11 +46,13 @@ public struct Security: Unboxable {
     /// Wertpapierkennnummer (if available)
     public let wkn: String
     
+    public let market: String
+    
     /// Three-character currency code
     public let currency: String
     
     /// Number of pieces or value
-    let quantity: Int
+    public let quantity: Int
     
     /// Monetary value in account currency
     public let amount: Int
@@ -59,7 +61,7 @@ public struct Security: Unboxable {
     public let amount_original_currency: Int
     
     /// Exchange rate between trading and account currency
-    let exchange_rate: Float
+    public let exchange_rate: Float
     
     /// Current price
     public let price: Int
@@ -105,6 +107,7 @@ public struct Security: Unboxable {
         trade_timestamp = unboxer.unbox("trade_timestamp")
         creation_timestamp = unboxer.unbox("creation_timestamp")
         modification_timestamp = unboxer.unbox("modification_timestamp")
+        market = unboxer.unbox("market")
     }
     
 }

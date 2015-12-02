@@ -7,6 +7,15 @@
 //
 
 
+internal struct AccountListEnvelope: Unboxable {
+    let accounts: [Account]
+    
+    init(unboxer: Unboxer) {
+        accounts = unboxer.unbox("accounts")
+    }
+}
+
+
 /**
  Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
 */

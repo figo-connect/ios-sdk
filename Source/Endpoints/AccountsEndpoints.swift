@@ -6,8 +6,6 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Foundation
-
 
 extension FigoSession {
     
@@ -21,7 +19,7 @@ extension FigoSession {
     public func retrieveAccounts(completionHandler: (FigoResult<[Account]>) -> Void) {
         request(.RetrieveAccounts) { response in
             
-            let envelopeUnboxingResult: FigoResult<AccountsEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: FigoResult<AccountListEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
             case .Success(let envelope):
                 completionHandler(.Success(envelope.accounts))
@@ -72,15 +70,18 @@ extension FigoSession {
     public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate?, _ completionHandler: VoidCompletionHandler) {
         request(.SetupCreateAccountParameters(parameters)) { response in
             
-            switch decodeTaskTokenResponse(response) {
-            case .Success(let taskToken):
-                    let nextParameters = PollTaskStateParameters(taskToken: taskToken)
+            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            switch unboxingResult {
+            case .Success(let envelope):
+                
+                let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
                 self.pollTaskState(nextParameters, self.POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, nil, nil) { result in
                     completionHandler(result)
                 }
                 break
-            case .Failure(let decodingError):
-                completionHandler(.Failure(decodingError))
+            case .Failure(let error):
+                
+                completionHandler(.Failure(error))
                 break
             }
         }
@@ -100,14 +101,6 @@ extension FigoSession {
     
 }
 
-
-struct AccountsEnvelope: Unboxable {
-    let accounts: [Account]
-    
-    init(unboxer: Unboxer) {
-        accounts = unboxer.unbox("accounts")
-    }
-}
 
 
 

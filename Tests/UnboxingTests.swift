@@ -161,8 +161,26 @@ class UnboxingTests: XCTestCase {
     func testSecurityUnboxing(){
         let data = Resources.Security.data
         do {
-            let t: Security = try UnboxOrThrow(data)
-            XCTAssertEqual(t.account_id, "A1.4")
+            let s: Security = try UnboxOrThrow(data)
+            XCTAssertEqual(s.account_id, "A1182805.3")
+            XCTAssertEqual(s.amount, 629465)
+            XCTAssertEqual(s.amount_original_currency, 1050000)
+            XCTAssertEqual(s.creation_timestamp, "2015-11-28T18:30:21.000Z")
+            XCTAssertEqual(s.currency, "AUD")
+            XCTAssertEqual(s.exchange_rate, 0.60)
+            XCTAssertEqual(s.isin, "AU9876543210")
+            XCTAssertEqual(s.market, "XASX")
+            XCTAssertEqual(s.modification_timestamp, "2015-11-28T18:30:21.000Z")
+            XCTAssertEqual(s.name, "Australian Domestic Bonds 1993 (2003) Ser. 10")
+            XCTAssertEqual(s.price, 10500)
+            XCTAssertEqual(s.price_currency, "EUR")
+            XCTAssertEqual(s.purchase_price, 9975)
+            XCTAssertEqual(s.purchase_price_currency, "EUR")
+            XCTAssertEqual(s.quantity, 10000)
+            XCTAssertEqual(s.security_id, "S1182805.1")
+            XCTAssertEqual(s.trade_timestamp, "1999-05-28T22:59:59.000Z")
+            XCTAssertEqual(s.visited, false)
+            XCTAssertEqual(s.wkn, "")
         }
         catch (let error as UnboxError) {
             XCTFail(error.description)
