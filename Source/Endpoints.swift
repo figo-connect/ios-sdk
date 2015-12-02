@@ -36,15 +36,18 @@ enum Endpoint {
     case RetrieveTransactions(parameters: RetrieveTransactionsParameters?)
     case RetrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters?)
     case RetrieveTransaction(transactionID: String)
+    case RetrieveSecurities(parameters: RetrieveSecuritiesParameters?)
+    case RetrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters?)
+    case RetrieveSecurity(accountID: String, securityID: String)
     
     private var method: Method {
         switch self {
         case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin, .Synchronize:
             return .POST
-        case .RetrieveAccount, .RetrieveAccounts, .RetrieveCurrentUser, .BeginTask, .RetrieveLoginSettings, .RetrieveSupportedBanks, .RetrieveSupportedServices, .RetrieveTransactions, .RetrieveTransactionsForAccount, .RetrieveTransaction:
-            return .GET
         case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
+        default:
+            return .GET
         }
     }
     
@@ -84,6 +87,12 @@ enum Endpoint {
             return "/rest/accounts/\(accountID)/transactions"
         case .RetrieveTransaction(let transactionID):
             return "/rest/transactions/\(transactionID)"
+        case .RetrieveSecurities:
+            return "/rest/securities"
+        case .RetrieveSecuritiesForAccount(let accountID, _):
+            return "/rest/accounts/\(accountID)/securities"
+        case .RetrieveSecurity(let accountID, let securityID):
+            return "/rest/accounts/\(accountID)/securities/\(securityID)"
         }
     }
     
@@ -115,6 +124,12 @@ enum Endpoint {
             return parameters?.JSONObject
         case .RetrieveTransaction:
             return ["cents" : true]
+        case .RetrieveSecurities(let parameters):
+            return parameters?.JSONObject
+        case .RetrieveSecuritiesForAccount(_, let parameters):
+            return parameters?.JSONObject
+        case .RetrieveSecurity:
+            return ["cents" : true]
         default:
             return nil
         }
@@ -135,7 +150,6 @@ enum Endpoint {
             break
         case .GET, .DELETE:
             encodeURLParameters(request, parameters)
-            request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
             break
         default:
             break

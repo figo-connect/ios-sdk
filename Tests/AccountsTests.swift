@@ -1,5 +1,5 @@
 //
-//  Figo_iOS_Tests.swift
+//  AccountsTests.swift
 //  Figo iOS Tests
 //
 //  Created by Christian König on 20.11.15.
@@ -10,7 +10,7 @@ import XCTest
 @testable import Figo
 
 
-class AccountTests: BaseTestCaseWithLogin {
+class AccountsTests: BaseTestCaseWithLogin {
     
     let demoBankCode = "90090042"
     let demoCredentials = ["demo", "demo"]

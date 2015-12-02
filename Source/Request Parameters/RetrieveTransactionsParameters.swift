@@ -14,7 +14,7 @@ Defines how the parameter since will be interpreted.
 */
 public enum TransactionSinceType: String, UnboxableEnum {
     
-    /// The value of the parameter since will be compared to the booking date of the transaction. (Default)
+    /// The value of the parameter since will be compared to the booking date of the transaction. (default)
     case Booked = "booked"
     
     /// The value of the parameter since will be compared to the creation time of the transaction on the figo Connect server
@@ -139,7 +139,6 @@ public struct RetrieveTransactionsParameters: JSONObjectConvertible {
     
     
     var JSONObject: [String: AnyObject] {
-        
         var dict = Dictionary<String, AnyObject>()
         dict["accounts"] = accounts
         dict["since"] = since

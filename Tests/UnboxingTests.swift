@@ -157,5 +157,21 @@ class UnboxingTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testSecurityUnboxing(){
+        let data = Resources.Security.data
+        do {
+            let t: Security = try UnboxOrThrow(data)
+            XCTAssertEqual(t.account_id, "A1.4")
+        }
+        catch (let error as UnboxError) {
+            XCTFail(error.description)
+        }
+        catch {
+            XCTFail()
+        }
+    }
+    
+    
 }
 

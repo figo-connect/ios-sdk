@@ -1,0 +1,21 @@
+{
+    "account_id": "A1182805.3",
+    "amount": 629465.00,
+    "amount_original_currency": 1050000.00,
+    "creation_timestamp": "2015-11-28T18:30:21.000Z",
+    "currency": "AUD",
+    "exchange_rate": 0.60,
+    "isin": "AU9876543210",
+    "market": "XASX",
+    "modification_timestamp": "2015-11-28T18:30:21.000Z",
+    "name": "Australian Domestic Bonds 1993 (2003) Ser. 10",
+    "price": 10500.00,
+    "price_currency": "EUR",
+    "purchase_price": 9975.00,
+    "purchase_price_currency": "EUR",
+    "quantity": 10000.00,
+    "security_id": "S1182805.1",
+    "trade_timestamp": "1999-05-28T22:59:59.000Z",
+    "visited": false,
+    "wkn": ""
+}

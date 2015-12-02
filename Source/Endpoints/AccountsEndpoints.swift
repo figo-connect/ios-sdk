@@ -1,5 +1,5 @@
 //
-//  BankAccountEndpoints.swift
+//  AccountsEndpoints.swift
 //  Figo
 //
 //  Created by Christian König on 27.11.15.
