@@ -1,0 +1,21 @@
+{
+    "account_id": "A1.1",
+    "account_number": "4711951501",
+    "amount": 0.89000000000000001,
+    "bank_additional_icons": {
+        "48x48": "https://api.figo.me/assets/images/accounts/default_48.png",
+        "60x60": "https://api.figo.me/assets/images/accounts/default_60.png"
+    },
+    "bank_code": "90090042",
+    "bank_icon": "https://api.figo.me/assets/images/accounts/demokonto.png",
+    "creation_timestamp": "2013-07-16T13:53:56.000Z",
+    "currency": "EUR",
+    "modification_timestamp": "2013-07-16T13:53:56.000Z",
+    "name": "figo",
+    "notification_recipient": "",
+    "payment_id": "P1.1.234",
+    "purpose": "Thanks for all the fish.",
+    "text_key": 51,
+    "text_key_extension": 0,
+    "type": "Transfer"
+}

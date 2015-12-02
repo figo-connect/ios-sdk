@@ -11,7 +11,7 @@
 
 Contains the parameters for setting up a new bank account
 
-- Note: At least one of bank code or IBAN has to be set
+- Note: At least one of either `bankCode` or `iban` has to be set
 
 */
 public struct CreateAccountParameters {

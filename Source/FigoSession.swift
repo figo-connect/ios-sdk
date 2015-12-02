@@ -38,10 +38,10 @@ public class FigoSession {
     var basicAuthCredentials: String?
     
     /// Milliseconds between polling task states
-    let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
+    internal let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
     
     /// Number of task state polling requests before giving up
-    let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
+    internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
     
     var accessToken: String?
     var refreshToken: String?

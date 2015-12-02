@@ -41,10 +41,12 @@ enum Endpoint {
     case RetrieveStandingOrders
     case RetrieveStandingOrdersForAccount(String)
     case RetrieveStandingOrder(String)
+    case CreatePayment(CreatePaymentParameters)
+    case SubmitPayment(Payment, tanSchemeID: String)
     
     private var method: Method {
         switch self {
-        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin, .Synchronize:
+        case .LoginUser, .RefreshToken, .CreateNewFigoUser, .RevokeToken, .SetupCreateAccountParameters, .PollTaskState, .RemoveStoredPin, .Synchronize, .CreatePayment, .SubmitPayment:
             return .POST
         case .DeleteCurrentUser, .DeleteAccount:
             return .DELETE
@@ -99,6 +101,10 @@ enum Endpoint {
             return "/rest/accounts/\(accountID)/standing_orders"
         case .RetrieveStandingOrder(let standingOrderID):
             return "/rest/standing_orders/\(standingOrderID)"
+        case .CreatePayment(let parameters):
+            return "/rest/accounts/\(parameters.accountID)/payments"
+        case .SubmitPayment(let payment, _):
+            return "/rest/accounts/\(payment.account_id)/payments/\(payment.payment_id)/submit"
         }
     }
     
@@ -134,6 +140,10 @@ enum Endpoint {
             return parameters?.JSONObject
         case .RetrieveSecurity:
             return ["cents" : true]
+        case .CreatePayment(let parameters):
+            return parameters.JSONObject
+        case .SubmitPayment(_, let tanSchemeID):
+            return ["tan_scheme_id": tanSchemeID, "state": NSUUID().UUIDString]
         default:
             return nil
         }
@@ -178,7 +188,6 @@ enum Endpoint {
         return request
     }
 }
-
 
 
 private func encodeURLParameters(request: NSMutableURLRequest, _ parameters: [String: AnyObject]?) {
