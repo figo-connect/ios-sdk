@@ -1,5 +1,5 @@
 //
-//  AccountsEndpoints.swift
+//  AccountEndpoints.swift
 //  Figo
 //
 //  Created by Christian König on 27.11.15.
@@ -7,7 +7,7 @@
 //
 
 
-extension FigoSession {
+public extension FigoClient {
     
     /**
      RETRIEVE ALL BANK ACCOUNTS
@@ -16,10 +16,10 @@ extension FigoSession {
      
      - Parameter completionHandler: Returns accounts or error
      */
-    public func retrieveAccounts(completionHandler: (FigoResult<[Account]>) -> Void) {
+    public func retrieveAccounts(completionHandler: (Result<[Account]>) -> Void) {
         request(.RetrieveAccounts) { response in
             
-            let envelopeUnboxingResult: FigoResult<AccountListEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: Result<AccountListEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
             case .Success(let envelope):
                 completionHandler(.Success(envelope.accounts))
@@ -37,9 +37,9 @@ extension FigoSession {
      - Parameter accountID: Internal figo Connect account ID
      - Parameter completionHandler: Returns account or error
     */
-    public func retrieveAccount(accountID: String, _ completionHandler: (FigoResult<Account>) -> Void) {
+    public func retrieveAccount(accountID: String, _ completionHandler: (Result<Account>) -> Void) {
         request(.RetrieveAccount(accountID)) { response in
-            let decoded: FigoResult<Account> = decodeUnboxableResponse(response)
+            let decoded: Result<Account> = decodeUnboxableResponse(response)
             completionHandler(decoded)
         }
     }
@@ -70,12 +70,12 @@ extension FigoSession {
     public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate?, _ completionHandler: VoidCompletionHandler) {
         request(.SetupAccount(parameters)) { response in
             
-            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .Success(let envelope):
                 
                 let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
-                self.pollTaskState(nextParameters, self.POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, nil, nil) { result in
+                self.pollTaskState(nextParameters, POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, nil, nil) { result in
                     completionHandler(result)
                 }
                 break

@@ -1,5 +1,5 @@
 //
-//  StandingOrdersTests.swift
+//  StandingOrderTests.swift
 //  Figo
 //
 //  Created by Christian König on 02.12.15.
@@ -11,13 +11,13 @@ import XCTest
 import Figo
 
 
-class StandingOrdersTests: BaseTestCaseWithLogin {
+class StandingOrderTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveStandingOrdersForAccountYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrieveStandingOrdersForAccount("A1182805.4") { result in
+            figo.retrieveStandingOrdersForAccount("A1182805.4") { result in
                 if case .Success(let orders) = result {
                     print("Retrieved \(orders.count) standing orders")
                 }
@@ -32,7 +32,7 @@ class StandingOrdersTests: BaseTestCaseWithLogin {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrieveStandingOrders() { result in
+            figo.retrieveStandingOrders() { result in
                 if case .Success(let orders) = result {
                     print("Retrieved \(orders.count) standing orders")
                 }

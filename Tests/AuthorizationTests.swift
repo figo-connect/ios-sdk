@@ -50,9 +50,9 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login {
-            self.figo.revokeRefreshToken(self.refreshToken!) { result in
+            figo.revokeRefreshToken(self.refreshToken!) { result in
                 XCTAssertNil(result.error)
-                self.figo.retrieveAccounts() { result in
+                figo.retrieveAccounts() { result in
                     XCTAssertNotNil(result.error)
                     self.logout() {
                         expectation.fulfill()
@@ -66,9 +66,9 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     func testThatLoginWithRefreshTokenYieldsAccessToken() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.revokeAccessToken { result in
+            figo.revokeAccessToken { result in
                 XCTAssertNil(result.error)
-                self.figo.loginWithRefreshToken(self.figo.refreshToken!, clientID: self.clientID, clientSecret: self.clientSecret) { result in
+                figo.loginWithRefreshToken(figo.refreshToken!, clientID: self.clientID, clientSecret: self.clientSecret) { result in
                     XCTAssertNil(result.error)
                     self.logout() {
                         expectation.fulfill()

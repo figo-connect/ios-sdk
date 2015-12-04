@@ -16,16 +16,16 @@ internal struct RecoveryPasswordEnvelope: Unboxable {
 }
 
 
-extension FigoSession {
+public extension FigoClient {
     
     /**
      CREATE NEW FIGO USER
      */
-    public func createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void) {
+    public func createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(Endpoint.CreateNewFigoUser(user)) { response in
             
-            let envelopeUnboxingResult: FigoResult<RecoveryPasswordEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: Result<RecoveryPasswordEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
             case .Success(let envelope):
                 completionHandler(.Success(envelope.recoveryPassword))
@@ -40,7 +40,7 @@ extension FigoSession {
     /**
      RETRIEVE CURRENT USER
      */
-    public func retrieveCurrentUser(completionHandler: (FigoResult<User>) -> Void) {
+    public func retrieveCurrentUser(completionHandler: (Result<User>) -> Void) {
         request(Endpoint.RetrieveCurrentUser) { response in
             completionHandler(decodeUnboxableResponse(response))
         }

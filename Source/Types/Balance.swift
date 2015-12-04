@@ -13,7 +13,7 @@ public struct Balance: Unboxable {
     public let balance: Int?
     
     /// Bank server timestamp of balance; This response parameter will be omitted if the balance is not yet known
-    public let balanceDate: FigoDate?
+    public let balanceDate: Date?
     
     /// Credit line
     public let creditLine: Float

@@ -1,5 +1,5 @@
 //
-//  SessionManager.swift
+//  FigoClient.swift
 //  Figo
 //
 //  Created by Christian König on 27.11.15.
@@ -10,40 +10,40 @@ import Foundation
 
 
 // Server's SHA1 fingerprints
-private let trustedFingerprints = Set(["cfc1bc7f6a16092b10838ab0224f3a65d270d73e"])
+private let TRUSTED_FINGERPRINTS = Set(["cfc1bc7f6a16092b10838ab0224f3a65d270d73e"])
+
+/// Milliseconds between polling task states
+internal let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
+
+/// Number of task state polling requests before giving up
+internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
+
+
 
 /**
- A closure which is used for API calls that return nothing
- */
-public typealias VoidCompletionHandler = (FigoResult<Void>) -> Void
 
-
-/**
- Represents a Figo session, which has to be initialized with your client identifier and client secret.
+ Represents a figo session, which after successful a login can be used to access all the figo Connect API's endpoints
  
- Applications that would like to access the figo Connect have to register with us beforehand. If you would like to use figo Connect in your application, please email us. We would love to hear from you what you have in mind and will generate a client identifier and client secret for your application without any bureaucracy.
+ Applications that would like to access the figo Connect API have to register with us beforehand. If you would like to use figo Connect API in your application, please email us. We would love to hear from you what you have in mind and will generate a client identifier and client secret for your application without any bureaucracy.
  
- After a successfull login you can call all other functions as long as your session is valid. The first login has to be with credentials, after that you can login using the refresh token which you got from the credential login.
+ The first login has to be with credentials, after that you can login using the refresh token which you got from the credential login.
  
  - Note: A session will timeout 60 minutes after login.
- - Important: Completion handlers are not executed on the main queue
+ - Important: Completion handlers are NOT executed on the main thread
  
  */
-public class FigoSession {
+public class FigoClient {
     
     let sessionDelegate = FigoURLSessionDelegate()
     let session: NSURLSession
     
     // Used for Basic HTTP authentication, derived from CliendID and ClientSecret
     var basicAuthCredentials: String?
-    
-    /// Milliseconds between polling task states
-    internal let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
-    
-    /// Number of task state polling requests before giving up
-    internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
-    
+
+    /// OAuth2 access token
     var accessToken: String?
+    
+    /// OAuth2 refresh token
     var refreshToken: String?
     
     
@@ -52,18 +52,18 @@ public class FigoSession {
         log.setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
     }
     
-    func request(endpoint: Endpoint, completion: (FigoResult<NSData>) -> Void) {
+    func request(endpoint: Endpoint, completion: (Result<NSData>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
         
         if endpoint.needsBasicAuthHeader {
             guard self.basicAuthCredentials != nil else {
-                completion(.Failure(FigoError.NoActiveSession))
+                completion(.Failure(Error.NoActiveSession))
                 return
             }
             mutableURLRequest.setValue("Basic \(self.basicAuthCredentials!)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
-                completion(.Failure(FigoError.NoActiveSession))
+                completion(.Failure(Error.NoActiveSession))
                 return
             }
             mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
@@ -79,11 +79,11 @@ public class FigoSession {
                 if case 200..<300 = response.statusCode  {
                     completion(.Success(data ?? NSData()))
                 } else {
-                    var serverError: FigoError = error != nil ? .NetworkLayerError(error: error!) : .UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
+                    var serverError: Error = error != nil ? .NetworkLayerError(error: error!) : .UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
                     if let data = data {
                         if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
                             serverError = .ServerError(message: responseAsString)
-                            if let unboxedError: FigoError = Unbox(data) {
+                            if let unboxedError: Error = Unbox(data) {
                                 serverError = unboxedError
                             }
                         }
@@ -115,7 +115,7 @@ class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
                 let certificateData = certificateDataForTrust(serverTrust)
                 let serverFingerprints = Set(certificateData.map() { return sha1($0) })
-                if serverFingerprints.isDisjointWith(trustedFingerprints) {
+                if serverFingerprints.isDisjointWith(TRUSTED_FINGERPRINTS) {
                     disposition = .CancelAuthenticationChallenge
                 }
             }

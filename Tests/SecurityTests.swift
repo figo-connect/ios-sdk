@@ -1,8 +1,8 @@
 //
-//  TransactionsTests.swift
+//  SecurityTests.swift
 //  Figo
 //
-//  Created by Christian König on 01.12.15.
+//  Created by Christian König on 02.12.15.
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
@@ -10,18 +10,16 @@ import XCTest
 import Figo
 
 
-class TransactionsTests: BaseTestCaseWithLogin {
+class SecurityTests: BaseTestCaseWithLogin {
     
-    func testThatRetrieveTransactionForAccountYieldsNoErrors() {
+    func testThatRetrieveSecuritiesForAccountYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            var parameters = RetrieveTransactionsParameters()
-            parameters.since = "2015-11-30"
 
-            self.figo.retrieveTransactionsForAccount("A1182805.4", parameters: parameters) { result in
+            figo.retrieveSecuritiesForAccount("A1182805.4") { result in
                 if case .Success(let envelope) = result {
-                    print("Retrieved \(envelope.transactions.count) transactions")
+                    print("Retrieved \(envelope.securities.count) securities")
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()
@@ -30,18 +28,15 @@ class TransactionsTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testThatRetrieveTransactionsYieldsNoErrors() {
+    func testThatRetrieveSecuritiesYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            var parameters = RetrieveTransactionsParameters()
-            parameters.since = "2015-11-30"
-            
-            self.figo.retrieveTransactions(parameters) { result in
+            figo.retrieveSecurities() { result in
                 if case .Success(let envelope) = result {
-                    print("Retrieved \(envelope.transactions.count) transactions")
-                    for t in envelope.transactions {
-                        print("\(t.name) \(t.amountFormatted)")
+                    print("Retrieved \(envelope.securities.count) securities")
+                    for s in envelope.securities {
+                        print("\(s.name) (current price: \(s.priceFormatted))")
                     }
                 }
                 XCTAssertNil(result.error)
@@ -51,12 +46,12 @@ class TransactionsTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-    func testThatRetrieveTransactionYieldsNoErrors() {
+    func testThatRetrieveSecurityYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-
-            self.figo.retrieveTransaction("T1182805.193") { result in
+            
+            figo.retrieveSecurity("S1182805.2", accountID: "A1182805.3") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }

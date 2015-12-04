@@ -83,13 +83,13 @@ public struct Payment: Unboxable {
     public let container: [Payment]?
     
     /// Timestamp of submission to the bank server.
-    public let submissionDate: FigoDate?
+    public let submissionDate: Date?
     
     /// Internal creation timestamp on the figo Connect server
-    public let creationDate: FigoDate
+    public let creationDate: Date
     
     /// Internal modification timestamp on the figo Connect server
-    public let modificationDate: FigoDate
+    public let modificationDate: Date
     
     /// **optional** Recipient of the payment notification, should be an email address
     /// - Note: Only used when modifying an existing payment

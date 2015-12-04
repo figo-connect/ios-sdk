@@ -1,5 +1,5 @@
 //
-//  FigoError.swift
+//  Error.swift
 //  Figo
 //
 //  Created by Christian König on 20.11.15.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum FigoError: ErrorType, CustomStringConvertible, Unboxable {
+public enum Error: ErrorType, CustomStringConvertible, Unboxable {
     
     init(unboxer: Unboxer) {
         let error: String = unboxer.unbox("error")

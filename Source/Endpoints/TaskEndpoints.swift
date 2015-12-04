@@ -9,32 +9,7 @@
 import Foundation
 
 
-/**
- A closure which is called periodically during task state polling with a status message from the server
- 
- - Parameter message: Status message or error message for currently processed account
- */
-public typealias ProgressUpdate = (message: String) -> Void
-
-/**
- A closure which is called when the server needs a PIN from the user to continue
- 
- - Parameter message: Status message or error message for currently processed account
- - Parameter accountID: Account ID of currently processed account
- */
-public typealias PinResponder = (message: String, accountID: String) -> (pin: String, savePin: Bool)
-
-/**
- A closure which is called when the server needs a response to a challenge from the user
- 
- - Parameter message: Status message or error message for currently processed account
- - Parameter accountID: Account ID of currently processed account
- - Parameter challenge: Challenge object
- */
-public typealias ChallengeResponder = (message: String, accountID: String, challenge: Challenge) -> String
-
-
-extension FigoSession {
+public extension FigoClient {
     
     private func delay(block: () -> Void) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, POLLING_INTERVAL_MSECS), dispatch_get_main_queue(), {
@@ -54,14 +29,14 @@ extension FigoSession {
      - Parameter challengeHandler: Is called when the server needs a response to a challenge
      - Parameter completionHandler: Is called on completion returning nothing or error
      */
-    func pollTaskState(parameters: PollTaskStateParameters, _ countdown: Int, _ progressHandler: ProgressUpdate? = nil, _ pinHandler: PinResponder?, _ challengeHandler: ChallengeResponder?, _ completionHandler: VoidCompletionHandler) {
+    internal func pollTaskState(parameters: PollTaskStateParameters, _ countdown: Int, _ progressHandler: ProgressUpdate? = nil, _ pinHandler: PinResponder?, _ challengeHandler: ChallengeResponder?, _ completionHandler: VoidCompletionHandler) {
         guard countdown > 0 else {
             completionHandler(.Failure(.TaskProcessingTimeout))
             return
         }
 
         request(Endpoint.PollTaskState(parameters)) { response in
-            let decoded: FigoResult<TaskState> = decodeUnboxableResponse(response)
+            let decoded: Result<TaskState> = decodeUnboxableResponse(response)
             
             switch decoded {
             case .Failure(let error):
@@ -84,7 +59,7 @@ extension FigoSession {
                     
                 else if state.isWaitingForPIN {
                     guard let pinHandler = pinHandler else {
-                        completionHandler(.Failure(FigoError.UnspecifiedError(reason: "No PinResponder")))
+                        completionHandler(.Failure(Error.UnspecifiedError(reason: "No PinResponder")))
                         return
                     }
                     
@@ -95,11 +70,11 @@ extension FigoSession {
                     
                 else if state.isWaitingForResponse {
                     guard let challengeHandler = challengeHandler else {
-                        completionHandler(.Failure(FigoError.UnspecifiedError(reason: "No ChallengeResponder")))
+                        completionHandler(.Failure(Error.UnspecifiedError(reason: "No ChallengeResponder")))
                         return
                     }
                     guard let challenge = state.challenge else {
-                        completionHandler(.Failure(FigoError.UnspecifiedError(reason: "Server is waiting for response but has not given a challenge")))
+                        completionHandler(.Failure(Error.UnspecifiedError(reason: "Server is waiting for response but has not given a challenge")))
                         return
                     }
                     
@@ -133,12 +108,12 @@ extension FigoSession {
     public func synchronize(parameters parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler) {
         request(.Synchronize(parameters.JSONObject)) { response in
             
-            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .Success(let envelope):
                 
                 let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
-                self.pollTaskState(nextParameters, self.POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, pinHandler, nil) { result in
+                self.pollTaskState(nextParameters, POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, pinHandler, nil) { result in
                     completionHandler(result)
                 }
                 break

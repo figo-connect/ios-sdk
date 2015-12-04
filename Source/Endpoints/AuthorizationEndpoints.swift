@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension FigoSession {
+public extension FigoClient {
     
     /**
      CREDENTIAL LOGIN
@@ -26,16 +26,16 @@ extension FigoSession {
      - Parameter clientSecret: Client secret
      - Parameter completionHandler: Returns refresh token or error
      */
-    public func loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void) {
+    public func loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(.LoginUser(username: username, password: password)) { response in
             
-            let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
+            let unboxingResult: Result<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .Success(let authorization):
                 self.accessToken = authorization.accessToken
                 self.refreshToken = authorization.refreshToken
-                completionHandler(FigoResult.Success(authorization.refreshToken!))
+                completionHandler(Result.Success(authorization.refreshToken!))
                 break
             case .Failure(let error):
                 completionHandler(.Failure(error))
@@ -59,7 +59,7 @@ extension FigoSession {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(Endpoint.RefreshToken(refreshToken)) { response in
 
-            let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
+            let unboxingResult: Result<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .Success(let authorization):
                 self.accessToken = authorization.accessToken
@@ -84,7 +84,7 @@ extension FigoSession {
      */
     public func revokeAccessToken(completionHandler: VoidCompletionHandler) {
         guard let accessToken = self.accessToken else {
-            completionHandler(.Failure(FigoError.NoActiveSession))
+            completionHandler(.Failure(Error.NoActiveSession))
             return
         }
         request(.RevokeToken(accessToken)) { response in

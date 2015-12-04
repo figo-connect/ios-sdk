@@ -1,5 +1,5 @@
 //
-//  AccountsTests.swift
+//  AccountTests.swift
 //  Figo iOS Tests
 //
 //  Created by Christian König on 20.11.15.
@@ -10,7 +10,7 @@ import XCTest
 @testable import Figo
 
 
-class AccountsTests: BaseTestCaseWithLogin {
+class AccountTests: BaseTestCaseWithLogin {
     
     let demoBankCode = "90090042"
     let demoCredentials = ["demo", "demo"]
@@ -18,7 +18,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     func testThatRetrieveAccountsYieldsObjects() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveAccounts() { result in
+            figo.retrieveAccounts() { result in
                 switch result {
                 case .Success(let accounts):
                     XCTAssertGreaterThan(accounts.count, 0)
@@ -40,7 +40,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     func testThatRetrieveAccountYieldsObject() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveAccount("A1182805.2") { result in
+            figo.retrieveAccount("A1182805.2") { result in
                 XCTAssertNil(result.error)
                 if let account = result.value {
                     XCTAssertEqual(account.accountNumber, "4711951501")
@@ -54,7 +54,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     func testRemovePin() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.removeStoredPinFromBankContact("B1182805.1") { result in
+            figo.removeStoredPinFromBankContact("B1182805.1") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
@@ -66,7 +66,7 @@ class AccountsTests: BaseTestCaseWithLogin {
 //        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
 //        login() {
 //            let account = CreateAccountParameters(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
-//            self.figo.setupNewBankAccount(account) { result in
+//            figo.setupNewBankAccount(account) { result in
 //                XCTAssertNil(result.error)
 //                expectation.fulfill()
 //            }
@@ -77,7 +77,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     func xtestDeleteBankAccount() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.deleteAccount("A1182805.1") { result in
+            figo.deleteAccount("A1182805.1") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
@@ -89,7 +89,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     func testRetrieveLoginSettings() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveLoginSettings(bankCode: "66450050") { result in
+            figo.retrieveLoginSettings(bankCode: "66450050") { result in
                 XCTAssertNil(result.error)
                 if case .Success(let settings) = result {
                     XCTAssertTrue(settings.supported)
@@ -116,7 +116,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     func testRetrieveSupportedBanks() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveSupportedBanks() { result in
+            figo.retrieveSupportedBanks() { result in
                 XCTAssertNil(result.error)
                 if case .Success(let banks) = result {
                     let bank = banks.first!
@@ -131,7 +131,7 @@ class AccountsTests: BaseTestCaseWithLogin {
     func testRetrieveSupportedServices() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveSupportedServices() { result in
+            figo.retrieveSupportedServices() { result in
                 XCTAssertNil(result.error)
                 if case .Success(let services) = result {
                     let service = services.first!

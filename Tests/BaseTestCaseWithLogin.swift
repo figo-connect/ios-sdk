@@ -8,8 +8,10 @@
 
 import Foundation
 import XCTest
-
 import Figo
+
+
+let figo = FigoClient()
 
 
 class BaseTestCaseWithLogin: XCTestCase {
@@ -19,7 +21,6 @@ class BaseTestCaseWithLogin: XCTestCase {
     let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
     let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 
-    let figo = FigoSession.init()
     var refreshToken: String?
     
     func login(completionHandler: () -> Void) {

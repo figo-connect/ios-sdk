@@ -1,5 +1,5 @@
 //
-//  TransactionsEndpoints.swift
+//  TransactionEndpoints.swift
 //  Figo
 //
 //  Created by Christian König on 01.12.15.
@@ -7,7 +7,7 @@
 //
 
 
-extension FigoSession {
+public extension FigoClient {
 
     /**
      RETRIEVE TRANSACTIONS OF ALL ACCOUNTS
@@ -17,7 +17,7 @@ extension FigoSession {
      - Parameter parameters: (optional) `RetrieveTransactionsParameters`
      - Parameter completionHandler: Returns `TransactionListEnvelope` or error
      */
-    public func retrieveTransactions(parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (FigoResult<TransactionListEnvelope>) -> Void) {
+    public func retrieveTransactions(parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void) {
         request(.RetrieveTransactions(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -32,7 +32,7 @@ extension FigoSession {
      - Parameter parameters: (optional) `RetrieveTransactionsParameters`
      - Parameter completionHandler: Returns `TransactionListEnvelope` or error
      */
-    public func retrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (FigoResult<TransactionListEnvelope>) -> Void) {
+    public func retrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void) {
         request(.RetrieveTransactionsForAccount(accountID, parameters: parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -44,7 +44,7 @@ extension FigoSession {
      - Parameter transactionID: ID of the transaction to retrieve
      - Parameter completionHandler: Returns transactions or error
      */
-    public func retrieveTransaction(transactionID: String, _ completionHandler: (FigoResult<Transaction>) -> Void) {
+    public func retrieveTransaction(transactionID: String, _ completionHandler: (Result<Transaction>) -> Void) {
         request(.RetrieveTransaction(transactionID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }

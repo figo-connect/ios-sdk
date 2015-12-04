@@ -1,5 +1,5 @@
 //
-//  Endpoints.swift
+//  Requests.swift
 //  Figo
 //
 //  Created by Christian König on 25.11.15.
@@ -187,20 +187,22 @@ internal enum Endpoint {
     
     private func encodeParameters(request: NSMutableURLRequest) {
         switch self.method {
+            
         case .POST, .PUT:
+            // For some reason the id parameter needs to go into the query instead of the request body
             if case .PollTaskState(let parameters) = self {
                 encodeURLParameters(request, ["id": parameters.taskToken])
             }
             guard let parameters = self.parameters else { return }
-            do {
-                let data = try NSJSONSerialization.dataWithJSONObject(parameters, options: [.PrettyPrinted])
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.HTTPBody = data
-            } catch { }
+            let data = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [.PrettyPrinted])
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPBody = data
             break
+            
         case .GET, .DELETE:
             encodeURLParameters(request, parameters)
             break
+            
         default:
             break
         }

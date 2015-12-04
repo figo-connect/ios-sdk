@@ -1,5 +1,5 @@
 //
-//  PaymentsTests.swift
+//  PaymentTests.swift
 //  Figo
 //
 //  Created by Christian König on 02.12.15.
@@ -10,13 +10,13 @@ import XCTest
 import Figo
 
 
-class PaymentsTests: BaseTestCaseWithLogin {
+class PaymentTests: BaseTestCaseWithLogin {
     
     func testThatRetrievePaymentsYieldsNoErrors() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrievePayments() { result in
+            figo.retrievePayments() { result in
                 if case .Success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
                     for p in payments {
@@ -35,7 +35,7 @@ class PaymentsTests: BaseTestCaseWithLogin {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrievePaymentsForAccount("A1182805.4") { result in
+            figo.retrievePaymentsForAccount("A1182805.4") { result in
                 if case .Success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
                 }
@@ -51,7 +51,7 @@ class PaymentsTests: BaseTestCaseWithLogin {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         login() {
-            self.figo.retrievePayment("P1182805.15", accountID: "A1182805.4") { result in
+            figo.retrievePayment("P1182805.15", accountID: "A1182805.4") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
@@ -79,17 +79,17 @@ class PaymentsTests: BaseTestCaseWithLogin {
         
         login() {
             
-            self.figo.createPayment(params) { createResult in
+            figo.createPayment(params) { createResult in
                 switch createResult {
                     
                 case .Success(var payment):
                     payment.amount = 666
                     
-                    self.figo.modifyPayment(payment) { modifyResult in
+                    figo.modifyPayment(payment) { modifyResult in
                         switch modifyResult {
                             
                         case .Success(let payment):
-                            self.figo.submitPayment(payment, tanSchemeID: "M1182805.9", pinHandler: pinHandler, challengeHandler: challengeHandler) { submitResult in
+                            figo.submitPayment(payment, tanSchemeID: "M1182805.9", pinHandler: pinHandler, challengeHandler: challengeHandler) { submitResult in
                                 XCTAssertNil(submitResult.error)
                                 expectation.fulfill()
                             }

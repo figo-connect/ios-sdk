@@ -28,7 +28,7 @@ class TaskTests: BaseTestCaseWithLogin {
 
             let parameters = CreateSyncTaskParameters(ifNotSyncedSince: nil, autoContinue: false, accountIDs: nil, syncTasks: nil)
             
-            self.figo.synchronize(parameters: parameters, progressHandler: progressHandler, pinHandler: pinHandler) { result in
+            figo.synchronize(parameters: parameters, progressHandler: progressHandler, pinHandler: pinHandler) { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }

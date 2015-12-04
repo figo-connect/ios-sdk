@@ -15,7 +15,7 @@ class UserTests: BaseTestCaseWithLogin {
     func testThatRetrieveCurrentUserYieldsObject() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            self.figo.retrieveCurrentUser() { result in
+            figo.retrieveCurrentUser() { result in
                 if let user = result.value {
                     XCTAssertEqual(user.email, "christian@koenig.systems")
                 }
@@ -35,10 +35,10 @@ class UserTests: BaseTestCaseWithLogin {
         figo.createNewFigoUser(user, clientID: clientID, clientSecret: clientSecret) { result in
             XCTAssertNil(result.error)
             
-            self.figo.loginWithUsername(username, password: password, clientID: self.clientID, clientSecret: self.clientSecret) { refreshToken in
+            figo.loginWithUsername(username, password: password, clientID: self.clientID, clientSecret: self.clientSecret) { refreshToken in
                 XCTAssertNil(refreshToken.error)
                 
-                self.figo.deleteCurrentUser({ (result) -> Void in
+                figo.deleteCurrentUser({ (result) -> Void in
                     XCTAssertNil(result.error)
                     expectation.fulfill()
                 })

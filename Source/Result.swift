@@ -1,5 +1,5 @@
 //
-//  FigoResult.swift
+//  Result.swift
 //  Figo
 //
 //  Created by Christian König on 28.11.15.
@@ -7,10 +7,10 @@
 //
 
 
-public enum FigoResult<Value>: CustomStringConvertible, CustomDebugStringConvertible {
+public enum Result<Value>: CustomStringConvertible, CustomDebugStringConvertible {
     
     case Success(Value)
-    case Failure(FigoError)
+    case Failure(Error)
     
     /// Returns `true` if the result is a success, `false` otherwise.
     public var isSuccess: Bool {
@@ -38,7 +38,7 @@ public enum FigoResult<Value>: CustomStringConvertible, CustomDebugStringConvert
     }
     
     /// Returns the associated error value if the result is a failure, `nil` otherwise.
-    public var error: FigoError? {
+    public var error: Error? {
         switch self {
         case .Success:
             return nil

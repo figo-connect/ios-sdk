@@ -1,5 +1,5 @@
 //
-//  BankServices.swift
+//  ServiceEndpoints.swift
 //  Figo
 //
 //  Created by Christian König on 30.11.15.
@@ -7,7 +7,7 @@
 //
 
 
-extension FigoSession {
+public extension FigoClient {
     
     /**
      RETRIEVE LOGIN SETTINGS FOR A BANK OR SERVICE
@@ -18,7 +18,7 @@ extension FigoSession {
      - Parameter bankCode: Bank code
      - Parameter completionHandler: Returns login settings or error
      */
-    public func retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (FigoResult<LoginSettings>) -> Void) {
+    public func retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (Result<LoginSettings>) -> Void) {
         request(Endpoint.RetrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -29,9 +29,9 @@ extension FigoSession {
      
      - Parameter countryCode: The country the service comes from (Valid values: de)
      */
-    public func retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedBank]>) -> Void) {
+    public func retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (Result<[SupportedBank]>) -> Void) {
         request(Endpoint.RetrieveSupportedBanks(countryCode: countryCode)) { response in
-            let envelopeUnboxingResult: FigoResult<BanksListEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: Result<BanksListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
             case .Success(let envelope):
@@ -51,9 +51,9 @@ extension FigoSession {
      
      - Parameter countryCode: The country the service comes from (Valid values: de)
      */
-    public func retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedService]>) -> Void) {
+    public func retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (Result<[SupportedService]>) -> Void) {
         request(Endpoint.RetrieveSupportedServices(countryCode: countryCode)) { response in
-            let envelopeUnboxingResult: FigoResult<ServicesListEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: Result<ServicesListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
             case .Success(let envelope):

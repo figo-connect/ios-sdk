@@ -92,13 +92,13 @@ public struct Security: Unboxable {
     public let visited: Bool
     
     /// Trading timestamp
-    public let tradeDate: FigoDate
+    public let tradeDate: Date
     
     /// Internal creation timestamp on the figo Connect server
-    public let creationDate: FigoDate
+    public let creationDate: Date
     
     /// Internal modification timestamp on the figo Connect server
-    public let modificationDate: FigoDate
+    public let modificationDate: Date
     
     
     private var currencyFormatter: NSNumberFormatter {

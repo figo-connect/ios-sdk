@@ -1,5 +1,5 @@
 //
-//  ResponseDecoding.swift
+//  Responses.swift
 //  Figo
 //
 //  Created by Christian König on 27.11.15.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-internal func decodeVoidResponse(response: FigoResult<NSData>) -> FigoResult<Void> {
+internal func decodeVoidResponse(response: Result<NSData>) -> Result<Void> {
     switch response {
     case .Failure(let error):
         return .Failure(error)
@@ -18,7 +18,7 @@ internal func decodeVoidResponse(response: FigoResult<NSData>) -> FigoResult<Voi
     }
 }
 
-internal func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<T> {
+internal func decodeUnboxableResponse<T: Unboxable>(data: Result<NSData>, context: Any? = nil) -> Result<T> {
     switch data {
     case .Success(let data):
         do {
@@ -34,7 +34,7 @@ internal func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, co
     }
 }
 
-internal func decodeUnboxableResponse<T: Unboxable>(data: FigoResult<NSData>, context: Any? = nil) -> FigoResult<[T]> {
+internal func decodeUnboxableResponse<T: Unboxable>(data: Result<NSData>, context: Any? = nil) -> Result<[T]> {
     switch data {
     case .Success(let data):
         do {

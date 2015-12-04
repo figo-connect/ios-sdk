@@ -95,10 +95,10 @@ public struct StandingOrder: Unboxable {
     let purpose: String
     
     /// Internal creation timestamp on the figo Connect server
-    let creationDate: FigoDate
+    let creationDate: Date
     
     /// Internal modification timestamp on the figo Connect server
-    let modificationDate: FigoDate?
+    let modificationDate: Date?
     
     
     init(unboxer: Unboxer) {

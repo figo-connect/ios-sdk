@@ -78,19 +78,19 @@ public struct Transaction: Unboxable {
     public let booked: Bool
     
     /// Booking date
-    public let bookingDate: FigoDate
+    public let bookingDate: Date
 
     /// Booking text. This field might be empty if the transaction has no booking text.
     public let bookingText: String
     
     /// Internal creation timestamp on the figo Connect server
-    public let creationDate: FigoDate
+    public let creationDate: Date
     
     /// Three-character currency code
     public let currency: String
     
     /// Internal modification timestamp on the figo Connect server
-    public let modificationDate: FigoDate
+    public let modificationDate: Date
     
     /// Name of originator or recipient
     public let name: String
@@ -105,7 +105,7 @@ public struct Transaction: Unboxable {
     public let type: PaymentType
     
     /// Value date
-    public let valueDate: FigoDate
+    public let valueDate: Date
     
     /// This flag indicates whether the transaction has already been marked as visited by the user
     public let visited: Bool

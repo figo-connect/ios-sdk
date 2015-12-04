@@ -1,5 +1,5 @@
 //
-//  FigoDate.swift
+//  Date.swift
 //  Figo
 //
 //  Created by Christian König on 02.12.15.
@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Provides a NSDate representation for the server's timestamps
-public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
+public struct Date: UnboxableByTransform, CustomStringConvertible {
     
     internal typealias UnboxRawValueType = String
     
@@ -25,7 +25,7 @@ public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
     }
     
     private init? (timestamp: String) {
-        if let date = FigoDate.posixFormatter.dateFromString(timestamp) {
+        if let date = Date.posixFormatter.dateFromString(timestamp) {
             self.date = date
             self.timestamp = timestamp
             self.formatted = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
@@ -35,12 +35,12 @@ public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
         }
     }
     
-    static func transformUnboxedValue(unboxedValue: String) -> FigoDate? {
-        return FigoDate(timestamp: unboxedValue)
+    static func transformUnboxedValue(unboxedValue: String) -> Date? {
+        return Date(timestamp: unboxedValue)
     }
     
-    static func unboxFallbackValue() -> FigoDate {
-        return FigoDate()
+    static func unboxFallbackValue() -> Date {
+        return Date()
     }
     
     private static let posixFormatter: NSDateFormatter = {

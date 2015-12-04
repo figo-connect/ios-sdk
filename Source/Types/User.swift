@@ -28,7 +28,7 @@ public struct User: Unboxable {
     public let sendNewsletter: Bool?
     
     /// Timestamp of figo Account registration. Only available when calling with scope user=ro or better.
-    public let joinDate: FigoDate?
+    public let joinDate: Date?
     
     /// Two-letter code of preferred language. Only available when calling with scope user=ro or better.
     public let language: String?
@@ -37,7 +37,7 @@ public struct User: Unboxable {
     public let premium: Bool?
     
     /// Timestamp of premium figo Account expiry. Only available when calling with scope user=ro or better.
-    public let premiumExpiresOn: FigoDate?
+    public let premiumExpiresOn: Date?
     
     /// Provider for premium subscription or Null if no subscription is active. Only available when calling with scope user=ro or better.
     public let premiumSubscription: String?

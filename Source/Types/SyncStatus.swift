@@ -11,8 +11,8 @@ public struct SyncStatus: Unboxable {
     
     public let code: Int
     public let message: String?
-    public let successDate: FigoDate
-    public let syncDate: FigoDate
+    public let successDate: Date
+    public let syncDate: Date
     
     
     init(unboxer: Unboxer) {

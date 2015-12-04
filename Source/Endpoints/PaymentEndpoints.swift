@@ -1,5 +1,5 @@
 //
-//  PaymentsEndpoints.swift
+//  PaymentEndpoints.swift
 //  Figo
 //
 //  Created by Christian König on 02.12.15.
@@ -7,7 +7,7 @@
 //
 
 
-extension FigoSession {
+public extension FigoClient {
     
     /**
      RETRIEVE PAYMENT PROPOSALS
@@ -16,7 +16,7 @@ extension FigoSession {
      
      - Parameter completionHandler: Returns payment proposals or error
      */
-    public func retrievePaymentProposals(completionHandler: FigoResult<[PaymentProposal]> -> Void) {
+    public func retrievePaymentProposals(completionHandler: Result<[PaymentProposal]> -> Void) {
         request(.RetrievePaymentProposals) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -27,9 +27,9 @@ extension FigoSession {
      
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePayments(completionHandler: FigoResult<[Payment]> -> Void) {
+    public func retrievePayments(completionHandler: Result<[Payment]> -> Void) {
         request(.RetrievePayments) { response in
-            let unboxingResult: FigoResult<PaymentListEnvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: Result<PaymentListEnvelope> = decodeUnboxableResponse(response)
             
             switch unboxingResult {
             case .Success(let envelope):
@@ -47,9 +47,9 @@ extension FigoSession {
      
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePaymentsForAccount(accountID: String, _ completionHandler: FigoResult<[Payment]> -> Void) {
+    public func retrievePaymentsForAccount(accountID: String, _ completionHandler: Result<[Payment]> -> Void) {
         request(.RetrievePaymentsForAccount(accountID)) { response in
-            let unboxingResult: FigoResult<PaymentListEnvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: Result<PaymentListEnvelope> = decodeUnboxableResponse(response)
             
             switch unboxingResult {
             case .Success(let envelope):
@@ -69,7 +69,7 @@ extension FigoSession {
      - Parameter accountID: Internal figo connect ID of the account
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePayment(paymentID: String, accountID: String, _ completionHandler: FigoResult<Payment> -> Void) {
+    public func retrievePayment(paymentID: String, accountID: String, _ completionHandler: Result<Payment> -> Void) {
         request(.RetrievePayment(paymentID, accountID: accountID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -81,7 +81,7 @@ extension FigoSession {
      - Parameter parameters: `CreatePaymentParameters`
      - Parameter completionHandler: Returns payment or error
      */
-    public func createPayment(parameters: CreatePaymentParameters, _ completionHandler: FigoResult<Payment> -> Void) {
+    public func createPayment(parameters: CreatePaymentParameters, _ completionHandler: Result<Payment> -> Void) {
         request(.CreatePayment(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -93,7 +93,7 @@ extension FigoSession {
      - Parameter payment: `Payment`
      - Parameter completionHandler: Returns nothing or error
      */
-    public func modifyPayment(payment: Payment, _ completionHandler: FigoResult<Payment> -> Void) {
+    public func modifyPayment(payment: Payment, _ completionHandler: Result<Payment> -> Void) {
         request(.ModifyPayment(payment)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -111,12 +111,12 @@ extension FigoSession {
     public func submitPayment(payment: Payment, tanSchemeID: String, pinHandler: PinResponder, challengeHandler: ChallengeResponder, _ completionHandler: VoidCompletionHandler) {
         request(.SubmitPayment(payment, tanSchemeID: tanSchemeID)) { response in
             
-            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .Success(let envelope):
                 
                 let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
-                self.pollTaskState(nextParameters, self.POLLING_COUNTDOWN_INITIAL_VALUE, nil, pinHandler, challengeHandler) { result in
+                self.pollTaskState(nextParameters, POLLING_COUNTDOWN_INITIAL_VALUE, nil, pinHandler, challengeHandler) { result in
                     completionHandler(result)
                 }
                 break
