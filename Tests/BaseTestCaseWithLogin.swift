@@ -11,7 +11,8 @@ import XCTest
 import Figo
 
 
-let figo = FigoClient()
+let logger = XCGLogger.defaultInstance()
+let figo = FigoClient(logger: logger)
 
 
 class BaseTestCaseWithLogin: XCTestCase {
@@ -22,6 +23,12 @@ class BaseTestCaseWithLogin: XCTestCase {
     let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 
     var refreshToken: String?
+    
+    override class func setUp() {
+        super.setUp()
+        
+        logger.setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
+    }
     
     func login(completionHandler: () -> Void) {
         guard refreshToken == nil else {

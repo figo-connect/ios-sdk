@@ -10,7 +10,7 @@ import Foundation
 
 
 // Internal logger instance
-internal let log = XCGLogger.defaultInstance()
+internal var log = XCGLogger.defaultInstance()
 
 
 func debugPrintRequest(request: NSURLRequest) {

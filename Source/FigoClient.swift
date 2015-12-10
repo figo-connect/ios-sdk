@@ -47,9 +47,31 @@ public class FigoClient {
     var refreshToken: String?
     
     
-    public init() {
+    /**
+     Create a FigoClient instance
+     
+     - Parameter session: NSURLSession instance (Uses own instance by default)
+     - Parameter logger: XCGLogger instance (Logging disabled by default)
+     
+     - Note: SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.
+     */
+    public init(session: NSURLSession? = nil, logger: XCGLogger? = nil) {
+        if let session = session {
+            self.session = session
+        } else {
+            self.session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
+        }
+        if let logger = logger {
+            log = logger
+        } else {
+            log = XCGLogger.defaultInstance()
+            log.setup(.None, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
+        }
+    }
+
+    public init(logger: XCGLogger) {
         session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
-        log.setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
+        log = logger
     }
     
     func request(endpoint: Endpoint, completion: (Result<NSData>) -> Void) {
@@ -101,12 +123,12 @@ public class FigoClient {
         }
         task.resume()
     }
-}
-
-
-class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
     
-    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    
+    /**
+     Check's the server's certificates to make sure that you are really talking to the figo server
+     */
+    public class func dispositionForChallenge(challenge: NSURLAuthenticationChallenge) -> NSURLSessionAuthChallengeDisposition {
         
         var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
         
@@ -128,44 +150,51 @@ class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
             }
         }
         
-        completionHandler(disposition, nil)
-    }
-    
-    private func sha1(data: NSData) -> String {
-        var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
-        CC_SHA1(data.bytes, CC_LONG(data.length), &digest)
-        let hexBytes = digest.map { String(format: "%02hhx", $0) }
-        return hexBytes.joinWithSeparator("")
-    }
-    
-    private func trustIsValid(trust: SecTrust) -> Bool {
-        var isValid = false
-        var result = SecTrustResultType(kSecTrustResultInvalid)
-        let status = SecTrustEvaluate(trust, &result)
-        
-        if status == errSecSuccess {
-            let unspecified = SecTrustResultType(kSecTrustResultUnspecified)
-            let proceed = SecTrustResultType(kSecTrustResultProceed)
-            isValid = result == unspecified || result == proceed
-        }
-        return isValid
-    }
-    
-    private func certificateDataForTrust(trust: SecTrust) -> [NSData] {
-        var certificates: [SecCertificate] = []
-        
-        for index in 0 ..< SecTrustGetCertificateCount(trust) {
-            if let certificate = SecTrustGetCertificateAtIndex(trust, index) {
-                certificates.append(certificate)
-            }
-        }
-        return certificateDataForCertificates(certificates)
-    }
-    
-    private func certificateDataForCertificates(certificates: [SecCertificate]) -> [NSData] {
-        return certificates.map { SecCertificateCopyData($0) as NSData }
+        return disposition
     }
 }
 
 
+internal class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
+    
+    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        completionHandler(FigoClient.dispositionForChallenge(challenge), nil)
+    }
+}
+
+
+private func sha1(data: NSData) -> String {
+    var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
+    CC_SHA1(data.bytes, CC_LONG(data.length), &digest)
+    let hexBytes = digest.map { String(format: "%02hhx", $0) }
+    return hexBytes.joinWithSeparator("")
+}
+
+private func trustIsValid(trust: SecTrust) -> Bool {
+    var isValid = false
+    var result = SecTrustResultType(kSecTrustResultInvalid)
+    let status = SecTrustEvaluate(trust, &result)
+    
+    if status == errSecSuccess {
+        let unspecified = SecTrustResultType(kSecTrustResultUnspecified)
+        let proceed = SecTrustResultType(kSecTrustResultProceed)
+        isValid = result == unspecified || result == proceed
+    }
+    return isValid
+}
+
+private func certificateDataForTrust(trust: SecTrust) -> [NSData] {
+    var certificates: [SecCertificate] = []
+    
+    for index in 0 ..< SecTrustGetCertificateCount(trust) {
+        if let certificate = SecTrustGetCertificateAtIndex(trust, index) {
+            certificates.append(certificate)
+        }
+    }
+    return certificateDataForCertificates(certificates)
+}
+
+private func certificateDataForCertificates(certificates: [SecCertificate]) -> [NSData] {
+    return certificates.map { SecCertificateCopyData($0) as NSData }
+}
 
