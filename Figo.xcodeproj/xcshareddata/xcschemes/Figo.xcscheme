@@ -42,6 +42,9 @@
                   Identifier = "AccountTests/testDeleteBankAccount()">
                </Test>
                <Test
+                  Identifier = "AccountTests/testRetrieveSupportedBanks()">
+               </Test>
+               <Test
                   Identifier = "AccountTests/testSetupAccount()">
                </Test>
                <Test

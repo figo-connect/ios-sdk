@@ -49,12 +49,13 @@ public extension FigoClient {
                     progressHandler(message: state.message)
                 }
                 
-                if state.isEnded {
-                    if state.isErroneous {
-                        completionHandler(.Failure(.TaskProcessingError(accountID: state.accountID, message: state.message)))
-                    } else {
-                        completionHandler(.Success())
-                    }
+
+                if state.isErroneous {
+                    completionHandler(.Failure(.TaskProcessingError(accountID: state.accountID, message: state.message)))
+                }
+                    
+                else if state.isEnded {
+                    completionHandler(.Success())
                 }
                     
                 else if state.isWaitingForPIN {
@@ -82,7 +83,7 @@ public extension FigoClient {
                     let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken, response: response)
                     self.pollTaskState(nextParameters, countdown - 1, progressHandler, pinHandler, challengeHandler, completionHandler)
                 }
-                    
+
                 else {
                     self.delay() {
                         let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken)
