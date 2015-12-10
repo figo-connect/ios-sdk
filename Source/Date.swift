@@ -16,19 +16,22 @@ public struct Date: UnboxableByTransform, CustomStringConvertible {
     
     public let date: NSDate
     public let timestamp: String
-    public var formatted: String
+    public var formattedShort: String
+    public var formattedLong: String
 
     private init() {
         self.date = NSDate.distantPast()
         self.timestamp = ""
-        self.formatted = "Invalid date"
+        self.formattedShort = "Invalid date"
+        self.formattedLong = "Invalid date"
     }
     
     private init? (timestamp: String) {
         if let date = Date.posixFormatter.dateFromString(timestamp) {
             self.date = date
             self.timestamp = timestamp
-            self.formatted = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
+            self.formattedShort = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .NoStyle)
+            self.formattedLong = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
         }
         else {
             return nil
@@ -52,7 +55,7 @@ public struct Date: UnboxableByTransform, CustomStringConvertible {
     }()
     
     public var description: String {
-        return self.formatted
+        return self.formattedLong
     }
     
 }
