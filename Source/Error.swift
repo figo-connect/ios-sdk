@@ -11,7 +11,7 @@ import Foundation
 
 public enum Error: ErrorType, CustomStringConvertible, Unboxable {
     
-    public init(unboxer: Unboxer) {
+    init(unboxer: Unboxer) {
         let error: String = unboxer.unbox("error")
         let error_description: String = unboxer.unbox("error_description")
         self = .ServerErrorWithDescrition(error: error, description: error_description)

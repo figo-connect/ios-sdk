@@ -31,7 +31,7 @@ public struct LoginSettings: Unboxable {
     public let advice: String?
     
     
-    public init(unboxer: Unboxer) {
+    init(unboxer: Unboxer) {
         bankName            = unboxer.unbox("bank_name")
         supported           = unboxer.unbox("supported")
         icon                = unboxer.unbox("icon")

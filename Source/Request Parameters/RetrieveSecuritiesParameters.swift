@@ -24,7 +24,7 @@ public enum SecuritySinceType: String, UnboxableEnum {
     case Modified = "modified"
     
     
-    public static func unboxFallbackValue() -> SecuritySinceType {
+    static func unboxFallbackValue() -> SecuritySinceType {
         return .Traded
     }
 }

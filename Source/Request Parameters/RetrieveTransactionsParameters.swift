@@ -24,7 +24,7 @@ public enum TransactionSinceType: String, UnboxableEnum {
     case Modified = "modified"
     
     
-    public static func unboxFallbackValue() -> TransactionSinceType {
+    static func unboxFallbackValue() -> TransactionSinceType {
         return .Booked
     }
 }

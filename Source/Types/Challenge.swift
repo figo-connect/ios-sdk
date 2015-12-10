@@ -22,7 +22,7 @@ public struct Challenge: Unboxable {
     public let data: String?
     
     
-    public init(unboxer: Unboxer) {
+    init(unboxer: Unboxer) {
         title   = unboxer.unbox("title")
         label   = unboxer.unbox("label")
         format  = unboxer.unbox("format")

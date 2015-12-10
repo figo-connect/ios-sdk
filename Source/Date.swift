@@ -12,7 +12,7 @@ import Foundation
 /// Provides a NSDate representation for the server's timestamps
 public struct Date: UnboxableByTransform, CustomStringConvertible {
     
-    public typealias UnboxRawValueType = String
+    internal typealias UnboxRawValueType = String
     
     public let date: NSDate
     public let timestamp: String
@@ -35,11 +35,11 @@ public struct Date: UnboxableByTransform, CustomStringConvertible {
         }
     }
     
-    public static func transformUnboxedValue(unboxedValue: String) -> Date? {
+    static func transformUnboxedValue(unboxedValue: String) -> Date? {
         return Date(timestamp: unboxedValue)
     }
     
-    public static func unboxFallbackValue() -> Date {
+    static func unboxFallbackValue() -> Date {
         return Date()
     }
     

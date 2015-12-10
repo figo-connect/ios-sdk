@@ -26,16 +26,37 @@ Applications that would like to access the figo Connect have to register with us
 Website: [http://figo.io](http://figo.io)
 
 
+## Credits
+
+The Figo Framework uses the following 3rd-party utilities, but is not exporting their symbols:
+
+- [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger)
+- [JohnSundell/Unbox](https://github.com/JohnSundell/Unbox)
+
+
+## Usage
+
+Take a look at the test cases to see more examples of interaction with the API.
+
+### Retrieve all accounts
+        Figo.retrieveAccounts() { accounts, _ in
+            if let accounts = accounts {
+                for account in accounts {
+                    print(account.account_id)
+                }
+            }
+        }
+### Retrieve a single account
+        Figo.retrieveAccount("A1.1") { account, _ in
+            if let account = account {
+                print(account.account_id)
+            }
+        }
+        
+
 ## Installation
 
-### Manually
 
-* Add Figo as a git submodule by running the following command:
-
-	`$ git submodule add https://github.com/figome/ios-sdk.git`
-* Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
-* Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
-* Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
 
 ### Carthage
 
@@ -67,32 +88,17 @@ Website: [http://figo.io](http://figo.io)
     `$(SRCROOT)/Carthage/Build/iOS/Figo.framework`
 
 
+### CocoaPods
 
 
-## Usage
+### Manually
 
-Take a look at the test cases to see more examples of interaction with the API.
+* Add Figo as a git submodule by running the following command:
 
-### Retrieve all accounts
-        Figo.retrieveAccounts() { accounts, _ in
-            if let accounts = accounts {
-                for account in accounts {
-                    print(account.account_id)
-                }
-            }
-        }
-### Retrieve a single account
-        Figo.retrieveAccount("A1.1") { account, _ in
-            if let account = account {
-                print(account.account_id)
-            }
-        }
-        
+	`$ git submodule add https://github.com/figome/ios-sdk.git`
+* Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
+* Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
+* Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
 
-## Credits
 
-The Figo Framework uses the following 3rd-party utilities:
-
-- [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger)
-- [JohnSundell/Unbox](https://github.com/JohnSundell/Unbox)
 
