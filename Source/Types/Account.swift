@@ -109,7 +109,7 @@ public struct Account: Unboxable {
         return formatter
     }
     
-    init(unboxer: Unboxer) {
+    public init(unboxer: Unboxer) {
         accountID           = unboxer.unbox("account_id")
         accountNumber       = unboxer.unbox("account_number")
         additionalIcons     = unboxer.unbox("additional_icons")

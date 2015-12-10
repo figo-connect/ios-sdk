@@ -15,7 +15,7 @@ public struct SecurityListEnvelope: Unboxable {
     public let deleted: [Security]
     public let status: SyncStatus
     
-    init(unboxer: Unboxer) {
+    public init(unboxer: Unboxer) {
         securities = unboxer.unbox("securities")
         deleted = unboxer.unbox("deleted")
         status = unboxer.unbox("status")
@@ -109,7 +109,7 @@ public struct Security: Unboxable {
     }
     
 
-    init(unboxer: Unboxer) {
+    public init(unboxer: Unboxer) {
         securityID = unboxer.unbox("security_id")
         accountID = unboxer.unbox("account_id")
         name = unboxer.unbox("name")

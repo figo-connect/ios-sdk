@@ -32,7 +32,7 @@ public struct SupportedBank: Unboxable {
     public let advice: String
     
     
-    init(unboxer: Unboxer) {
+    public init(unboxer: Unboxer) {
         bankName    = unboxer.unbox("bank_name")
         bankCode    = unboxer.unbox("bank_code")
         bic         = unboxer.unbox("bic")

@@ -14,7 +14,7 @@ public struct TANScheme: Unboxable  {
     public let TANSchemeID: String
     
     
-    init(unboxer: Unboxer) {
+    public init(unboxer: Unboxer) {
         mediumName     = unboxer.unbox("medium_name")
         name            = unboxer.unbox("name")
         TANSchemeID   = unboxer.unbox("tan_scheme_id")

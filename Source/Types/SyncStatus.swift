@@ -15,7 +15,7 @@ public struct SyncStatus: Unboxable {
     public let syncDate: Date
     
     
-    init(unboxer: Unboxer) {
+    public init(unboxer: Unboxer) {
         code          = unboxer.unbox("code")
         message       = unboxer.unbox("message")
         successDate   = unboxer.unbox("success_timestamp")

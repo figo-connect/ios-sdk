@@ -19,7 +19,7 @@ public struct LoginCredentials: Unboxable {
     public let optional: Bool?
     
     
-    init(unboxer: Unboxer) {
+    public init(unboxer: Unboxer) {
         label = unboxer.unbox("label")
         masked = unboxer.unbox("masked")
         optional = unboxer.unbox("optional")
