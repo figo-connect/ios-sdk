@@ -36,12 +36,14 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveWithoutLoginYieldsCorrectError() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        figo.retrieveAccounts() { result in
-            XCTAssertNotNil(result.error)
-            if case .Failure(let error) = result {
-                XCTAssert(error.description.hasPrefix("No Figo session active"))
+        logout() {
+            figo.retrieveAccounts() { result in
+                XCTAssertNotNil(result.error)
+                if case .Failure(let error) = result {
+                    XCTAssert(error.description.hasPrefix("No Figo session active"))
+                }
+                expectation.fulfill()
             }
-            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
