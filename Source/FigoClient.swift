@@ -47,6 +47,10 @@ public class FigoClient {
     var refreshToken: String?
     
     
+    public convenience init() {
+        self.init(session: nil, logger: nil)
+    }
+    
     /**
      Create a FigoClient instance
      
