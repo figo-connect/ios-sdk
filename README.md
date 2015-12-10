@@ -32,7 +32,7 @@ Website: [http://figo.io](http://figo.io)
 
 ### Manually
 
-* Add Figo as a git submodule by running the following command:
+* Add figo as a git submodule by running the following command:
 
 	`$ git submodule add https://github.com/figome/ios-sdk.git`
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
@@ -52,7 +52,7 @@ Website: [http://figo.io](http://figo.io)
 
 * Checkout Dependencies
 
-	Run `carthage update` in your project folder to download and build the newest compatible versions of the Figo Framework and it's dependecies.
+	Run `carthage update` in your project folder to download and build the newest compatible versions of the figo Framework and it's dependecies.
 
     You can specify `carthage update --platform iOS` if you only need the iOS build.
 
@@ -71,7 +71,7 @@ Website: [http://figo.io](http://figo.io)
 
 ## Usage
 
-After creating an instance of `FigoClient` you can call functions on it represention the API endpoints. These functions will always return a `Result<T>`, where `T` will a corresponding type like `Account`, `[Account]` or `[Transaction]`.
+After creating an instance of `FigoClient` you can call functions on it representing the API endpoints. These functions will always return a `Result<T>`, where `T` will a corresponding type like `Account`, `[Account]` or `[Transaction]`.
 
 	import Figo
 	let figo = FigoClient()
@@ -82,7 +82,7 @@ Take a look at the test cases to see more examples of interaction with the API.
 
 To be able to login and use the figo API a user is required.
 
-    let params = CreateUserParameters(name: username, email: username, password: password, send_newsletter: false, language: "de", affiliate_user: nil, affiliateClientID: nil)
+    let params = CreateUserParameters(name: username, email: username, password: password, sendNewsletter: false, language: "de", affiliateUser: nil, affiliateClientID: nil)
     figo.createNewFigoUser(params, clientID: clientID, clientSecret: clientSecret) { result in
     	...
     }
@@ -95,8 +95,9 @@ To be able to login and use the figo API a user is required.
 ### Retrieve all accounts
     figo.retrieveAccounts() { result in
         if let accounts = result.value {
-            self.accounts = accounts
-            self.tableView.reloadData()
+			for account in accounts {
+				...
+			}
         }
     }
     
@@ -105,105 +106,108 @@ To be able to login and use the figo API a user is required.
     figo.retrieveAccounts() { result in
         switch result {
         case .Success(let accounts):
-            print("\(accounts.count) accounts:")
-            for account in accounts {
-                print("\(account.name) \(account.balanceFormatted ?? "")")
-            }
+            print("Recieved \(accounts.count) accounts")
             break
         case .Failure(let error):
             print(error.description)
             break
         }
     }
+    
+### Enable logging
 
-### Endpoints
+Since the `FigoClient` by default uses the default instance of `XCGLogger`, you can control logging from wherever you like. You can also provide your own `XCGLogger` instance in the initializer.
 
+	XCGLogger.defaultInstance().setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
 
-- User
-
-	The central element of this API is the figo user, who owns bank accounts and grants selective access to them to other applications. This account can either be a free or a premium account. While both support the same set of features, the free account can only be used with the application through it got created, while a premium account can be used in all applications integrating figo.
-
-		createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void)
-		retrieveCurrentUser(completionHandler: (Result<User>) -> Void)
-		deleteCurrentUser(completionHandler: VoidCompletionHandler)
+## Endpoints
 
 
-- Authorization
+### User
 
-	The figo API uses OAuth 2 for authentication purposes and you need a user to login.
+The central element of this API is the figo user, who owns bank accounts and grants selective access to them to other applications. This account can either be a free or a premium account. While both support the same set of features, the free account can only be used with the application through it got created, while a premium account can be used in all applications integrating figo.
 
-		loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void)
-		loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: VoidCompletionHandler)
-		revokeAccessToken(completionHandler: VoidCompletionHandler)
-		revokeRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler)
+	createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void)
+	retrieveCurrentUser(completionHandler: (Result<User>) -> Void)
+	deleteCurrentUser(completionHandler: VoidCompletionHandler)
+
+
+### Authorization
+
+The figo API uses OAuth 2 for authentication purposes and you need a user to login.
+
+	loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void)
+	loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: VoidCompletionHandler)
+	revokeAccessToken(completionHandler: VoidCompletionHandler)
+	revokeRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler)
 	
 	
-- Accounts
+### Accounts
 
-	Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
+Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
 
-    	retrieveAccounts(completionHandler: (Result<[Account]>) -> Void)
-    	retrieveAccount(accountID: String, _ completionHandler: (Result<Account>) -> Void)
-    	removeStoredPinFromBankContact(bankID: String, _ completionHandler: VoidCompletionHandler)
-    	setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate? = nil, _ completionHandler: VoidCompletionHandler)
+	retrieveAccounts(completionHandler: (Result<[Account]>) -> Void)
+	retrieveAccount(accountID: String, _ completionHandler: (Result<Account>) -> Void)
+	removeStoredPinFromBankContact(bankID: String, _ completionHandler: VoidCompletionHandler)
+	setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate? = nil, _ completionHandler: VoidCompletionHandler)
     	
-- Transactions
+### Transactions
 
-	Each bank account has a list of transactions associated with it. The length of this list depends on the bank and time this account has been setup. In general the information provided for each transaction should be roughly similar to the contents of the printed or online transaction statement available from the respective bank. Please note that not all banks provide the same level of detail.
+Each bank account has a list of transactions associated with it. The length of this list depends on the bank and time this account has been setup. In general the information provided for each transaction should be roughly similar to the contents of the printed or online transaction statement available from the respective bank. Please note that not all banks provide the same level of detail.
 	
-		retrieveTransactions(parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void)
-		retrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void)
-		retrieveTransaction(transactionID: String, _ completionHandler: (Result<Transaction>) -> Void)
+	retrieveTransactions(parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void)
+	retrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void)
+	retrieveTransaction(transactionID: String, _ completionHandler: (Result<Transaction>) -> Void)
 		
     	
-- Synchronization
+### Synchronization
 
-	As banks commonly do not provide a push mechanism for distributing transaction updates, they need to be polled, which is called synchronization in this API. When triggering a synchronization please make sure that either the PIN for the bank contact is stored inside figo or that the user has the possibility to enter it.
+As banks commonly do not provide a push mechanism for distributing transaction updates, they need to be polled, which is called synchronization in this API. When triggering a synchronization please make sure that either the PIN for the bank contact is stored inside figo or that the user has the possibility to enter it.
 
-	Usually the bank accounts are synchronized on a daily basis. However, the synchronization can be triggered manually.
+Usually the bank accounts are synchronized on a daily basis. However, the synchronization can be triggered manually.
 
 
-		synchronize(parameters parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler)
+	synchronize(parameters parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler)
     	
-- Supported banks and services
+### Supported banks and services
 
-	To set up a new bank account in figo, you need to provide the right kind of credentials for each bank. These settings can be retrieved from the API aswell as a list of all supported banks and bank-like services.
+To set up a new bank account in figo, you need to provide the right kind of credentials for each bank. These settings can be retrieved from the API aswell as a list of all supported banks and bank-like services.
 
-		retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (Result<[SupportedBank]>) -> Void)
-		retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (Result<[SupportedService]>) -> Void)
-		retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (Result<LoginSettings>) -> Void)
+	retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (Result<[SupportedBank]>) -> Void)
+	retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (Result<[SupportedService]>) -> Void)
+	retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (Result<LoginSettings>) -> Void)
 		
-- Payments
+### Payments
 
-	In addition to retrieving information on a bank account, this API also provides the ability to submit wires in the name of the account owner.
+In addition to retrieving information on a bank account, this API also provides the ability to submit wires in the name of the account owner.
 
-	Submitting a new payment generally is a two-phased process: 1. compile all information on the payment by creating and modifying a payment object 2. submitting that payment object to the bank.
+Submitting a new payment generally is a two-phased process: 1. compile all information on the payment by creating and modifying a payment object 2. submitting that payment object to the bank.
 
-	While the first part is normal live interaction with this API, the second one uses the task processing system to allow for more time as bank servers are sometimes slow to respond. In addition you will need a TAN (Transaktionsnummer) from your bank to authenticate the submission.
+While the first part is normal live interaction with this API, the second one uses the task processing system to allow for more time as bank servers are sometimes slow to respond. In addition you will need a TAN (Transaktionsnummer) from your bank to authenticate the submission.
 
-		retrievePaymentProposals(completionHandler: Result<[PaymentProposal]> -> Void)
-		retrievePayments(completionHandler: Result<[Payment]> -> Void)
-		retrievePaymentsForAccount(accountID: String, _ completionHandler: Result<[Payment]> -> Void)
-		retrievePayment(paymentID: String, accountID: String, _ completionHandler: Result<Payment> -> Void)
-		createPayment(parameters: CreatePaymentParameters, _ completionHandler: Result<Payment> -> Void)
-		modifyPayment(payment: Payment, _ completionHandler: Result<Payment> -> Void)
-		submitPayment(payment: Payment, tanSchemeID: String, pinHandler: PinResponder, challengeHandler: ChallengeResponder, _ completionHandler: VoidCompletionHandler)
+	retrievePaymentProposals(completionHandler: Result<[PaymentProposal]> -> Void)
+	retrievePayments(completionHandler: Result<[Payment]> -> Void)
+	retrievePaymentsForAccount(accountID: String, _ completionHandler: Result<[Payment]> -> Void)
+	retrievePayment(paymentID: String, accountID: String, _ completionHandler: Result<Payment> -> Void)
+	createPayment(parameters: CreatePaymentParameters, _ completionHandler: Result<Payment> -> Void)
+	modifyPayment(payment: Payment, _ completionHandler: Result<Payment> -> Void)
+	submitPayment(payment: Payment, tanSchemeID: String, pinHandler: PinResponder, challengeHandler: ChallengeResponder, _ completionHandler: VoidCompletionHandler)
 		
-- Securities
+### Securities
 
-	Each depot account has a list of securities associated with it. In general the information provided for each security should be roughly similar to the contents of the printed or online depot listings available from the respective bank. Please note that not all banks provide the same level of detail.
+Each depot account has a list of securities associated with it. In general the information provided for each security should be roughly similar to the contents of the printed or online depot listings available from the respective bank. Please note that not all banks provide the same level of detail.
 
-		retrieveSecurities(parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void)
-		retrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void)
-		retrieveSecurity(securityID: String, accountID: String, _ completionHandler: (Result<Security>) -> Void)
+	retrieveSecurities(parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void)
+	retrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void)
+	retrieveSecurity(securityID: String, accountID: String, _ completionHandler: (Result<Security>) -> Void)
 		
-- Standing orders
+### Standing orders
 
-	Bank accounts can have standing orders associated with it if supported by the respective bank. In general the information provided for each standing order should be roughly similar to the content of the printed or online standing order statement available from the respective bank. Please note that not all banks provide the same level of detail.
+Bank accounts can have standing orders associated with it if supported by the respective bank. In general the information provided for each standing order should be roughly similar to the content of the printed or online standing order statement available from the respective bank. Please note that not all banks provide the same level of detail.
 
-		retrieveStandingOrders(completionHandler: (Result<[StandingOrder]>) -> Void)
-		retrieveStandingOrdersForAccount(accountID: String, _ completionHandler: (Result<[StandingOrder]>) -> Void)
-		retrieveStandingOrder(standingOrderID: String, _ completionHandler: (Result<StandingOrder>) -> Void)
+	retrieveStandingOrders(completionHandler: (Result<[StandingOrder]>) -> Void)
+	retrieveStandingOrdersForAccount(accountID: String, _ completionHandler: (Result<[StandingOrder]>) -> Void)
+	retrieveStandingOrder(standingOrderID: String, _ completionHandler: (Result<StandingOrder>) -> Void)
 		
 
 		
@@ -213,9 +217,9 @@ To be able to login and use the figo API a user is required.
 
 ## Credits
 
-The Figo Framework uses the following 3rd-party utilities, but is not exporting their symbols:
+The Figo Framework uses the following 3rd-party utilities:
 
-- [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger)
-- [JohnSundell/Unbox](https://github.com/JohnSundell/Unbox)
+- [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger) for logging
+- [JohnSundell/Unbox](https://github.com/JohnSundell/Unbox) for unboxing of JSON responses
 
 

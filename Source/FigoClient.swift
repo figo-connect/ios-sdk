@@ -72,11 +72,6 @@ public class FigoClient {
             log.setup(.None, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
         }
     }
-
-    public init(logger: XCGLogger) {
-        session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
-        log = logger
-    }
     
     func request(endpoint: Endpoint, completion: (Result<NSData>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
@@ -105,7 +100,7 @@ public class FigoClient {
                 if case 200..<300 = response.statusCode  {
                     completion(.Success(data ?? NSData()))
                 } else {
-                    var serverError: Error = error != nil ? .NetworkLayerError(error: error!) : .UnspecifiedError(reason: "Unacceptable response status code (\(response.statusCode))")
+                    var serverError: Error = error != nil ? .NetworkLayerError(error: error!) : .InternalError(reason: "Unacceptable response status code (\(response.statusCode))")
                     if let data = data {
                         if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
                             serverError = .ServerError(message: responseAsString)

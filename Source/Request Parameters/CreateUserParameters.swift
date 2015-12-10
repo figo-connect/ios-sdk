@@ -44,13 +44,13 @@ public struct CreateUserParameters: JSONObjectConvertible {
     public let affiliateClientID: String?
     
 
-    init(name: String, email: String, password: String, send_newsletter: Bool? = false, language: String? = "de", affiliate_user: String? = nil, affiliateClientID: String? = nil) {
+    init(name: String, email: String, password: String, sendNewsletter: Bool? = false, language: String? = "de", affiliateUser: String? = nil, affiliateClientID: String? = nil) {
         self.name = name
         self.email = email
         self.password = password
-        self.sendNewsletter = send_newsletter
+        self.sendNewsletter = sendNewsletter
         self.language = language
-        self.affiliateUser = affiliate_user
+        self.affiliateUser = affiliateUser
         self.affiliateClientID = affiliateClientID
     }
     
