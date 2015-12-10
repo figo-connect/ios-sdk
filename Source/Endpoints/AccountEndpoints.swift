@@ -67,7 +67,7 @@ public extension FigoClient {
      - Parameter progressHandler: (optional) Is called periodically with a message from the server
      - Parameter completionHandler: Returns nothing or error
      */
-    public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate?, _ completionHandler: VoidCompletionHandler) {
+    public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate? = nil, _ completionHandler: VoidCompletionHandler) {
         request(.SetupAccount(parameters)) { response in
             
             let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)

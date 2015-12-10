@@ -24,7 +24,7 @@ class AccountTests: BaseTestCaseWithLogin {
                     XCTAssertGreaterThan(accounts.count, 0)
                     print("\(accounts.count) accounts:")
                     for account in accounts {
-                        print("\(account.accountID) \(account.bankID) \(account.balanceFormatted ?? "")")
+                        print("\(account.accountID) \(account.bankID) \(account.bankCode) \(account.name) \(account.balanceFormatted ?? "")")
                     }
                     break
                 case .Failure(let error):
@@ -62,22 +62,22 @@ class AccountTests: BaseTestCaseWithLogin {
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
     
-//    func xtestSetupAccount() {
-//        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-//        login() {
-//            let account = CreateAccountParameters(bank_code: self.demoBankCode, iban: nil, credentials: self.demoCredentials, save_pin: true, disable_first_sync: nil, sync_tasks: nil)
-//            figo.setupNewBankAccount(account) { result in
-//                XCTAssertNil(result.error)
-//                expectation.fulfill()
-//            }
-//        }
-//        self.waitForExpectationsWithTimeout(30, handler: nil)
-//    }
-    
-    func xtestDeleteBankAccount() {
+    func testSetupAccount() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            figo.deleteAccount("A1182805.1") { result in
+            let account = CreateAccountParameters(bankCode: self.demoBankCode, iban: nil, credentials: self.demoCredentials, savePin: false)
+            figo.setupNewBankAccount(account) { result in
+                XCTAssertNil(result.error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectationsWithTimeout(30, handler: nil)
+    }
+    
+    func testDeleteBankAccount() {
+        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        login() {
+            figo.deleteAccount("A1182805.5") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
@@ -89,7 +89,7 @@ class AccountTests: BaseTestCaseWithLogin {
     func testRetrieveLoginSettings() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            figo.retrieveLoginSettings(bankCode: "66450050") { result in
+            figo.retrieveLoginSettings(bankCode: "20090500") { result in
                 XCTAssertNil(result.error)
                 if case .Success(let settings) = result {
                     XCTAssertTrue(settings.supported)
