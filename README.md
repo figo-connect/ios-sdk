@@ -38,25 +38,34 @@ The Figo Framework uses the following 3rd-party utilities, but is not exporting 
 
 Take a look at the test cases to see more examples of interaction with the API.
 
+### Login
+	import Figo
+	
+	let figo = FigoClient()
+    figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
+        self.refreshToken = result.value
+    }
+
 ### Retrieve all accounts
-        Figo.retrieveAccounts() { accounts, _ in
-            if let accounts = accounts {
-                for account in accounts {
-                    print(account.account_id)
-                }
-            }
+    figo.retrieveAccounts() { result in
+        if let accounts = result.value {
+            self.accounts = accounts
+            self.tableView.reloadData()
         }
-### Retrieve a single account
-        Figo.retrieveAccount("A1.1") { account, _ in
-            if let account = account {
-                print(account.account_id)
-            }
-        }
+    }
+
         
 
 ## Installation
 
+### Manually
 
+* Add Figo as a git submodule by running the following command:
+
+	`$ git submodule add https://github.com/figome/ios-sdk.git`
+* Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
+* Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
+* Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
 
 ### Carthage
 
@@ -88,17 +97,6 @@ Take a look at the test cases to see more examples of interaction with the API.
     `$(SRCROOT)/Carthage/Build/iOS/Figo.framework`
 
 
-### CocoaPods
-
-
-### Manually
-
-* Add Figo as a git submodule by running the following command:
-
-	`$ git submodule add https://github.com/figome/ios-sdk.git`
-* Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
-* Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
-* Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
 
 
 
