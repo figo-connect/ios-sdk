@@ -88,6 +88,7 @@ public extension FigoClient {
             return
         }
         request(.RevokeToken(accessToken)) { response in
+            self.accessToken = nil
             completionHandler(decodeVoidResponse(response))
         }
     }
@@ -104,6 +105,8 @@ public extension FigoClient {
      */
     public func revokeRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler) {
         request(.RevokeToken(refreshToken)) { response in
+            self.accessToken = nil
+            self.refreshToken = nil
             completionHandler(decodeVoidResponse(response))
         }
     }
