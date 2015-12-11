@@ -9,7 +9,7 @@
 
 public struct PaymentParameters: Unboxable {
     
-    public let allowedRecipients: [String]
+    public let allowedRecipients: [String]?
     public let canBeRecurring: Bool
     public let canBeScheduled: Bool
     public let maxPurposeLength: Int

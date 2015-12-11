@@ -71,7 +71,7 @@ public struct Payment: Unboxable {
     public var currency: String
     
     /// Purpose text. This field might be empty if the transaction has no purpose.
-    public var purpose: String
+    public var purpose: String?
     
     /// DTA text key
     public var textKey: Int

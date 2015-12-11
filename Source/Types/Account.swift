@@ -27,7 +27,7 @@ public struct Account: Unboxable {
     public let accountID: String
     
     /// Internal figo Connect bank ID
-    public let bankID: String
+    public let bankID: String?
     
     /// Account name
     public let name: String

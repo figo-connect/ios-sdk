@@ -92,7 +92,7 @@ public struct StandingOrder: Unboxable {
     let currency: String
     
     /// Purpose text. This field might be empty if the standing order has no purpose.
-    let purpose: String
+    let purpose: String?
     
     /// Internal creation timestamp on the figo Connect server
     let creationDate: Date

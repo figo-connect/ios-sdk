@@ -29,7 +29,7 @@ public struct SupportedBank: Unboxable {
     
     public let credentials: [LoginCredentials]
     
-    public let advice: String
+    public let advice: String?
     
     
     init(unboxer: Unboxer) {

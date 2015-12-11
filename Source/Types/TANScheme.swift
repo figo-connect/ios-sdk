@@ -15,8 +15,8 @@ public struct TANScheme: Unboxable  {
     
     
     init(unboxer: Unboxer) {
-        mediumName     = unboxer.unbox("medium_name")
-        name            = unboxer.unbox("name")
+        mediumName    = unboxer.unbox("medium_name")
+        name          = unboxer.unbox("name")
         TANSchemeID   = unboxer.unbox("tan_scheme_id")
     }
 }

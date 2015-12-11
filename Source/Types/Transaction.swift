@@ -78,10 +78,10 @@ public struct Transaction: Unboxable {
     public let booked: Bool
     
     /// Booking date
-    public let bookingDate: Date
+    public let bookingDate: Date?
 
     /// Booking text. This field might be empty if the transaction has no booking text.
-    public let bookingText: String
+    public let bookingText: String?
     
     /// Internal creation timestamp on the figo Connect server
     public let creationDate: Date
@@ -93,10 +93,10 @@ public struct Transaction: Unboxable {
     public let modificationDate: Date
     
     /// Name of originator or recipient
-    public let name: String
+    public let name: String?
     
     /// Purpose text. This field might be empty if the transaction has no purpose.
-    public let purpose: String
+    public let purpose: String?
     
     /// Internal figo Connect transaction ID
     public let transactionID: String
