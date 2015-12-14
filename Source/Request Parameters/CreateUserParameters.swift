@@ -16,8 +16,6 @@ Parameters for the endpoint CREATE NEW FIGO USER
 - Parameter password: **required** New figo Account password; It must obey the figo username & password policy
 - Parameter sendNewsletter: **optional** This flag indicates whether the user has agreed to be contacted by email (optional)
 - Parameter language: **optional** Two-letter code of preferred language (default: de)
-- Parameter affiliateUser: **optional** Base64 encoded email address of the user promoting the new user
-- Parameter affiliateClientID: **optional** Client ID of the figo Connect partner from which the user was redirected to the registration form
 
 */
 public struct CreateUserParameters: JSONObjectConvertible {
@@ -37,12 +35,6 @@ public struct CreateUserParameters: JSONObjectConvertible {
     /// **optional** Two-letter code of preferred language (default: de)
     public let language: String?
     
-    /// **optional** Base64 encoded email address of the user promoting the new user
-    public let affiliateUser: String?
-    
-    /// **optional** Client ID of the figo Connect partner from which the user was redirected to the registration form
-    public let affiliateClientID: String?
-    
 
     public init(name: String, email: String, password: String, sendNewsletter: Bool? = false, language: String? = "de") {
         self.name = name
@@ -50,8 +42,6 @@ public struct CreateUserParameters: JSONObjectConvertible {
         self.password = password
         self.sendNewsletter = sendNewsletter
         self.language = language
-        self.affiliateUser = affiliateUser
-        self.affiliateClientID = affiliateClientID
     }
     
     var JSONObject: [String: AnyObject] {
@@ -62,8 +52,6 @@ public struct CreateUserParameters: JSONObjectConvertible {
             dict["send_newsletter"] = sendNewsletter
             dict["language"] = language
             dict["password"] = password
-            dict["affiliate_user"] = affiliateUser
-            dict["affiliate_client_id"] = affiliateClientID
             return dict
         }
     }
