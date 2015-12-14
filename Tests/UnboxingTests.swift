@@ -55,7 +55,7 @@ class UnboxingTests: XCTestCase {
         XCTAssertEqual(account.supportedPayments.count, 1)
         let (type, parameters) = account.supportedPayments.first!
         XCTAssertEqual(type.rawValue, "Transfer")
-        XCTAssertEqual(parameters.allowedRecipients.count, 0)
+        XCTAssertEqual(parameters.allowedRecipients!.count, 0)
         XCTAssertEqual(parameters.canBeRecurring, false)
         XCTAssertEqual(parameters.canBeScheduled, true)
         XCTAssertEqual(parameters.maxPurposeLength, 108)
@@ -139,7 +139,7 @@ class UnboxingTests: XCTestCase {
             XCTAssertEqual(t.bankCode, "90090042")
             XCTAssertEqual(t.bankName, "Demobank")
             XCTAssertEqual(t.booked, true)
-            XCTAssertEqual(t.bookingDate.timestamp, "2013-04-10T12:00:00.000Z")
+            XCTAssertEqual(t.bookingDate!.timestamp, "2013-04-10T12:00:00.000Z")
             XCTAssertEqual(t.bookingText, "Lastschrift")
             XCTAssertEqual(t.creationDate.timestamp, "2013-04-10T08:21:36.000Z")
             XCTAssertEqual(t.currency, "EUR")
