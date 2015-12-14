@@ -29,7 +29,7 @@ class UserTests: BaseTestCaseWithLogin {
     func testCreateAndDeleteUser() {
         let username = "hi@chriskoenig.de"
         let password = "eVPVdiL7"
-        let params = CreateUserParameters(name: username, email: username, password: password, sendNewsletter: false, language: "de", affiliateUser: nil, affiliateClientID: nil)
+        let params = CreateUserParameters(name: username, email: username, password: password, sendNewsletter: false, language: "de")
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         
         figo.createNewFigoUser(params, clientID: clientID, clientSecret: clientSecret) { result in

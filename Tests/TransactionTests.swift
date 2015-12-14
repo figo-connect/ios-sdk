@@ -38,27 +38,20 @@ class TransactionsTests: BaseTestCaseWithLogin {
             parameters.since = "2015-11-30"
             
             figo.retrieveTransactions(parameters) { result in
+                
+                XCTAssertNil(result.error)
                 if case .Success(let envelope) = result {
                     print("Retrieved \(envelope.transactions.count) transactions")
                     for t in envelope.transactions {
                         print("\(t.name) \(t.amountFormatted)")
                     }
+                    
+                    figo.retrieveTransaction(envelope.transactions.last!.transactionID) { result in
+                        
+                        XCTAssertNil(result.error)
+                        expectation.fulfill()
+                    }
                 }
-                XCTAssertNil(result.error)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-    }
-    
-    func testThatRetrieveTransactionYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        
-        login() {
-
-            figo.retrieveTransaction("T1182805.193") { result in
-                XCTAssertNil(result.error)
-                expectation.fulfill()
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)

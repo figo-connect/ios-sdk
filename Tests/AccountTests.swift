@@ -77,10 +77,15 @@ class AccountTests: BaseTestCaseWithLogin {
     func testDeleteBankAccount() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
         login() {
-            figo.deleteAccount("A1182805.5") { result in
+            figo.retrieveAccounts() { result in
                 XCTAssertNil(result.error)
-                expectation.fulfill()
+                
+                figo.deleteAccount(result.value!.last!.accountID) { result in
+                    XCTAssertNil(result.error)
+                    expectation.fulfill()
+                }
             }
+
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }

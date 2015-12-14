@@ -36,28 +36,21 @@ class PaymentTests: BaseTestCaseWithLogin {
         
         login() {
             figo.retrievePaymentsForAccount("A1182805.4") { result in
+                XCTAssertNil(result.error)
                 if case .Success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
+                    
+                    figo.retrievePayment(payments.last!.paymentID, accountID: "A1182805.4") { result in
+                        XCTAssertNil(result.error)
+                        expectation.fulfill()
+                    }
                 }
-                XCTAssertNil(result.error)
-                expectation.fulfill()
             }
         }
         self.waitForExpectationsWithTimeout(30, handler: nil)
     }
 
 
-    func testThatRetrievePaymentYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
-        
-        login() {
-            figo.retrievePayment("P1182805.15", accountID: "A1182805.4") { result in
-                XCTAssertNil(result.error)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
-    }
     
     func testCreateModifyAndSubmitPayment() {
         let expectation = self.expectationWithDescription("Wait for all asyc calls to return")

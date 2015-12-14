@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Figo
+@testable import Figo
 
 
 class UnboxingTests: XCTestCase {
