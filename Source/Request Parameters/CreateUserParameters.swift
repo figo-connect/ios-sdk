@@ -44,7 +44,7 @@ public struct CreateUserParameters: JSONObjectConvertible {
     public let affiliateClientID: String?
     
 
-    init(name: String, email: String, password: String, sendNewsletter: Bool? = false, language: String? = "de", affiliateUser: String? = nil, affiliateClientID: String? = nil) {
+    public init(name: String, email: String, password: String, sendNewsletter: Bool? = false, language: String? = "de") {
         self.name = name
         self.email = email
         self.password = password

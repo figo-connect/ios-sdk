@@ -67,7 +67,7 @@ public struct CreatePaymentParameters: JSONObjectConvertible {
     public var notificationRecipient: String?
     
     
-    init(accountID: String, type: PaymentType, name: String, amount: Float, purpose: String, accountNumber: String? = nil, bankCode: String? = nil, iban: String? = nil, currency: String? = nil, textKey: Int? = nil, textKeyExtension: Int? = nil, notificationRecipient: String? = nil) {
+    public init(accountID: String, type: PaymentType, name: String, amount: Float, purpose: String, accountNumber: String? = nil, bankCode: String? = nil, iban: String? = nil, currency: String? = nil, textKey: Int? = nil, textKeyExtension: Int? = nil, notificationRecipient: String? = nil) {
         self.accountID = accountID
         self.type = type
         self.name = name
