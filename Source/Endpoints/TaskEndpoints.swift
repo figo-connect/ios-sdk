@@ -49,17 +49,18 @@ public extension FigoClient {
                     progressHandler(message: state.message)
                 }
                 
-                if state.isEnded {
-                    if state.isErroneous {
-                        completionHandler(.Failure(.TaskProcessingError(accountID: state.accountID, message: state.message)))
-                    } else {
-                        completionHandler(.Success())
-                    }
+
+                if state.isErroneous {
+                    completionHandler(.Failure(.TaskProcessingError(accountID: state.accountID, message: state.message)))
+                }
+                    
+                else if state.isEnded {
+                    completionHandler(.Success())
                 }
                     
                 else if state.isWaitingForPIN {
                     guard let pinHandler = pinHandler else {
-                        completionHandler(.Failure(Error.UnspecifiedError(reason: "No PinResponder")))
+                        completionHandler(.Failure(Error.InternalError(reason: "No PinResponder")))
                         return
                     }
                     
@@ -70,11 +71,11 @@ public extension FigoClient {
                     
                 else if state.isWaitingForResponse {
                     guard let challengeHandler = challengeHandler else {
-                        completionHandler(.Failure(Error.UnspecifiedError(reason: "No ChallengeResponder")))
+                        completionHandler(.Failure(Error.InternalError(reason: "No ChallengeResponder")))
                         return
                     }
                     guard let challenge = state.challenge else {
-                        completionHandler(.Failure(Error.UnspecifiedError(reason: "Server is waiting for response but has not given a challenge")))
+                        completionHandler(.Failure(Error.InternalError(reason: "Server is waiting for response but has not given a challenge")))
                         return
                     }
                     
@@ -82,7 +83,7 @@ public extension FigoClient {
                     let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken, response: response)
                     self.pollTaskState(nextParameters, countdown - 1, progressHandler, pinHandler, challengeHandler, completionHandler)
                 }
-                    
+
                 else {
                     self.delay() {
                         let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken)

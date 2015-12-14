@@ -126,10 +126,10 @@ public struct RetrieveTransactionsParameters: JSONObjectConvertible {
     public var offset: Int?
     
     /// **optional** This flag indicates whether pending transactions should be included in the response. Pending transactions are always included as a complete set, regardless of the since parameter. Before caching a copy of the pending transactions, all existing pending transactions for the same account must be removed from the local cache. (Default Value: false)
-    public var include_pending: Bool?
+    public var includePending: Bool?
     
     /// **optional** This flag indicates whether statistics over the filtered transaction list should returned alongside the actual transactions. These statistics are always computed on the complete filtered transaction list, i.e. without count and offset. (Default Value: false)
-    public var include_statistics: Bool?
+    public var includeStatistics: Bool?
     
     /// **optional** If true, the balance will be shown in cents
     internal let cents: Bool = true
@@ -137,6 +137,19 @@ public struct RetrieveTransactionsParameters: JSONObjectConvertible {
     /// **optional** A list of transactions types which the transactions are filtered by.
     public var type: [String]?
     
+
+    public init(accounts: [String]? = nil, since: String? = nil, sinceType: TransactionSinceType? = nil, until: String? = nil, filter: String? = nil, count: Int? = nil, offset: Int? = nil, includePending: Bool? = nil, includeStatistics: Bool? = nil, type: [String]? = nil) {
+        self.accounts = accounts
+        self.since = since
+        self.sinceType = sinceType
+        self.until = until
+        self.filter = filter
+        self.count = count
+        self.offset = offset
+        self.includePending = includePending
+        self.includeStatistics = includeStatistics
+        self.type = type
+    }
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
@@ -147,8 +160,8 @@ public struct RetrieveTransactionsParameters: JSONObjectConvertible {
         dict["filter"] = filter
         dict["count"] = count
         dict["offset"] = offset
-        dict["include_pending"] = include_pending
-        dict["include_statistics"] = include_statistics
+        dict["include_pending"] = includePending
+        dict["include_statistics"] = includeStatistics
         dict["cents"] = cents
         dict["type"] = type
         return dict

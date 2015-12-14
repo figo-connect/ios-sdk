@@ -50,7 +50,7 @@ public struct Transaction: Unboxable {
     public let accountID: String
     
     /// Account number of originator or recipient. This field might be empty if the transaction has no account number, e.g. interest transactions.
-    public let accountNumber: String
+    public let accountNumber: String?
     
     /// Transaction amount in cents
     public let amount: Int
@@ -69,10 +69,10 @@ public struct Transaction: Unboxable {
     }
     
     /// Bank code of originator or recipient. This field might be empty if the transaction has no bank code, e.g. interest transactions.
-    public let bankCode: String
+    public let bankCode: String?
     
     /// Bank name of originator or recipient. This field might be empty if the transaction has no bank code, e.g. interest transactions.
-    public let bankName: String
+    public let bankName: String?
     
     /// This flag indicates whether the transaction is booked or pending
     public let booked: Bool
