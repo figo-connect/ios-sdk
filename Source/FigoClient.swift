@@ -10,7 +10,7 @@ import Foundation
 
 
 // Server's SHA1 fingerprints
-private let TRUSTED_FINGERPRINTS = Set(["cfc1bc7f6a16092b10838ab0224f3a65d270d73e"])
+private let TRUSTED_FINGERPRINTS = Set(["38ae4a326f16ea1581338bb0d8e4a635e727f107"])
 
 /// Milliseconds between polling task states
 internal let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
