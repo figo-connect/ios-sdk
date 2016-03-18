@@ -21,7 +21,7 @@ public struct SupportedBank: Unboxable {
     
     public let bankName: String
 
-    public let bankCode: Int
+    public let bankCode: Int?
     
     public let bic: String
     
