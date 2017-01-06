@@ -40,7 +40,7 @@ class AccountTests: BaseTestCaseWithLogin {
     func testThatRetrieveAccountYieldsObject() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
-            figo.retrieveAccount("A1182805.2") { result in
+            figo.retrieveAccount("A2132899.2") { result in
                 XCTAssertNil(result.error)
                 if let account = result.value {
                     XCTAssertEqual(account.accountNumber, "4711951501")
@@ -54,7 +54,7 @@ class AccountTests: BaseTestCaseWithLogin {
     func testRemovePin() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
-            figo.removeStoredPinFromBankContact("B1182805.1") { result in
+            figo.removeStoredPinFromBankContact("B2132899.1") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
