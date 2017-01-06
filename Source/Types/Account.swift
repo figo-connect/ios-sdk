@@ -132,8 +132,8 @@ public struct Account: Unboxable {
         self.type                = try unboxer.unbox(key: "type")
         
         // Special treatment for supported payments because the payment type values are stored in keys instead of values
-        self.supportedPayments      = try (unboxer.unbox(key: "supported_payments") as [String: AnyObject]).keys.map() { paymentType in
-            return (PaymentType(rawValue: paymentType) ?? PaymentType.Unknown, try unboxer.unbox(key: "supported_payments.\(paymentType)"))
+        supportedPayments      = try (unboxer.unbox(key: "supported_payments") as [String: AnyObject]).keys.map() { paymentType in
+            return (PaymentType(rawValue: paymentType) ?? PaymentType.Unknown, try unboxer.unbox(keyPath: "supported_payments.\(paymentType)"))
         }
     }
 }
