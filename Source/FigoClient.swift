@@ -12,7 +12,7 @@ import Unbox
 
 
 // Server's SHA1 fingerprints
-private let TRUSTED_FINGERPRINTS = Set(["38ae4a326f16ea1581338bb0d8e4a635e727f107"])
+private let TRUSTED_FINGERPRINTS = Set(["38ae4a326f16ea1581338bb0d8e4a635e727f107", "dbe2e9158fc9903084fe36caa61138d85a205d93"])
 
 /// Milliseconds between polling task states
 internal let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
