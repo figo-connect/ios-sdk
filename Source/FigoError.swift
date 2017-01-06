@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Unbox
 
 
 public enum FigoError: Error, CustomStringConvertible, Unboxable {

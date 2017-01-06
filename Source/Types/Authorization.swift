@@ -6,8 +6,6 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
-import Unbox
-
 
 internal struct Authorization: Unboxable {
     

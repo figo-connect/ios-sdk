@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Unbox
 
 
 public struct SecurityListEnvelope: Unboxable {

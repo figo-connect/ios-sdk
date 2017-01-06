@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Unbox
 
 
 internal struct AccountListEnvelope: Unboxable {

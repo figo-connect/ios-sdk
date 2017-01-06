@@ -3,25 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		83017B781C0A2FE80062FC08 /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
-		830493401E2008E2005B5B30 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830493291E200891005B5B30 /* Unbox.framework */; };
 		830493411E2008E4005B5B30 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304932B1E200891005B5B30 /* XCGLogger.framework */; };
-		830493421E2008E8005B5B30 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830493351E200891005B5B30 /* Unbox.framework */; };
 		830493431E2008EB005B5B30 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830493371E200891005B5B30 /* XCGLogger.framework */; };
-		830493441E2008F0005B5B30 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304932E1E200891005B5B30 /* Unbox.framework */; };
 		830493451E2008F2005B5B30 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830493301E200891005B5B30 /* XCGLogger.framework */; };
-		830493461E2008F6005B5B30 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304933C1E200891005B5B30 /* Unbox.framework */; };
 		830493471E2008F8005B5B30 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304933E1E200891005B5B30 /* XCGLogger.framework */; };
-		8304934A1E202186005B5B30 /* Unbox.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830493291E200891005B5B30 /* Unbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8304934B1E202187005B5B30 /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8304932B1E200891005B5B30 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8304934D1E202380005B5B30 /* Unbox.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830493351E200891005B5B30 /* Unbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8304934E1E202382005B5B30 /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830493371E200891005B5B30 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		830493501E202398005B5B30 /* Unbox.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8304932E1E200891005B5B30 /* Unbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		830493511E202399005B5B30 /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830493301E200891005B5B30 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830493581E202957005B5B30 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830493571E202957005B5B30 /* Unbox.swift */; };
+		830493591E202957005B5B30 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830493571E202957005B5B30 /* Unbox.swift */; };
+		8304935A1E202957005B5B30 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830493571E202957005B5B30 /* Unbox.swift */; };
+		8304935B1E202957005B5B30 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830493571E202957005B5B30 /* Unbox.swift */; };
 		830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
 		830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
 		830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
@@ -354,7 +351,6 @@
 			dstPath = Frameworks;
 			dstSubfolderSpec = 7;
 			files = (
-				8304934D1E202380005B5B30 /* Unbox.framework in CopyFiles */,
 				8304934E1E202382005B5B30 /* XCGLogger.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,7 +361,6 @@
 			dstPath = Frameworks;
 			dstSubfolderSpec = 7;
 			files = (
-				830493501E202398005B5B30 /* Unbox.framework in CopyFiles */,
 				830493511E202399005B5B30 /* XCGLogger.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,7 +371,6 @@
 			dstPath = Frameworks;
 			dstSubfolderSpec = 7;
 			files = (
-				8304934A1E202186005B5B30 /* Unbox.framework in CopyFiles */,
 				8304934B1E202187005B5B30 /* XCGLogger.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,14 +379,11 @@
 
 /* Begin PBXFileReference section */
 		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
-		830493291E200891005B5B30 /* Unbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Unbox.framework; sourceTree = "<group>"; };
 		8304932B1E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
-		8304932E1E200891005B5B30 /* Unbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Unbox.framework; sourceTree = "<group>"; };
 		830493301E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
-		830493351E200891005B5B30 /* Unbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Unbox.framework; sourceTree = "<group>"; };
 		830493371E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
-		8304933C1E200891005B5B30 /* Unbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Unbox.framework; sourceTree = "<group>"; };
 		8304933E1E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
+		830493571E202957005B5B30 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
 		830E63D81C05A4050048F7BF /* TANScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TANScheme.swift; path = Types/TANScheme.swift; sourceTree = "<group>"; };
 		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
 		830E63DD1C05A7070048F7BF /* SyncStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncStatus.swift; path = Types/SyncStatus.swift; sourceTree = "<group>"; };
@@ -480,7 +471,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830493461E2008F6005B5B30 /* Unbox.framework in Frameworks */,
 				830493471E2008F8005B5B30 /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,7 +479,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830493421E2008E8005B5B30 /* Unbox.framework in Frameworks */,
 				830493431E2008EB005B5B30 /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,7 +495,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830493441E2008F0005B5B30 /* Unbox.framework in Frameworks */,
 				830493451E2008F2005B5B30 /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,7 +519,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830493401E2008E2005B5B30 /* Unbox.framework in Frameworks */,
 				830493411E2008E4005B5B30 /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,7 +541,6 @@
 		830493241E200891005B5B30 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				830493291E200891005B5B30 /* Unbox.framework */,
 				8304932B1E200891005B5B30 /* XCGLogger.framework */,
 			);
 			path = iOS;
@@ -563,7 +549,6 @@
 		8304932D1E200891005B5B30 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				8304932E1E200891005B5B30 /* Unbox.framework */,
 				830493301E200891005B5B30 /* XCGLogger.framework */,
 			);
 			path = Mac;
@@ -572,7 +557,6 @@
 		830493321E200891005B5B30 /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
-				830493351E200891005B5B30 /* Unbox.framework */,
 				830493371E200891005B5B30 /* XCGLogger.framework */,
 			);
 			path = tvOS;
@@ -581,7 +565,6 @@
 		830493391E200891005B5B30 /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
-				8304933C1E200891005B5B30 /* Unbox.framework */,
 				8304933E1E200891005B5B30 /* XCGLogger.framework */,
 			);
 			path = watchOS;
@@ -615,6 +598,7 @@
 		83D3A67F1BFF2953003EDE45 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				830493571E202957005B5B30 /* Unbox.swift */,
 				83F0E46B1C08A91400FB3709 /* FigoClient.swift */,
 				837B520C1C10C95500D3CB25 /* Alias.swift */,
 				838FDA041C0DF90100525E1D /* FigoError.swift */,
@@ -949,7 +933,7 @@
 				};
 			};
 			buildConfigurationList = 83F3AF1C1BFF28D900767D77 /* Build configuration list for PBXProject "Figo" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1124,6 +1108,7 @@
 				83A475A31C1F2E9900B1CCB9 /* AuthorizationEndpoints.swift in Sources */,
 				83A475A41C1F2E9900B1CCB9 /* FigoUserEndpoints.swift in Sources */,
 				83A475A51C1F2E9900B1CCB9 /* PaymentEndpoints.swift in Sources */,
+				8304935B1E202957005B5B30 /* Unbox.swift in Sources */,
 				83A475A61C1F2E9900B1CCB9 /* SecurityEndpoints.swift in Sources */,
 				83A475A71C1F2E9900B1CCB9 /* ServiceEndpoints.swift in Sources */,
 				83A475A81C1F2E9900B1CCB9 /* StandingOrderEndpoints.swift in Sources */,
@@ -1176,6 +1161,7 @@
 				83A475451C1F2E6F00B1CCB9 /* AuthorizationEndpoints.swift in Sources */,
 				83A475461C1F2E6F00B1CCB9 /* FigoUserEndpoints.swift in Sources */,
 				83A475471C1F2E6F00B1CCB9 /* PaymentEndpoints.swift in Sources */,
+				830493591E202957005B5B30 /* Unbox.swift in Sources */,
 				83A475481C1F2E6F00B1CCB9 /* SecurityEndpoints.swift in Sources */,
 				83A475491C1F2E6F00B1CCB9 /* ServiceEndpoints.swift in Sources */,
 				83A4754A1C1F2E6F00B1CCB9 /* StandingOrderEndpoints.swift in Sources */,
@@ -1246,6 +1232,7 @@
 				83A475D71C1F338A00B1CCB9 /* AuthorizationEndpoints.swift in Sources */,
 				83A475D81C1F338A00B1CCB9 /* FigoUserEndpoints.swift in Sources */,
 				83A475D91C1F338A00B1CCB9 /* PaymentEndpoints.swift in Sources */,
+				8304935A1E202957005B5B30 /* Unbox.swift in Sources */,
 				83A475DA1C1F338A00B1CCB9 /* SecurityEndpoints.swift in Sources */,
 				83A475DB1C1F338A00B1CCB9 /* ServiceEndpoints.swift in Sources */,
 				83A475DC1C1F338A00B1CCB9 /* StandingOrderEndpoints.swift in Sources */,
@@ -1334,6 +1321,7 @@
 				83F0E4781C08DA2800FB3709 /* Address.swift in Sources */,
 				838FDA221C0EE54000525E1D /* StandingOrder.swift in Sources */,
 				83648D661C0C75E600286FFB /* SupportedService.swift in Sources */,
+				830493581E202957005B5B30 /* Unbox.swift in Sources */,
 				838FD9F91C0DF8D900525E1D /* CreateAccountParameters.swift in Sources */,
 				83648D631C0C705700286FFB /* SupportedBank.swift in Sources */,
 				838FDA361C0EFC0300525E1D /* Payment.swift in Sources */,
@@ -1663,9 +1651,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.figo;
 				PRODUCT_NAME = Figo;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Supporting Files/Figo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1711,10 +1701,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.figo;
 				PRODUCT_NAME = Figo;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Supporting Files/Figo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
