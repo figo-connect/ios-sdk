@@ -7,56 +7,52 @@
 //
 
 import Foundation
+import Unbox
 
 
-internal func decodeVoidResponse(response: Result<NSData>) -> Result<Void> {
+internal func decodeVoidResponse(_ response: Result<Data>) -> Result<Void> {
     switch response {
-    case .Failure(let error):
-        return .Failure(error)
-    case .Success:
-        return .Success()
+    case .failure(let error):
+        return .failure(error)
+    case .success:
+        return .success()
     }
 }
 
-internal func decodeUnboxableResponse<T: Unboxable>(data: Result<NSData>, context: Any? = nil) -> Result<T> {
+internal func decodeUnboxableResponse<T: Unboxable>(_ data: Result<Data>, context: Any? = nil) -> Result<T> {
     switch data {
-    case .Success(let data):
+    case .success(let data):
         do {
-            let unboxed: T = try UnboxOrThrow(data)
-            return .Success(unboxed)
+            let unboxed: T = try unbox(data: data)
+            return .success(unboxed)
         } catch (let error as UnboxError) {
-            return .Failure(.UnboxingError(error.description))
+            return .failure(.unboxingError(error.description))
         } catch {
-            return .Failure(.UnboxingError("Unboxer did throw unexpected error while unboxing object of type \(T.self)"))
+            return .failure(.unboxingError("Unboxer did throw unexpected error while unboxing object of type \(T.self)"))
         }
-    case .Failure(let error):
-        return .Failure(error)
+    case .failure(let error):
+        return .failure(error)
     }
 }
 
-internal func decodeUnboxableResponse<T: Unboxable>(data: Result<NSData>, context: Any? = nil) -> Result<[T]> {
+internal func decodeUnboxableResponse<T: Unboxable>(_ data: Result<Data>, context: Any? = nil) -> Result<[T]> {
     switch data {
-    case .Success(let data):
+    case .success(let data):
         do {
-            let unboxed: [T] = try UnboxOrThrow(data)
-            return .Success(unboxed)
+            let unboxed: [T] = try unbox(data: data)
+            return .success(unboxed)
         } catch (let error as UnboxError) {
-            return .Failure(.UnboxingError(error.description))
+            return .failure(.unboxingError(error.description))
         } catch {
-            return .Failure(.UnboxingError("Unboxer did throw unexpected error while unboxing collection of type \(T.self)"))
+            return .failure(.unboxingError("Unboxer did throw unexpected error while unboxing collection of type \(T.self)"))
         }
-    case .Failure(let error):
-        return .Failure(error)
+    case .failure(let error):
+        return .failure(error)
     }
 }
 
-internal func base64EncodeBasicAuthCredentials(clientID: String, _ clientSecret: String) -> String {
+internal func base64EncodeBasicAuthCredentials(_ clientID: String, _ clientSecret: String) -> String {
     let clientCode: String = clientID + ":" + clientSecret
-    let utf8str: NSData = clientCode.dataUsingEncoding(NSUTF8StringEncoding)!
-    return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
+    let utf8str: Data = clientCode.data(using: String.Encoding.utf8)!
+    return utf8str.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithCarriageReturn)
 }
-
-
-
-
-

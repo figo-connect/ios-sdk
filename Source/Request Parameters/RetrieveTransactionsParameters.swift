@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 /**
 
@@ -24,7 +26,7 @@ public enum TransactionSinceType: String, UnboxableEnum {
     case Modified = "modified"
     
     
-    static func unboxFallbackValue() -> TransactionSinceType {
+    public static func unboxFallbackValue() -> TransactionSinceType {
         return .Booked
     }
 }
@@ -153,17 +155,17 @@ public struct RetrieveTransactionsParameters: JSONObjectConvertible {
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
-        dict["accounts"] = accounts
-        dict["since"] = since
-        dict["since_type"] = sinceType?.rawValue
-        dict["until"] = until
-        dict["filter"] = filter
-        dict["count"] = count
-        dict["offset"] = offset
-        dict["include_pending"] = includePending
-        dict["include_statistics"] = includeStatistics
-        dict["cents"] = cents
-        dict["type"] = type
+        dict["accounts"] = accounts as AnyObject?
+        dict["since"] = since as AnyObject?
+        dict["since_type"] = sinceType?.rawValue as AnyObject?
+        dict["until"] = until as AnyObject?
+        dict["filter"] = filter as AnyObject?
+        dict["count"] = count as AnyObject?
+        dict["offset"] = offset as AnyObject?
+        dict["include_pending"] = includePending as AnyObject?
+        dict["include_statistics"] = includeStatistics as AnyObject?
+        dict["cents"] = cents as AnyObject?
+        dict["type"] = type as AnyObject?
         return dict
     }
 }

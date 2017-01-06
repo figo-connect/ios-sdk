@@ -6,12 +6,14 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 internal struct ServicesListEnvelope: Unboxable {
     let services: [SupportedService]
     
-    init(unboxer: Unboxer) {
-        services = unboxer.unbox("services")
+    init(unboxer: Unboxer) throws {
+        services = try unboxer.unbox(key: "services")
     }
 }
 
@@ -30,11 +32,11 @@ public struct SupportedService: Unboxable {
     public let icon: String
     
     
-    init(unboxer: Unboxer) {
-        name               = unboxer.unbox("name")
-        bankCode           = unboxer.unbox("bank_code")
-        additionalIcons    = unboxer.unbox("additional_icons")
-        icon               = unboxer.unbox("icon")
+    public init(unboxer: Unboxer) throws {
+        name               = try unboxer.unbox(key: "name")
+        bankCode           = try unboxer.unbox(key: "bank_code")
+        additionalIcons    = try unboxer.unbox(key: "additional_icons")
+        icon               = try unboxer.unbox(key: "icon")
     }
 }
 

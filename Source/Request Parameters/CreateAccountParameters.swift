@@ -50,13 +50,13 @@ public struct CreateAccountParameters {
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
-        dict["bank_code"] = bankCode
-        dict["iban"] = iban
-        dict["country"] = country
-        dict["credentials"] = credentials
-        dict["save_pin"] = savePin
-        dict["disable_first_sync"] = disableFirstSync
-        dict["sync_tasks"] = syncTasks
+        dict["bank_code"] = bankCode as AnyObject?
+        dict["iban"] = iban as AnyObject?
+        dict["country"] = country as AnyObject?
+        dict["credentials"] = credentials as AnyObject?
+        dict["save_pin"] = savePin as AnyObject?
+        dict["disable_first_sync"] = disableFirstSync as AnyObject?
+        dict["sync_tasks"] = syncTasks as AnyObject?
         return dict
     }
 }

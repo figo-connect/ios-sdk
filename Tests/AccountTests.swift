@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Unbox
 @testable import Figo
 
 
@@ -16,29 +17,29 @@ class AccountTests: BaseTestCaseWithLogin {
     let demoCredentials = ["demo", "demo"]
     
     func testThatRetrieveAccountsYieldsObjects() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.retrieveAccounts() { result in
                 switch result {
-                case .Success(let accounts):
+                case .success(let accounts):
                     XCTAssertGreaterThan(accounts.count, 0)
                     print("\(accounts.count) accounts:")
                     for account in accounts {
                         print("\(account.accountID) \(account.bankID) \(account.bankCode) \(account.name) \(account.balanceFormatted ?? "")")
                     }
                     break
-                case .Failure(let error):
+                case .failure(let error):
                     XCTFail(error.description)
                     break
                 }
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testThatRetrieveAccountYieldsObject() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.retrieveAccount("A1182805.2") { result in
                 XCTAssertNil(result.error)
@@ -48,22 +49,22 @@ class AccountTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testRemovePin() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.removeStoredPinFromBankContact("B1182805.1") { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testSetupAccount() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             let account = CreateAccountParameters(bankCode: self.demoBankCode, iban: nil, credentials: self.demoCredentials, savePin: false)
             figo.setupNewBankAccount(account) { result in
@@ -71,11 +72,11 @@ class AccountTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testDeleteBankAccount() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.retrieveAccounts() { result in
                 XCTAssertNil(result.error)
@@ -87,16 +88,16 @@ class AccountTests: BaseTestCaseWithLogin {
             }
 
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     
     func testRetrieveLoginSettings() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.retrieveLoginSettings(bankCode: "20090500") { result in
                 XCTAssertNil(result.error)
-                if case .Success(let settings) = result {
+                if case .success(let settings) = result {
                     XCTAssertTrue(settings.supported)
                     XCTAssertEqual(settings.authType, "pin")
                 }
@@ -104,13 +105,13 @@ class AccountTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
 
     func testSupportedBanksUnboxing() {
         let data = Resources.SupportedBanks.data
         do {
-            let envelope: BanksListEnvelope = try UnboxOrThrow(data)
+            let envelope: BanksListEnvelope = try unbox(data: data)
             XCTAssertEqual(envelope.banks.first!.bankCode, 10000000)
             
         } catch (let error) {
@@ -119,33 +120,33 @@ class AccountTests: BaseTestCaseWithLogin {
     }
     
     func testRetrieveSupportedBanks() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.retrieveSupportedBanks() { result in
                 XCTAssertNil(result.error)
-                if case .Success(let banks) = result {
+                if case .success(let banks) = result {
                     let bank = banks.first!
                     debugPrint(bank)
                 }
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(60, handler: nil)
+        self.waitForExpectations(timeout: 60, handler: nil)
     }
     
     func testRetrieveSupportedServices() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.retrieveSupportedServices() { result in
                 XCTAssertNil(result.error)
-                if case .Success(let services) = result {
+                if case .success(let services) = result {
                     let service = services.first!
                     debugPrint(service)
                 }
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
 }

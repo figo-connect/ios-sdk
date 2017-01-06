@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 /**
 
@@ -29,7 +31,7 @@ public enum PaymentType: String, UnboxableEnum {
     case SEPAStandingOrder = "SEPA standing order"
     case ModifySEPAStandingOrder = "Modify SEPA standing order"
     
-    static func unboxFallbackValue() -> PaymentType {
+    public static func unboxFallbackValue() -> PaymentType {
         return .Unknown
     }
     

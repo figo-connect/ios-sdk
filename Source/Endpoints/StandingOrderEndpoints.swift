@@ -16,16 +16,16 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns standing orders or error
      */
-    public func retrieveStandingOrders(completionHandler: (Result<[StandingOrder]>) -> Void) {
-        request(.RetrieveStandingOrders) { response in
+    public func retrieveStandingOrders(_ completionHandler: @escaping (Result<[StandingOrder]>) -> Void) {
+        request(.retrieveStandingOrders) { response in
             
             let unboxingResult: Result<StandingOrderListEnvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
-            case .Success(let envelope):
-                completionHandler(Result.Success(envelope.standingOrders))
+            case .success(let envelope):
+                completionHandler(Result.success(envelope.standingOrders))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -39,16 +39,16 @@ public extension FigoClient {
      - Parameter accountID: The ID of the account for which to retrieve the standing orders
      - Parameter completionHandler: Returns standing orders or error
      */
-    public func retrieveStandingOrdersForAccount(accountID: String, _ completionHandler: (Result<[StandingOrder]>) -> Void) {
-        request(.RetrieveStandingOrdersForAccount(accountID)) { response in
+    public func retrieveStandingOrdersForAccount(_ accountID: String, _ completionHandler: @escaping (Result<[StandingOrder]>) -> Void) {
+        request(.retrieveStandingOrdersForAccount(accountID)) { response in
 
             let unboxingResult: Result<StandingOrderListEnvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
-            case .Success(let envelope):
-                completionHandler(Result.Success(envelope.standingOrders))
+            case .success(let envelope):
+                completionHandler(Result.success(envelope.standingOrders))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -60,8 +60,8 @@ public extension FigoClient {
      - Parameter standingOrderID: ID of the transaction to retrieve
      - Parameter completionHandler: Returns transactions or error
      */
-    public func retrieveStandingOrder(standingOrderID: String, _ completionHandler: (Result<StandingOrder>) -> Void) {
-        request(.RetrieveStandingOrder(standingOrderID)) { response in
+    public func retrieveStandingOrder(_ standingOrderID: String, _ completionHandler: @escaping (Result<StandingOrder>) -> Void) {
+        request(.retrieveStandingOrder(standingOrderID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }

@@ -13,7 +13,7 @@ import Figo
 class TaskTests: BaseTestCaseWithLogin {
     
     func testThatSynchronizeYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
 
         login() {
             
@@ -33,7 +33,7 @@ class TaskTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
 }

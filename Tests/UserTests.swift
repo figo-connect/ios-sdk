@@ -13,7 +13,7 @@ import Figo
 class UserTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveCurrentUserYieldsObject() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
             figo.retrieveCurrentUser() { result in
                 if let user = result.value {
@@ -23,14 +23,14 @@ class UserTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testCreateAndDeleteUser() {
         let username = "hi@chriskoenig.de"
         let password = "eVPVdiL7"
         let params = CreateUserParameters(name: username, email: username, password: password, sendNewsletter: false, language: "de")
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         figo.createNewFigoUser(params, clientID: clientID, clientSecret: clientSecret) { result in
             XCTAssertNil(result.error)
@@ -45,6 +45,6 @@ class UserTests: BaseTestCaseWithLogin {
             }
         }
         
-        self.waitForExpectationsWithTimeout(60, handler: nil)
+        self.waitForExpectations(timeout: 60, handler: nil)
     }
 }

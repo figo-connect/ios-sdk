@@ -118,7 +118,7 @@ To be able to login and use the figo API a user is required.
 
 Since the `FigoClient` by default uses the default instance of `XCGLogger`, you can control logging from wherever you like. You can also provide your own `XCGLogger` instance in the initializer.
 
-	XCGLogger.defaultInstance().setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
+	XCGLogger.default.setup(level: .verbose, showFunctionName: false, showThreadName: false, showLevel: false, showFileNames: false, showLineNumbers: false, showDate: false, writeToFile: nil, fileLevel: .none)
 
 ## Endpoints
 

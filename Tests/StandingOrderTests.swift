@@ -14,33 +14,33 @@ import Figo
 class StandingOrderTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveStandingOrdersForAccountYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
             figo.retrieveStandingOrdersForAccount("A1182805.4") { result in
-                if case .Success(let orders) = result {
+                if case .success(let orders) = result {
                     print("Retrieved \(orders.count) standing orders")
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testThatRetrieveStandingOrdersYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
             figo.retrieveStandingOrders() { result in
-                if case .Success(let orders) = result {
+                if case .success(let orders) = result {
                     print("Retrieved \(orders.count) standing orders")
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
 }

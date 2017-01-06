@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Unbox
 
 
 public struct SecurityListEnvelope: Unboxable {
@@ -15,10 +16,10 @@ public struct SecurityListEnvelope: Unboxable {
     public let deleted: [Security]
     public let status: SyncStatus
     
-    init(unboxer: Unboxer) {
-        securities = unboxer.unbox("securities")
-        deleted = unboxer.unbox("deleted")
-        status = unboxer.unbox("status")
+    public init(unboxer: Unboxer) throws {
+        securities = try unboxer.unbox(key: "securities")
+        deleted = try unboxer.unbox(key: "deleted")
+        status = try unboxer.unbox(key: "status")
     }
 }
 
@@ -73,7 +74,7 @@ public struct Security: Unboxable {
     /// String representation of current price
     public var priceFormatted: String {
         currencyFormatter.currencyCode = self.currency
-        return currencyFormatter.stringFromNumber(NSNumber(float: Float(price)/100.0))!
+        return currencyFormatter.string(from: NSNumber(value: Float(price)/100.0 as Float))!
     }
     
     /// Purchase price
@@ -85,50 +86,50 @@ public struct Security: Unboxable {
     /// String representation of purchase price
     public var purchasePriceFormatted: String {
         currencyFormatter.currencyCode = self.currency
-        return currencyFormatter.stringFromNumber(NSNumber(float: Float(purchasePrice)/100.0))!
+        return currencyFormatter.string(from: NSNumber(value: Float(purchasePrice)/100.0 as Float))!
     }
     
     /// This flag indicates whether the security has already been marked as visited by the user
     public let visited: Bool
     
     /// Trading timestamp
-    public let tradeDate: Date
+    public let tradeDate: FigoDate
     
     /// Internal creation timestamp on the figo Connect server
-    public let creationDate: Date
+    public let creationDate: FigoDate
     
     /// Internal modification timestamp on the figo Connect server
-    public let modificationDate: Date
+    public let modificationDate: FigoDate
     
     
-    private var currencyFormatter: NSNumberFormatter {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+    fileprivate var currencyFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "de_DE")
         return formatter
     }
     
 
-    init(unboxer: Unboxer) {
-        securityID = unboxer.unbox("security_id")
-        accountID = unboxer.unbox("account_id")
-        name = unboxer.unbox("name")
-        isin = unboxer.unbox("isin")
-        wkn = unboxer.unbox("wkn")
-        currency = unboxer.unbox("currency")
-        quantity = unboxer.unbox("quantity")
-        amount = unboxer.unbox("amount")
-        amountOriginalCurrency = unboxer.unbox("amount_original_currency")
-        exchangeRate = unboxer.unbox("exchange_rate")
-        price = unboxer.unbox("price")
-        priceCurrency = unboxer.unbox("price_currency")
-        purchasePrice = unboxer.unbox("purchase_price")
-        purchasePriceCurrency = unboxer.unbox("purchase_price_currency")
-        visited = unboxer.unbox("visited")
-        tradeDate = unboxer.unbox("trade_timestamp")
-        creationDate = unboxer.unbox("creation_timestamp")
-        modificationDate = unboxer.unbox("modification_timestamp")
-        market = unboxer.unbox("market")
+    public init(unboxer: Unboxer) throws {
+        self.securityID = try unboxer.unbox(key: "security_id")
+        self.accountID = try unboxer.unbox(key: "account_id")
+        self.name = try unboxer.unbox(key: "name")
+        self.isin = try unboxer.unbox(key: "isin")
+        self.wkn = try unboxer.unbox(key: "wkn")
+        self.currency = try unboxer.unbox(key: "currency")
+        self.quantity = try unboxer.unbox(key: "quantity")
+        self.amount = try unboxer.unbox(key: "amount")
+        self.amountOriginalCurrency = try unboxer.unbox(key: "amount_original_currency")
+        self.exchangeRate = try unboxer.unbox(key: "exchange_rate")
+        self.price = try unboxer.unbox(key: "price")
+        self.priceCurrency = try unboxer.unbox(key: "price_currency")
+        self.purchasePrice = try unboxer.unbox(key: "purchase_price")
+        self.purchasePriceCurrency = try unboxer.unbox(key: "purchase_price_currency")
+        self.visited = try unboxer.unbox(key: "visited")
+        self.tradeDate = try unboxer.unbox(key: "trade_timestamp")
+        self.creationDate = try unboxer.unbox(key: "creation_timestamp")
+        self.modificationDate = try unboxer.unbox(key: "modification_timestamp")
+        self.market = try unboxer.unbox(key: "market")
     }
     
 }

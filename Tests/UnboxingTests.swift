@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Unbox
 @testable import Figo
 
 
@@ -14,21 +15,21 @@ class UnboxingTests: XCTestCase {
     
     func testIntTextKeys() {
         let JSONObject = Resources.PaymentParametersIntTextKeys.JSONObject
-        let p: PaymentParameters? = Unbox(JSONObject)
+        let p: PaymentParameters? = try? unbox(dictionary: JSONObject)
         XCTAssertNotNil(p)
         XCTAssertEqual(p?.supportedTextKeys.count, 6)
     }
     
     func testStringTextKeys() {
         let JSONObject = Resources.PaymentParametersStringTextKeys.JSONObject
-        let p: PaymentParameters? = Unbox(JSONObject)
+        let p: PaymentParameters? = try? unbox(dictionary: JSONObject)
         XCTAssertNotNil(p)
         XCTAssertEqual(p?.supportedTextKeys.count, 6)
     }
     
     func testThatAccountSerializerYieldsObject() {
         let JSONObject = Resources.Account.JSONObject
-        let account: Account = Unbox(JSONObject)!
+        let account: Account = try! unbox(dictionary: JSONObject)
         
         XCTAssertEqual(account.accountID, "A1.1")
         XCTAssertEqual(account.accountNumber, "4711951500")
@@ -71,7 +72,7 @@ class UnboxingTests: XCTestCase {
     
     func testThatUserSerializerYieldsObject() {
         let JSONObject = Resources.User.JSONObject
-        let user: User = Unbox(JSONObject)!
+        let user: User = try! unbox(dictionary: JSONObject)
         
         XCTAssertEqual(user.address?.city, "Berlin")
         XCTAssertEqual(user.address?.company, "figo")
@@ -90,16 +91,16 @@ class UnboxingTests: XCTestCase {
     }
     
     func testThatSerializerThrowsCorrectErrorForMissingMandatoryKeys() {
-        var JSONJSONObject = Resources.Account.JSONObject
-        JSONJSONObject.removeValueForKey("account_id")
+        var JSONObject = Resources.Account.JSONObject
+        JSONObject.removeValue(forKey: "account_id")
         
         do {
-            let account: Account = try UnboxOrThrow(JSONJSONObject)
+            let account: Account = try unbox(dictionary: JSONObject)
             XCTAssertNil(account)
             XCTFail()
         }
         catch (let error as UnboxError) {
-            XCTAssert(error.description.containsString("account_id"))
+            XCTAssert(error.description.contains("account_id"))
             print(error)
         }
         catch {
@@ -109,7 +110,7 @@ class UnboxingTests: XCTestCase {
     
     func testThatSerializerYieldsBalanceObject() {
         let JSONObject = Resources.Balance.JSONObject
-        let balance: Balance = Unbox(JSONObject)!
+        let balance: Balance = try! unbox(dictionary: JSONObject)
         XCTAssertEqual(balance.balance, 325031)
         XCTAssertNotNil(balance.balanceDate?.date)
         print(balance.balanceDate!)
@@ -117,7 +118,7 @@ class UnboxingTests: XCTestCase {
     
     func testThatSerializerYieldsTanSchemeObject() {
         let JSONObject = Resources.TanScheme.JSONObject
-        let scheme: TANScheme = Unbox(JSONObject)!
+        let scheme: TANScheme = try! unbox(dictionary: JSONObject)
         XCTAssertEqual(scheme.mediumName, "Girocard")
         XCTAssertEqual(scheme.name, "chipTAN optisch")
         XCTAssertEqual(scheme.TANSchemeID, "M1.2")
@@ -125,14 +126,14 @@ class UnboxingTests: XCTestCase {
     
     func testThatSerializerYieldsTaskStateObject() {
         let JSONObject = Resources.TaskState.JSONObject
-        let scheme: TaskState = Unbox(JSONObject)!
+        let scheme: TaskState = try! unbox(dictionary: JSONObject)
         XCTAssertEqual(scheme.accountID, "A1182805.0")
     }
     
     func testTransactionUnboxing(){
         let data = Resources.Transaction.data
         do {
-            let t: Transaction = try UnboxOrThrow(data)
+            let t: Transaction = try unbox(data: data)
             XCTAssertEqual(t.accountID, "A1.1")
             XCTAssertEqual(t.accountNumber, "4711951501")
             XCTAssertEqual(t.amount, -300000)
@@ -162,7 +163,7 @@ class UnboxingTests: XCTestCase {
     func testSecurityUnboxing() {
         let data = Resources.Security.data
         do {
-            let s: Security = try UnboxOrThrow(data)
+            let s: Security = try unbox(data: data)
             XCTAssertEqual(s.accountID, "A1182805.3")
             XCTAssertEqual(s.amount, 629465)
             XCTAssertEqual(s.amountOriginalCurrency, 1050000)
@@ -194,7 +195,7 @@ class UnboxingTests: XCTestCase {
     func testStandingOrderUnboxing() {
         let data = Resources.StandingOrder.data
         do {
-            let s: StandingOrder = try UnboxOrThrow(data)
+            let s: StandingOrder = try unbox(data: data)
             XCTAssertEqual(s.accountID, "A1.1")
         }
         catch (let error as UnboxError) {

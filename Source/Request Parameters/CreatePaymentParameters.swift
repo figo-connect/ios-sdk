@@ -84,18 +84,18 @@ public struct CreatePaymentParameters: JSONObjectConvertible {
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
-        dict["account_id"] = accountID
-        dict["type"] = type.rawValue
-        dict["name"] = name
-        dict["amount"] = amount
-        dict["purpose"] = purpose
-        dict["account_number"] = accountNumber
-        dict["bank_code"] = bankCode
-        dict["iban"] = iban
-        dict["currency"] = currency
-        dict["text_key"] = textKey
-        dict["text_key_extension"] = textKeyExtension
-        dict["notification_recipient"] = notificationRecipient
+        dict["account_id"] = accountID as AnyObject?
+        dict["type"] = type.rawValue as AnyObject?
+        dict["name"] = name as AnyObject?
+        dict["amount"] = amount as AnyObject?
+        dict["purpose"] = purpose as AnyObject?
+        dict["account_number"] = accountNumber as AnyObject?
+        dict["bank_code"] = bankCode as AnyObject?
+        dict["iban"] = iban as AnyObject?
+        dict["currency"] = currency as AnyObject?
+        dict["text_key"] = textKey as AnyObject?
+        dict["text_key_extension"] = textKeyExtension as AnyObject?
+        dict["notification_recipient"] = notificationRecipient as AnyObject?
 //        dict["cents"] = true
         return dict
     }

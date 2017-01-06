@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import XCGLogger
+import Unbox
 
 
 // Server's SHA1 fingerprints
@@ -32,10 +34,10 @@ internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
  - Important: Completion handlers are NOT executed on the main thread
  
  */
-public class FigoClient {
+open class FigoClient {
     
     let sessionDelegate = FigoURLSessionDelegate()
-    let session: NSURLSession
+    let session: URLSession
     
     // Used for Basic HTTP authentication, derived from CliendID and ClientSecret
     var basicAuthCredentials: String?
@@ -59,67 +61,68 @@ public class FigoClient {
      
      - Note: SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.
      */
-    public init(session: NSURLSession? = nil, logger: XCGLogger? = nil) {
+    public init(session: URLSession? = nil, logger: XCGLogger? = nil) {
         if let session = session {
             self.session = session
         } else {
-            self.session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
+            self.session = URLSession(configuration: URLSessionConfiguration.default, delegate: sessionDelegate, delegateQueue: nil)
         }
         if let logger = logger {
             log = logger
         } else {
-            log = XCGLogger.defaultInstance()
-            log.setup(.None, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
+            log = XCGLogger.default
+            log.setup(level: .error, showFunctionName: false, showThreadName: false, showLevel: false, showFileNames: false, showLineNumbers: false, showDate: false, writeToFile: nil, fileLevel: .none)
         }
     }
     
-    func request(endpoint: Endpoint, completion: (Result<NSData>) -> Void) {
+    func request(_ endpoint: Endpoint, completion: @escaping (Result<Data>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
         
         if endpoint.needsBasicAuthHeader {
             guard self.basicAuthCredentials != nil else {
-                completion(.Failure(Error.NoActiveSession))
+                completion(.failure(FigoError.noActiveSession))
                 return
             }
             mutableURLRequest.setValue("Basic \(self.basicAuthCredentials!)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
-                completion(.Failure(Error.NoActiveSession))
+                completion(.failure(FigoError.noActiveSession))
                 return
             }
             mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
         }
         
-        debugPrintRequest(mutableURLRequest)
+        debugPrintRequest(mutableURLRequest as URLRequest)
         
-        let task = session.dataTaskWithRequest(mutableURLRequest) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            if let response = response as? NSHTTPURLResponse {
+        let task = session.dataTask(with: mutableURLRequest as URLRequest, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if let response = response as? HTTPURLResponse {
                 
                 debugPrintResponse(data, response, error)
                 
                 if case 200..<300 = response.statusCode  {
-                    completion(.Success(data ?? NSData()))
+                    completion(.success(data ?? Data()))
                 } else {
-                    var serverError: Error = error != nil ? .NetworkLayerError(error: error!) : .InternalError(reason: "Unacceptable response status code (\(response.statusCode))")
+                    var serverError: FigoError = error != nil ? .networkLayerError(error: error!) : .internalError(reason: "Unacceptable response status code (\(response.statusCode))")
                     if let data = data {
-                        if let responseAsString = String(data: data, encoding: NSUTF8StringEncoding) {
-                            serverError = .ServerError(message: responseAsString)
-                            if let unboxedError: Error = Unbox(data) {
-                                serverError = unboxedError
+                        if let responseAsString = String(data: data, encoding: String.Encoding.utf8) {
+                            do {
+                                serverError = try unbox(data: data)
+                            } catch {
+                                serverError = .serverError(message: responseAsString)
                             }
                         }
                     }
-                    completion(.Failure(serverError))
+                    completion(.failure(serverError))
                 }
             } else {
                 if let error = error {
-                    completion(.Failure(.NetworkLayerError(error: error)))
+                    completion(.failure(.networkLayerError(error: error)))
                 } else {
-                    completion(.Failure(.EmptyResponse))
+                    completion(.failure(.emptyResponse))
                 }
 
             }
-        }
+        })
         task.resume()
     }
     
@@ -127,25 +130,25 @@ public class FigoClient {
     /**
      Check's the server's certificates to make sure that you are really talking to the figo server
      */
-    public class func dispositionForChallenge(challenge: NSURLAuthenticationChallenge) -> NSURLSessionAuthChallengeDisposition {
+    open class func dispositionForChallenge(_ challenge: URLAuthenticationChallenge) -> URLSession.AuthChallengeDisposition {
         
-        var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+        var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
         
         if let serverTrust = challenge.protectionSpace.serverTrust
         {
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
                 let certificateData = certificateDataForTrust(serverTrust)
                 let serverFingerprints = Set(certificateData.map() { return sha1($0) })
-                if serverFingerprints.isDisjointWith(TRUSTED_FINGERPRINTS) {
-                    disposition = .CancelAuthenticationChallenge
+                if serverFingerprints.isDisjoint(with: TRUSTED_FINGERPRINTS) {
+                    disposition = .cancelAuthenticationChallenge
                 }
             }
             if !trustIsValid(serverTrust) {
-                disposition = .CancelAuthenticationChallenge
+                disposition = .cancelAuthenticationChallenge
             }
         } else {
             if challenge.previousFailureCount > 0 {
-                disposition = .CancelAuthenticationChallenge
+                disposition = .cancelAuthenticationChallenge
             }
         }
         
@@ -154,35 +157,35 @@ public class FigoClient {
 }
 
 
-internal class FigoURLSessionDelegate: NSObject, NSURLSessionDelegate {
+internal class FigoURLSessionDelegate: NSObject, URLSessionDelegate {
     
-    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(FigoClient.dispositionForChallenge(challenge), nil)
     }
 }
 
 
-private func sha1(data: NSData) -> String {
-    var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
-    CC_SHA1(data.bytes, CC_LONG(data.length), &digest)
+private func sha1(_ data: Data) -> String {
+    var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+    CC_SHA1((data as NSData).bytes, CC_LONG(data.count), &digest)
     let hexBytes = digest.map { String(format: "%02hhx", $0) }
-    return hexBytes.joinWithSeparator("")
+    return hexBytes.joined(separator: "")
 }
 
-private func trustIsValid(trust: SecTrust) -> Bool {
+private func trustIsValid(_ trust: SecTrust) -> Bool {
     var isValid = false
-    var result = SecTrustResultType(kSecTrustResultInvalid)
+    var result = SecTrustResultType.invalid
     let status = SecTrustEvaluate(trust, &result)
     
     if status == errSecSuccess {
-        let unspecified = SecTrustResultType(kSecTrustResultUnspecified)
-        let proceed = SecTrustResultType(kSecTrustResultProceed)
+        let unspecified = SecTrustResultType.unspecified
+        let proceed = SecTrustResultType.proceed
         isValid = result == unspecified || result == proceed
     }
     return isValid
 }
 
-private func certificateDataForTrust(trust: SecTrust) -> [NSData] {
+private func certificateDataForTrust(_ trust: SecTrust) -> [Data] {
     var certificates: [SecCertificate] = []
     
     for index in 0 ..< SecTrustGetCertificateCount(trust) {
@@ -193,7 +196,7 @@ private func certificateDataForTrust(trust: SecTrust) -> [NSData] {
     return certificateDataForCertificates(certificates)
 }
 
-private func certificateDataForCertificates(certificates: [SecCertificate]) -> [NSData] {
-    return certificates.map { SecCertificateCopyData($0) as NSData }
+private func certificateDataForCertificates(_ certificates: [SecCertificate]) -> [Data] {
+    return certificates.map { SecCertificateCopyData($0) as Data }
 }
 

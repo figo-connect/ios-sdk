@@ -9,9 +9,10 @@
 import Foundation
 import XCTest
 import Figo
+import XCGLogger
 
 
-let logger = XCGLogger.defaultInstance()
+let logger = XCGLogger.default
 let figo = FigoClient(logger: logger)
 
 
@@ -27,10 +28,10 @@ class BaseTestCaseWithLogin: XCTestCase {
     override class func setUp() {
         super.setUp()
         
-        logger.setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
+        logger.setup(level: .verbose, showFunctionName: false, showThreadName: false, showLevel: false, showFileNames: false, showLineNumbers: false, showDate: false, writeToFile: nil, fileLevel: .none)
     }
     
-    func login(completionHandler: () -> Void) {
+    func login(_ completionHandler: @escaping () -> Void) {
         guard refreshToken == nil else {
             debugPrint("Active session, skipping Login")
             completionHandler()
@@ -46,7 +47,7 @@ class BaseTestCaseWithLogin: XCTestCase {
         }
     }
     
-    func logout(completionHandler: () -> Void) {
+    func logout(_ completionHandler: @escaping () -> Void) {
         guard refreshToken != nil else {
             debugPrint("No active session, skipping Logout")
             completionHandler()

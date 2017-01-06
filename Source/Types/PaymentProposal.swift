@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public struct PaymentProposal: Unboxable {
 
@@ -15,12 +17,12 @@ public struct PaymentProposal: Unboxable {
     public let additionalIcons: [String: String]?
     public let icon: String
     
-    init(unboxer: Unboxer) {
-        accountNumber = unboxer.unbox("account_number")
-        bankCode = unboxer.unbox("bank_code")
-        name = unboxer.unbox("name")
-        additionalIcons = unboxer.unbox("additional_icons")
-        icon = unboxer.unbox("icon")
+    public init(unboxer: Unboxer) throws {
+        accountNumber = try unboxer.unbox(key: "account_number")
+        bankCode = try unboxer.unbox(key: "bank_code")
+        name = try unboxer.unbox(key: "name")
+        additionalIcons = try unboxer.unbox(key: "additional_icons")
+        icon = try unboxer.unbox(key: "icon")
     }
 
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public enum AccountType: String, UnboxableEnum {
 
@@ -18,7 +20,7 @@ public enum AccountType: String, UnboxableEnum {
     case Depot = "Depot"
     case Unknown = "Unknown"
 
-    static func unboxFallbackValue() -> AccountType {
+    public static func unboxFallbackValue() -> AccountType {
         return .Unknown
     }
     

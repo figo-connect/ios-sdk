@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public struct PaymentParameters: Unboxable {
     
@@ -16,17 +18,17 @@ public struct PaymentParameters: Unboxable {
     public let supportedFileFormats: [String]
     public let supportedTextKeys: [Int]
     
-    init(unboxer: Unboxer) {
-        allowedRecipients      = unboxer.unbox("allowed_recipients")
-        canBeRecurring        = unboxer.unbox("can_be_recurring")
-        canBeScheduled        = unboxer.unbox("can_be_scheduled")
-        maxPurposeLength      = unboxer.unbox("max_purpose_length")
-        supportedFileFormats  = unboxer.unbox("supported_file_formats")
+    public init(unboxer: Unboxer) throws {
+        allowedRecipients      = try unboxer.unbox(key: "allowed_recipients")
+        canBeRecurring        = try unboxer.unbox(key: "can_be_recurring")
+        canBeScheduled        = try unboxer.unbox(key: "can_be_scheduled")
+        maxPurposeLength      = try unboxer.unbox(key: "max_purpose_length")
+        supportedFileFormats  = try unboxer.unbox(key: "supported_file_formats")
         
         // Special treatment for the key "supported_text_keys" because the server sometimes sends
         // numbers and sometimes sends strings for the values
-        let supportedTextKeysInt: [Int]? = unboxer.unbox("supported_text_keys")
-        let supportedTextKeysStrings: [String]? = unboxer.unbox("supported_text_keys")
+        let supportedTextKeysInt: [Int]? = try unboxer.unbox(key: "supported_text_keys")
+        let supportedTextKeysStrings: [String]? = try unboxer.unbox(key: "supported_text_keys")
         if let textKeys = supportedTextKeysInt {
             supportedTextKeys = textKeys
         } else if let textKeys = supportedTextKeysStrings {

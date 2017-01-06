@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public struct Challenge: Unboxable {
     
@@ -22,10 +24,10 @@ public struct Challenge: Unboxable {
     public let data: String?
     
     
-    init(unboxer: Unboxer) {
-        title   = unboxer.unbox("title")
-        label   = unboxer.unbox("label")
-        format  = unboxer.unbox("format")
-        data    = unboxer.unbox("data")
+    public init(unboxer: Unboxer) throws {
+        title   = try unboxer.unbox(key: "title")
+        label   = try unboxer.unbox(key: "label")
+        format  = try unboxer.unbox(key: "format")
+        data    = try unboxer.unbox(key: "data")
     }
 }

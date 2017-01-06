@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Unbox
 
 
 internal struct PaymentListEnvelope: Unboxable {
     let payments: [Payment]
     
-    init(unboxer: Unboxer) {
-        payments = unboxer.unbox("payments")
+    init(unboxer: Unboxer) throws {
+        payments = try unboxer.unbox(key: "payments")
     }
 }
 
@@ -57,13 +58,13 @@ public struct Payment: Unboxable {
     /// String representation of the amount
     public var amountFormatted: String {
         currencyFormatter.currencyCode = self.currency
-        return currencyFormatter.stringFromNumber(NSNumber(float: Float(amount)))!
+        return currencyFormatter.string(from: NSNumber(value: Float(amount) as Float))!
     }
     
-    private var currencyFormatter: NSNumberFormatter {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+    fileprivate var currencyFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "de_DE")
         return formatter
     }
     
@@ -83,53 +84,53 @@ public struct Payment: Unboxable {
     public let container: [Payment]?
     
     /// Timestamp of submission to the bank server.
-    public let submissionDate: Date?
+    public let submissionDate: FigoDate?
     
     /// Internal creation timestamp on the figo Connect server
-    public let creationDate: Date
+    public let creationDate: FigoDate
     
     /// Internal modification timestamp on the figo Connect server
-    public let modificationDate: Date
+    public let modificationDate: FigoDate
     
     /// **optional** Recipient of the payment notification, should be an email address
     /// - Note: Only used when modifying an existing payment
     public var notificationRecipient: String?
     
     
-    init(unboxer: Unboxer) {
-        paymentID           = unboxer.unbox("payment_id")
-        accountID           = unboxer.unbox("account_id")
-        type                = unboxer.unbox("type")
-        name                = unboxer.unbox("name")
-        accountNumber       = unboxer.unbox("account_number")
-        bankCode            = unboxer.unbox("bank_code")
-        bankName            = unboxer.unbox("bank_name")
-        bankIcon            = unboxer.unbox("bank_icon")
-        bankAdditionalIcons = unboxer.unbox("bank_additional_icons")
-        amount              = unboxer.unbox("amount")
-        currency            = unboxer.unbox("currency")
-        purpose             = unboxer.unbox("purpose")
-        textKey             = unboxer.unbox("text_key")
-        textKeyExtension    = unboxer.unbox("text_key_extension")
-        container           = unboxer.unbox("container")
-        submissionDate      = unboxer.unbox("submission_timestamp")
-        creationDate        = unboxer.unbox("creation_timestamp")
-        modificationDate    = unboxer.unbox("modification_timestamp")
+    public init(unboxer: Unboxer) throws {
+        self.paymentID           = try unboxer.unbox(key: "payment_id")
+        self.accountID           = try unboxer.unbox(key: "account_id")
+        self.type                = try unboxer.unbox(key: "type")
+        self.name                = try unboxer.unbox(key: "name")
+        self.accountNumber       = try unboxer.unbox(key: "account_number")
+        self.bankCode            = try unboxer.unbox(key: "bank_code")
+        self.bankName            = try unboxer.unbox(key: "bank_name")
+        self.bankIcon            = try unboxer.unbox(key: "bank_icon")
+        self.bankAdditionalIcons = try unboxer.unbox(key: "bank_additional_icons")
+        self.amount              = try unboxer.unbox(key: "amount")
+        self.currency            = try unboxer.unbox(key: "currency")
+        self.purpose             = try unboxer.unbox(key: "purpose")
+        self.textKey             = try unboxer.unbox(key: "text_key")
+        self.textKeyExtension    = try unboxer.unbox(key: "text_key_extension")
+        self.container           = try unboxer.unbox(key: "container")
+        self.submissionDate      = try unboxer.unbox(key: "submission_timestamp")
+        self.creationDate        = try unboxer.unbox(key: "creation_timestamp")
+        self.modificationDate    = try unboxer.unbox(key: "modification_timestamp")
     }
     
     
     // Used when modifying a payment
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
-        dict["name"] = name
-        dict["account_number"] = accountNumber
-        dict["bank_code"] = bankCode
-        dict["amount"] = amount
-        dict["currency"] = currency
-        dict["purpose"] = purpose
-        dict["text_key"] = textKey
-        dict["text_key_extension"] = textKeyExtension
-        dict["notification_recipient"] = notificationRecipient
+        dict["name"] = name as AnyObject?
+        dict["account_number"] = accountNumber as AnyObject?
+        dict["bank_code"] = bankCode as AnyObject?
+        dict["amount"] = amount as AnyObject?
+        dict["currency"] = currency as AnyObject?
+        dict["purpose"] = purpose as AnyObject?
+        dict["text_key"] = textKey as AnyObject?
+        dict["text_key_extension"] = textKeyExtension as AnyObject?
+        dict["notification_recipient"] = notificationRecipient as AnyObject?
 //        dict["cents"] = true
         return dict
     }

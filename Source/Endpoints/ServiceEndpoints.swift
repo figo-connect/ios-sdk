@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public extension FigoClient {
     
@@ -18,8 +20,8 @@ public extension FigoClient {
      - Parameter bankCode: Bank code
      - Parameter completionHandler: Returns login settings or error
      */
-    public func retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (Result<LoginSettings>) -> Void) {
-        request(Endpoint.RetrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
+    public func retrieveLoginSettings(_ countryCode: String = "de", bankCode: String, _ completionHandler: @escaping (Result<LoginSettings>) -> Void) {
+        request(Endpoint.retrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -29,16 +31,16 @@ public extension FigoClient {
      
      - Parameter countryCode: The country the service comes from (Valid values: de)
      */
-    public func retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (Result<[SupportedBank]>) -> Void) {
-        request(Endpoint.RetrieveSupportedBanks(countryCode: countryCode)) { response in
+    public func retrieveSupportedBanks(_ countryCode: String = "de", _ completionHandler: @escaping (Result<[SupportedBank]>) -> Void) {
+        request(Endpoint.retrieveSupportedBanks(countryCode: countryCode)) { response in
             let envelopeUnboxingResult: Result<BanksListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
-            case .Success(let envelope):
-                completionHandler(.Success(envelope.banks))
+            case .success(let envelope):
+                completionHandler(.success(envelope.banks))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -51,16 +53,16 @@ public extension FigoClient {
      
      - Parameter countryCode: The country the service comes from (Valid values: de)
      */
-    public func retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (Result<[SupportedService]>) -> Void) {
-        request(Endpoint.RetrieveSupportedServices(countryCode: countryCode)) { response in
+    public func retrieveSupportedServices(_ countryCode: String = "de", _ completionHandler: @escaping (Result<[SupportedService]>) -> Void) {
+        request(Endpoint.retrieveSupportedServices(countryCode: countryCode)) { response in
             let envelopeUnboxingResult: Result<ServicesListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
-            case .Success(let envelope):
-                completionHandler(.Success(envelope.services))
+            case .success(let envelope):
+                completionHandler(.success(envelope.services))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }

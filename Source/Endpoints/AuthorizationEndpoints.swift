@@ -26,19 +26,19 @@ public extension FigoClient {
      - Parameter clientSecret: Client secret
      - Parameter completionHandler: Returns refresh token or error
      */
-    public func loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void) {
+    public func loginWithUsername(_ username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: @escaping (Result<String>) -> Void) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
-        request(.LoginUser(username: username, password: password)) { response in
+        request(.loginUser(username: username, password: password)) { response in
             
             let unboxingResult: Result<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
-            case .Success(let authorization):
+            case .success(let authorization):
                 self.accessToken = authorization.accessToken
                 self.refreshToken = authorization.refreshToken
-                completionHandler(Result.Success(authorization.refreshToken!))
+                completionHandler(Result.success(authorization.refreshToken!))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -55,19 +55,19 @@ public extension FigoClient {
      - Parameter clientSecret: Client secret
      - parameter completionHandler: Returns nothing or error
      */
-    public func loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: VoidCompletionHandler) {
+    public func loginWithRefreshToken(_ refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: @escaping VoidCompletionHandler) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
-        request(Endpoint.RefreshToken(refreshToken)) { response in
+        request(Endpoint.refreshToken(refreshToken)) { response in
 
             let unboxingResult: Result<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
-            case .Success(let authorization):
+            case .success(let authorization):
                 self.accessToken = authorization.accessToken
                 self.refreshToken = authorization.refreshToken
-                completionHandler(.Success())
+                completionHandler(.success())
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -82,12 +82,12 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns nothing or error
      */
-    public func revokeAccessToken(completionHandler: VoidCompletionHandler) {
+    public func revokeAccessToken(_ completionHandler: @escaping VoidCompletionHandler) {
         guard let accessToken = self.accessToken else {
-            completionHandler(.Failure(Error.NoActiveSession))
+            completionHandler(.failure(FigoError.noActiveSession))
             return
         }
-        request(.RevokeToken(accessToken)) { response in
+        request(.revokeToken(accessToken)) { response in
             self.accessToken = nil
             completionHandler(decodeVoidResponse(response))
         }
@@ -103,8 +103,8 @@ public extension FigoClient {
      - Parameter refreshToken: The client's refresh token, defaults to the session's refresh token
      - Parameter completionHandler: Returns nothing or error
      */
-    public func revokeRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler) {
-        request(.RevokeToken(refreshToken)) { response in
+    public func revokeRefreshToken(_ refreshToken: String, _ completionHandler: @escaping VoidCompletionHandler) {
+        request(.revokeToken(refreshToken)) { response in
             self.accessToken = nil
             self.refreshToken = nil
             completionHandler(decodeVoidResponse(response))

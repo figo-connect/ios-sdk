@@ -47,11 +47,11 @@ public struct CreateUserParameters: JSONObjectConvertible {
     var JSONObject: [String: AnyObject] {
         get {
             var dict = Dictionary<String, AnyObject>()
-            dict["name"] = name
-            dict["email"] = email
-            dict["send_newsletter"] = sendNewsletter
-            dict["language"] = language
-            dict["password"] = password
+            dict["name"] = name as AnyObject?
+            dict["email"] = email as AnyObject?
+            dict["send_newsletter"] = sendNewsletter as AnyObject?
+            dict["language"] = language as AnyObject?
+            dict["password"] = password as AnyObject?
             return dict
         }
     }

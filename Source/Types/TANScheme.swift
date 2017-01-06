@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public struct TANScheme: Unboxable  {
     
@@ -14,9 +16,9 @@ public struct TANScheme: Unboxable  {
     public let TANSchemeID: String
     
     
-    init(unboxer: Unboxer) {
-        mediumName    = unboxer.unbox("medium_name")
-        name          = unboxer.unbox("name")
-        TANSchemeID   = unboxer.unbox("tan_scheme_id")
+    public init(unboxer: Unboxer) throws {
+        mediumName    = try unboxer.unbox(key: "medium_name")
+        name          = try unboxer.unbox(key: "name")
+        TANSchemeID   = try unboxer.unbox(key: "tan_scheme_id")
     }
 }

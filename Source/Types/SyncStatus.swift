@@ -6,19 +6,21 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public struct SyncStatus: Unboxable {
     
     public let code: Int
     public let message: String?
-    public let successDate: Date
-    public let syncDate: Date
+    public let successDate: FigoDate
+    public let syncDate: FigoDate
     
     
-    init(unboxer: Unboxer) {
-        code          = unboxer.unbox("code")
-        message       = unboxer.unbox("message")
-        successDate   = unboxer.unbox("success_timestamp")
-        syncDate      = unboxer.unbox("sync_timestamp")
+    public init(unboxer: Unboxer) throws {
+        code          = try unboxer.unbox(key: "code")
+        message       = try unboxer.unbox(key: "message")
+        successDate   = try unboxer.unbox(key: "success_timestamp")
+        syncDate      = try unboxer.unbox(key: "sync_timestamp")
     }
 }

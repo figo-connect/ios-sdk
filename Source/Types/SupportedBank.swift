@@ -6,13 +6,15 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 internal struct BanksListEnvelope: Unboxable {
 
     let banks: [SupportedBank]
     
-    init(unboxer: Unboxer) {
-        banks = unboxer.unbox("banks")
+    init(unboxer: Unboxer) throws {
+        banks = try unboxer.unbox(key: "banks")
     }
 }
 
@@ -32,13 +34,13 @@ public struct SupportedBank: Unboxable {
     public let advice: String?
     
     
-    init(unboxer: Unboxer) {
-        bankName    = unboxer.unbox("bank_name")
-        bankCode    = unboxer.unbox("bank_code")
-        bic         = unboxer.unbox("bic")
-        icon        = unboxer.unbox("icon")
-        credentials = unboxer.unbox("credentials")
-        advice      = unboxer.unbox("advice")
+    public init(unboxer: Unboxer) throws {
+        bankName    = try unboxer.unbox(key: "bank_name")
+        bankCode    = try unboxer.unbox(key: "bank_code")
+        bic         = try unboxer.unbox(key: "bic")
+        icon        = try unboxer.unbox(key: "icon")
+        credentials = try unboxer.unbox(key: "credentials")
+        advice      = try unboxer.unbox(key: "advice")
     }
 }
 

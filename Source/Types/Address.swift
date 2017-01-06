@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public struct Address: Unboxable {
     
@@ -18,15 +20,15 @@ public struct Address: Unboxable {
     public let vat: Float?
     public let bill: Bool?
     
-    init(unboxer: Unboxer) {
-        city        = unboxer.unbox("city")
-        company     = unboxer.unbox("company")
-        postalCode = unboxer.unbox("postal_code")
-        street      = unboxer.unbox("street")
-        street2     = unboxer.unbox("street2")
-        country     = unboxer.unbox("country")
-        vat         = unboxer.unbox("vat")
-        bill        = unboxer.unbox("bill")
+    public init(unboxer: Unboxer) throws {
+        city        = try unboxer.unbox(key: "city")
+        company     = try unboxer.unbox(key: "company")
+        postalCode = try unboxer.unbox(key: "postal_code")
+        street      = try unboxer.unbox(key: "street")
+        street2     = try unboxer.unbox(key: "street2")
+        country     = try unboxer.unbox(key: "country")
+        vat         = try unboxer.unbox(key: "vat")
+        bill        = try unboxer.unbox(key: "bill")
     }
 }
 

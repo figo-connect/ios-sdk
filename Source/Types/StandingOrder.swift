@@ -6,6 +6,8 @@
 //  Copyright © 2015 CodeStage. All rights reserved.
 //
 
+import Unbox
+
 
 public enum StandingOrderInterval: String, UnboxableEnum {
    
@@ -16,7 +18,7 @@ public enum StandingOrderInterval: String, UnboxableEnum {
     case HalfYearly = "half yearly"
     case Yearly = "yearly"
     
-    static func unboxFallbackValue() -> StandingOrderInterval {
+    public static func unboxFallbackValue() -> StandingOrderInterval {
         return .Monthly
     }
     
@@ -27,8 +29,8 @@ internal struct StandingOrderListEnvelope: Unboxable {
     
     let standingOrders: [StandingOrder]
     
-    init(unboxer: Unboxer) {
-        standingOrders = unboxer.unbox("standing_orders")
+    init(unboxer: Unboxer) throws {
+        standingOrders = try unboxer.unbox(key: "standing_orders")
     }
 }
 
@@ -95,28 +97,28 @@ public struct StandingOrder: Unboxable {
     let purpose: String?
     
     /// Internal creation timestamp on the figo Connect server
-    let creationDate: Date
+    let creationDate: FigoDate
     
     /// Internal modification timestamp on the figo Connect server
-    let modificationDate: Date?
+    let modificationDate: FigoDate?
     
     
-    init(unboxer: Unboxer) {
-        standingOrderID = unboxer.unbox("standing_order_id")
-        accountID = unboxer.unbox("account_id")
-        firstExecutionDate = unboxer.unbox("first_execution_date")
-        lastExecutionDate = unboxer.unbox("last_execution_date")
-        executionDay = unboxer.unbox("execution_day")
-        interval = unboxer.unbox("interval")
-        name = unboxer.unbox("name")
-        accountNumber = unboxer.unbox("account_number")
-        bankCode = unboxer.unbox("bank_code")
-        bankName = unboxer.unbox("bank_name")
-        amount = unboxer.unbox("amount")
-        currency = unboxer.unbox("currency")
-        purpose = unboxer.unbox("purpose")
-        creationDate = unboxer.unbox("creation_timestamp")
-        modificationDate = unboxer.unbox("modification_timestamp")
+    public init(unboxer: Unboxer) throws {
+        standingOrderID = try unboxer.unbox(key: "standing_order_id")
+        accountID = try unboxer.unbox(key: "account_id")
+        firstExecutionDate = try unboxer.unbox(key: "first_execution_date")
+        lastExecutionDate = try unboxer.unbox(key: "last_execution_date")
+        executionDay = try unboxer.unbox(key: "execution_day")
+        interval = try unboxer.unbox(key: "interval")
+        name = try unboxer.unbox(key: "name")
+        accountNumber = try unboxer.unbox(key: "account_number")
+        bankCode = try unboxer.unbox(key: "bank_code")
+        bankName = try unboxer.unbox(key: "bank_name")
+        amount = try unboxer.unbox(key: "amount")
+        currency = try unboxer.unbox(key: "currency")
+        purpose = try unboxer.unbox(key: "purpose")
+        creationDate = try unboxer.unbox(key: "creation_timestamp")
+        modificationDate = try unboxer.unbox(key: "modification_timestamp")
     }
 }
 
