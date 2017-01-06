@@ -72,7 +72,7 @@ public struct Security: Unboxable {
     
     /// String representation of current price
     public var priceFormatted: String {
-        currencyFormatter.currencyCode = self.currency
+        currencyFormatter.currencyCode = currency
         return currencyFormatter.string(from: NSNumber(value: Float(price)/100.0 as Float))!
     }
     
@@ -84,7 +84,7 @@ public struct Security: Unboxable {
     
     /// String representation of purchase price
     public var purchasePriceFormatted: String {
-        currencyFormatter.currencyCode = self.currency
+        currencyFormatter.currencyCode = currency
         return currencyFormatter.string(from: NSNumber(value: Float(purchasePrice)/100.0 as Float))!
     }
     
@@ -110,25 +110,25 @@ public struct Security: Unboxable {
     
 
     public init(unboxer: Unboxer) throws {
-        self.securityID = try unboxer.unbox(key: "security_id")
-        self.accountID = try unboxer.unbox(key: "account_id")
-        self.name = try unboxer.unbox(key: "name")
-        self.isin = try unboxer.unbox(key: "isin")
-        self.wkn = try unboxer.unbox(key: "wkn")
-        self.currency = try unboxer.unbox(key: "currency")
-        self.quantity = try unboxer.unbox(key: "quantity")
-        self.amount = try unboxer.unbox(key: "amount")
-        self.amountOriginalCurrency = try unboxer.unbox(key: "amount_original_currency")
-        self.exchangeRate = try unboxer.unbox(key: "exchange_rate")
-        self.price = try unboxer.unbox(key: "price")
-        self.priceCurrency = try unboxer.unbox(key: "price_currency")
-        self.purchasePrice = try unboxer.unbox(key: "purchase_price")
-        self.purchasePriceCurrency = try unboxer.unbox(key: "purchase_price_currency")
-        self.visited = try unboxer.unbox(key: "visited")
-        self.tradeDate = try unboxer.unbox(key: "trade_timestamp")
-        self.creationDate = try unboxer.unbox(key: "creation_timestamp")
-        self.modificationDate = try unboxer.unbox(key: "modification_timestamp")
-        self.market = try unboxer.unbox(key: "market")
+        securityID              = try unboxer.unbox(key: "security_id")
+        accountID               = try unboxer.unbox(key: "account_id")
+        name                    = try unboxer.unbox(key: "name")
+        isin                    = try unboxer.unbox(key: "isin")
+        wkn                     = try unboxer.unbox(key: "wkn")
+        currency                = try unboxer.unbox(key: "currency")
+        quantity                = try unboxer.unbox(key: "quantity")
+        amount                  = try unboxer.unbox(key: "amount")
+        amountOriginalCurrency  = try unboxer.unbox(key: "amount_original_currency")
+        exchangeRate            = try unboxer.unbox(key: "exchange_rate")
+        price                   = try unboxer.unbox(key: "price")
+        priceCurrency           = try unboxer.unbox(key: "price_currency")
+        purchasePrice           = try unboxer.unbox(key: "purchase_price")
+        purchasePriceCurrency   = try unboxer.unbox(key: "purchase_price_currency")
+        visited                 = try unboxer.unbox(key: "visited")
+        tradeDate               = try unboxer.unbox(key: "trade_timestamp")
+        creationDate            = try unboxer.unbox(key: "creation_timestamp")
+        modificationDate        = try unboxer.unbox(key: "modification_timestamp")
+        market                  = try unboxer.unbox(key: "market")
     }
     
 }

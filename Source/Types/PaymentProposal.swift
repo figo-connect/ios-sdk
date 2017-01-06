@@ -16,11 +16,11 @@ public struct PaymentProposal: Unboxable {
     public let icon: String
     
     public init(unboxer: Unboxer) throws {
-        accountNumber = try unboxer.unbox(key: "account_number")
-        bankCode = try unboxer.unbox(key: "bank_code")
-        name = try unboxer.unbox(key: "name")
+        accountNumber   = try unboxer.unbox(key: "account_number")
+        bankCode        = try unboxer.unbox(key: "bank_code")
+        name            = try unboxer.unbox(key: "name")
         additionalIcons = unboxer.unbox(key: "additional_icons")
-        icon = try unboxer.unbox(key: "icon")
+        icon            = try unboxer.unbox(key: "icon")
     }
 
 }

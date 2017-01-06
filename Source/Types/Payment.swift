@@ -56,7 +56,7 @@ public struct Payment: Unboxable {
     
     /// String representation of the amount
     public var amountFormatted: String {
-        currencyFormatter.currencyCode = self.currency
+        currencyFormatter.currencyCode = currency
         return currencyFormatter.string(from: NSNumber(value: Float(amount) as Float))!
     }
     
@@ -97,24 +97,24 @@ public struct Payment: Unboxable {
     
     
     public init(unboxer: Unboxer) throws {
-        self.paymentID           = try unboxer.unbox(key: "payment_id")
-        self.accountID           = try unboxer.unbox(key: "account_id")
-        self.type                = try unboxer.unbox(key: "type")
-        self.name                = try unboxer.unbox(key: "name")
-        self.accountNumber       = try unboxer.unbox(key: "account_number")
-        self.bankCode            = try unboxer.unbox(key: "bank_code")
-        self.bankName            = try unboxer.unbox(key: "bank_name")
-        self.bankIcon            = try unboxer.unbox(key: "bank_icon")
-        self.bankAdditionalIcons = try unboxer.unbox(key: "bank_additional_icons")
-        self.amount              = try unboxer.unbox(key: "amount")
-        self.currency            = try unboxer.unbox(key: "currency")
-        self.purpose             = unboxer.unbox(key: "purpose")
-        self.textKey             = try unboxer.unbox(key: "text_key")
-        self.textKeyExtension    = try unboxer.unbox(key: "text_key_extension")
-        self.container           = unboxer.unbox(key: "container")
-        self.submissionDate      = unboxer.unbox(key: "submission_timestamp")
-        self.creationDate        = try unboxer.unbox(key: "creation_timestamp")
-        self.modificationDate    = try unboxer.unbox(key: "modification_timestamp")
+        paymentID           = try unboxer.unbox(key: "payment_id")
+        accountID           = try unboxer.unbox(key: "account_id")
+        type                = try unboxer.unbox(key: "type")
+        name                = try unboxer.unbox(key: "name")
+        accountNumber       = try unboxer.unbox(key: "account_number")
+        bankCode            = try unboxer.unbox(key: "bank_code")
+        bankName            = try unboxer.unbox(key: "bank_name")
+        bankIcon            = try unboxer.unbox(key: "bank_icon")
+        bankAdditionalIcons = try unboxer.unbox(key: "bank_additional_icons")
+        amount              = try unboxer.unbox(key: "amount")
+        currency            = try unboxer.unbox(key: "currency")
+        purpose             = unboxer.unbox(key: "purpose")
+        textKey             = try unboxer.unbox(key: "text_key")
+        textKeyExtension    = try unboxer.unbox(key: "text_key_extension")
+        container           = unboxer.unbox(key: "container")
+        submissionDate      = unboxer.unbox(key: "submission_timestamp")
+        creationDate        = try unboxer.unbox(key: "creation_timestamp")
+        modificationDate    = try unboxer.unbox(key: "modification_timestamp")
     }
     
     

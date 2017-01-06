@@ -102,21 +102,21 @@ public struct StandingOrder: Unboxable {
     
     
     public init(unboxer: Unboxer) throws {
-        standingOrderID = try unboxer.unbox(key: "standing_order_id")
-        accountID = try unboxer.unbox(key: "account_id")
-        firstExecutionDate = try unboxer.unbox(key: "first_execution_date")
-        lastExecutionDate = unboxer.unbox(key: "last_execution_date")
-        executionDay = try unboxer.unbox(key: "execution_day")
-        interval = try unboxer.unbox(key: "interval")
-        name = try unboxer.unbox(key: "name")
-        accountNumber = try unboxer.unbox(key: "account_number")
-        bankCode = try unboxer.unbox(key: "bank_code")
-        bankName = try unboxer.unbox(key: "bank_name")
-        amount = try unboxer.unbox(key: "amount")
-        currency = try unboxer.unbox(key: "currency")
-        purpose = unboxer.unbox(key: "purpose")
-        creationDate = try unboxer.unbox(key: "creation_timestamp")
-        modificationDate = unboxer.unbox(key: "modification_timestamp")
+        standingOrderID     = try unboxer.unbox(key: "standing_order_id")
+        accountID           = try unboxer.unbox(key: "account_id")
+        firstExecutionDate  = try unboxer.unbox(key: "first_execution_date")
+        lastExecutionDate   = unboxer.unbox(key: "last_execution_date")
+        executionDay        = try unboxer.unbox(key: "execution_day")
+        interval            = try unboxer.unbox(key: "interval")
+        name                = try unboxer.unbox(key: "name")
+        accountNumber       = try unboxer.unbox(key: "account_number")
+        bankCode            = try unboxer.unbox(key: "bank_code")
+        bankName            = try unboxer.unbox(key: "bank_name")
+        amount              = try unboxer.unbox(key: "amount")
+        currency            = try unboxer.unbox(key: "currency")
+        purpose             = unboxer.unbox(key: "purpose")
+        creationDate        = try unboxer.unbox(key: "creation_timestamp")
+        modificationDate    = unboxer.unbox(key: "modification_timestamp")
     }
 }
 
