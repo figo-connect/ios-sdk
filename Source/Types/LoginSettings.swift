@@ -40,6 +40,6 @@ public struct LoginSettings: Unboxable {
         additional_icons    = try unboxer.unbox(key: "additional_icons")
         credentials         = try unboxer.unbox(key: "credentials")
         authType            = try unboxer.unbox(key: "auth_type")
-        advice              = try unboxer.unbox(key: "advice")
+        advice              = unboxer.unbox(key: "advice")
     }
 }

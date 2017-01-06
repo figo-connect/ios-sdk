@@ -25,9 +25,9 @@ public struct Challenge: Unboxable {
     
     
     public init(unboxer: Unboxer) throws {
-        title   = try unboxer.unbox(key: "title")
-        label   = try unboxer.unbox(key: "label")
-        format  = try unboxer.unbox(key: "format")
-        data    = try unboxer.unbox(key: "data")
+        title   = unboxer.unbox(key: "title")
+        label   = unboxer.unbox(key: "label")
+        format  = unboxer.unbox(key: "format")
+        data    = unboxer.unbox(key: "data")
     }
 }

@@ -22,8 +22,8 @@ public struct LoginCredentials: Unboxable {
     
     
     public init(unboxer: Unboxer) throws {
-        label = try unboxer.unbox(key: "label")
-        masked = try unboxer.unbox(key: "masked")
-        optional = try unboxer.unbox(key: "optional")
+        label = unboxer.unbox(key: "label")
+        masked = unboxer.unbox(key: "masked")
+        optional = unboxer.unbox(key: "optional")
     }
 }

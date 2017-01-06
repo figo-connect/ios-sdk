@@ -49,7 +49,7 @@ internal struct TaskState: Unboxable {
         isWaitingForResponse    = try unboxer.unbox(key: "is_waiting_for_response")
         isErroneous             = try unboxer.unbox(key: "is_erroneous")
         isEnded                 = try unboxer.unbox(key: "is_ended")
-        challenge               = try unboxer.unbox(key: "challenge")
+        challenge               = unboxer.unbox(key: "challenge")
     }
 }
 

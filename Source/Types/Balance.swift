@@ -28,11 +28,11 @@ public struct Balance: Unboxable {
     
     
     public init(unboxer: Unboxer) throws {
-        balance                 = try unboxer.unbox(key: "balance")
-        balanceDate             = try unboxer.unbox(key: "balance_date")
+        balance                 = unboxer.unbox(key: "balance")
+        balanceDate             = unboxer.unbox(key: "balance_date")
         creditLine              = try unboxer.unbox(key: "credit_line")
         monthlySpendingLimit    = try unboxer.unbox(key: "monthly_spending_limit")
-        status                  = try unboxer.unbox(key: "status")
+        status                  = unboxer.unbox(key: "status")
         
     }
 }

@@ -19,9 +19,9 @@ internal struct Authorization: Unboxable {
     
     init(unboxer: Unboxer) throws {
         accessToken    = try unboxer.unbox(key: "access_token")
-        expires_in      = try unboxer.unbox(key: "expires_in")
-        refreshToken   = try unboxer.unbox(key: "refresh_token")
-        scope           = try unboxer.unbox(key: "scope")
+        expires_in     = try unboxer.unbox(key: "expires_in")
+        refreshToken   = unboxer.unbox(key: "refresh_token")
+        scope          = try unboxer.unbox(key: "scope")
         tokenType      = try unboxer.unbox(key: "token_type")
     }
 }

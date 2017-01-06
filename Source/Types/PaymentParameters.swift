@@ -19,7 +19,7 @@ public struct PaymentParameters: Unboxable {
     public let supportedTextKeys: [Int]
     
     public init(unboxer: Unboxer) throws {
-        allowedRecipients      = try unboxer.unbox(key: "allowed_recipients")
+        allowedRecipients     = unboxer.unbox(key: "allowed_recipients")
         canBeRecurring        = try unboxer.unbox(key: "can_be_recurring")
         canBeScheduled        = try unboxer.unbox(key: "can_be_scheduled")
         maxPurposeLength      = try unboxer.unbox(key: "max_purpose_length")
@@ -27,8 +27,8 @@ public struct PaymentParameters: Unboxable {
         
         // Special treatment for the key "supported_text_keys" because the server sometimes sends
         // numbers and sometimes sends strings for the values
-        let supportedTextKeysInt: [Int]? = try unboxer.unbox(key: "supported_text_keys")
-        let supportedTextKeysStrings: [String]? = try unboxer.unbox(key: "supported_text_keys")
+        let supportedTextKeysInt: [Int]? = unboxer.unbox(key: "supported_text_keys")
+        let supportedTextKeysStrings: [String]? = unboxer.unbox(key: "supported_text_keys")
         if let textKeys = supportedTextKeysInt {
             supportedTextKeys = textKeys
         } else if let textKeys = supportedTextKeysStrings {

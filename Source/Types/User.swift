@@ -55,20 +55,20 @@ public struct User: Unboxable {
     
     
     public init(unboxer: Unboxer) throws {
-        userID                 = try unboxer.unbox(key: "user_id")
-        name                    = try unboxer.unbox(key: "name")
-        email                   = try unboxer.unbox(key: "email")
-        address                 = try unboxer.unbox(key: "address")
-        verifiedEmail          = try unboxer.unbox(key: "verified_email")
-        sendNewsletter         = try unboxer.unbox(key: "send_newsletter")
-        joinDate               = try unboxer.unbox(key: "join_date")
-        language                = try unboxer.unbox(key: "language")
-        premium                 = try unboxer.unbox(key: "premium")
-        premiumExpiresOn      = try unboxer.unbox(key: "premium_expires_on")
-        premiumSubscription    = try unboxer.unbox(key: "premium_subscription")
-        forceReset             = try unboxer.unbox(key: "force_reset")
-        recoveryPassword       = try unboxer.unbox(key: "recovery_password")
-        filters                 = try unboxer.unbox(key: "filters")
+        userID                 = unboxer.unbox(key: "user_id")
+        name                   = try unboxer.unbox(key: "name")
+        email                  = try unboxer.unbox(key: "email")
+        address                = unboxer.unbox(key: "address")
+        verifiedEmail          = unboxer.unbox(key: "verified_email")
+        sendNewsletter         = unboxer.unbox(key: "send_newsletter")
+        joinDate               = unboxer.unbox(key: "join_date")
+        language               = unboxer.unbox(key: "language")
+        premium                = unboxer.unbox(key: "premium")
+        premiumExpiresOn       = unboxer.unbox(key: "premium_expires_on")
+        premiumSubscription    = unboxer.unbox(key: "premium_subscription")
+        forceReset             = unboxer.unbox(key: "force_reset")
+        recoveryPassword       = unboxer.unbox(key: "recovery_password")
+        filters                = unboxer.unbox(key: "filters")
     }
 }
 

@@ -21,14 +21,14 @@ public struct Address: Unboxable {
     public let bill: Bool?
     
     public init(unboxer: Unboxer) throws {
-        city        = try unboxer.unbox(key: "city")
-        company     = try unboxer.unbox(key: "company")
-        postalCode = try unboxer.unbox(key: "postal_code")
-        street      = try unboxer.unbox(key: "street")
-        street2     = try unboxer.unbox(key: "street2")
-        country     = try unboxer.unbox(key: "country")
-        vat         = try unboxer.unbox(key: "vat")
-        bill        = try unboxer.unbox(key: "bill")
+        city        = unboxer.unbox(key: "city")
+        company     = unboxer.unbox(key: "company")
+        postalCode  = unboxer.unbox(key: "postal_code")
+        street      = unboxer.unbox(key: "street")
+        street2     = unboxer.unbox(key: "street2")
+        country     = unboxer.unbox(key: "country")
+        vat         = unboxer.unbox(key: "vat")
+        bill        = unboxer.unbox(key: "bill")
     }
 }
 

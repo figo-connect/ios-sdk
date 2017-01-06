@@ -19,7 +19,7 @@ public struct SyncStatus: Unboxable {
     
     public init(unboxer: Unboxer) throws {
         code          = try unboxer.unbox(key: "code")
-        message       = try unboxer.unbox(key: "message")
+        message       = unboxer.unbox(key: "message")
         successDate   = try unboxer.unbox(key: "success_timestamp")
         syncDate      = try unboxer.unbox(key: "sync_timestamp")
     }

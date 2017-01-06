@@ -117,23 +117,23 @@ public struct Transaction: Unboxable {
     
     public init(unboxer: Unboxer) throws {
         accountID = try unboxer.unbox(key: "account_id")
-        accountNumber = try unboxer.unbox(key: "account_number")
+        accountNumber = unboxer.unbox(key: "account_number")
         amount = try unboxer.unbox(key: "amount")
-        bankCode = try unboxer.unbox(key: "bank_code")
-        bankName = try unboxer.unbox(key: "bank_name")
+        bankCode = unboxer.unbox(key: "bank_code")
+        bankName = unboxer.unbox(key: "bank_name")
         booked = try unboxer.unbox(key: "booked")
-        bookingDate = try unboxer.unbox(key: "booking_date")
-        bookingText = try unboxer.unbox(key: "booking_text")
+        bookingDate = unboxer.unbox(key: "booking_date")
+        bookingText = unboxer.unbox(key: "booking_text")
         creationDate = try unboxer.unbox(key: "creation_timestamp")
         currency = try unboxer.unbox(key: "currency")
         modificationDate = try unboxer.unbox(key: "modification_timestamp")
-        name = try unboxer.unbox(key: "name")
-        purpose = try unboxer.unbox(key: "purpose")
+        name = unboxer.unbox(key: "name")
+        purpose = unboxer.unbox(key: "purpose")
         transactionID = try unboxer.unbox(key: "transaction_id")
         type = try unboxer.unbox(key: "type")
         valueDate = try unboxer.unbox(key: "value_date")
         visited = try unboxer.unbox(key: "visited")
-        additionalInfo = try unboxer.unbox(key: "additional_info")
+        additionalInfo = unboxer.unbox(key: "additional_info")
     }
     
 }

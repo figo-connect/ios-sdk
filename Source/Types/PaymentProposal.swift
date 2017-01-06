@@ -21,7 +21,7 @@ public struct PaymentProposal: Unboxable {
         accountNumber = try unboxer.unbox(key: "account_number")
         bankCode = try unboxer.unbox(key: "bank_code")
         name = try unboxer.unbox(key: "name")
-        additionalIcons = try unboxer.unbox(key: "additional_icons")
+        additionalIcons = unboxer.unbox(key: "additional_icons")
         icon = try unboxer.unbox(key: "icon")
     }
 

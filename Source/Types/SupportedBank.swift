@@ -36,11 +36,11 @@ public struct SupportedBank: Unboxable {
     
     public init(unboxer: Unboxer) throws {
         bankName    = try unboxer.unbox(key: "bank_name")
-        bankCode    = try unboxer.unbox(key: "bank_code")
+        bankCode    = unboxer.unbox(key: "bank_code")
         bic         = try unboxer.unbox(key: "bic")
         icon        = try unboxer.unbox(key: "icon")
         credentials = try unboxer.unbox(key: "credentials")
-        advice      = try unboxer.unbox(key: "advice")
+        advice      = unboxer.unbox(key: "advice")
     }
 }
 
