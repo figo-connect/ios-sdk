@@ -33,7 +33,7 @@ To add figo as a git submodule run the following command:
 
 `git submodule add https://github.com/figome/ios-sdk.git`
 
-Integrating the framework in your project:
+Integrate the framework into your project:
 
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
