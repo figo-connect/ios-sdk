@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		83017B781C0A2FE80062FC08 /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
-		830493411E2008E4005B5B30 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304932B1E200891005B5B30 /* XCGLogger.framework */; };
-		8304934B1E202187005B5B30 /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8304932B1E200891005B5B30 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		830493581E202957005B5B30 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830493571E202957005B5B30 /* Unbox.swift */; };
 		830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
 		830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
 		830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
 		830E63E11C05A7AE0048F7BF /* SyncStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63E01C05A7AE0048F7BF /* SyncStatus.json */; };
 		830E63E31C05AB890048F7BF /* PaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63E21C05AB890048F7BF /* PaymentParameters.swift */; };
+		832CABA91E242BAF00D48895 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 832CABA81E242BAF00D48895 /* XCGLogger.framework */; };
 		833285EF1C04D45900A9FE73 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = 833285EE1C04D45900A9FE73 /* Balance.json */; };
 		8346AABF1C0A03A700F9F0DE /* TaskEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */; };
 		83648D571C0A42B700286FFB /* LoginSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D561C0A42B700286FFB /* LoginSettings.swift */; };
@@ -99,7 +98,6 @@
 			dstPath = Frameworks;
 			dstSubfolderSpec = 7;
 			files = (
-				8304934B1E202187005B5B30 /* XCGLogger.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,16 +105,13 @@
 
 /* Begin PBXFileReference section */
 		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
-		8304932B1E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
-		830493301E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
-		830493371E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
-		8304933E1E200891005B5B30 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
 		830493571E202957005B5B30 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
 		830E63D81C05A4050048F7BF /* TANScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TANScheme.swift; path = Types/TANScheme.swift; sourceTree = "<group>"; };
 		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
 		830E63DD1C05A7070048F7BF /* SyncStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncStatus.swift; path = Types/SyncStatus.swift; sourceTree = "<group>"; };
 		830E63E01C05A7AE0048F7BF /* SyncStatus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SyncStatus.json; path = Resources/SyncStatus.json; sourceTree = "<group>"; };
 		830E63E21C05AB890048F7BF /* PaymentParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentParameters.swift; path = Types/PaymentParameters.swift; sourceTree = "<group>"; };
+		832CABA81E242BAF00D48895 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = "<group>"; };
 		833285EE1C04D45900A9FE73 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = Resources/Balance.json; sourceTree = "<group>"; };
 		833285F01C04D48E00A9FE73 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEndpoints.swift; sourceTree = "<group>"; };
@@ -202,55 +197,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830493411E2008E4005B5B30 /* XCGLogger.framework in Frameworks */,
+				832CABA91E242BAF00D48895 /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		830493231E200891005B5B30 /* Carthage */ = {
+		832CABA71E242BAE00D48895 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				830493241E200891005B5B30 /* iOS */,
-				8304932D1E200891005B5B30 /* Mac */,
-				830493321E200891005B5B30 /* tvOS */,
-				830493391E200891005B5B30 /* watchOS */,
+				832CABA81E242BAF00D48895 /* XCGLogger.framework */,
 			);
-			name = Carthage;
-			path = Carthage/Build;
-			sourceTree = SOURCE_ROOT;
-		};
-		830493241E200891005B5B30 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				8304932B1E200891005B5B30 /* XCGLogger.framework */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		8304932D1E200891005B5B30 /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				830493301E200891005B5B30 /* XCGLogger.framework */,
-			);
-			path = Mac;
-			sourceTree = "<group>";
-		};
-		830493321E200891005B5B30 /* tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				830493371E200891005B5B30 /* XCGLogger.framework */,
-			);
-			path = tvOS;
-			sourceTree = "<group>";
-		};
-		830493391E200891005B5B30 /* watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				8304933E1E200891005B5B30 /* XCGLogger.framework */,
-			);
-			path = watchOS;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		837B520F1C10C97E00D3CB25 /* Core */ = {
@@ -394,10 +353,10 @@
 			isa = PBXGroup;
 			children = (
 				83D3A7201C03471D003EDE45 /* README.md */,
-				830493231E200891005B5B30 /* Carthage */,
 				83D3A67F1BFF2953003EDE45 /* Source */,
 				83D3A7081BFFB6A7003EDE45 /* Tests */,
 				83F3AF231BFF28D900767D77 /* Products */,
+				832CABA71E242BAE00D48895 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
