@@ -35,7 +35,7 @@ class PaymentTests: BaseTestCaseWithLogin {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            figo.retrievePaymentsForAccount("A1182805.4") { result in
+            figo.retrievePaymentsForAccount("A2132899.1") { result in
                 XCTAssertNil(result.error)
                 if case .success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
