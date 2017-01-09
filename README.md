@@ -1,8 +1,4 @@
 
-
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/figome/ios-sdk)
-
-
 # figo iOS SDK
 
 This Framework wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece.
@@ -31,9 +27,9 @@ Website: [http://figo.io](http://figo.io)
 
 ## Installation
 
-### Manually
+### Submodule
 
-* Add figo as a git submodule by running the following command:
+* To add figo as a git submodule by running the following command:
 
 	`git submodule add https://github.com/figome/ios-sdk.git`
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
@@ -42,32 +38,7 @@ Website: [http://figo.io](http://figo.io)
 
 ### Carthage
 
-* Install Carthage
-
-	If you don't have Carthage already installed, download and run the .pkg installer for the latest release from [Github](https://github.com/Carthage/Carthage/releases) or use the Homebrew package manager.
-
-* Add a new `Cartfile` to your project folder or update your existing `Cartfile` with
-
-    `github "figome/ios-sdk"`
-
-* Checkout Dependencies
-
-	Run `carthage update` in your project folder to download and build the newest compatible versions of the figo Framework and it's dependecies.
-
-    You can specify `carthage update --platform iOS` if you only need the iOS build.
-
-* Add Frameworks
-
-    The built artifacts can be found in your project folder under `Carthage/Build`. From there choose the corresponding folder for your target platform(s) and add the frameworks by dragging them into the Linked Frameworks and Libraries section in Xcode.
-
-    If you have problems with App Store submission because your app contains binary images for the simulator, add a new Run Script build phase with the command
-    
-    `/usr/local/bin/carthage copy-frameworks`
-    
-    and an entry for each target platform:
-    
-    `$(SRCROOT)/Carthage/Build/iOS/Figo.framework`
-
+We are working on bringing back Carthage support
 
 ## Usage
 
