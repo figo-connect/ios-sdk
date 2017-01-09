@@ -9,11 +9,9 @@
 import Foundation
 import XCTest
 import Figo
-import XCGLogger
 
 
-let logger = XCGLogger.default
-let figo = FigoClient(logger: logger)
+let figo = FigoClient(logger: ConsoleLogger())
 
 
 class BaseTestCaseWithLogin: XCTestCase {
@@ -32,8 +30,6 @@ class BaseTestCaseWithLogin: XCTestCase {
     
     override class func setUp() {
         super.setUp()
-        
-        logger.setup(level: .verbose, showFunctionName: false, showThreadName: false, showLevel: false, showFileNames: false, showLineNumbers: false, showDate: false, writeToFile: nil, fileLevel: .none)
     }
     
     func login(_ completionHandler: @escaping () -> Void) {

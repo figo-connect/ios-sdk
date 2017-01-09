@@ -7,11 +7,44 @@
 //
 
 import Foundation
-import XCGLogger
 
 
 // Internal logger instance
-internal var log = XCGLogger.default
+internal var log: Logger = VoidLogger()
+
+
+public protocol Logger {
+    var debug: (String) -> Void { get }
+    var verbose: (String) -> Void { get }
+    var error: (String) -> Void { get }
+}
+
+public struct VoidLogger: Logger {
+    public var debug: (String) -> Void = { message in
+        
+    }
+    public var verbose: (String) -> Void = { message in
+        
+    }
+    public var error: (String) -> Void = { message in
+        
+    }
+}
+
+public struct ConsoleLogger: Logger {
+    public init() {
+    
+    }
+    public var debug: (String) -> Void = { message in
+        print(message)
+    }
+    public var verbose: (String) -> Void = { message in
+        print(message)
+    }
+    public var error: (String) -> Void = { message in
+        print(message)
+    }
+}
 
 
 func debugPrintRequest(_ request: URLRequest) {
@@ -22,8 +55,9 @@ func debugPrintRequest(_ request: URLRequest) {
         }
     }
     if let data = request.httpBody {
-        let string = String(data: data, encoding: String.Encoding.utf8)
-        log.verbose(string)
+        if let string = String(data: data, encoding: String.Encoding.utf8) {
+            log.verbose(string)
+        }
     }
 }
 

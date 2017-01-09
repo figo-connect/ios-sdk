@@ -29,14 +29,6 @@ Applications that would like to access the figo Connect have to register with us
 Website: [http://figo.io](http://figo.io)
 
 
-## Development
-
-If you want to run the included tests to see how the SDK works or submit a pull request, you need to bootstrap the project by running
-
-`carthage bootstrap`
-
-You can find a demo account in the API reference, which you can use without registering an application.
-
 ## Installation
 
 ### Manually
@@ -47,7 +39,6 @@ You can find a demo account in the API reference, which you can use without regi
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
 * Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
-* Add [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger) to your project
 
 ### Carthage
 
@@ -228,7 +219,6 @@ Bank accounts can have standing orders associated with it if supported by the re
 
 The Figo Framework uses the following 3rd-party utilities:
 
-- [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger) for logging
 - [JohnSundell/Unbox](https://github.com/JohnSundell/Unbox) for unboxing of JSON responses
 
 
