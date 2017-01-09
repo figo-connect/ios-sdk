@@ -17,8 +17,8 @@ public extension FigoClient {
      - Parameter parameters: (optional) `RetrieveSecuritiesParameters`
      - Parameter completionHandler: Returns `SecurityListEnvelope` or error
      */
-    public func retrieveSecurities(parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void) {
-        request(.RetrieveSecurities(parameters)) { response in
+    public func retrieveSecurities(_ parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: @escaping (Result<SecurityListEnvelope>) -> Void) {
+        request(.retrieveSecurities(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -32,8 +32,8 @@ public extension FigoClient {
      - Parameter parameters: (optional) `RetrieveSecuritiesParameters`
      - Parameter completionHandler: Returns `SecurityListEnvelope` or error
      */
-    public func retrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void) {
-        request(.RetrieveSecuritiesForAccount(accountID, parameters: parameters)) { response in
+    public func retrieveSecuritiesForAccount(_ accountID: String, parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: @escaping (Result<SecurityListEnvelope>) -> Void) {
+        request(.retrieveSecuritiesForAccount(accountID, parameters: parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -45,8 +45,8 @@ public extension FigoClient {
      - Parameter accountID: ID of the account the security belongs to
      - Parameter completionHandler: Returns security or error
      */
-    public func retrieveSecurity(securityID: String, accountID: String, _ completionHandler: (Result<Security>) -> Void) {
-        request(.RetrieveSecurity(securityID, accountID: accountID)) { response in
+    public func retrieveSecurity(_ securityID: String, accountID: String, _ completionHandler: @escaping (Result<Security>) -> Void) {
+        request(.retrieveSecurity(securityID, accountID: accountID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }

@@ -5,7 +5,10 @@
 
 # figo iOS SDK
 
-This Framework wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece. It supports iOS, OSX, watchOS and tvOS targets.
+This Framework wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece.
+
+- We don't support Swift versions older than 3.0
+- Although the code should compile and run on all platforms, we currently only support iOS targets
 
 
 ## figo Connect API
@@ -16,7 +19,7 @@ For a general introduction to figo and figo Connect please visit our [main page]
 
 Albeit figo offers an interface to submit wire transfers, payment processing is not our focus. Our main interest is bringing peoples bank accounts into applications allowing a more seamless and rich user experience.
 
-API Reference: [http://docs.figo.io](http://docs.figo.io)
+API reference: [http://docs.figo.io](http://docs.figo.io)
 
 
 ## Registering your application
@@ -26,7 +29,13 @@ Applications that would like to access the figo Connect have to register with us
 Website: [http://figo.io](http://figo.io)
 
 
+## Development
 
+If you want to run the included tests to see how the SDK works or submit a pull request, you need to bootstrap the project by running
+
+`carthage bootstrap`
+
+You can find a demo account in the API reference, which you can use without registering an application.
 
 ## Installation
 
@@ -34,13 +43,13 @@ Website: [http://figo.io](http://figo.io)
 
 * Add figo as a git submodule by running the following command:
 
-	`$ git submodule add https://github.com/figome/ios-sdk.git`
+	`git submodule add https://github.com/figome/ios-sdk.git`
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
 * Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
+* Add [DaveWoodCom/XCGLogger](https://github.com/DaveWoodCom/XCGLogger) to your project
 
 ### Carthage
-
 
 * Install Carthage
 
@@ -118,7 +127,7 @@ To be able to login and use the figo API a user is required.
 
 Since the `FigoClient` by default uses the default instance of `XCGLogger`, you can control logging from wherever you like. You can also provide your own `XCGLogger` instance in the initializer.
 
-	XCGLogger.defaultInstance().setup(.Verbose, showFunctionName: false, showDate: false, showThreadName: false, showLogLevel: false, showFileNames: false, showLineNumbers: false, writeToFile: nil, fileLogLevel: .None)
+	XCGLogger.default.setup(level: .verbose, showFunctionName: false, showThreadName: false, showLevel: false, showFileNames: false, showLineNumbers: false, showDate: false, writeToFile: nil, fileLevel: .none)
 
 ## Endpoints
 

@@ -16,11 +16,11 @@ public struct TransactionListEnvelope: Unboxable {
     public let statistics: [String: AnyObject]
     public let status: SyncStatus
     
-    init(unboxer: Unboxer) {
-        transactions = unboxer.unbox("transactions")
-        deleted = unboxer.unbox("deleted")
-        statistics = unboxer.unbox("statistics")
-        status = unboxer.unbox("status")
+    public init(unboxer: Unboxer) throws {
+        transactions = try unboxer.unbox(key: "transactions")
+        deleted = try unboxer.unbox(key: "deleted")
+        statistics = try unboxer.unbox(key: "statistics")
+        status = try unboxer.unbox(key: "status")
     }
 }
 
@@ -58,13 +58,13 @@ public struct Transaction: Unboxable {
     /// String representation of the amount
     public var amountFormatted: String {
         currencyFormatter.currencyCode = self.currency
-        return currencyFormatter.stringFromNumber(NSNumber(double: Double(amount)/100.0))!
+        return currencyFormatter.string(from: NSNumber(value: Double(amount)/100.0 as Double))!
     }
     
-    private var currencyFormatter: NSNumberFormatter {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+    fileprivate var currencyFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "de_DE")
         return formatter
     }
     
@@ -78,19 +78,19 @@ public struct Transaction: Unboxable {
     public let booked: Bool
     
     /// Booking date
-    public let bookingDate: Date?
+    public let bookingDate: FigoDate?
 
     /// Booking text. This field might be empty if the transaction has no booking text.
     public let bookingText: String?
     
     /// Internal creation timestamp on the figo Connect server
-    public let creationDate: Date
+    public let creationDate: FigoDate
     
     /// Three-character currency code
     public let currency: String
     
     /// Internal modification timestamp on the figo Connect server
-    public let modificationDate: Date
+    public let modificationDate: FigoDate
     
     /// Name of originator or recipient
     public let name: String?
@@ -102,10 +102,10 @@ public struct Transaction: Unboxable {
     public let transactionID: String
     
     /// Transaction type
-    public let type: PaymentType
+    public let type: String
     
     /// Value date
-    public let valueDate: Date
+    public let valueDate: FigoDate
     
     /// This flag indicates whether the transaction has already been marked as visited by the user
     public let visited: Bool
@@ -114,25 +114,25 @@ public struct Transaction: Unboxable {
     public let additionalInfo: [String: AnyObject]?
     
     
-    init(unboxer: Unboxer) {
-        accountID = unboxer.unbox("account_id")
-        accountNumber = unboxer.unbox("account_number")
-        amount = unboxer.unbox("amount")
-        bankCode = unboxer.unbox("bank_code")
-        bankName = unboxer.unbox("bank_name")
-        booked = unboxer.unbox("booked")
-        bookingDate = unboxer.unbox("booking_date")
-        bookingText = unboxer.unbox("booking_text")
-        creationDate = unboxer.unbox("creation_timestamp")
-        currency = unboxer.unbox("currency")
-        modificationDate = unboxer.unbox("modification_timestamp")
-        name = unboxer.unbox("name")
-        purpose = unboxer.unbox("purpose")
-        transactionID = unboxer.unbox("transaction_id")
-        type = unboxer.unbox("type")
-        valueDate = unboxer.unbox("value_date")
-        visited = unboxer.unbox("visited")
-        additionalInfo = unboxer.unbox("additional_info")
+    public init(unboxer: Unboxer) throws {
+        accountID           = try unboxer.unbox(key: "account_id")
+        accountNumber       = unboxer.unbox(key: "account_number")
+        amount              = try unboxer.unbox(key: "amount")
+        bankCode            = unboxer.unbox(key: "bank_code")
+        bankName            = unboxer.unbox(key: "bank_name")
+        booked              = try unboxer.unbox(key: "booked")
+        bookingDate         = unboxer.unbox(key: "booking_date")
+        bookingText         = unboxer.unbox(key: "booking_text")
+        creationDate        = try unboxer.unbox(key: "creation_timestamp")
+        currency            = try unboxer.unbox(key: "currency")
+        modificationDate    = try unboxer.unbox(key: "modification_timestamp")
+        name                = unboxer.unbox(key: "name")
+        purpose             = unboxer.unbox(key: "purpose")
+        transactionID       = try unboxer.unbox(key: "transaction_id")
+        type                = try unboxer.unbox(key: "type")
+        valueDate           = try unboxer.unbox(key: "value_date")
+        visited             = try unboxer.unbox(key: "visited")
+        additionalInfo      = unboxer.unbox(key: "additional_info")
     }
     
 }

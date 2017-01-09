@@ -25,19 +25,19 @@ enum Resources: String {
     case StandingOrder
     
     var JSONObject: [String: AnyObject] {
-        let JSON: [String: AnyObject] = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! [String: AnyObject]
+        let JSON: [String: AnyObject] = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
         return JSON
     }
     
-    var data: NSData {
-        let bundle = NSBundle(forClass: BaseTestCaseWithLogin.classForCoder())
-        let path = bundle.pathForResource(self.rawValue, ofType: "json")!
-        let data = NSData(contentsOfFile: path)!
+    var data: Data {
+        let bundle = Bundle(for: BaseTestCaseWithLogin.classForCoder())
+        let path = bundle.path(forResource: self.rawValue, ofType: "json")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         return data
     }
 }
 
-func nearlyEqual(a: Float, b: Float, epsilon: Float = 0.0001) -> Bool {
+func nearlyEqual(_ a: Float, b: Float, epsilon: Float = 0.0001) -> Bool {
     return a - b < epsilon && b - a < epsilon
 }
 

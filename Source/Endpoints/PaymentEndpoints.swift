@@ -16,8 +16,8 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns payment proposals or error
      */
-    public func retrievePaymentProposals(completionHandler: Result<[PaymentProposal]> -> Void) {
-        request(.RetrievePaymentProposals) { response in
+    public func retrievePaymentProposals(_ completionHandler: @escaping (Result<[PaymentProposal]>) -> Void) {
+        request(.retrievePaymentProposals) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -27,16 +27,16 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePayments(completionHandler: Result<[Payment]> -> Void) {
-        request(.RetrievePayments) { response in
+    public func retrievePayments(_ completionHandler: @escaping (Result<[Payment]>) -> Void) {
+        request(.retrievePayments) { response in
             let unboxingResult: Result<PaymentListEnvelope> = decodeUnboxableResponse(response)
             
             switch unboxingResult {
-            case .Success(let envelope):
-                completionHandler(.Success(envelope.payments))
+            case .success(let envelope):
+                completionHandler(.success(envelope.payments))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -47,16 +47,16 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePaymentsForAccount(accountID: String, _ completionHandler: Result<[Payment]> -> Void) {
-        request(.RetrievePaymentsForAccount(accountID)) { response in
+    public func retrievePaymentsForAccount(_ accountID: String, _ completionHandler: @escaping (Result<[Payment]>) -> Void) {
+        request(.retrievePaymentsForAccount(accountID)) { response in
             let unboxingResult: Result<PaymentListEnvelope> = decodeUnboxableResponse(response)
             
             switch unboxingResult {
-            case .Success(let envelope):
-                completionHandler(.Success(envelope.payments))
+            case .success(let envelope):
+                completionHandler(.success(envelope.payments))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -69,8 +69,8 @@ public extension FigoClient {
      - Parameter accountID: Internal figo connect ID of the account
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePayment(paymentID: String, accountID: String, _ completionHandler: Result<Payment> -> Void) {
-        request(.RetrievePayment(paymentID, accountID: accountID)) { response in
+    public func retrievePayment(_ paymentID: String, accountID: String, _ completionHandler: @escaping (Result<Payment>) -> Void) {
+        request(.retrievePayment(paymentID, accountID: accountID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -81,8 +81,8 @@ public extension FigoClient {
      - Parameter parameters: `CreatePaymentParameters`
      - Parameter completionHandler: Returns payment or error
      */
-    public func createPayment(parameters: CreatePaymentParameters, _ completionHandler: Result<Payment> -> Void) {
-        request(.CreatePayment(parameters)) { response in
+    public func createPayment(_ parameters: CreatePaymentParameters, _ completionHandler: @escaping (Result<Payment>) -> Void) {
+        request(.createPayment(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -93,8 +93,8 @@ public extension FigoClient {
      - Parameter payment: `Payment`
      - Parameter completionHandler: Returns nothing or error
      */
-    public func modifyPayment(payment: Payment, _ completionHandler: Result<Payment> -> Void) {
-        request(.ModifyPayment(payment)) { response in
+    public func modifyPayment(_ payment: Payment, _ completionHandler: @escaping (Result<Payment>) -> Void) {
+        request(.modifyPayment(payment)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -108,21 +108,21 @@ public extension FigoClient {
      - Parameter challengeHandler: Is called when the server needs a response to a challenge
      - Parameter completionHandler: Returns nothing or error
      */
-    public func submitPayment(payment: Payment, tanSchemeID: String, pinHandler: PinResponder, challengeHandler: ChallengeResponder, _ completionHandler: VoidCompletionHandler) {
-        request(.SubmitPayment(payment, tanSchemeID: tanSchemeID)) { response in
+    public func submitPayment(_ payment: Payment, tanSchemeID: String, pinHandler: @escaping PinResponder, challengeHandler: @escaping ChallengeResponder, _ completionHandler: @escaping VoidCompletionHandler) {
+        request(.submitPayment(payment, tanSchemeID: tanSchemeID)) { response in
             
             let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
-            case .Success(let envelope):
+            case .success(let envelope):
                 
                 let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
                 self.pollTaskState(nextParameters, POLLING_COUNTDOWN_INITIAL_VALUE, nil, pinHandler, challengeHandler) { result in
                     completionHandler(result)
                 }
                 break
-            case .Failure(let error):
+            case .failure(let error):
                 
-                completionHandler(.Failure(error))
+                completionHandler(.failure(error))
                 break
             }
         }

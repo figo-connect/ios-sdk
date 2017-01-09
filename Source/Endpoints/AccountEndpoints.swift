@@ -16,16 +16,16 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns accounts or error
      */
-    public func retrieveAccounts(completionHandler: (Result<[Account]>) -> Void) {
-        request(.RetrieveAccounts) { response in
+    public func retrieveAccounts(_ completionHandler: @escaping (Result<[Account]>) -> Void) {
+        request(.retrieveAccounts) { response in
             
             let envelopeUnboxingResult: Result<AccountListEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
-            case .Success(let envelope):
-                completionHandler(.Success(envelope.accounts))
+            case .success(let envelope):
+                completionHandler(.success(envelope.accounts))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -37,8 +37,8 @@ public extension FigoClient {
      - Parameter accountID: Internal figo Connect account ID
      - Parameter completionHandler: Returns account or error
     */
-    public func retrieveAccount(accountID: String, _ completionHandler: (Result<Account>) -> Void) {
-        request(.RetrieveAccount(accountID)) { response in
+    public func retrieveAccount(_ accountID: String, _ completionHandler: @escaping (Result<Account>) -> Void) {
+        request(.retrieveAccount(accountID)) { response in
             let decoded: Result<Account> = decodeUnboxableResponse(response)
             completionHandler(decoded)
         }
@@ -52,8 +52,8 @@ public extension FigoClient {
      - Parameter bankID Internal ID of the bank
      - Parameter completionHandler: Returns nothing or error
     */
-    public func removeStoredPinFromBankContact(bankID: String, _ completionHandler: VoidCompletionHandler) {
-        request(.RemoveStoredPin(bankID: bankID)) { response in
+    public func removeStoredPinFromBankContact(_ bankID: String, _ completionHandler: @escaping VoidCompletionHandler) {
+        request(.removeStoredPin(bankID: bankID)) { response in
             completionHandler(decodeVoidResponse(response))
         }
     }
@@ -67,21 +67,21 @@ public extension FigoClient {
      - Parameter progressHandler: (optional) Is called periodically with a message from the server
      - Parameter completionHandler: Returns nothing or error
      */
-    public func setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate? = nil, _ completionHandler: VoidCompletionHandler) {
-        request(.SetupAccount(parameters)) { response in
+    public func setupNewBankAccount(_ parameters: CreateAccountParameters, progressHandler: ProgressUpdate? = nil, _ completionHandler: @escaping VoidCompletionHandler) {
+        request(.setupAccount(parameters)) { response in
             
             let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
-            case .Success(let envelope):
+            case .success(let envelope):
                 
                 let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
                 self.pollTaskState(nextParameters, POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, nil, nil) { result in
                     completionHandler(result)
                 }
                 break
-            case .Failure(let error):
+            case .failure(let error):
                 
-                completionHandler(.Failure(error))
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -93,8 +93,8 @@ public extension FigoClient {
      
      Once the last remaining account of a bank contact has been removed, the bank contact will be automatically removed as well
      */
-    public func deleteAccount(accountID: String, _ completionHandler: VoidCompletionHandler) {
-        request(.DeleteAccount(accountID)) { response in
+    public func deleteAccount(_ accountID: String, _ completionHandler: @escaping VoidCompletionHandler) {
+        request(.deleteAccount(accountID)) { response in
             completionHandler(decodeVoidResponse(response))
         }
     }

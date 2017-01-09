@@ -24,7 +24,7 @@ public enum SecuritySinceType: String, UnboxableEnum {
     case Modified = "modified"
     
     
-    static func unboxFallbackValue() -> SecuritySinceType {
+    public static func unboxFallbackValue() -> SecuritySinceType {
         return .Traded
     }
 }
@@ -93,12 +93,12 @@ public struct RetrieveSecuritiesParameters: JSONObjectConvertible {
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
-        dict["accounts"] = accounts
-        dict["since"] = since
-        dict["since_type"] = sinceType?.rawValue
-        dict["count"] = count
-        dict["offset"] = offset
-        dict["cents"] = true
+        dict["accounts"] = accounts as AnyObject?
+        dict["since"] = since as AnyObject?
+        dict["since_type"] = sinceType?.rawValue as AnyObject?
+        dict["count"] = count as AnyObject?
+        dict["offset"] = offset as AnyObject?
+        dict["cents"] = true as AnyObject?
         return dict
     }
 }

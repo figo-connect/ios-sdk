@@ -49,17 +49,17 @@ public struct CreateSyncTaskParameters: JSONObjectConvertible {
         self.autoContinue = autoContinue
         self.accountIDs = accountIDs
         self.syncTasks = syncTasks
-        self.state = NSUUID().UUIDString
+        self.state = UUID().uuidString
     }
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
-        dict["disable_notifications"] = disableNotifications
-        dict["if_not_synced_since"] = ifNotSyncedSince
-        dict["state"] = state
-        dict["auto_continue"] = autoContinue
-        dict["account_ids"] = accountIDs
-        dict["sync_tasks"] = syncTasks
+        dict["disable_notifications"] = disableNotifications as AnyObject?
+        dict["if_not_synced_since"] = ifNotSyncedSince as AnyObject?
+        dict["state"] = state as AnyObject?
+        dict["auto_continue"] = autoContinue as AnyObject?
+        dict["account_ids"] = accountIDs as AnyObject?
+        dict["sync_tasks"] = syncTasks as AnyObject?
         return dict
     }
 }

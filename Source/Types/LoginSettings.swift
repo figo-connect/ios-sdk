@@ -31,13 +31,13 @@ public struct LoginSettings: Unboxable {
     public let advice: String?
     
     
-    init(unboxer: Unboxer) {
-        bankName            = unboxer.unbox("bank_name")
-        supported           = unboxer.unbox("supported")
-        icon                = unboxer.unbox("icon")
-        additional_icons    = unboxer.unbox("additional_icons")
-        credentials         = unboxer.unbox("credentials")
-        authType            = unboxer.unbox("auth_type")
-        advice              = unboxer.unbox("advice")
+    public init(unboxer: Unboxer) throws {
+        bankName            = try unboxer.unbox(key: "bank_name")
+        supported           = try unboxer.unbox(key: "supported")
+        icon                = try unboxer.unbox(key: "icon")
+        additional_icons    = try unboxer.unbox(key: "additional_icons")
+        credentials         = try unboxer.unbox(key: "credentials")
+        authType            = try unboxer.unbox(key: "auth_type")
+        advice              = unboxer.unbox(key: "advice")
     }
 }

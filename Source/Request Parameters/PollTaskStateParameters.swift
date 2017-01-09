@@ -39,13 +39,13 @@ internal struct PollTaskStateParameters: JSONObjectConvertible {
     
     var JSONObject: [String: AnyObject] {
         var dict = Dictionary<String, AnyObject>()
-        dict["id"] = taskToken
-        dict["pin"] = pin
-        dict["continue"] = continueAfterError
+        dict["id"] = taskToken as AnyObject?
+        dict["pin"] = pin as AnyObject?
+        dict["continue"] = continueAfterError as AnyObject?
         if let savePin = savePin {
-            dict["save_pin"] = savePin ? "1" : "0"
+            dict["save_pin"] = savePin ? "1" as AnyObject : "0" as AnyObject
         }
-        dict["response"] = response
+        dict["response"] = response as AnyObject?
         return dict
     }
 }

@@ -10,8 +10,8 @@
 internal struct RecoveryPasswordEnvelope: Unboxable {
     let recoveryPassword: String
     
-    init(unboxer: Unboxer) {
-        recoveryPassword = unboxer.unbox("recovery_password")
+    init(unboxer: Unboxer) throws {
+        recoveryPassword = try unboxer.unbox(key: "recovery_password")
     }
 }
 
@@ -21,17 +21,17 @@ public extension FigoClient {
     /**
      CREATE NEW FIGO USER
      */
-    public func createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void) {
+    public func createNewFigoUser(_ user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: @escaping (Result<String>) -> Void) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
-        request(Endpoint.CreateNewFigoUser(user)) { response in
+        request(Endpoint.createNewFigoUser(user)) { response in
             
             let envelopeUnboxingResult: Result<RecoveryPasswordEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
-            case .Success(let envelope):
-                completionHandler(.Success(envelope.recoveryPassword))
+            case .success(let envelope):
+                completionHandler(.success(envelope.recoveryPassword))
                 break
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -40,8 +40,8 @@ public extension FigoClient {
     /**
      RETRIEVE CURRENT USER
      */
-    public func retrieveCurrentUser(completionHandler: (Result<User>) -> Void) {
-        request(Endpoint.RetrieveCurrentUser) { response in
+    public func retrieveCurrentUser(_ completionHandler: @escaping (Result<User>) -> Void) {
+        request(Endpoint.retrieveCurrentUser) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
     }
@@ -51,8 +51,8 @@ public extension FigoClient {
      
      Users with an active premium subscription cannot be deleted. The subscription needs to be canceled first.
      */
-    public func deleteCurrentUser(completionHandler: VoidCompletionHandler) {
-        request(Endpoint.DeleteCurrentUser) { response in
+    public func deleteCurrentUser(_ completionHandler: @escaping VoidCompletionHandler) {
+        request(Endpoint.deleteCurrentUser) { response in
             completionHandler(decodeVoidResponse(response))
         }
     }

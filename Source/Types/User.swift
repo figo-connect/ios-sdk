@@ -28,7 +28,7 @@ public struct User: Unboxable {
     public let sendNewsletter: Bool?
     
     /// Timestamp of figo Account registration. Only available when calling with scope user=ro or better.
-    public let joinDate: Date?
+    public let joinDate: FigoDate?
     
     /// Two-letter code of preferred language. Only available when calling with scope user=ro or better.
     public let language: String?
@@ -37,7 +37,7 @@ public struct User: Unboxable {
     public let premium: Bool?
     
     /// Timestamp of premium figo Account expiry. Only available when calling with scope user=ro or better.
-    public let premiumExpiresOn: Date?
+    public let premiumExpiresOn: FigoDate?
     
     /// Provider for premium subscription or Null if no subscription is active. Only available when calling with scope user=ro or better.
     public let premiumSubscription: String?
@@ -52,21 +52,21 @@ public struct User: Unboxable {
     public let filters: [AnyObject]?
     
     
-    init(unboxer: Unboxer) {
-        userID                 = unboxer.unbox("user_id")
-        name                    = unboxer.unbox("name")
-        email                   = unboxer.unbox("email")
-        address                 = unboxer.unbox("address")
-        verifiedEmail          = unboxer.unbox("verified_email")
-        sendNewsletter         = unboxer.unbox("send_newsletter")
-        joinDate               = unboxer.unbox("join_date")
-        language                = unboxer.unbox("language")
-        premium                 = unboxer.unbox("premium")
-        premiumExpiresOn      = unboxer.unbox("premium_expires_on")
-        premiumSubscription    = unboxer.unbox("premium_subscription")
-        forceReset             = unboxer.unbox("force_reset")
-        recoveryPassword       = unboxer.unbox("recovery_password")
-        filters                 = unboxer.unbox("filters")
+    public init(unboxer: Unboxer) throws {
+        userID                 = unboxer.unbox(key: "user_id")
+        name                   = try unboxer.unbox(key: "name")
+        email                  = try unboxer.unbox(key: "email")
+        address                = unboxer.unbox(key: "address")
+        verifiedEmail          = unboxer.unbox(key: "verified_email")
+        sendNewsletter         = unboxer.unbox(key: "send_newsletter")
+        joinDate               = unboxer.unbox(key: "join_date")
+        language               = unboxer.unbox(key: "language")
+        premium                = unboxer.unbox(key: "premium")
+        premiumExpiresOn       = unboxer.unbox(key: "premium_expires_on")
+        premiumSubscription    = unboxer.unbox(key: "premium_subscription")
+        forceReset             = unboxer.unbox(key: "force_reset")
+        recoveryPassword       = unboxer.unbox(key: "recovery_password")
+        filters                = unboxer.unbox(key: "filters")
     }
 }
 

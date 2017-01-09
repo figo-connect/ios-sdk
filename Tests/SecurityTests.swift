@@ -13,27 +13,27 @@ import Figo
 class SecurityTests: BaseTestCaseWithLogin {
     
     func testThatRetrieveSecuritiesForAccountYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
 
-            figo.retrieveSecuritiesForAccount("A1182805.4") { result in
-                if case .Success(let envelope) = result {
+            figo.retrieveSecuritiesForAccount(self.demoDepotId) { result in
+                if case .success(let envelope) = result {
                     print("Retrieved \(envelope.securities.count) securities")
                 }
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testThatRetrieveSecuritiesYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
             figo.retrieveSecurities() { result in
-                if case .Success(let envelope) = result {
+                if case .success(let envelope) = result {
                     print("Retrieved \(envelope.securities.count) securities")
                     for s in envelope.securities {
                         print("\(s.name) (current price: \(s.priceFormatted))")
@@ -43,20 +43,19 @@ class SecurityTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testThatRetrieveSecurityYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            
-            figo.retrieveSecurity("S1182805.2", accountID: "A1182805.3") { result in
+            figo.retrieveSecurity("S2132899.2", accountID: self.demoDepotId) { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
 }

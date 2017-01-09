@@ -18,15 +18,15 @@ public struct Address: Unboxable {
     public let vat: Float?
     public let bill: Bool?
     
-    init(unboxer: Unboxer) {
-        city        = unboxer.unbox("city")
-        company     = unboxer.unbox("company")
-        postalCode = unboxer.unbox("postal_code")
-        street      = unboxer.unbox("street")
-        street2     = unboxer.unbox("street2")
-        country     = unboxer.unbox("country")
-        vat         = unboxer.unbox("vat")
-        bill        = unboxer.unbox("bill")
+    public init(unboxer: Unboxer) throws {
+        city        = unboxer.unbox(key: "city")
+        company     = unboxer.unbox(key: "company")
+        postalCode  = unboxer.unbox(key: "postal_code")
+        street      = unboxer.unbox(key: "street")
+        street2     = unboxer.unbox(key: "street2")
+        country     = unboxer.unbox(key: "country")
+        vat         = unboxer.unbox(key: "vat")
+        bill        = unboxer.unbox(key: "bill")
     }
 }
 

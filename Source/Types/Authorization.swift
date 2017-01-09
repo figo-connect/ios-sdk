@@ -15,11 +15,11 @@ internal struct Authorization: Unboxable {
     let scope: String
     let tokenType: String
     
-    init(unboxer: Unboxer) {
-        accessToken    = unboxer.unbox("access_token")
-        expires_in      = unboxer.unbox("expires_in")
-        refreshToken   = unboxer.unbox("refresh_token")
-        scope           = unboxer.unbox("scope")
-        tokenType      = unboxer.unbox("token_type")
+    init(unboxer: Unboxer) throws {
+        accessToken    = try unboxer.unbox(key: "access_token")
+        expires_in     = try unboxer.unbox(key: "expires_in")
+        refreshToken   = unboxer.unbox(key: "refresh_token")
+        scope          = try unboxer.unbox(key: "scope")
+        tokenType      = try unboxer.unbox(key: "token_type")
     }
 }

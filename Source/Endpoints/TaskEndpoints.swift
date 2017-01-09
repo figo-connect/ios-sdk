@@ -11,8 +11,8 @@ import Foundation
 
 public extension FigoClient {
     
-    private func delay(block: () -> Void) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, POLLING_INTERVAL_MSECS), dispatch_get_main_queue(), {
+    fileprivate func delay(_ block: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(POLLING_INTERVAL_MSECS) / Double(NSEC_PER_SEC), execute: {
             block()
         })
     }
@@ -29,57 +29,57 @@ public extension FigoClient {
      - Parameter challengeHandler: Is called when the server needs a response to a challenge
      - Parameter completionHandler: Is called on completion returning nothing or error
      */
-    internal func pollTaskState(parameters: PollTaskStateParameters, _ countdown: Int, _ progressHandler: ProgressUpdate? = nil, _ pinHandler: PinResponder?, _ challengeHandler: ChallengeResponder?, _ completionHandler: VoidCompletionHandler) {
+    internal func pollTaskState(_ parameters: PollTaskStateParameters, _ countdown: Int, _ progressHandler: ProgressUpdate? = nil, _ pinHandler: PinResponder?, _ challengeHandler: ChallengeResponder?, _ completionHandler: @escaping VoidCompletionHandler) {
         guard countdown > 0 else {
-            completionHandler(.Failure(.TaskProcessingTimeout))
+            completionHandler(.failure(.taskProcessingTimeout))
             return
         }
 
-        request(Endpoint.PollTaskState(parameters)) { response in
+        request(Endpoint.pollTaskState(parameters)) { response in
             let decoded: Result<TaskState> = decodeUnboxableResponse(response)
             
             switch decoded {
-            case .Failure(let error):
+            case .failure(let error):
                 
-                completionHandler(.Failure(error))
+                completionHandler(.failure(error))
                 break
-            case .Success(let state):
+            case .success(let state):
                 
                 if let progressHandler = progressHandler {
-                    progressHandler(message: state.message)
+                    progressHandler(state.message)
                 }
                 
 
                 if state.isErroneous {
-                    completionHandler(.Failure(.TaskProcessingError(accountID: state.accountID, message: state.message)))
+                    completionHandler(.failure(.taskProcessingError(accountID: state.accountID, message: state.message)))
                 }
                     
                 else if state.isEnded {
-                    completionHandler(.Success())
+                    completionHandler(.success())
                 }
                     
                 else if state.isWaitingForPIN {
                     guard let pinHandler = pinHandler else {
-                        completionHandler(.Failure(Error.InternalError(reason: "No PinResponder")))
+                        completionHandler(.failure(FigoError.internalError(reason: "No PinResponder")))
                         return
                     }
                     
-                    let pin = pinHandler(message: state.message, accountID: state.accountID)
+                    let pin = pinHandler(state.message, state.accountID)
                     let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken, pin: pin.pin, savePin: pin.savePin)
                     self.pollTaskState(nextParameters, countdown - 1, progressHandler, pinHandler, challengeHandler, completionHandler)
                 }
                     
                 else if state.isWaitingForResponse {
                     guard let challengeHandler = challengeHandler else {
-                        completionHandler(.Failure(Error.InternalError(reason: "No ChallengeResponder")))
+                        completionHandler(.failure(FigoError.internalError(reason: "No ChallengeResponder")))
                         return
                     }
                     guard let challenge = state.challenge else {
-                        completionHandler(.Failure(Error.InternalError(reason: "Server is waiting for response but has not given a challenge")))
+                        completionHandler(.failure(FigoError.internalError(reason: "Server is waiting for response but has not given a challenge")))
                         return
                     }
                     
-                    let response = challengeHandler(message: state.message, accountID: state.accountID, challenge: challenge)
+                    let response = challengeHandler(state.message, state.accountID, challenge)
                     let nextParameters = PollTaskStateParameters(taskToken: parameters.taskToken, response: response)
                     self.pollTaskState(nextParameters, countdown - 1, progressHandler, pinHandler, challengeHandler, completionHandler)
                 }
@@ -106,21 +106,21 @@ public extension FigoClient {
      - Parameter pinHandler: Is called when the server needs a PIN
      - Parameter completionHandler: Is called on completion returning nothing or error
      */
-    public func synchronize(parameters parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: PinResponder, completionHandler: VoidCompletionHandler) {
-        request(.Synchronize(parameters.JSONObject)) { response in
+    public func synchronize(parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: @escaping PinResponder, completionHandler: @escaping VoidCompletionHandler) {
+        request(.synchronize(parameters.JSONObject)) { response in
             
             let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
-            case .Success(let envelope):
+            case .success(let envelope):
                 
                 let nextParameters = PollTaskStateParameters(taskToken: envelope.taskToken)
                 self.pollTaskState(nextParameters, POLLING_COUNTDOWN_INITIAL_VALUE, progressHandler, pinHandler, nil) { result in
                     completionHandler(result)
                 }
                 break
-            case .Failure(let error):
+            case .failure(let error):
                 
-                completionHandler(.Failure(error))
+                completionHandler(.failure(error))
                 break
             }
         }

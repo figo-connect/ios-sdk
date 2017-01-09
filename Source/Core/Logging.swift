@@ -7,27 +7,28 @@
 //
 
 import Foundation
+import XCGLogger
 
 
 // Internal logger instance
-internal var log = XCGLogger.defaultInstance()
+internal var log = XCGLogger.default
 
 
-func debugPrintRequest(request: NSURLRequest) {
-    log.debug("⬆️ \(request.HTTPMethod!) \(request.URL!)")
+func debugPrintRequest(_ request: URLRequest) {
+    log.debug("⬆️ \(request.httpMethod!) \(request.url!)")
     if let fields = request.allHTTPHeaderFields {
         for (key, value) in fields {
             log.verbose("\(key): \(value)")
         }
     }
-    if let data = request.HTTPBody {
-        let string = String(data: data, encoding: NSUTF8StringEncoding)
+    if let data = request.httpBody {
+        let string = String(data: data, encoding: String.Encoding.utf8)
         log.verbose(string)
     }
 }
 
 
-func debugPrintResponse(data: NSData?, _ response: NSHTTPURLResponse?, _ error: NSError?) {
+func debugPrintResponse(_ data: Data?, _ response: HTTPURLResponse?, _ error: Error?) {
     if let response = response {
         log.debug("⬇️ \(response.statusCode)")
     }
@@ -35,8 +36,12 @@ func debugPrintResponse(data: NSData?, _ response: NSHTTPURLResponse?, _ error: 
         log.error(error.localizedDescription)
     }
     if let data = data {
-        if let string = String(data: data, encoding: NSUTF8StringEncoding) {
-            log.verbose(string)
+        if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
+            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]) {
+                if let string = String(data: jsonData, encoding: String.Encoding.utf8) {
+                    log.verbose(string)
+                }
+            }
         }
     }
 }

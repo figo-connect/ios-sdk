@@ -11,8 +11,8 @@ internal struct TaskTokenEvelope: Unboxable {
  
     let taskToken: String
     
-    init(unboxer: Unboxer) {
-        taskToken = unboxer.unbox("task_token")
+    init(unboxer: Unboxer) throws {
+        taskToken = try unboxer.unbox(key: "task_token")
     }
 }
 
@@ -41,14 +41,14 @@ internal struct TaskState: Unboxable {
     let challenge: Challenge?
     
     
-    init(unboxer: Unboxer) {
-        accountID              = unboxer.unbox("account_id")
-        message                 = unboxer.unbox("message")
-        isWaitingForPIN         = unboxer.unbox("is_waiting_for_pin")
-        isWaitingForResponse    = unboxer.unbox("is_waiting_for_response")
-        isErroneous             = unboxer.unbox("is_erroneous")
-        isEnded                 = unboxer.unbox("is_ended")
-        challenge               = unboxer.unbox("challenge")
+    init(unboxer: Unboxer) throws {
+        accountID               = try unboxer.unbox(key: "account_id")
+        message                 = try unboxer.unbox(key: "message")
+        isWaitingForPIN         = try unboxer.unbox(key: "is_waiting_for_pin")
+        isWaitingForResponse    = try unboxer.unbox(key: "is_waiting_for_response")
+        isErroneous             = try unboxer.unbox(key: "is_erroneous")
+        isEnded                 = try unboxer.unbox(key: "is_ended")
+        challenge               = unboxer.unbox(key: "challenge")
     }
 }
 

@@ -13,7 +13,7 @@ public struct Balance: Unboxable {
     public let balance: Int?
     
     /// Bank server timestamp of balance; This response parameter will be omitted if the balance is not yet known
-    public let balanceDate: Date?
+    public let balanceDate: FigoDate?
     
     /// Credit line
     public let creditLine: Float
@@ -25,12 +25,12 @@ public struct Balance: Unboxable {
     public let status: SyncStatus?
     
     
-    init(unboxer: Unboxer) {
-        balance                 = unboxer.unbox("balance")
-        balanceDate             = unboxer.unbox("balance_date")
-        creditLine              = unboxer.unbox("credit_line")
-        monthlySpendingLimit    = unboxer.unbox("monthly_spending_limit")
-        status                  = unboxer.unbox("status")
+    public init(unboxer: Unboxer) throws {
+        balance                 = unboxer.unbox(key: "balance")
+        balanceDate             = unboxer.unbox(key: "balance_date")
+        creditLine              = try unboxer.unbox(key: "credit_line")
+        monthlySpendingLimit    = try unboxer.unbox(key: "monthly_spending_limit")
+        status                  = unboxer.unbox(key: "status")
         
     }
 }

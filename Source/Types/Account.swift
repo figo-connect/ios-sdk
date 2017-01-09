@@ -12,8 +12,8 @@ import Foundation
 internal struct AccountListEnvelope: Unboxable {
     let accounts: [Account]
     
-    init(unboxer: Unboxer) {
-        accounts = unboxer.unbox("accounts")
+    init(unboxer: Unboxer) throws {
+        accounts = try unboxer.unbox(key: "accounts")
     }
 }
 
@@ -96,44 +96,44 @@ public struct Account: Unboxable {
     /// String representation of the account balance
     public var balanceFormatted: String? {
         if let cents = balance?.balance {
-            currencyFormatter.currencyCode = self.currency
-            return currencyFormatter.stringFromNumber(NSNumber(double: Double(cents)/100.0))
+            currencyFormatter.currencyCode = currency
+            return currencyFormatter.string(from: NSNumber(value: Double(cents)/100.0 as Double))
         }
         return nil
     }
     
-    private var currencyFormatter: NSNumberFormatter {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "de_DE")
+    fileprivate var currencyFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "de_DE")
         return formatter
     }
     
-    init(unboxer: Unboxer) {
-        accountID           = unboxer.unbox("account_id")
-        accountNumber       = unboxer.unbox("account_number")
-        additionalIcons     = unboxer.unbox("additional_icons")
-        autoSync            = unboxer.unbox("auto_sync")
-        balance             = unboxer.unbox("balance")
-        bankCode            = unboxer.unbox("bank_code")
-        bankID              = unboxer.unbox("bank_id")
-        bankName            = unboxer.unbox("bank_name")
-        bic                 = unboxer.unbox("bic")
-        currency            = unboxer.unbox("currency")
-        iban                = unboxer.unbox("iban")
-        icon                = unboxer.unbox("icon")
-        inTotalBalance      = unboxer.unbox("in_total_balance")
-        name                = unboxer.unbox("name")
-        owner               = unboxer.unbox("owner")
-        preferredTANScheme  = unboxer.unbox("preferred_tan_scheme")
-        savePin             = unboxer.unbox("save_pin")
-        status              = unboxer.unbox("status")
-        supportedTANSchemes = unboxer.unbox("supported_tan_schemes")
-        type                = unboxer.unbox("type")
+    public init(unboxer: Unboxer) throws {
+        accountID           = try unboxer.unbox(key: "account_id")
+        accountNumber       = try unboxer.unbox(key: "account_number")
+        additionalIcons     = try unboxer.unbox(key: "additional_icons")
+        autoSync            = try unboxer.unbox(key: "auto_sync")
+        balance             = unboxer.unbox(key: "balance")
+        bankCode            = try unboxer.unbox(key: "bank_code")
+        bankID              = unboxer.unbox(key: "bank_id")
+        bankName            = try unboxer.unbox(key: "bank_name")
+        bic                 = try unboxer.unbox(key: "bic")
+        currency            = try unboxer.unbox(key: "currency")
+        iban                = try unboxer.unbox(key: "iban")
+        icon                = try unboxer.unbox(key: "icon")
+        inTotalBalance      = try unboxer.unbox(key: "in_total_balance")
+        name                = try unboxer.unbox(key: "name")
+        owner               = try unboxer.unbox(key: "owner")
+        preferredTANScheme  = unboxer.unbox(key: "preferred_tan_scheme")
+        savePin             = try unboxer.unbox(key: "save_pin")
+        status              = unboxer.unbox(key: "status")
+        supportedTANSchemes = try unboxer.unbox(key: "supported_tan_schemes")
+        type                = try unboxer.unbox(key: "type")
         
         // Special treatment for supported payments because the payment type values are stored in keys instead of values
-        supportedPayments      = (unboxer.unbox("supported_payments") as [String: AnyObject]).keys.map() { paymentType in
-            return (PaymentType(rawValue: paymentType) ?? PaymentType.Unknown, unboxer.unbox("supported_payments.\(paymentType)"))
+        supportedPayments      = try (unboxer.unbox(key: "supported_payments") as [String: AnyObject]).keys.map() { paymentType in
+            return (PaymentType(rawValue: paymentType) ?? PaymentType.Unknown, try unboxer.unbox(keyPath: "supported_payments.\(paymentType)"))
         }
     }
 }

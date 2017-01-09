@@ -13,11 +13,11 @@ import Figo
 class PaymentTests: BaseTestCaseWithLogin {
     
     func testThatRetrievePaymentsYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
             figo.retrievePayments() { result in
-                if case .Success(let payments) = result {
+                if case .success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
                     for p in payments {
                         print("\(p.name) \(p.amountFormatted)")
@@ -27,37 +27,39 @@ class PaymentTests: BaseTestCaseWithLogin {
                 expectation.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     
     func testThatRetrievePaymentsForAccountYieldsNoErrors() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            figo.retrievePaymentsForAccount("A1182805.4") { result in
+            figo.retrievePaymentsForAccount(self.demoGiroAccountId) { result in
                 XCTAssertNil(result.error)
-                if case .Success(let payments) = result {
+                if case .success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
-                    
-                    figo.retrievePayment(payments.last!.paymentID, accountID: "A1182805.4") { result in
-                        XCTAssertNil(result.error)
-                        expectation.fulfill()
+                    XCTAssertGreaterThan(payments.count, 0)
+                    if let lastPayment = payments.last {
+                        figo.retrievePayment(lastPayment.paymentID, accountID: self.demoGiroAccountId) { result in
+                            XCTAssertNil(result.error)
+                        }
                     }
+                    expectation.fulfill()
                 }
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
 
 
     
     func testCreateModifyAndSubmitPayment() {
-        let expectation = self.expectationWithDescription("Wait for all asyc calls to return")
+        let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        var params = CreatePaymentParameters(accountID: "A1182805.4", type: .Transfer, name: "Christian König", amount: 222, purpose: "Test")
-        params.bankCode = "66450050"
-        params.accountNumber = "66450050"
+        var params = CreatePaymentParameters(accountID: self.demoGiroAccountId, type: .Transfer, name: "Christian König", amount: 222, purpose: "Test")
+        params.bankCode = "90090042"
+        params.accountNumber = "4711951501"
         
         let pinHandler: PinResponder = { message, accountID in
             print("\(message) (\(accountID))")
@@ -75,20 +77,20 @@ class PaymentTests: BaseTestCaseWithLogin {
             figo.createPayment(params) { createResult in
                 switch createResult {
                     
-                case .Success(var payment):
+                case .success(var payment):
                     payment.amount = 666
                     
                     figo.modifyPayment(payment) { modifyResult in
                         switch modifyResult {
                             
-                        case .Success(let payment):
-                            figo.submitPayment(payment, tanSchemeID: "M1182805.9", pinHandler: pinHandler, challengeHandler: challengeHandler) { submitResult in
+                        case .success(let payment):
+                            figo.submitPayment(payment, tanSchemeID: self.demoGiroAccountTANSchemeId, pinHandler: pinHandler, challengeHandler: challengeHandler) { submitResult in
                                 XCTAssertNil(submitResult.error)
                                 expectation.fulfill()
                             }
                             break
                             
-                        case .Failure(let error):
+                        case .failure(let error):
                             XCTAssertNil(error)
                             expectation.fulfill()
                             break
@@ -96,14 +98,14 @@ class PaymentTests: BaseTestCaseWithLogin {
                     }
                     break
                     
-                case .Failure(let error):
+                case .failure(let error):
                     XCTAssertNil(error)
                     expectation.fulfill()
                     break
                 }
             }
         }
-        self.waitForExpectationsWithTimeout(30, handler: nil)
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     
