@@ -89,7 +89,7 @@ public struct Payment: Unboxable {
     public let creationDate: FigoDate
     
     /// Internal modification timestamp on the figo Connect server
-    public let modificationDate: FigoDate
+    public let modificationDate: FigoDate?
     
     /// **optional** Recipient of the payment notification, should be an email address
     /// - Note: Only used when modifying an existing payment
@@ -114,7 +114,7 @@ public struct Payment: Unboxable {
         container           = unboxer.unbox(key: "container")
         submissionDate      = unboxer.unbox(key: "submission_timestamp")
         creationDate        = try unboxer.unbox(key: "creation_timestamp")
-        modificationDate    = try unboxer.unbox(key: "modification_timestamp")
+        modificationDate    = unboxer.unbox(key: "modification_timestamp")
     }
     
     
