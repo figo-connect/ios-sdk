@@ -40,10 +40,10 @@ class AccountTests: BaseTestCaseWithLogin {
     func testThatRetrieveAccountYieldsObject() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {
-            figo.retrieveAccount("A2132899.2") { result in
+            figo.retrieveAccount(self.demoGiroAccountId) { result in
                 XCTAssertNil(result.error)
                 if let account = result.value {
-                    XCTAssertEqual(account.accountNumber, "4711951501")
+                    XCTAssertEqual(account.accountNumber, "4711951500")
                 }
                 expectation.fulfill()
             }

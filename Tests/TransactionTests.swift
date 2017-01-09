@@ -19,7 +19,7 @@ class TransactionsTests: BaseTestCaseWithLogin {
             var parameters = RetrieveTransactionsParameters()
             parameters.since = "2015-11-30"
 
-            figo.retrieveTransactionsForAccount("A1182805.4", parameters: parameters) { result in
+            figo.retrieveTransactionsForAccount(self.demoGiroAccountId, parameters: parameters) { result in
                 if case .success(let envelope) = result {
                     print("Retrieved \(envelope.transactions.count) transactions")
                 }

@@ -17,7 +17,7 @@ class StandingOrderTests: BaseTestCaseWithLogin {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            figo.retrieveStandingOrdersForAccount("A1182805.4") { result in
+            figo.retrieveStandingOrdersForAccount(self.demoDepotId) { result in
                 if case .success(let orders) = result {
                     print("Retrieved \(orders.count) standing orders")
                 }

@@ -17,7 +17,7 @@ class SecurityTests: BaseTestCaseWithLogin {
         
         login() {
 
-            figo.retrieveSecuritiesForAccount("A1182805.4") { result in
+            figo.retrieveSecuritiesForAccount(self.demoDepotId) { result in
                 if case .success(let envelope) = result {
                     print("Retrieved \(envelope.securities.count) securities")
                 }
@@ -50,8 +50,7 @@ class SecurityTests: BaseTestCaseWithLogin {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            
-            figo.retrieveSecurity("S1182805.2", accountID: "A1182805.3") { result in
+            figo.retrieveSecurity("S2132899.2", accountID: self.demoDepotId) { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }

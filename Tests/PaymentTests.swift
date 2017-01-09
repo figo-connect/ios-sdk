@@ -35,15 +35,17 @@ class PaymentTests: BaseTestCaseWithLogin {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            figo.retrievePaymentsForAccount("A2132899.1") { result in
+            figo.retrievePaymentsForAccount(self.demoGiroAccountId) { result in
                 XCTAssertNil(result.error)
                 if case .success(let payments) = result {
                     print("Retrieved \(payments.count) payments")
-                    
-                    figo.retrievePayment(payments.last!.paymentID, accountID: "A1182805.4") { result in
-                        XCTAssertNil(result.error)
-                        expectation.fulfill()
+                    XCTAssertGreaterThan(payments.count, 0)
+                    if let lastPayment = payments.last {
+                        figo.retrievePayment(lastPayment.paymentID, accountID: self.demoGiroAccountId) { result in
+                            XCTAssertNil(result.error)
+                        }
                     }
+                    expectation.fulfill()
                 }
             }
         }
@@ -55,9 +57,9 @@ class PaymentTests: BaseTestCaseWithLogin {
     func testCreateModifyAndSubmitPayment() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        var params = CreatePaymentParameters(accountID: "A1182805.4", type: .Transfer, name: "Christian König", amount: 222, purpose: "Test")
-        params.bankCode = "66450050"
-        params.accountNumber = "66450050"
+        var params = CreatePaymentParameters(accountID: self.demoGiroAccountId, type: .Transfer, name: "Christian König", amount: 222, purpose: "Test")
+        params.bankCode = "90090042"
+        params.accountNumber = "4711951501"
         
         let pinHandler: PinResponder = { message, accountID in
             print("\(message) (\(accountID))")
@@ -82,7 +84,7 @@ class PaymentTests: BaseTestCaseWithLogin {
                         switch modifyResult {
                             
                         case .success(let payment):
-                            figo.submitPayment(payment, tanSchemeID: "M1182805.9", pinHandler: pinHandler, challengeHandler: challengeHandler) { submitResult in
+                            figo.submitPayment(payment, tanSchemeID: self.demoGiroAccountTANSchemeId, pinHandler: pinHandler, challengeHandler: challengeHandler) { submitResult in
                                 XCTAssertNil(submitResult.error)
                                 expectation.fulfill()
                             }
