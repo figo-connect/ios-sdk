@@ -147,7 +147,7 @@ class UnboxingTests: XCTestCase {
             XCTAssertEqual(t.name, "Dr. House Solutions GmbH")
             XCTAssertEqual(t.purpose, "Miete Vertragsnr. 12993")
             XCTAssertEqual(t.transactionID, "T1.24")
-            XCTAssertEqual(t.type.rawValue, "Direct debit")
+            XCTAssertEqual(t.type, "Direct debit")
             XCTAssertEqual(t.valueDate.timestamp, "2013-04-10T12:00:00.000Z")
             XCTAssertEqual(t.visited, true)
         }

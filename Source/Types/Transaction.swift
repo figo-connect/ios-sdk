@@ -102,7 +102,7 @@ public struct Transaction: Unboxable {
     public let transactionID: String
     
     /// Transaction type
-    public let type: PaymentType
+    public let type: String
     
     /// Value date
     public let valueDate: FigoDate
