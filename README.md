@@ -4,7 +4,7 @@
 This Framework wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece.
 
 - We don't support Swift versions older than 3.0
-- Although the code should compile and run on all platforms, we currently only support iOS targets
+- We are working on support for other platforms than iOS
 
 
 ## figo Connect API
@@ -29,9 +29,10 @@ Website: [http://figo.io](http://figo.io)
 
 ### Submodule
 
-* To add figo as a git submodule by running the following command:
+To add figo as a git submodule run the following command:
 
-	`git submodule add https://github.com/figome/ios-sdk.git`
+`git submodule add https://github.com/figome/ios-sdk.git`
+
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
 * Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
