@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import XCGLogger
 
 
 // Server's SHA1 fingerprints
@@ -60,7 +59,7 @@ open class FigoClient {
      
      - Note: SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.
      */
-    public init(session: URLSession? = nil, logger: XCGLogger? = nil) {
+    public init(session: URLSession? = nil, logger: Logger? = nil) {
         if let session = session {
             self.session = session
         } else {
@@ -68,9 +67,6 @@ open class FigoClient {
         }
         if let logger = logger {
             log = logger
-        } else {
-            log = XCGLogger.default
-            log.setup(level: .error, showFunctionName: false, showThreadName: false, showLevel: false, showFileNames: false, showLineNumbers: false, showDate: false, writeToFile: nil, fileLevel: .none)
         }
     }
     

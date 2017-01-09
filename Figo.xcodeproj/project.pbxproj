@@ -8,13 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		83017B781C0A2FE80062FC08 /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
-		830493581E202957005B5B30 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830493571E202957005B5B30 /* Unbox.swift */; };
 		830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
 		830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
 		830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
 		830E63E11C05A7AE0048F7BF /* SyncStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63E01C05A7AE0048F7BF /* SyncStatus.json */; };
 		830E63E31C05AB890048F7BF /* PaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63E21C05AB890048F7BF /* PaymentParameters.swift */; };
-		832CABA91E242BAF00D48895 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 832CABA81E242BAF00D48895 /* XCGLogger.framework */; };
+		832CABAE1E242F8700D48895 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CABAD1E242F8700D48895 /* Unbox.swift */; };
 		833285EF1C04D45900A9FE73 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = 833285EE1C04D45900A9FE73 /* Balance.json */; };
 		8346AABF1C0A03A700F9F0DE /* TaskEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */; };
 		83648D571C0A42B700286FFB /* LoginSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D561C0A42B700286FFB /* LoginSettings.swift */; };
@@ -105,13 +104,12 @@
 
 /* Begin PBXFileReference section */
 		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
-		830493571E202957005B5B30 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
 		830E63D81C05A4050048F7BF /* TANScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TANScheme.swift; path = Types/TANScheme.swift; sourceTree = "<group>"; };
 		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
 		830E63DD1C05A7070048F7BF /* SyncStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncStatus.swift; path = Types/SyncStatus.swift; sourceTree = "<group>"; };
 		830E63E01C05A7AE0048F7BF /* SyncStatus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SyncStatus.json; path = Resources/SyncStatus.json; sourceTree = "<group>"; };
 		830E63E21C05AB890048F7BF /* PaymentParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentParameters.swift; path = Types/PaymentParameters.swift; sourceTree = "<group>"; };
-		832CABA81E242BAF00D48895 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = "<group>"; };
+		832CABAD1E242F8700D48895 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
 		833285EE1C04D45900A9FE73 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = Resources/Balance.json; sourceTree = "<group>"; };
 		833285F01C04D48E00A9FE73 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEndpoints.swift; sourceTree = "<group>"; };
@@ -197,19 +195,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				832CABA91E242BAF00D48895 /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		832CABA71E242BAE00D48895 /* Frameworks */ = {
+		832CABAA1E242F3F00D48895 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				832CABA81E242BAF00D48895 /* XCGLogger.framework */,
+				832CABAD1E242F8700D48895 /* Unbox.swift */,
 			);
-			name = Frameworks;
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 		837B520F1C10C97E00D3CB25 /* Core */ = {
@@ -240,7 +237,6 @@
 		83D3A67F1BFF2953003EDE45 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				830493571E202957005B5B30 /* Unbox.swift */,
 				83F0E46B1C08A91400FB3709 /* FigoClient.swift */,
 				837B520C1C10C95500D3CB25 /* Alias.swift */,
 				838FDA041C0DF90100525E1D /* FigoError.swift */,
@@ -250,6 +246,7 @@
 				83F0E4721C08D9EA00FB3709 /* Endpoints */,
 				838FD9F31C0DF8D900525E1D /* Parameters */,
 				83D3A6FA1BFF684C003EDE45 /* Types */,
+				832CABAA1E242F3F00D48895 /* Dependencies */,
 				83D3A6801BFF2953003EDE45 /* Supporting Files */,
 			);
 			path = Source;
@@ -356,7 +353,6 @@
 				83D3A67F1BFF2953003EDE45 /* Source */,
 				83D3A7081BFFB6A7003EDE45 /* Tests */,
 				83F3AF231BFF28D900767D77 /* Products */,
-				832CABA71E242BAE00D48895 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -512,6 +508,7 @@
 			files = (
 				8346AABF1C0A03A700F9F0DE /* TaskEndpoints.swift in Sources */,
 				83648D5A1C0C32BE00286FFB /* ServiceEndpoints.swift in Sources */,
+				832CABAE1E242F8700D48895 /* Unbox.swift in Sources */,
 				838FD9EE1C0DEEFD00525E1D /* PaymentType.swift in Sources */,
 				830E63E31C05AB890048F7BF /* PaymentParameters.swift in Sources */,
 				838FD9E31C0DACBE00525E1D /* Transaction.swift in Sources */,
@@ -522,7 +519,6 @@
 				83F0E4781C08DA2800FB3709 /* Address.swift in Sources */,
 				838FDA221C0EE54000525E1D /* StandingOrder.swift in Sources */,
 				83648D661C0C75E600286FFB /* SupportedService.swift in Sources */,
-				830493581E202957005B5B30 /* Unbox.swift in Sources */,
 				838FD9F91C0DF8D900525E1D /* CreateAccountParameters.swift in Sources */,
 				83648D631C0C705700286FFB /* SupportedBank.swift in Sources */,
 				838FDA361C0EFC0300525E1D /* Payment.swift in Sources */,
@@ -574,10 +570,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.chriskoenig.Figo-iOS-Tests";
@@ -591,10 +583,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.chriskoenig.Figo-iOS-Tests";
@@ -719,10 +707,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SKIP_INSTALL = YES;
@@ -738,10 +722,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SKIP_INSTALL = YES;
