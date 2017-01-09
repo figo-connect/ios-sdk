@@ -36,8 +36,12 @@ func debugPrintResponse(_ data: Data?, _ response: HTTPURLResponse?, _ error: Er
         log.error(error.localizedDescription)
     }
     if let data = data {
-        if let string = String(data: data, encoding: String.Encoding.utf8) {
-            log.verbose(string)
+        if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
+            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]) {
+                if let string = String(data: jsonData, encoding: String.Encoding.utf8) {
+                    log.verbose(string)
+                }
+            }
         }
     }
 }
