@@ -50,7 +50,7 @@ class SecurityTests: BaseTestCaseWithLogin {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            figo.retrieveSecurity("S2132899.2", accountID: self.demoDepotId) { result in
+            figo.retrieveSecurity(self.demoSecurityId, accountID: self.demoDepotId) { result in
                 XCTAssertNil(result.error)
                 expectation.fulfill()
             }

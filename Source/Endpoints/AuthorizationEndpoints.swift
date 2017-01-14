@@ -26,16 +26,16 @@ public extension FigoClient {
      - Parameter clientSecret: Client secret
      - Parameter completionHandler: Returns refresh token or error
      */
-    public func loginWithUsername(_ username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: @escaping (Result<String>) -> Void) {
+    public func loginWithUsername(_ username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: @escaping (FigoResult<String>) -> Void) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(.loginUser(username: username, password: password)) { response in
             
-            let unboxingResult: Result<Authorization> = decodeUnboxableResponse(response)
+            let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .success(let authorization):
                 self.accessToken = authorization.accessToken
                 self.refreshToken = authorization.refreshToken
-                completionHandler(Result.success(authorization.refreshToken!))
+                completionHandler(FigoResult.success(authorization.refreshToken!))
                 break
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -59,7 +59,7 @@ public extension FigoClient {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(Endpoint.refreshToken(refreshToken)) { response in
 
-            let unboxingResult: Result<Authorization> = decodeUnboxableResponse(response)
+            let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .success(let authorization):
                 self.accessToken = authorization.accessToken

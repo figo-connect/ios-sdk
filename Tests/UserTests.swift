@@ -26,7 +26,7 @@ class UserTests: BaseTestCaseWithLogin {
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func testCreateAndDeleteUser() {
+    func disabled_testCreateAndDeleteUser() {
         let username = "hi@chriskoenig.de"
         let password = "eVPVdiL7"
         let params = CreateUserParameters(name: username, email: username, password: password, sendNewsletter: false, language: "de")

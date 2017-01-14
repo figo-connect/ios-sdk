@@ -36,7 +36,7 @@ public extension FigoClient {
         }
 
         request(Endpoint.pollTaskState(parameters)) { response in
-            let decoded: Result<TaskState> = decodeUnboxableResponse(response)
+            let decoded: FigoResult<TaskState> = decodeUnboxableResponse(response)
             
             switch decoded {
             case .failure(let error):
@@ -109,7 +109,7 @@ public extension FigoClient {
     public func synchronize(parameters: CreateSyncTaskParameters = CreateSyncTaskParameters(), progressHandler: ProgressUpdate? = nil, pinHandler: @escaping PinResponder, completionHandler: @escaping VoidCompletionHandler) {
         request(.synchronize(parameters.JSONObject)) { response in
             
-            let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .success(let envelope):
                 

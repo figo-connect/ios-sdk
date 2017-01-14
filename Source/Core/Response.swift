@@ -9,7 +9,7 @@
 import Foundation
 
 
-internal func decodeVoidResponse(_ response: Result<Data>) -> Result<Void> {
+internal func decodeVoidResponse(_ response: FigoResult<Data>) -> FigoResult<Void> {
     switch response {
     case .failure(let error):
         return .failure(error)
@@ -18,7 +18,7 @@ internal func decodeVoidResponse(_ response: Result<Data>) -> Result<Void> {
     }
 }
 
-internal func decodeUnboxableResponse<T: Unboxable>(_ data: Result<Data>, context: Any? = nil) -> Result<T> {
+internal func decodeUnboxableResponse<T: Unboxable>(_ data: FigoResult<Data>, context: Any? = nil) -> FigoResult<T> {
     switch data {
     case .success(let data):
         do {
@@ -34,7 +34,7 @@ internal func decodeUnboxableResponse<T: Unboxable>(_ data: Result<Data>, contex
     }
 }
 
-internal func decodeUnboxableResponse<T: Unboxable>(_ data: Result<Data>, context: Any? = nil) -> Result<[T]> {
+internal func decodeUnboxableResponse<T: Unboxable>(_ data: FigoResult<Data>, context: Any? = nil) -> FigoResult<[T]> {
     switch data {
     case .success(let data):
         do {

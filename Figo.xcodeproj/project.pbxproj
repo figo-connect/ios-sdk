@@ -7,25 +7,115 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83017B781C0A2FE80062FC08 /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
 		830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
-		830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
 		830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
-		830E63E11C05A7AE0048F7BF /* SyncStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63E01C05A7AE0048F7BF /* SyncStatus.json */; };
 		830E63E31C05AB890048F7BF /* PaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63E21C05AB890048F7BF /* PaymentParameters.swift */; };
 		832CABAE1E242F8700D48895 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CABAD1E242F8700D48895 /* Unbox.swift */; };
-		833285EF1C04D45900A9FE73 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = 833285EE1C04D45900A9FE73 /* Balance.json */; };
+		833C01001E2AA72A00AA5E7C /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C00EF1E2AA6A100AA5E7C /* Figo.framework */; };
+		833C01061E2AA7F400AA5E7C /* FigoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E46B1C08A91400FB3709 /* FigoClient.swift */; };
+		833C01071E2AA7F400AA5E7C /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B520C1C10C95500D3CB25 /* Alias.swift */; };
+		833C01081E2AA7F400AA5E7C /* FigoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA041C0DF90100525E1D /* FigoError.swift */; };
+		833C01091E2AA7F400AA5E7C /* FigoDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA461C0F403700525E1D /* FigoDate.swift */; };
+		833C010A1E2AA7F400AA5E7C /* FigoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA051C0DF90100525E1D /* FigoResult.swift */; };
+		833C010B1E2AA7F400AA5E7C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA031C0DF90100525E1D /* Request.swift */; };
+		833C010C1E2AA7F400AA5E7C /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA0F1C0DF92500525E1D /* Response.swift */; };
+		833C010D1E2AA7F400AA5E7C /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA061C0DF90100525E1D /* Logging.swift */; };
+		833C010E1E2AA7F400AA5E7C /* AccountEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E47C1C08DA6C00FB3709 /* AccountEndpoints.swift */; };
+		833C010F1E2AA7F400AA5E7C /* AuthorizationEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E4731C08D9FD00FB3709 /* AuthorizationEndpoints.swift */; };
+		833C01101E2AA7F400AA5E7C /* FigoUserEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E4831C09C60600FB3709 /* FigoUserEndpoints.swift */; };
+		833C01111E2AA7F400AA5E7C /* PaymentEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA321C0EFB1100525E1D /* PaymentEndpoints.swift */; };
+		833C01121E2AA7F400AA5E7C /* SecurityEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1B1C0EDA8800525E1D /* SecurityEndpoints.swift */; };
+		833C01131E2AA7F400AA5E7C /* ServiceEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D591C0C32BE00286FFB /* ServiceEndpoints.swift */; };
+		833C01141E2AA7F400AA5E7C /* StandingOrderEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA261C0EED1500525E1D /* StandingOrderEndpoints.swift */; };
+		833C01151E2AA7F400AA5E7C /* TaskEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */; };
+		833C01161E2AA7F400AA5E7C /* TransactionEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */; };
+		833C01171E2AA7F400AA5E7C /* CreateAccountParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F41C0DF8D900525E1D /* CreateAccountParameters.swift */; };
+		833C01181E2AA7F400AA5E7C /* CreatePaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA2B1C0EEFB500525E1D /* CreatePaymentParameters.swift */; };
+		833C01191E2AA7F400AA5E7C /* CreateSyncTaskParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F51C0DF8D900525E1D /* CreateSyncTaskParameters.swift */; };
+		833C011A1E2AA7F400AA5E7C /* CreateUserParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F61C0DF8D900525E1D /* CreateUserParameters.swift */; };
+		833C011B1E2AA7F400AA5E7C /* PollTaskStateParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F71C0DF8D900525E1D /* PollTaskStateParameters.swift */; };
+		833C011C1E2AA7F400AA5E7C /* RetrieveSecuritiesParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA121C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift */; };
+		833C011D1E2AA7F400AA5E7C /* RetrieveTransactionsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F81C0DF8D900525E1D /* RetrieveTransactionsParameters.swift */; };
+		833C011E1E2AA7F400AA5E7C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70C1BFFB71D003EDE45 /* Account.swift */; };
+		833C011F1E2AA7F400AA5E7C /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA401C0F348C00525E1D /* AccountType.swift */; };
+		833C01201E2AA7F400AA5E7C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E4761C08DA2800FB3709 /* Address.swift */; };
+		833C01211E2AA7F400AA5E7C /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */; };
+		833C01221E2AA7F400AA5E7C /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E4771C08DA2800FB3709 /* Balance.swift */; };
+		833C01231E2AA7F400AA5E7C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E95C931C076C190013ED1F /* Challenge.swift */; };
+		833C01241E2AA7F400AA5E7C /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D681C0C7B4200286FFB /* LoginCredentials.swift */; };
+		833C01251E2AA7F400AA5E7C /* LoginSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D561C0A42B700286FFB /* LoginSettings.swift */; };
+		833C01261E2AA7F400AA5E7C /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA351C0EFC0300525E1D /* Payment.swift */; };
+		833C01271E2AA7F400AA5E7C /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9ED1C0DEEFD00525E1D /* PaymentType.swift */; };
+		833C01281E2AA7F400AA5E7C /* PaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63E21C05AB890048F7BF /* PaymentParameters.swift */; };
+		833C01291E2AA7F400AA5E7C /* PaymentProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */; };
+		833C012A1E2AA7F400AA5E7C /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA151C0ED4CB00525E1D /* Security.swift */; };
+		833C012B1E2AA7F400AA5E7C /* StandingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA211C0EE54000525E1D /* StandingOrder.swift */; };
+		833C012C1E2AA7F400AA5E7C /* SupportedBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D621C0C705700286FFB /* SupportedBank.swift */; };
+		833C012D1E2AA7F400AA5E7C /* SupportedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D651C0C75E600286FFB /* SupportedService.swift */; };
+		833C012E1E2AA7F400AA5E7C /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
+		833C012F1E2AA7F400AA5E7C /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
+		833C01301E2AA7F400AA5E7C /* TaskState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E95C901C0768E50013ED1F /* TaskState.swift */; };
+		833C01311E2AA7F400AA5E7C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9E21C0DACBE00525E1D /* Transaction.swift */; };
+		833C01321E2AA7F400AA5E7C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7508B1C037ABE00545DF6 /* User.swift */; };
+		833C01331E2AA7F400AA5E7C /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CABAD1E242F8700D48895 /* Unbox.swift */; };
+		833C013F1E2AAB4200AA5E7C /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
+		833C01461E2AABFA00AA5E7C /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285F01C04D48E00A9FE73 /* Resources.swift */; };
+		833C01471E2AABFA00AA5E7C /* BaseTestCaseWithLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750961C04507000545DF6 /* BaseTestCaseWithLogin.swift */; };
+		833C01481E2AABFA00AA5E7C /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */; };
+		833C01491E2AABFA00AA5E7C /* AuthorizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A71D1C033512003EDE45 /* AuthorizationTests.swift */; };
+		833C014A1E2AABFA00AA5E7C /* PaymentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA301C0EF4A400525E1D /* PaymentTests.swift */; };
+		833C014B1E2AABFA00AA5E7C /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1E1C0EDC3B00525E1D /* SecurityTests.swift */; };
+		833C014C1E2AABFA00AA5E7C /* StandingOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA291C0EEE9F00525E1D /* StandingOrderTests.swift */; };
+		833C014D1E2AABFA00AA5E7C /* TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9D01C0D9FB500525E1D /* TaskTests.swift */; };
+		833C014E1E2AABFA00AA5E7C /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9EA1C0DE74B00525E1D /* TransactionTests.swift */; };
+		833C014F1E2AABFA00AA5E7C /* UnboxingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750911C037D3400545DF6 /* UnboxingTests.swift */; };
+		833C01501E2AABFA00AA5E7C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEDB801C05DD3D0008CEF8 /* UserTests.swift */; };
+		833C01511E2AAC0600AA5E7C /* Account.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E7508F1C037CC300545DF6 /* Account.json */; };
+		833C01521E2AAC0600AA5E7C /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 83CEDB821C05F43D0008CEF8 /* User.json */; };
+		833C01531E2AAC0600AA5E7C /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = 833285EE1C04D45900A9FE73 /* Balance.json */; };
+		833C01541E2AAC0600AA5E7C /* SyncStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63E01C05A7AE0048F7BF /* SyncStatus.json */; };
+		833C01551E2AAC0600AA5E7C /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
+		833C01561E2AAC0600AA5E7C /* PaymentParametersIntTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C851C0740C90013ED1F /* PaymentParametersIntTextKeys.json */; };
+		833C01571E2AAC0600AA5E7C /* PaymentParametersStringTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */; };
+		833C01581E2AAC0600AA5E7C /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
+		833C01591E2AAC0600AA5E7C /* SupportedBanks.json in Resources */ = {isa = PBXBuildFile; fileRef = 83648D711C0CF0AF00286FFB /* SupportedBanks.json */; };
+		833C015A1E2AAC0600AA5E7C /* Transaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FD9E51C0DACE300525E1D /* Transaction.json */; };
+		833C015B1E2AAC0600AA5E7C /* Security.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA181C0ED5E700525E1D /* Security.json */; };
+		833C015C1E2AAC0600AA5E7C /* StandingOrder.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA241C0EE59B00525E1D /* StandingOrder.json */; };
+		833C015D1E2AAC0600AA5E7C /* Payment.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA2E1C0EF15600525E1D /* Payment.json */; };
+		833C018E1E2AADAA00AA5E7C /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285F01C04D48E00A9FE73 /* Resources.swift */; };
+		833C018F1E2AADAA00AA5E7C /* BaseTestCaseWithLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750961C04507000545DF6 /* BaseTestCaseWithLogin.swift */; };
+		833C01901E2AADAA00AA5E7C /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */; };
+		833C01911E2AADAA00AA5E7C /* AuthorizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A71D1C033512003EDE45 /* AuthorizationTests.swift */; };
+		833C01921E2AADAA00AA5E7C /* PaymentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA301C0EF4A400525E1D /* PaymentTests.swift */; };
+		833C01931E2AADAA00AA5E7C /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1E1C0EDC3B00525E1D /* SecurityTests.swift */; };
+		833C01941E2AADAA00AA5E7C /* StandingOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA291C0EEE9F00525E1D /* StandingOrderTests.swift */; };
+		833C01951E2AADAA00AA5E7C /* TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9D01C0D9FB500525E1D /* TaskTests.swift */; };
+		833C01961E2AADAA00AA5E7C /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9EA1C0DE74B00525E1D /* TransactionTests.swift */; };
+		833C01971E2AADAA00AA5E7C /* UnboxingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750911C037D3400545DF6 /* UnboxingTests.swift */; };
+		833C01981E2AADAA00AA5E7C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEDB801C05DD3D0008CEF8 /* UserTests.swift */; };
+		833C01991E2AADB400AA5E7C /* Account.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E7508F1C037CC300545DF6 /* Account.json */; };
+		833C019A1E2AADB400AA5E7C /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 83CEDB821C05F43D0008CEF8 /* User.json */; };
+		833C019B1E2AADB400AA5E7C /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = 833285EE1C04D45900A9FE73 /* Balance.json */; };
+		833C019C1E2AADB400AA5E7C /* SyncStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63E01C05A7AE0048F7BF /* SyncStatus.json */; };
+		833C019D1E2AADB400AA5E7C /* TanScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 830E63DB1C05A4960048F7BF /* TanScheme.json */; };
+		833C019E1E2AADB400AA5E7C /* PaymentParametersIntTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C851C0740C90013ED1F /* PaymentParametersIntTextKeys.json */; };
+		833C019F1E2AADB400AA5E7C /* PaymentParametersStringTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */; };
+		833C01A01E2AADB400AA5E7C /* TaskState.json in Resources */ = {isa = PBXBuildFile; fileRef = 83017B771C0A2FE80062FC08 /* TaskState.json */; };
+		833C01A11E2AADB400AA5E7C /* SupportedBanks.json in Resources */ = {isa = PBXBuildFile; fileRef = 83648D711C0CF0AF00286FFB /* SupportedBanks.json */; };
+		833C01A21E2AADB400AA5E7C /* Transaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FD9E51C0DACE300525E1D /* Transaction.json */; };
+		833C01A31E2AADB400AA5E7C /* Security.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA181C0ED5E700525E1D /* Security.json */; };
+		833C01A41E2AADB400AA5E7C /* StandingOrder.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA241C0EE59B00525E1D /* StandingOrder.json */; };
+		833C01A51E2AADB400AA5E7C /* Payment.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA2E1C0EF15600525E1D /* Payment.json */; };
 		8346AABF1C0A03A700F9F0DE /* TaskEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */; };
 		83648D571C0A42B700286FFB /* LoginSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D561C0A42B700286FFB /* LoginSettings.swift */; };
 		83648D5A1C0C32BE00286FFB /* ServiceEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D591C0C32BE00286FFB /* ServiceEndpoints.swift */; };
 		83648D631C0C705700286FFB /* SupportedBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D621C0C705700286FFB /* SupportedBank.swift */; };
 		83648D661C0C75E600286FFB /* SupportedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D651C0C75E600286FFB /* SupportedService.swift */; };
 		83648D691C0C7B4200286FFB /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D681C0C7B4200286FFB /* LoginCredentials.swift */; };
-		83648D731C0CF0AF00286FFB /* SupportedBanks.json in Resources */ = {isa = PBXBuildFile; fileRef = 83648D711C0CF0AF00286FFB /* SupportedBanks.json */; };
 		837B520D1C10C95500D3CB25 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B520C1C10C95500D3CB25 /* Alias.swift */; };
 		838FD9E01C0DAC7800525E1D /* TransactionEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */; };
 		838FD9E31C0DACBE00525E1D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9E21C0DACBE00525E1D /* Transaction.swift */; };
-		838FD9E61C0DACE300525E1D /* Transaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FD9E51C0DACE300525E1D /* Transaction.json */; };
 		838FD9EE1C0DEEFD00525E1D /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9ED1C0DEEFD00525E1D /* PaymentType.swift */; };
 		838FD9F91C0DF8D900525E1D /* CreateAccountParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F41C0DF8D900525E1D /* CreateAccountParameters.swift */; };
 		838FD9FB1C0DF8D900525E1D /* CreateSyncTaskParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F51C0DF8D900525E1D /* CreateSyncTaskParameters.swift */; };
@@ -34,42 +124,23 @@
 		838FDA011C0DF8D900525E1D /* RetrieveTransactionsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F81C0DF8D900525E1D /* RetrieveTransactionsParameters.swift */; };
 		838FDA071C0DF90100525E1D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA031C0DF90100525E1D /* Request.swift */; };
 		838FDA091C0DF90100525E1D /* FigoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA041C0DF90100525E1D /* FigoError.swift */; };
-		838FDA0B1C0DF90100525E1D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA051C0DF90100525E1D /* Result.swift */; };
+		838FDA0B1C0DF90100525E1D /* FigoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA051C0DF90100525E1D /* FigoResult.swift */; };
 		838FDA0D1C0DF90100525E1D /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA061C0DF90100525E1D /* Logging.swift */; };
 		838FDA101C0DF92500525E1D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA0F1C0DF92500525E1D /* Response.swift */; };
 		838FDA131C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA121C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift */; };
 		838FDA161C0ED4CB00525E1D /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA151C0ED4CB00525E1D /* Security.swift */; };
-		838FDA1A1C0ED5E700525E1D /* Security.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA181C0ED5E700525E1D /* Security.json */; };
 		838FDA1C1C0EDA8800525E1D /* SecurityEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1B1C0EDA8800525E1D /* SecurityEndpoints.swift */; };
 		838FDA221C0EE54000525E1D /* StandingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA211C0EE54000525E1D /* StandingOrder.swift */; };
-		838FDA251C0EE59B00525E1D /* StandingOrder.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA241C0EE59B00525E1D /* StandingOrder.json */; };
 		838FDA271C0EED1500525E1D /* StandingOrderEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA261C0EED1500525E1D /* StandingOrderEndpoints.swift */; };
 		838FDA2C1C0EEFB500525E1D /* CreatePaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA2B1C0EEFB500525E1D /* CreatePaymentParameters.swift */; };
-		838FDA2F1C0EF15600525E1D /* Payment.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA2E1C0EF15600525E1D /* Payment.json */; };
 		838FDA331C0EFB1100525E1D /* PaymentEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA321C0EFB1100525E1D /* PaymentEndpoints.swift */; };
 		838FDA361C0EFC0300525E1D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA351C0EFC0300525E1D /* Payment.swift */; };
 		838FDA3E1C0F28BB00525E1D /* PaymentProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA3D1C0F28BB00525E1D /* PaymentProposal.swift */; };
 		838FDA411C0F348C00525E1D /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA401C0F348C00525E1D /* AccountType.swift */; };
 		838FDA471C0F403700525E1D /* FigoDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA461C0F403700525E1D /* FigoDate.swift */; };
-		8392155A1C1F379200D236E7 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833285F01C04D48E00A9FE73 /* Resources.swift */; };
-		8392155B1C1F379200D236E7 /* BaseTestCaseWithLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750961C04507000545DF6 /* BaseTestCaseWithLogin.swift */; };
-		8392155C1C1F379200D236E7 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */; };
-		8392155D1C1F379200D236E7 /* AuthorizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A71D1C033512003EDE45 /* AuthorizationTests.swift */; };
-		8392155E1C1F379200D236E7 /* PaymentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA301C0EF4A400525E1D /* PaymentTests.swift */; };
-		8392155F1C1F379200D236E7 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA1E1C0EDC3B00525E1D /* SecurityTests.swift */; };
-		839215601C1F379200D236E7 /* StandingOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA291C0EEE9F00525E1D /* StandingOrderTests.swift */; };
-		839215611C1F379200D236E7 /* TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9D01C0D9FB500525E1D /* TaskTests.swift */; };
-		839215621C1F379200D236E7 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9EA1C0DE74B00525E1D /* TransactionTests.swift */; };
-		839215631C1F379200D236E7 /* UnboxingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E750911C037D3400545DF6 /* UnboxingTests.swift */; };
-		839215641C1F379200D236E7 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CEDB801C05DD3D0008CEF8 /* UserTests.swift */; };
-		83CEDB831C05F43D0008CEF8 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 83CEDB821C05F43D0008CEF8 /* User.json */; };
-		83D3A6EF1BFF5BA4003EDE45 /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F3AF221BFF28D900767D77 /* Figo.framework */; };
 		83D3A6FF1BFF8E97003EDE45 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */; };
 		83D3A70E1BFFB71D003EDE45 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3A70C1BFFB71D003EDE45 /* Account.swift */; };
 		83E7508C1C037ABE00545DF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7508B1C037ABE00545DF6 /* User.swift */; };
-		83E750901C037CC300545DF6 /* Account.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E7508F1C037CC300545DF6 /* Account.json */; };
-		83E95C871C0740C90013ED1F /* PaymentParametersIntTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C851C0740C90013ED1F /* PaymentParametersIntTextKeys.json */; };
-		83E95C881C0740C90013ED1F /* PaymentParametersStringTextKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = 83E95C861C0740C90013ED1F /* PaymentParametersStringTextKeys.json */; };
 		83E95C911C0768E50013ED1F /* TaskState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E95C901C0768E50013ED1F /* TaskState.swift */; };
 		83E95C941C076C190013ED1F /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E95C931C076C190013ED1F /* Challenge.swift */; };
 		83F0E46C1C08A91400FB3709 /* FigoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E46B1C08A91400FB3709 /* FigoClient.swift */; };
@@ -81,7 +152,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83D3A6F01BFF5BA4003EDE45 /* PBXContainerItemProxy */ = {
+		833C01011E2AA72A00AA5E7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F3AF191BFF28D900767D77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 833C00EE1E2AA6A100AA5E7C;
+			remoteInfo = "Figo macOS";
+		};
+		833C01401E2AAB4200AA5E7C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83F3AF191BFF28D900767D77 /* Project object */;
 			proxyType = 1;
@@ -89,18 +167,6 @@
 			remoteInfo = "Figo iOS";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		83D3A6F71BFF5C42003EDE45 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Frameworks;
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
@@ -112,6 +178,11 @@
 		832CABAD1E242F8700D48895 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
 		833285EE1C04D45900A9FE73 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = Resources/Balance.json; sourceTree = "<group>"; };
 		833285F01C04D48E00A9FE73 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		833C00EF1E2AA6A100AA5E7C /* Figo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Figo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		833C00FB1E2AA72A00AA5E7C /* Figo-macOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Figo-macOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		833C01341E2AA85C00AA5E7C /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
+		833C01351E2AA85C00AA5E7C /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-macOS.plist"; sourceTree = "<group>"; };
+		833C013A1E2AAB4200AA5E7C /* Figo-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Figo-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEndpoints.swift; sourceTree = "<group>"; };
 		83648D561C0A42B700286FFB /* LoginSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginSettings.swift; path = Types/LoginSettings.swift; sourceTree = "<group>"; };
 		83648D591C0C32BE00286FFB /* ServiceEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpoints.swift; sourceTree = "<group>"; };
@@ -134,7 +205,7 @@
 		838FD9F81C0DF8D900525E1D /* RetrieveTransactionsParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveTransactionsParameters.swift; sourceTree = "<group>"; };
 		838FDA031C0DF90100525E1D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Core/Request.swift; sourceTree = "<group>"; };
 		838FDA041C0DF90100525E1D /* FigoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FigoError.swift; sourceTree = "<group>"; };
-		838FDA051C0DF90100525E1D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		838FDA051C0DF90100525E1D /* FigoResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FigoResult.swift; sourceTree = "<group>"; };
 		838FDA061C0DF90100525E1D /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Core/Logging.swift; sourceTree = "<group>"; };
 		838FDA0F1C0DF92500525E1D /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Core/Response.swift; sourceTree = "<group>"; };
 		838FDA121C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveSecuritiesParameters.swift; sourceTree = "<group>"; };
@@ -157,11 +228,8 @@
 		83CEDB801C05DD3D0008CEF8 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		83CEDB821C05F43D0008CEF8 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = Resources/User.json; sourceTree = "<group>"; };
 		83D3A6811BFF2953003EDE45 /* Figo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figo.h; sourceTree = "<group>"; };
-		83D3A6821BFF2953003EDE45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83D3A6EA1BFF5BA4003EDE45 /* Figo iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Figo iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Types/Authorization.swift; sourceTree = "<group>"; };
 		83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
-		83D3A70A1BFFB6A7003EDE45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83D3A70C1BFFB71D003EDE45 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Types/Account.swift; sourceTree = "<group>"; };
 		83D3A71D1C033512003EDE45 /* AuthorizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationTests.swift; sourceTree = "<group>"; };
 		83D3A7201C03471D003EDE45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -183,11 +251,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		83D3A6E71BFF5BA4003EDE45 /* Frameworks */ = {
+		833C00EB1E2AA6A100AA5E7C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D3A6EF1BFF5BA4003EDE45 /* Figo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833C00F81E2AA72A00AA5E7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C01001E2AA72A00AA5E7C /* Figo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833C01371E2AAB4200AA5E7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C013F1E2AAB4200AA5E7C /* Figo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +324,7 @@
 				837B520C1C10C95500D3CB25 /* Alias.swift */,
 				838FDA041C0DF90100525E1D /* FigoError.swift */,
 				838FDA461C0F403700525E1D /* FigoDate.swift */,
-				838FDA051C0DF90100525E1D /* Result.swift */,
+				838FDA051C0DF90100525E1D /* FigoResult.swift */,
 				837B520F1C10C97E00D3CB25 /* Core */,
 				83F0E4721C08D9EA00FB3709 /* Endpoints */,
 				838FD9F31C0DF8D900525E1D /* Parameters */,
@@ -256,8 +339,9 @@
 			isa = PBXGroup;
 			children = (
 				83D3A6811BFF2953003EDE45 /* Figo.h */,
-				83D3A6821BFF2953003EDE45 /* Info.plist */,
 				83648D5D1C0C598B00286FFB /* Figo-Bridging-Header.h */,
+				833C01341E2AA85C00AA5E7C /* Info-iOS.plist */,
+				833C01351E2AA85C00AA5E7C /* Info-macOS.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -312,7 +396,6 @@
 			isa = PBXGroup;
 			children = (
 				833285F01C04D48E00A9FE73 /* Resources.swift */,
-				83D3A70A1BFFB6A7003EDE45 /* Info.plist */,
 				83E7508F1C037CC300545DF6 /* Account.json */,
 				83CEDB821C05F43D0008CEF8 /* User.json */,
 				833285EE1C04D45900A9FE73 /* Balance.json */,
@@ -360,7 +443,9 @@
 			isa = PBXGroup;
 			children = (
 				83F3AF221BFF28D900767D77 /* Figo.framework */,
-				83D3A6EA1BFF5BA4003EDE45 /* Figo iOS Tests.xctest */,
+				833C00EF1E2AA6A100AA5E7C /* Figo.framework */,
+				833C00FB1E2AA72A00AA5E7C /* Figo-macOS-Tests.xctest */,
+				833C013A1E2AAB4200AA5E7C /* Figo-iOS-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -368,6 +453,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		833C00EC1E2AA6A100AA5E7C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83F3AF1F1BFF28D900767D77 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,23 +470,58 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		83D3A6E91BFF5BA4003EDE45 /* Figo iOS Tests */ = {
+		833C00EE1E2AA6A100AA5E7C /* Figo macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83D3A6F21BFF5BA4003EDE45 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */;
+			buildConfigurationList = 833C00F61E2AA6A100AA5E7C /* Build configuration list for PBXNativeTarget "Figo macOS" */;
 			buildPhases = (
-				83D3A6E61BFF5BA4003EDE45 /* Sources */,
-				83D3A6E71BFF5BA4003EDE45 /* Frameworks */,
-				83D3A6E81BFF5BA4003EDE45 /* Resources */,
-				83D3A6F71BFF5C42003EDE45 /* CopyFiles */,
+				833C00EA1E2AA6A100AA5E7C /* Sources */,
+				833C00EB1E2AA6A100AA5E7C /* Frameworks */,
+				833C00EC1E2AA6A100AA5E7C /* Headers */,
+				833C00ED1E2AA6A100AA5E7C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				83D3A6F11BFF5BA4003EDE45 /* PBXTargetDependency */,
+			);
+			name = "Figo macOS";
+			productName = "Figo macOS";
+			productReference = 833C00EF1E2AA6A100AA5E7C /* Figo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		833C00FA1E2AA72A00AA5E7C /* Figo macOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 833C01031E2AA72A00AA5E7C /* Build configuration list for PBXNativeTarget "Figo macOS Tests" */;
+			buildPhases = (
+				833C00F71E2AA72A00AA5E7C /* Sources */,
+				833C00F81E2AA72A00AA5E7C /* Frameworks */,
+				833C00F91E2AA72A00AA5E7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				833C01021E2AA72A00AA5E7C /* PBXTargetDependency */,
+			);
+			name = "Figo macOS Tests";
+			productName = "Figo macOS Tests";
+			productReference = 833C00FB1E2AA72A00AA5E7C /* Figo-macOS-Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		833C01391E2AAB4200AA5E7C /* Figo iOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 833C01421E2AAB4200AA5E7C /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */;
+			buildPhases = (
+				833C01361E2AAB4200AA5E7C /* Sources */,
+				833C01371E2AAB4200AA5E7C /* Frameworks */,
+				833C01381E2AAB4200AA5E7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				833C01411E2AAB4200AA5E7C /* PBXTargetDependency */,
 			);
 			name = "Figo iOS Tests";
 			productName = "Figo iOS Tests";
-			productReference = 83D3A6EA1BFF5BA4003EDE45 /* Figo iOS Tests.xctest */;
+			productReference = 833C013A1E2AAB4200AA5E7C /* Figo-iOS-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		83F3AF211BFF28D900767D77 /* Figo iOS */ = {
@@ -421,17 +548,26 @@
 		83F3AF191BFF28D900767D77 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CodeStage;
 				TargetAttributes = {
-					83D3A6E91BFF5BA4003EDE45 = {
-						CreatedOnToolsVersion = 7.1.1;
-						LastSwiftMigration = 0820;
+					833C00EE1E2AA6A100AA5E7C = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Manual;
+					};
+					833C00FA1E2AA72A00AA5E7C = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					833C01391E2AAB4200AA5E7C = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Manual;
 					};
 					83F3AF211BFF28D900767D77 = {
 						CreatedOnToolsVersion = 7.1.1;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -448,29 +584,58 @@
 			projectRoot = "";
 			targets = (
 				83F3AF211BFF28D900767D77 /* Figo iOS */,
-				83D3A6E91BFF5BA4003EDE45 /* Figo iOS Tests */,
+				833C01391E2AAB4200AA5E7C /* Figo iOS Tests */,
+				833C00EE1E2AA6A100AA5E7C /* Figo macOS */,
+				833C00FA1E2AA72A00AA5E7C /* Figo macOS Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		83D3A6E81BFF5BA4003EDE45 /* Resources */ = {
+		833C00ED1E2AA6A100AA5E7C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83CEDB831C05F43D0008CEF8 /* User.json in Resources */,
-				838FDA1A1C0ED5E700525E1D /* Security.json in Resources */,
-				838FDA251C0EE59B00525E1D /* StandingOrder.json in Resources */,
-				83648D731C0CF0AF00286FFB /* SupportedBanks.json in Resources */,
-				838FD9E61C0DACE300525E1D /* Transaction.json in Resources */,
-				830E63E11C05A7AE0048F7BF /* SyncStatus.json in Resources */,
-				83017B781C0A2FE80062FC08 /* TaskState.json in Resources */,
-				830E63DC1C05A4960048F7BF /* TanScheme.json in Resources */,
-				833285EF1C04D45900A9FE73 /* Balance.json in Resources */,
-				838FDA2F1C0EF15600525E1D /* Payment.json in Resources */,
-				83E750901C037CC300545DF6 /* Account.json in Resources */,
-				83E95C881C0740C90013ED1F /* PaymentParametersStringTextKeys.json in Resources */,
-				83E95C871C0740C90013ED1F /* PaymentParametersIntTextKeys.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833C00F91E2AA72A00AA5E7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C01991E2AADB400AA5E7C /* Account.json in Resources */,
+				833C019A1E2AADB400AA5E7C /* User.json in Resources */,
+				833C019B1E2AADB400AA5E7C /* Balance.json in Resources */,
+				833C019C1E2AADB400AA5E7C /* SyncStatus.json in Resources */,
+				833C019D1E2AADB400AA5E7C /* TanScheme.json in Resources */,
+				833C019E1E2AADB400AA5E7C /* PaymentParametersIntTextKeys.json in Resources */,
+				833C019F1E2AADB400AA5E7C /* PaymentParametersStringTextKeys.json in Resources */,
+				833C01A01E2AADB400AA5E7C /* TaskState.json in Resources */,
+				833C01A11E2AADB400AA5E7C /* SupportedBanks.json in Resources */,
+				833C01A21E2AADB400AA5E7C /* Transaction.json in Resources */,
+				833C01A31E2AADB400AA5E7C /* Security.json in Resources */,
+				833C01A41E2AADB400AA5E7C /* StandingOrder.json in Resources */,
+				833C01A51E2AADB400AA5E7C /* Payment.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833C01381E2AAB4200AA5E7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C01511E2AAC0600AA5E7C /* Account.json in Resources */,
+				833C01521E2AAC0600AA5E7C /* User.json in Resources */,
+				833C01531E2AAC0600AA5E7C /* Balance.json in Resources */,
+				833C01541E2AAC0600AA5E7C /* SyncStatus.json in Resources */,
+				833C01551E2AAC0600AA5E7C /* TanScheme.json in Resources */,
+				833C01561E2AAC0600AA5E7C /* PaymentParametersIntTextKeys.json in Resources */,
+				833C01571E2AAC0600AA5E7C /* PaymentParametersStringTextKeys.json in Resources */,
+				833C01581E2AAC0600AA5E7C /* TaskState.json in Resources */,
+				833C01591E2AAC0600AA5E7C /* SupportedBanks.json in Resources */,
+				833C015A1E2AAC0600AA5E7C /* Transaction.json in Resources */,
+				833C015B1E2AAC0600AA5E7C /* Security.json in Resources */,
+				833C015C1E2AAC0600AA5E7C /* StandingOrder.json in Resources */,
+				833C015D1E2AAC0600AA5E7C /* Payment.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,21 +649,92 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		83D3A6E61BFF5BA4003EDE45 /* Sources */ = {
+		833C00EA1E2AA6A100AA5E7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8392155A1C1F379200D236E7 /* Resources.swift in Sources */,
-				8392155B1C1F379200D236E7 /* BaseTestCaseWithLogin.swift in Sources */,
-				8392155C1C1F379200D236E7 /* AccountTests.swift in Sources */,
-				8392155D1C1F379200D236E7 /* AuthorizationTests.swift in Sources */,
-				8392155E1C1F379200D236E7 /* PaymentTests.swift in Sources */,
-				8392155F1C1F379200D236E7 /* SecurityTests.swift in Sources */,
-				839215601C1F379200D236E7 /* StandingOrderTests.swift in Sources */,
-				839215611C1F379200D236E7 /* TaskTests.swift in Sources */,
-				839215621C1F379200D236E7 /* TransactionTests.swift in Sources */,
-				839215631C1F379200D236E7 /* UnboxingTests.swift in Sources */,
-				839215641C1F379200D236E7 /* UserTests.swift in Sources */,
+				833C01061E2AA7F400AA5E7C /* FigoClient.swift in Sources */,
+				833C01071E2AA7F400AA5E7C /* Alias.swift in Sources */,
+				833C01081E2AA7F400AA5E7C /* FigoError.swift in Sources */,
+				833C01091E2AA7F400AA5E7C /* FigoDate.swift in Sources */,
+				833C010A1E2AA7F400AA5E7C /* FigoResult.swift in Sources */,
+				833C010B1E2AA7F400AA5E7C /* Request.swift in Sources */,
+				833C010C1E2AA7F400AA5E7C /* Response.swift in Sources */,
+				833C010D1E2AA7F400AA5E7C /* Logging.swift in Sources */,
+				833C010E1E2AA7F400AA5E7C /* AccountEndpoints.swift in Sources */,
+				833C010F1E2AA7F400AA5E7C /* AuthorizationEndpoints.swift in Sources */,
+				833C01101E2AA7F400AA5E7C /* FigoUserEndpoints.swift in Sources */,
+				833C01111E2AA7F400AA5E7C /* PaymentEndpoints.swift in Sources */,
+				833C01121E2AA7F400AA5E7C /* SecurityEndpoints.swift in Sources */,
+				833C01131E2AA7F400AA5E7C /* ServiceEndpoints.swift in Sources */,
+				833C01141E2AA7F400AA5E7C /* StandingOrderEndpoints.swift in Sources */,
+				833C01151E2AA7F400AA5E7C /* TaskEndpoints.swift in Sources */,
+				833C01161E2AA7F400AA5E7C /* TransactionEndpoints.swift in Sources */,
+				833C01171E2AA7F400AA5E7C /* CreateAccountParameters.swift in Sources */,
+				833C01181E2AA7F400AA5E7C /* CreatePaymentParameters.swift in Sources */,
+				833C01191E2AA7F400AA5E7C /* CreateSyncTaskParameters.swift in Sources */,
+				833C011A1E2AA7F400AA5E7C /* CreateUserParameters.swift in Sources */,
+				833C011B1E2AA7F400AA5E7C /* PollTaskStateParameters.swift in Sources */,
+				833C011C1E2AA7F400AA5E7C /* RetrieveSecuritiesParameters.swift in Sources */,
+				833C011D1E2AA7F400AA5E7C /* RetrieveTransactionsParameters.swift in Sources */,
+				833C011E1E2AA7F400AA5E7C /* Account.swift in Sources */,
+				833C011F1E2AA7F400AA5E7C /* AccountType.swift in Sources */,
+				833C01201E2AA7F400AA5E7C /* Address.swift in Sources */,
+				833C01211E2AA7F400AA5E7C /* Authorization.swift in Sources */,
+				833C01221E2AA7F400AA5E7C /* Balance.swift in Sources */,
+				833C01231E2AA7F400AA5E7C /* Challenge.swift in Sources */,
+				833C01241E2AA7F400AA5E7C /* LoginCredentials.swift in Sources */,
+				833C01251E2AA7F400AA5E7C /* LoginSettings.swift in Sources */,
+				833C01261E2AA7F400AA5E7C /* Payment.swift in Sources */,
+				833C01271E2AA7F400AA5E7C /* PaymentType.swift in Sources */,
+				833C01281E2AA7F400AA5E7C /* PaymentParameters.swift in Sources */,
+				833C01291E2AA7F400AA5E7C /* PaymentProposal.swift in Sources */,
+				833C012A1E2AA7F400AA5E7C /* Security.swift in Sources */,
+				833C012B1E2AA7F400AA5E7C /* StandingOrder.swift in Sources */,
+				833C012C1E2AA7F400AA5E7C /* SupportedBank.swift in Sources */,
+				833C012D1E2AA7F400AA5E7C /* SupportedService.swift in Sources */,
+				833C012E1E2AA7F400AA5E7C /* SyncStatus.swift in Sources */,
+				833C012F1E2AA7F400AA5E7C /* TANScheme.swift in Sources */,
+				833C01301E2AA7F400AA5E7C /* TaskState.swift in Sources */,
+				833C01311E2AA7F400AA5E7C /* Transaction.swift in Sources */,
+				833C01321E2AA7F400AA5E7C /* User.swift in Sources */,
+				833C01331E2AA7F400AA5E7C /* Unbox.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833C00F71E2AA72A00AA5E7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C018E1E2AADAA00AA5E7C /* Resources.swift in Sources */,
+				833C018F1E2AADAA00AA5E7C /* BaseTestCaseWithLogin.swift in Sources */,
+				833C01901E2AADAA00AA5E7C /* AccountTests.swift in Sources */,
+				833C01911E2AADAA00AA5E7C /* AuthorizationTests.swift in Sources */,
+				833C01921E2AADAA00AA5E7C /* PaymentTests.swift in Sources */,
+				833C01931E2AADAA00AA5E7C /* SecurityTests.swift in Sources */,
+				833C01941E2AADAA00AA5E7C /* StandingOrderTests.swift in Sources */,
+				833C01951E2AADAA00AA5E7C /* TaskTests.swift in Sources */,
+				833C01961E2AADAA00AA5E7C /* TransactionTests.swift in Sources */,
+				833C01971E2AADAA00AA5E7C /* UnboxingTests.swift in Sources */,
+				833C01981E2AADAA00AA5E7C /* UserTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833C01361E2AAB4200AA5E7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C01461E2AABFA00AA5E7C /* Resources.swift in Sources */,
+				833C01471E2AABFA00AA5E7C /* BaseTestCaseWithLogin.swift in Sources */,
+				833C01481E2AABFA00AA5E7C /* AccountTests.swift in Sources */,
+				833C01491E2AABFA00AA5E7C /* AuthorizationTests.swift in Sources */,
+				833C014A1E2AABFA00AA5E7C /* PaymentTests.swift in Sources */,
+				833C014B1E2AABFA00AA5E7C /* SecurityTests.swift in Sources */,
+				833C014C1E2AABFA00AA5E7C /* StandingOrderTests.swift in Sources */,
+				833C014D1E2AABFA00AA5E7C /* TaskTests.swift in Sources */,
+				833C014E1E2AABFA00AA5E7C /* TransactionTests.swift in Sources */,
+				833C014F1E2AABFA00AA5E7C /* UnboxingTests.swift in Sources */,
+				833C01501E2AABFA00AA5E7C /* UserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,7 +781,7 @@
 				838FDA411C0F348C00525E1D /* AccountType.swift in Sources */,
 				838FDA0D1C0DF90100525E1D /* Logging.swift in Sources */,
 				83F0E47A1C08DA2800FB3709 /* Balance.swift in Sources */,
-				838FDA0B1C0DF90100525E1D /* Result.swift in Sources */,
+				838FDA0B1C0DF90100525E1D /* FigoResult.swift in Sources */,
 				838FDA3E1C0F28BB00525E1D /* PaymentProposal.swift in Sources */,
 				838FD9FD1C0DF8D900525E1D /* CreateUserParameters.swift in Sources */,
 				838FDA1C1C0EDA8800525E1D /* SecurityEndpoints.swift in Sources */,
@@ -558,35 +794,137 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		83D3A6F11BFF5BA4003EDE45 /* PBXTargetDependency */ = {
+		833C01021E2AA72A00AA5E7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 833C00EE1E2AA6A100AA5E7C /* Figo macOS */;
+			targetProxy = 833C01011E2AA72A00AA5E7C /* PBXContainerItemProxy */;
+		};
+		833C01411E2AAB4200AA5E7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83F3AF211BFF28D900767D77 /* Figo iOS */;
-			targetProxy = 83D3A6F01BFF5BA4003EDE45 /* PBXContainerItemProxy */;
+			targetProxy = 833C01401E2AAB4200AA5E7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		83D3A6F31BFF5BA4003EDE45 /* Debug */ = {
+		833C00F41E2AA6A100AA5E7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.chriskoenig.Figo-iOS-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Source/Supporting Files/Info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.macOS;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		833C00F51E2AA6A100AA5E7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Source/Supporting Files/Info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.macOS;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
+		833C01041E2AA72A00AA5E7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Source/Supporting Files/Info-macOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.macOS.test;
+				PRODUCT_NAME = "Figo-macOS-Tests";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		83D3A6F41BFF5BA4003EDE45 /* Release */ = {
+		833C01051E2AA72A00AA5E7C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Source/Supporting Files/Info-macOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.macOS.test;
+				PRODUCT_NAME = "Figo-macOS-Tests";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		833C01431E2AAB4200AA5E7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Source/Supporting Files/Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.chriskoenig.Figo-iOS-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS.test;
+				PRODUCT_NAME = "Figo-iOS-Tests";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		833C01441E2AAB4200AA5E7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Source/Supporting Files/Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS.test;
+				PRODUCT_NAME = "Figo-iOS-Tests";
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -595,8 +933,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -610,15 +946,12 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -630,17 +963,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.figo;
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo;
 				PRODUCT_NAME = Figo;
-				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Supporting Files/Figo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -652,8 +984,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -667,30 +997,27 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = de.chriskoenig.figo;
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo;
 				PRODUCT_NAME = Figo;
-				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Supporting Files/Figo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
@@ -702,41 +1029,61 @@
 		83F3AF371BFF28DA00767D77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INFOPLIST_FILE = "Source/Supporting Files/Info-iOS.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS;
+				PRODUCT_NAME = Figo;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		83F3AF381BFF28DA00767D77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INFOPLIST_FILE = "Source/Supporting Files/Info-iOS.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS;
+				PRODUCT_NAME = Figo;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		83D3A6F21BFF5BA4003EDE45 /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */ = {
+		833C00F61E2AA6A100AA5E7C /* Build configuration list for PBXNativeTarget "Figo macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83D3A6F31BFF5BA4003EDE45 /* Debug */,
-				83D3A6F41BFF5BA4003EDE45 /* Release */,
+				833C00F41E2AA6A100AA5E7C /* Debug */,
+				833C00F51E2AA6A100AA5E7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		833C01031E2AA72A00AA5E7C /* Build configuration list for PBXNativeTarget "Figo macOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				833C01041E2AA72A00AA5E7C /* Debug */,
+				833C01051E2AA72A00AA5E7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		833C01421E2AAB4200AA5E7C /* Build configuration list for PBXNativeTarget "Figo iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				833C01431E2AAB4200AA5E7C /* Debug */,
+				833C01441E2AAB4200AA5E7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
