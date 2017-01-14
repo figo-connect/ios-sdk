@@ -4,7 +4,7 @@
 This Framework wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece.
 
 - We don't support Swift versions older than 3.0
-- We are working on support for other platforms than iOS
+- Supports iOS and macOS
 
 
 ## figo Connect API
@@ -39,9 +39,6 @@ Integrate the framework into your project:
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
 * Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
 
-### Carthage
-
-We are working on bringing back Carthage support
 
 ## Usage
 
@@ -88,11 +85,20 @@ To be able to login and use the figo API a user is required.
         }
     }
     
-### Enable logging
+### Logging
 
-Since the `FigoClient` by default uses the default instance of `XCGLogger`, you can control logging from wherever you like. You can also provide your own `XCGLogger` instance in the initializer.
+For now we have a very simple logging solution. By default logging is disabled. If you want to enable logging, you can pass a logger instance to the `FigoClient`.
 
-	XCGLogger.default.setup(level: .verbose, showFunctionName: false, showThreadName: false, showLevel: false, showFileNames: false, showLineNumbers: false, showDate: false, writeToFile: nil, fileLevel: .none)
+	let figo = FigoClient(logger: ConsoleLogger())
+
+If you want control of what is logged or how, you can provide your own instance that conforms to the `Logger` protocol.
+
+	public protocol Logger {
+	    var debug: (String) -> Void { get }
+	    var verbose: (String) -> Void { get }
+	    var error: (String) -> Void { get }
+	}
+
 
 ## Endpoints
 
