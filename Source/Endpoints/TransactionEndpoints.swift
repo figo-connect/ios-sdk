@@ -17,7 +17,7 @@ public extension FigoClient {
      - Parameter parameters: (optional) `RetrieveTransactionsParameters`
      - Parameter completionHandler: Returns `TransactionListEnvelope` or error
      */
-    public func retrieveTransactions(_ parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: @escaping (Result<TransactionListEnvelope>) -> Void) {
+    public func retrieveTransactions(_ parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: @escaping (FigoResult<TransactionListEnvelope>) -> Void) {
         request(.retrieveTransactions(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -32,7 +32,7 @@ public extension FigoClient {
      - Parameter parameters: (optional) `RetrieveTransactionsParameters`
      - Parameter completionHandler: Returns `TransactionListEnvelope` or error
      */
-    public func retrieveTransactionsForAccount(_ accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: @escaping (Result<TransactionListEnvelope>) -> Void) {
+    public func retrieveTransactionsForAccount(_ accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: @escaping (FigoResult<TransactionListEnvelope>) -> Void) {
         request(.retrieveTransactionsForAccount(accountID, parameters: parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -44,7 +44,7 @@ public extension FigoClient {
      - Parameter transactionID: ID of the transaction to retrieve
      - Parameter completionHandler: Returns transactions or error
      */
-    public func retrieveTransaction(_ transactionID: String, _ completionHandler: @escaping (Result<Transaction>) -> Void) {
+    public func retrieveTransaction(_ transactionID: String, _ completionHandler: @escaping (FigoResult<Transaction>) -> Void) {
         request(.retrieveTransaction(transactionID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }

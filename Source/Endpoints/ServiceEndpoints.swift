@@ -18,7 +18,7 @@ public extension FigoClient {
      - Parameter bankCode: Bank code
      - Parameter completionHandler: Returns login settings or error
      */
-    public func retrieveLoginSettings(_ countryCode: String = "de", bankCode: String, _ completionHandler: @escaping (Result<LoginSettings>) -> Void) {
+    public func retrieveLoginSettings(_ countryCode: String = "de", bankCode: String, _ completionHandler: @escaping (FigoResult<LoginSettings>) -> Void) {
         request(Endpoint.retrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -29,9 +29,9 @@ public extension FigoClient {
      
      - Parameter countryCode: The country the service comes from (Valid values: de)
      */
-    public func retrieveSupportedBanks(_ countryCode: String = "de", _ completionHandler: @escaping (Result<[SupportedBank]>) -> Void) {
+    public func retrieveSupportedBanks(_ countryCode: String = "de", _ completionHandler: @escaping (FigoResult<[SupportedBank]>) -> Void) {
         request(Endpoint.retrieveSupportedBanks(countryCode: countryCode)) { response in
-            let envelopeUnboxingResult: Result<BanksListEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: FigoResult<BanksListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
             case .success(let envelope):
@@ -51,9 +51,9 @@ public extension FigoClient {
      
      - Parameter countryCode: The country the service comes from (Valid values: de)
      */
-    public func retrieveSupportedServices(_ countryCode: String = "de", _ completionHandler: @escaping (Result<[SupportedService]>) -> Void) {
+    public func retrieveSupportedServices(_ countryCode: String = "de", _ completionHandler: @escaping (FigoResult<[SupportedService]>) -> Void) {
         request(Endpoint.retrieveSupportedServices(countryCode: countryCode)) { response in
-            let envelopeUnboxingResult: Result<ServicesListEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: FigoResult<ServicesListEnvelope> = decodeUnboxableResponse(response)
             
             switch envelopeUnboxingResult {
             case .success(let envelope):

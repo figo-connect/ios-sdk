@@ -34,7 +34,7 @@
 		838FDA011C0DF8D900525E1D /* RetrieveTransactionsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9F81C0DF8D900525E1D /* RetrieveTransactionsParameters.swift */; };
 		838FDA071C0DF90100525E1D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA031C0DF90100525E1D /* Request.swift */; };
 		838FDA091C0DF90100525E1D /* FigoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA041C0DF90100525E1D /* FigoError.swift */; };
-		838FDA0B1C0DF90100525E1D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA051C0DF90100525E1D /* Result.swift */; };
+		838FDA0B1C0DF90100525E1D /* FigoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA051C0DF90100525E1D /* FigoResult.swift */; };
 		838FDA0D1C0DF90100525E1D /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA061C0DF90100525E1D /* Logging.swift */; };
 		838FDA101C0DF92500525E1D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA0F1C0DF92500525E1D /* Response.swift */; };
 		838FDA131C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA121C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift */; };
@@ -134,7 +134,7 @@
 		838FD9F81C0DF8D900525E1D /* RetrieveTransactionsParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveTransactionsParameters.swift; sourceTree = "<group>"; };
 		838FDA031C0DF90100525E1D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Core/Request.swift; sourceTree = "<group>"; };
 		838FDA041C0DF90100525E1D /* FigoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FigoError.swift; sourceTree = "<group>"; };
-		838FDA051C0DF90100525E1D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		838FDA051C0DF90100525E1D /* FigoResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FigoResult.swift; sourceTree = "<group>"; };
 		838FDA061C0DF90100525E1D /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = Core/Logging.swift; sourceTree = "<group>"; };
 		838FDA0F1C0DF92500525E1D /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Core/Response.swift; sourceTree = "<group>"; };
 		838FDA121C0ED1A300525E1D /* RetrieveSecuritiesParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveSecuritiesParameters.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 				837B520C1C10C95500D3CB25 /* Alias.swift */,
 				838FDA041C0DF90100525E1D /* FigoError.swift */,
 				838FDA461C0F403700525E1D /* FigoDate.swift */,
-				838FDA051C0DF90100525E1D /* Result.swift */,
+				838FDA051C0DF90100525E1D /* FigoResult.swift */,
 				837B520F1C10C97E00D3CB25 /* Core */,
 				83F0E4721C08D9EA00FB3709 /* Endpoints */,
 				838FD9F31C0DF8D900525E1D /* Parameters */,
@@ -545,7 +545,7 @@
 				838FDA411C0F348C00525E1D /* AccountType.swift in Sources */,
 				838FDA0D1C0DF90100525E1D /* Logging.swift in Sources */,
 				83F0E47A1C08DA2800FB3709 /* Balance.swift in Sources */,
-				838FDA0B1C0DF90100525E1D /* Result.swift in Sources */,
+				838FDA0B1C0DF90100525E1D /* FigoResult.swift in Sources */,
 				838FDA3E1C0F28BB00525E1D /* PaymentProposal.swift in Sources */,
 				838FD9FD1C0DF8D900525E1D /* CreateUserParameters.swift in Sources */,
 				838FDA1C1C0EDA8800525E1D /* SecurityEndpoints.swift in Sources */,

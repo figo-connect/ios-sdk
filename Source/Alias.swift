@@ -10,7 +10,7 @@
 /**
 A closure which is used for API calls that return nothing
 */
-public typealias VoidCompletionHandler = (Result<Void>) -> Void
+public typealias VoidCompletionHandler = (FigoResult<Void>) -> Void
 
 /**
  A closure which is called periodically during task state polling with a status message from the server

@@ -71,7 +71,7 @@ Website: [http://figo.io](http://figo.io)
 
 ## Usage
 
-After creating an instance of `FigoClient` you can call functions on it representing the API endpoints. These functions will always return a `Result<T>`, where `T` will a corresponding type like `Account`, `[Account]` or `[Transaction]`.
+After creating an instance of `FigoClient` you can call functions on it representing the API endpoints. These functions will always return a `FigoResult<T>`, where `T` will a corresponding type like `Account`, `[Account]` or `[Transaction]`.
 
 	import Figo
 	let figo = FigoClient()
@@ -127,8 +127,8 @@ Since the `FigoClient` by default uses the default instance of `XCGLogger`, you 
 
 The central element of this API is the figo user, who owns bank accounts and grants selective access to them to other applications. This account can either be a free or a premium account. While both support the same set of features, the free account can only be used with the application through it got created, while a premium account can be used in all applications integrating figo.
 
-	createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void)
-	retrieveCurrentUser(completionHandler: (Result<User>) -> Void)
+	createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void)
+	retrieveCurrentUser(completionHandler: (FigoResult<User>) -> Void)
 	deleteCurrentUser(completionHandler: VoidCompletionHandler)
 
 
@@ -136,7 +136,7 @@ The central element of this API is the figo user, who owns bank accounts and gra
 
 The figo API uses OAuth 2 for authentication purposes and you need a user to login.
 
-	loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (Result<String>) -> Void)
+	loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void)
 	loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: VoidCompletionHandler)
 	revokeAccessToken(completionHandler: VoidCompletionHandler)
 	revokeRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler)
@@ -146,8 +146,8 @@ The figo API uses OAuth 2 for authentication purposes and you need a user to log
 
 Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.
 
-	retrieveAccounts(completionHandler: (Result<[Account]>) -> Void)
-	retrieveAccount(accountID: String, _ completionHandler: (Result<Account>) -> Void)
+	retrieveAccounts(completionHandler: (FigoResult<[Account]>) -> Void)
+	retrieveAccount(accountID: String, _ completionHandler: (FigoResult<Account>) -> Void)
 	removeStoredPinFromBankContact(bankID: String, _ completionHandler: VoidCompletionHandler)
 	setupNewBankAccount(parameters: CreateAccountParameters, progressHandler: ProgressUpdate? = nil, _ completionHandler: VoidCompletionHandler)
     	
@@ -155,9 +155,9 @@ Bank accounts are the central domain object of this API and the main anchor poin
 
 Each bank account has a list of transactions associated with it. The length of this list depends on the bank and time this account has been setup. In general the information provided for each transaction should be roughly similar to the contents of the printed or online transaction statement available from the respective bank. Please note that not all banks provide the same level of detail.
 	
-	retrieveTransactions(parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void)
-	retrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (Result<TransactionListEnvelope>) -> Void)
-	retrieveTransaction(transactionID: String, _ completionHandler: (Result<Transaction>) -> Void)
+	retrieveTransactions(parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (FigoResult<TransactionListEnvelope>) -> Void)
+	retrieveTransactionsForAccount(accountID: String, parameters: RetrieveTransactionsParameters = RetrieveTransactionsParameters(), _ completionHandler: (FigoResult<TransactionListEnvelope>) -> Void)
+	retrieveTransaction(transactionID: String, _ completionHandler: (FigoResult<Transaction>) -> Void)
 		
     	
 ### Synchronization
@@ -173,9 +173,9 @@ Usually the bank accounts are synchronized on a daily basis. However, the synchr
 
 To set up a new bank account in figo, you need to provide the right kind of credentials for each bank. These settings can be retrieved from the API aswell as a list of all supported banks and bank-like services.
 
-	retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (Result<[SupportedBank]>) -> Void)
-	retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (Result<[SupportedService]>) -> Void)
-	retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (Result<LoginSettings>) -> Void)
+	retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedBank]>) -> Void)
+	retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedService]>) -> Void)
+	retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (FigoResult<LoginSettings>) -> Void)
 		
 ### Payments
 
@@ -185,29 +185,29 @@ Submitting a new payment generally is a two-phased process: 1. compile all infor
 
 While the first part is normal live interaction with this API, the second one uses the task processing system to allow for more time as bank servers are sometimes slow to respond. In addition you will need a TAN (Transaktionsnummer) from your bank to authenticate the submission.
 
-	retrievePaymentProposals(completionHandler: Result<[PaymentProposal]> -> Void)
-	retrievePayments(completionHandler: Result<[Payment]> -> Void)
-	retrievePaymentsForAccount(accountID: String, _ completionHandler: Result<[Payment]> -> Void)
-	retrievePayment(paymentID: String, accountID: String, _ completionHandler: Result<Payment> -> Void)
-	createPayment(parameters: CreatePaymentParameters, _ completionHandler: Result<Payment> -> Void)
-	modifyPayment(payment: Payment, _ completionHandler: Result<Payment> -> Void)
+	retrievePaymentProposals(completionHandler: FigoResult<[PaymentProposal]> -> Void)
+	retrievePayments(completionHandler: FigoResult<[Payment]> -> Void)
+	retrievePaymentsForAccount(accountID: String, _ completionHandler: FigoResult<[Payment]> -> Void)
+	retrievePayment(paymentID: String, accountID: String, _ completionHandler: FigoResult<Payment> -> Void)
+	createPayment(parameters: CreatePaymentParameters, _ completionHandler: FigoResult<Payment> -> Void)
+	modifyPayment(payment: Payment, _ completionHandler: FigoResult<Payment> -> Void)
 	submitPayment(payment: Payment, tanSchemeID: String, pinHandler: PinResponder, challengeHandler: ChallengeResponder, _ completionHandler: VoidCompletionHandler)
 		
 ### Securities
 
 Each depot account has a list of securities associated with it. In general the information provided for each security should be roughly similar to the contents of the printed or online depot listings available from the respective bank. Please note that not all banks provide the same level of detail.
 
-	retrieveSecurities(parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void)
-	retrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (Result<SecurityListEnvelope>) -> Void)
-	retrieveSecurity(securityID: String, accountID: String, _ completionHandler: (Result<Security>) -> Void)
+	retrieveSecurities(parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (FigoResult<SecurityListEnvelope>) -> Void)
+	retrieveSecuritiesForAccount(accountID: String, parameters: RetrieveSecuritiesParameters = RetrieveSecuritiesParameters(), _ completionHandler: (FigoResult<SecurityListEnvelope>) -> Void)
+	retrieveSecurity(securityID: String, accountID: String, _ completionHandler: (FigoResult<Security>) -> Void)
 		
 ### Standing orders
 
 Bank accounts can have standing orders associated with it if supported by the respective bank. In general the information provided for each standing order should be roughly similar to the content of the printed or online standing order statement available from the respective bank. Please note that not all banks provide the same level of detail.
 
-	retrieveStandingOrders(completionHandler: (Result<[StandingOrder]>) -> Void)
-	retrieveStandingOrdersForAccount(accountID: String, _ completionHandler: (Result<[StandingOrder]>) -> Void)
-	retrieveStandingOrder(standingOrderID: String, _ completionHandler: (Result<StandingOrder>) -> Void)
+	retrieveStandingOrders(completionHandler: (FigoResult<[StandingOrder]>) -> Void)
+	retrieveStandingOrdersForAccount(accountID: String, _ completionHandler: (FigoResult<[StandingOrder]>) -> Void)
+	retrieveStandingOrder(standingOrderID: String, _ completionHandler: (FigoResult<StandingOrder>) -> Void)
 		
 
 		
