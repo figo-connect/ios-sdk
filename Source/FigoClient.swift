@@ -70,7 +70,7 @@ open class FigoClient {
         }
     }
     
-    func request(_ endpoint: Endpoint, completion: @escaping (Result<Data>) -> Void) {
+    func request(_ endpoint: Endpoint, completion: @escaping (FigoResult<Data>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
         
         if endpoint.needsBasicAuthHeader {

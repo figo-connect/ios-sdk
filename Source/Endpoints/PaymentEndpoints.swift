@@ -16,7 +16,7 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns payment proposals or error
      */
-    public func retrievePaymentProposals(_ completionHandler: @escaping (Result<[PaymentProposal]>) -> Void) {
+    public func retrievePaymentProposals(_ completionHandler: @escaping (FigoResult<[PaymentProposal]>) -> Void) {
         request(.retrievePaymentProposals) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -27,9 +27,9 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePayments(_ completionHandler: @escaping (Result<[Payment]>) -> Void) {
+    public func retrievePayments(_ completionHandler: @escaping (FigoResult<[Payment]>) -> Void) {
         request(.retrievePayments) { response in
-            let unboxingResult: Result<PaymentListEnvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: FigoResult<PaymentListEnvelope> = decodeUnboxableResponse(response)
             
             switch unboxingResult {
             case .success(let envelope):
@@ -47,9 +47,9 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePaymentsForAccount(_ accountID: String, _ completionHandler: @escaping (Result<[Payment]>) -> Void) {
+    public func retrievePaymentsForAccount(_ accountID: String, _ completionHandler: @escaping (FigoResult<[Payment]>) -> Void) {
         request(.retrievePaymentsForAccount(accountID)) { response in
-            let unboxingResult: Result<PaymentListEnvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: FigoResult<PaymentListEnvelope> = decodeUnboxableResponse(response)
             
             switch unboxingResult {
             case .success(let envelope):
@@ -69,7 +69,7 @@ public extension FigoClient {
      - Parameter accountID: Internal figo connect ID of the account
      - Parameter completionHandler: Returns payments or error
      */
-    public func retrievePayment(_ paymentID: String, accountID: String, _ completionHandler: @escaping (Result<Payment>) -> Void) {
+    public func retrievePayment(_ paymentID: String, accountID: String, _ completionHandler: @escaping (FigoResult<Payment>) -> Void) {
         request(.retrievePayment(paymentID, accountID: accountID)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -81,7 +81,7 @@ public extension FigoClient {
      - Parameter parameters: `CreatePaymentParameters`
      - Parameter completionHandler: Returns payment or error
      */
-    public func createPayment(_ parameters: CreatePaymentParameters, _ completionHandler: @escaping (Result<Payment>) -> Void) {
+    public func createPayment(_ parameters: CreatePaymentParameters, _ completionHandler: @escaping (FigoResult<Payment>) -> Void) {
         request(.createPayment(parameters)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -93,7 +93,7 @@ public extension FigoClient {
      - Parameter payment: `Payment`
      - Parameter completionHandler: Returns nothing or error
      */
-    public func modifyPayment(_ payment: Payment, _ completionHandler: @escaping (Result<Payment>) -> Void) {
+    public func modifyPayment(_ payment: Payment, _ completionHandler: @escaping (FigoResult<Payment>) -> Void) {
         request(.modifyPayment(payment)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -111,7 +111,7 @@ public extension FigoClient {
     public func submitPayment(_ payment: Payment, tanSchemeID: String, pinHandler: @escaping PinResponder, challengeHandler: @escaping ChallengeResponder, _ completionHandler: @escaping VoidCompletionHandler) {
         request(.submitPayment(payment, tanSchemeID: tanSchemeID)) { response in
             
-            let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .success(let envelope):
                 

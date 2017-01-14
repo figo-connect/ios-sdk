@@ -21,11 +21,11 @@ public extension FigoClient {
     /**
      CREATE NEW FIGO USER
      */
-    public func createNewFigoUser(_ user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: @escaping (Result<String>) -> Void) {
+    public func createNewFigoUser(_ user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: @escaping (FigoResult<String>) -> Void) {
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         request(Endpoint.createNewFigoUser(user)) { response in
             
-            let envelopeUnboxingResult: Result<RecoveryPasswordEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: FigoResult<RecoveryPasswordEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
             case .success(let envelope):
                 completionHandler(.success(envelope.recoveryPassword))
@@ -40,7 +40,7 @@ public extension FigoClient {
     /**
      RETRIEVE CURRENT USER
      */
-    public func retrieveCurrentUser(_ completionHandler: @escaping (Result<User>) -> Void) {
+    public func retrieveCurrentUser(_ completionHandler: @escaping (FigoResult<User>) -> Void) {
         request(Endpoint.retrieveCurrentUser) { response in
             completionHandler(decodeUnboxableResponse(response))
         }

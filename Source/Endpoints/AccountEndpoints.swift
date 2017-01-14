@@ -16,10 +16,10 @@ public extension FigoClient {
      
      - Parameter completionHandler: Returns accounts or error
      */
-    public func retrieveAccounts(_ completionHandler: @escaping (Result<[Account]>) -> Void) {
+    public func retrieveAccounts(_ completionHandler: @escaping (FigoResult<[Account]>) -> Void) {
         request(.retrieveAccounts) { response in
             
-            let envelopeUnboxingResult: Result<AccountListEnvelope> = decodeUnboxableResponse(response)
+            let envelopeUnboxingResult: FigoResult<AccountListEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
             case .success(let envelope):
                 completionHandler(.success(envelope.accounts))
@@ -37,9 +37,9 @@ public extension FigoClient {
      - Parameter accountID: Internal figo Connect account ID
      - Parameter completionHandler: Returns account or error
     */
-    public func retrieveAccount(_ accountID: String, _ completionHandler: @escaping (Result<Account>) -> Void) {
+    public func retrieveAccount(_ accountID: String, _ completionHandler: @escaping (FigoResult<Account>) -> Void) {
         request(.retrieveAccount(accountID)) { response in
-            let decoded: Result<Account> = decodeUnboxableResponse(response)
+            let decoded: FigoResult<Account> = decodeUnboxableResponse(response)
             completionHandler(decoded)
         }
     }
@@ -70,7 +70,7 @@ public extension FigoClient {
     public func setupNewBankAccount(_ parameters: CreateAccountParameters, progressHandler: ProgressUpdate? = nil, _ completionHandler: @escaping VoidCompletionHandler) {
         request(.setupAccount(parameters)) { response in
             
-            let unboxingResult: Result<TaskTokenEvelope> = decodeUnboxableResponse(response)
+            let unboxingResult: FigoResult<TaskTokenEvelope> = decodeUnboxableResponse(response)
             switch unboxingResult {
             case .success(let envelope):
                 
