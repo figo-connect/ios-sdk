@@ -208,7 +208,7 @@ internal enum Endpoint {
         }
     }
     
-    var needsBasicAuthHeader: Bool {
+    internal var needsBasicAuthHeader: Bool {
         switch self {
         case .loginUser, .refreshToken, .revokeToken, .createNewFigoUser:
             return true
@@ -217,7 +217,7 @@ internal enum Endpoint {
         }
     }
     
-    var URLRequest: NSMutableURLRequest {
+    internal var URLRequest: NSMutableURLRequest {
         let URL = Foundation.URL(string: Endpoint.baseURLString)!
         let request = NSMutableURLRequest(url: URL.appendingPathComponent(path))
         request.httpMethod = self.method.rawValue

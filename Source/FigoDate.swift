@@ -9,7 +9,7 @@
 import Foundation
 
 
-/// Provides a NSDate representation for the server's timestamps
+/// Provides a Foundation.Date representation for the server's timestamps
 public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
     
     public typealias UnboxRawValue = String
@@ -19,14 +19,14 @@ public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
     public var formattedShort: String
     public var formattedLong: String
 
-    init() {
+    internal init() {
         self.date = Foundation.Date.distantPast
         self.timestamp = ""
         self.formattedShort = "Invalid date"
         self.formattedLong = "Invalid date"
     }
     
-    init? (timestamp: String) {
+    public init? (timestamp: String) {
         if let date = FigoDate.posixFormatter.date(from: timestamp) {
             self.date = date
             self.timestamp = timestamp

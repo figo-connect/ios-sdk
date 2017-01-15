@@ -9,21 +9,36 @@
 import Foundation
 
 
+/**
+ If an error occurs, the API returns an error object with a couple of fields providing further details.
+ */
 public struct FigoError: Error, CustomStringConvertible, Unboxable {
     
+    /// Error code (see http://docs.figo.io/#error-handling)
     public let code: Int
+    
+    // String identifying the source of the error
     public let group: String?
+    
+    /// Error message
     public let message: String?
+    
+    /// Error name
     public let name: String?
-    public let originalDescription: String?
+    
+    /// Error description (Renamed to allow a non-optinal implementation of CustomStringConvertible)
+    public let narrative: String?
+    
+    /// Any additional data
     public let data: [String:Any]?
+    
     
     public init(unboxer: Unboxer) throws {
         code                = (try? unboxer.unbox(key: "code")) ?? 0
         group               = unboxer.unbox(key: "group")
         message             = unboxer.unbox(key: "message")
         name                = unboxer.unbox(key: "name")
-        originalDescription = unboxer.unbox(key: "description")
+        narrative           = unboxer.unbox(key: "description")
         data                = unboxer.unbox(key: "data")
     }
     
@@ -32,13 +47,14 @@ public struct FigoError: Error, CustomStringConvertible, Unboxable {
         group = nil
         message = nil
         name = nil
-        originalDescription = error.description
+        narrative = error.description
         data = nil
     }
     
+    /// Narrative, message, name or code (depending on what values are available)
     public var description: String {
         get {
-            if let description = originalDescription {
+            if let description = narrative {
                 return description
             }
             if let description = message {
@@ -50,11 +66,14 @@ public struct FigoError: Error, CustomStringConvertible, Unboxable {
             return "\(code)"
         }
     }
-
+    
 }
 
 
-public enum InternalError: Error, CustomStringConvertible {
+/**
+ Internal error type which is transformed into an FigoError
+ */
+internal enum InternalError: Error, CustomStringConvertible {
     
     case noActiveSession
     case emptyResponse
@@ -65,7 +84,7 @@ public enum InternalError: Error, CustomStringConvertible {
     case taskProcessingTimeout
     case unboxingError(String)
     
-    public var code: Int {
+    var code: Int {
         get {
             switch self {
             case .noActiveSession:
@@ -88,7 +107,7 @@ public enum InternalError: Error, CustomStringConvertible {
         }
     }
     
-    public var description: String {
+    var description: String {
         get {
             switch self {
             case .noActiveSession:

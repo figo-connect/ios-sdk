@@ -7,6 +7,11 @@
 //
 
 
+/**
+ Result type used for all API calls
+ 
+ Contains a generic value on success and a FigoError object on failure.
+ */
 public enum FigoResult<Value>: CustomStringConvertible, CustomDebugStringConvertible {
     
     case success(Value)

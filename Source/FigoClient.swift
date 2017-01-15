@@ -32,19 +32,19 @@ internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
  - Important: Completion handlers are NOT executed on the main thread
  
  */
-open class FigoClient {
+public class FigoClient {
     
-    let sessionDelegate = FigoURLSessionDelegate()
-    let session: URLSession
+    private let sessionDelegate = FigoURLSessionDelegate()
+    private let session: URLSession
     
     // Used for Basic HTTP authentication, derived from CliendID and ClientSecret
-    var basicAuthCredentials: String?
+    internal var basicAuthCredentials: String?
 
     /// OAuth2 access token
-    var accessToken: String?
+    internal var accessToken: String?
     
     /// OAuth2 refresh token
-    var refreshToken: String?
+    internal var refreshToken: String?
     
     
     public convenience init() {
@@ -70,7 +70,7 @@ open class FigoClient {
         }
     }
     
-    func request(_ endpoint: Endpoint, completion: @escaping (FigoResult<Data>) -> Void) {
+    internal func request(_ endpoint: Endpoint, completion: @escaping (FigoResult<Data>) -> Void) {
         let mutableURLRequest = endpoint.URLRequest
         
         if endpoint.needsBasicAuthHeader {
@@ -132,7 +132,7 @@ open class FigoClient {
     /**
      Check's the server's certificates to make sure that you are really talking to the figo server
      */
-    open class func dispositionForChallenge(_ challenge: URLAuthenticationChallenge) -> URLSession.AuthChallengeDisposition {
+    internal class func dispositionForChallenge(_ challenge: URLAuthenticationChallenge) -> URLSession.AuthChallengeDisposition {
         
         var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
         
@@ -159,7 +159,7 @@ open class FigoClient {
 }
 
 
-internal class FigoURLSessionDelegate: NSObject, URLSessionDelegate {
+private class FigoURLSessionDelegate: NSObject, URLSessionDelegate {
     
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(FigoClient.dispositionForChallenge(challenge), nil)
