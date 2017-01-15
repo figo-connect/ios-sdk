@@ -12,9 +12,6 @@ import XCTest
 
 class AccountTests: BaseTestCaseWithLogin {
     
-    let demoBankCode = "90090042"
-    let demoCredentials = ["demo", "demo"]
-    
     func testThatRetrieveAccountsYieldsObjects() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         login() {

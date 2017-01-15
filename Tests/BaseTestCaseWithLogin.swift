@@ -21,6 +21,9 @@ class BaseTestCaseWithLogin: XCTestCase {
     let clientID = "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI"
     let clientSecret = "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY"
 
+    let demoBankCode = "90090042"
+    let demoCredentials = ["demo", "demo"]
+    
     let demoGiroAccountId = "A2132899.4"
     let demoGiroAccountTANSchemeId = "M2132899.9"
     let demoSavingsAccountId = "A2132899.5"

@@ -40,6 +40,8 @@ internal struct TaskState: Unboxable {
     /// Challenge object
     let challenge: Challenge?
     
+    let error: FigoError?
+    
     
     init(unboxer: Unboxer) throws {
         accountID               = try unboxer.unbox(key: "account_id")
@@ -49,6 +51,7 @@ internal struct TaskState: Unboxable {
         isErroneous             = try unboxer.unbox(key: "is_erroneous")
         isEnded                 = try unboxer.unbox(key: "is_ended")
         challenge               = unboxer.unbox(key: "challenge")
+        error                   = unboxer.unbox(key: "error")
     }
 }
 

@@ -84,7 +84,7 @@ public extension FigoClient {
      */
     public func revokeAccessToken(_ completionHandler: @escaping VoidCompletionHandler) {
         guard let accessToken = self.accessToken else {
-            completionHandler(.failure(FigoError.noActiveSession))
+            completionHandler(.failure(FigoError(error: .noActiveSession)))
             return
         }
         request(.revokeToken(accessToken)) { response in

@@ -13,7 +13,7 @@
 		832CABAE1E242F8700D48895 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CABAD1E242F8700D48895 /* Unbox.swift */; };
 		833C01001E2AA72A00AA5E7C /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C00EF1E2AA6A100AA5E7C /* Figo.framework */; };
 		833C01061E2AA7F400AA5E7C /* FigoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E46B1C08A91400FB3709 /* FigoClient.swift */; };
-		833C01071E2AA7F400AA5E7C /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B520C1C10C95500D3CB25 /* Alias.swift */; };
+		833C01071E2AA7F400AA5E7C /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B520C1C10C95500D3CB25 /* Aliases.swift */; };
 		833C01081E2AA7F400AA5E7C /* FigoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA041C0DF90100525E1D /* FigoError.swift */; };
 		833C01091E2AA7F400AA5E7C /* FigoDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA461C0F403700525E1D /* FigoDate.swift */; };
 		833C010A1E2AA7F400AA5E7C /* FigoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FDA051C0DF90100525E1D /* FigoResult.swift */; };
@@ -107,13 +107,15 @@
 		833C01A31E2AADB400AA5E7C /* Security.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA181C0ED5E700525E1D /* Security.json */; };
 		833C01A41E2AADB400AA5E7C /* StandingOrder.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA241C0EE59B00525E1D /* StandingOrder.json */; };
 		833C01A51E2AADB400AA5E7C /* Payment.json in Resources */ = {isa = PBXBuildFile; fileRef = 838FDA2E1C0EF15600525E1D /* Payment.json */; };
+		833C01C41E2AD3F500AA5E7C /* ErrorHandlingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C01C31E2AD3F500AA5E7C /* ErrorHandlingTests.swift */; };
+		833C01C51E2AD3F500AA5E7C /* ErrorHandlingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C01C31E2AD3F500AA5E7C /* ErrorHandlingTests.swift */; };
 		8346AABF1C0A03A700F9F0DE /* TaskEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */; };
 		83648D571C0A42B700286FFB /* LoginSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D561C0A42B700286FFB /* LoginSettings.swift */; };
 		83648D5A1C0C32BE00286FFB /* ServiceEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D591C0C32BE00286FFB /* ServiceEndpoints.swift */; };
 		83648D631C0C705700286FFB /* SupportedBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D621C0C705700286FFB /* SupportedBank.swift */; };
 		83648D661C0C75E600286FFB /* SupportedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D651C0C75E600286FFB /* SupportedService.swift */; };
 		83648D691C0C7B4200286FFB /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83648D681C0C7B4200286FFB /* LoginCredentials.swift */; };
-		837B520D1C10C95500D3CB25 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B520C1C10C95500D3CB25 /* Alias.swift */; };
+		837B520D1C10C95500D3CB25 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B520C1C10C95500D3CB25 /* Aliases.swift */; };
 		838FD9E01C0DAC7800525E1D /* TransactionEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */; };
 		838FD9E31C0DACBE00525E1D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9E21C0DACBE00525E1D /* Transaction.swift */; };
 		838FD9EE1C0DEEFD00525E1D /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FD9ED1C0DEEFD00525E1D /* PaymentType.swift */; };
@@ -183,6 +185,7 @@
 		833C01341E2AA85C00AA5E7C /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		833C01351E2AA85C00AA5E7C /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-macOS.plist"; sourceTree = "<group>"; };
 		833C013A1E2AAB4200AA5E7C /* Figo-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Figo-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		833C01C31E2AD3F500AA5E7C /* ErrorHandlingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandlingTests.swift; sourceTree = "<group>"; };
 		8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEndpoints.swift; sourceTree = "<group>"; };
 		83648D561C0A42B700286FFB /* LoginSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginSettings.swift; path = Types/LoginSettings.swift; sourceTree = "<group>"; };
 		83648D591C0C32BE00286FFB /* ServiceEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpoints.swift; sourceTree = "<group>"; };
@@ -191,7 +194,7 @@
 		83648D651C0C75E600286FFB /* SupportedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportedService.swift; path = Types/SupportedService.swift; sourceTree = "<group>"; };
 		83648D681C0C7B4200286FFB /* LoginCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginCredentials.swift; path = Types/LoginCredentials.swift; sourceTree = "<group>"; };
 		83648D711C0CF0AF00286FFB /* SupportedBanks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SupportedBanks.json; path = Resources/SupportedBanks.json; sourceTree = "<group>"; };
-		837B520C1C10C95500D3CB25 /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
+		837B520C1C10C95500D3CB25 /* Aliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		838FD9D01C0D9FB500525E1D /* TaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTests.swift; sourceTree = "<group>"; };
 		838FD9DF1C0DAC7800525E1D /* TransactionEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionEndpoints.swift; sourceTree = "<group>"; };
 		838FD9E21C0DACBE00525E1D /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Types/Transaction.swift; sourceTree = "<group>"; };
@@ -321,7 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				83F0E46B1C08A91400FB3709 /* FigoClient.swift */,
-				837B520C1C10C95500D3CB25 /* Alias.swift */,
+				837B520C1C10C95500D3CB25 /* Aliases.swift */,
 				838FDA041C0DF90100525E1D /* FigoError.swift */,
 				838FDA461C0F403700525E1D /* FigoDate.swift */,
 				838FDA051C0DF90100525E1D /* FigoResult.swift */,
@@ -388,6 +391,7 @@
 				838FD9EA1C0DE74B00525E1D /* TransactionTests.swift */,
 				83E750911C037D3400545DF6 /* UnboxingTests.swift */,
 				83CEDB801C05DD3D0008CEF8 /* UserTests.swift */,
+				833C01C31E2AD3F500AA5E7C /* ErrorHandlingTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -654,7 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				833C01061E2AA7F400AA5E7C /* FigoClient.swift in Sources */,
-				833C01071E2AA7F400AA5E7C /* Alias.swift in Sources */,
+				833C01071E2AA7F400AA5E7C /* Aliases.swift in Sources */,
 				833C01081E2AA7F400AA5E7C /* FigoError.swift in Sources */,
 				833C01091E2AA7F400AA5E7C /* FigoDate.swift in Sources */,
 				833C010A1E2AA7F400AA5E7C /* FigoResult.swift in Sources */,
@@ -707,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				833C018E1E2AADAA00AA5E7C /* Resources.swift in Sources */,
+				833C01C51E2AD3F500AA5E7C /* ErrorHandlingTests.swift in Sources */,
 				833C018F1E2AADAA00AA5E7C /* BaseTestCaseWithLogin.swift in Sources */,
 				833C01901E2AADAA00AA5E7C /* AccountTests.swift in Sources */,
 				833C01911E2AADAA00AA5E7C /* AuthorizationTests.swift in Sources */,
@@ -725,6 +730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				833C01461E2AABFA00AA5E7C /* Resources.swift in Sources */,
+				833C01C41E2AD3F500AA5E7C /* ErrorHandlingTests.swift in Sources */,
 				833C01471E2AABFA00AA5E7C /* BaseTestCaseWithLogin.swift in Sources */,
 				833C01481E2AABFA00AA5E7C /* AccountTests.swift in Sources */,
 				833C01491E2AABFA00AA5E7C /* AuthorizationTests.swift in Sources */,
@@ -775,7 +781,7 @@
 				838FDA091C0DF90100525E1D /* FigoError.swift in Sources */,
 				838FDA071C0DF90100525E1D /* Request.swift in Sources */,
 				83E7508C1C037ABE00545DF6 /* User.swift in Sources */,
-				837B520D1C10C95500D3CB25 /* Alias.swift in Sources */,
+				837B520D1C10C95500D3CB25 /* Aliases.swift in Sources */,
 				830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */,
 				838FDA271C0EED1500525E1D /* StandingOrderEndpoints.swift in Sources */,
 				838FDA411C0F348C00525E1D /* AccountType.swift in Sources */,

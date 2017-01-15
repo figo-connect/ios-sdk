@@ -75,13 +75,13 @@ open class FigoClient {
         
         if endpoint.needsBasicAuthHeader {
             guard self.basicAuthCredentials != nil else {
-                completion(.failure(FigoError.noActiveSession))
+                completion(.failure(FigoError(error: .noActiveSession)))
                 return
             }
             mutableURLRequest.setValue("Basic \(self.basicAuthCredentials!)", forHTTPHeaderField: "Authorization")
         } else {
             guard self.accessToken != nil else {
-                completion(.failure(FigoError.noActiveSession))
+                completion(.failure(FigoError(error: .noActiveSession)))
                 return
             }
             mutableURLRequest.setValue("Bearer \(self.accessToken!)", forHTTPHeaderField: "Authorization")
@@ -97,23 +97,30 @@ open class FigoClient {
                 if case 200..<300 = response.statusCode  {
                     completion(.success(data ?? Data()))
                 } else {
-                    var serverError: FigoError = error != nil ? .networkLayerError(error: error!) : .internalError(reason: "Unacceptable response status code (\(response.statusCode))")
+                    var serverError: FigoError = error != nil ?
+                        FigoError(error: .networkLayerError(error: error!)) :
+                        FigoError(error: .internalError(reason: "Unacceptable response status code (\(response.statusCode))"))
+                    
                     if let data = data {
-                        if let responseAsString = String(data: data, encoding: String.Encoding.utf8) {
-                            do {
-                                serverError = try unbox(data: data)
-                            } catch {
-                                serverError = .serverError(message: responseAsString)
+                        let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                        if let dictionary = json as? [String: Any] {
+                            if let error = dictionary["error"] as? [String: Any] {
+                                if let error: FigoError = try? unbox(dictionary: error) {
+                                    serverError = error
+                                } else if let responseAsString = String(data: data, encoding: String.Encoding.utf8) {
+                                    serverError = FigoError(error: .serverError(message: responseAsString))
+                                }
                             }
                         }
                     }
+                    
                     completion(.failure(serverError))
                 }
             } else {
                 if let error = error {
-                    completion(.failure(.networkLayerError(error: error)))
+                    completion(.failure(FigoError(error: .networkLayerError(error: error))))
                 } else {
-                    completion(.failure(.emptyResponse))
+                    completion(.failure(FigoError(error: .emptyResponse)))
                 }
 
             }

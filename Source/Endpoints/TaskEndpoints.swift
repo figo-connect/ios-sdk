@@ -31,12 +31,12 @@ public extension FigoClient {
      */
     internal func pollTaskState(_ parameters: PollTaskStateParameters, _ countdown: Int, _ progressHandler: ProgressUpdate? = nil, _ pinHandler: PinResponder?, _ challengeHandler: ChallengeResponder?, _ completionHandler: @escaping VoidCompletionHandler) {
         guard countdown > 0 else {
-            completionHandler(.failure(.taskProcessingTimeout))
+            completionHandler(.failure(FigoError(error: .taskProcessingTimeout)))
             return
         }
 
-        request(Endpoint.pollTaskState(parameters)) { response in
-            let decoded: FigoResult<TaskState> = decodeUnboxableResponse(response)
+        request(Endpoint.pollTaskState(parameters)) { responseData in
+            let decoded: FigoResult<TaskState> = decodeUnboxableResponse(responseData)
             
             switch decoded {
             case .failure(let error):
@@ -49,9 +49,12 @@ public extension FigoClient {
                     progressHandler(state.message)
                 }
                 
-
                 if state.isErroneous {
-                    completionHandler(.failure(.taskProcessingError(accountID: state.accountID, message: state.message)))
+                    if let error = state.error {
+                        completionHandler(.failure(error))
+                    } else {
+                        completionHandler(.failure(FigoError(error: .taskProcessingError(accountID: state.accountID, message: state.message))))
+                    }
                 }
                     
                 else if state.isEnded {
@@ -60,7 +63,7 @@ public extension FigoClient {
                     
                 else if state.isWaitingForPIN {
                     guard let pinHandler = pinHandler else {
-                        completionHandler(.failure(FigoError.internalError(reason: "No PinResponder")))
+                        completionHandler(.failure(FigoError(error: .internalError(reason: "No PinResponder"))))
                         return
                     }
                     
@@ -71,11 +74,11 @@ public extension FigoClient {
                     
                 else if state.isWaitingForResponse {
                     guard let challengeHandler = challengeHandler else {
-                        completionHandler(.failure(FigoError.internalError(reason: "No ChallengeResponder")))
+                        completionHandler(.failure(FigoError(error: .internalError(reason: "No ChallengeResponder"))))
                         return
                     }
                     guard let challenge = state.challenge else {
-                        completionHandler(.failure(FigoError.internalError(reason: "Server is waiting for response but has not given a challenge")))
+                        completionHandler(.failure(FigoError(error: .internalError(reason: "Server is waiting for response but has not given a challenge"))))
                         return
                     }
                     

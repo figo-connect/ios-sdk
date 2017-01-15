@@ -25,9 +25,9 @@ internal func decodeUnboxableResponse<T: Unboxable>(_ data: FigoResult<Data>, co
             let unboxed: T = try unbox(data: data)
             return .success(unboxed)
         } catch (let error as UnboxError) {
-            return .failure(.unboxingError(error.description))
+            return .failure(FigoError(error: .unboxingError(error.description)))
         } catch {
-            return .failure(.unboxingError("Unboxer did throw unexpected error while unboxing object of type \(T.self)"))
+            return .failure(FigoError(error: .unboxingError("Unboxer did throw unexpected error while unboxing object of type \(T.self)")))
         }
     case .failure(let error):
         return .failure(error)
@@ -41,9 +41,9 @@ internal func decodeUnboxableResponse<T: Unboxable>(_ data: FigoResult<Data>, co
             let unboxed: [T] = try unbox(data: data)
             return .success(unboxed)
         } catch (let error as UnboxError) {
-            return .failure(.unboxingError(error.description))
+            return .failure(FigoError(error: .unboxingError(error.description)))
         } catch {
-            return .failure(.unboxingError("Unboxer did throw unexpected error while unboxing collection of type \(T.self)"))
+            return .failure(FigoError(error: .unboxingError("Unboxer did throw unexpected error while unboxing collection of type \(T.self)")))
         }
     case .failure(let error):
         return .failure(error)
