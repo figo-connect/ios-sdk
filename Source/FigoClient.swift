@@ -55,7 +55,7 @@ public class FigoClient {
      Create a FigoClient instance
      
      - Parameter session: NSURLSession instance (Uses own instance by default)
-     - Parameter logger: XCGLogger instance (Logging disabled by default)
+     - Parameter logger: Logger instance (Logging disabled by default)
      
      - Note: SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.
      */
