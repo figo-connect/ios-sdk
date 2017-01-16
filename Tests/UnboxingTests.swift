@@ -148,7 +148,7 @@ class UnboxingTests: XCTestCase {
             XCTAssertEqual(t.purpose, "Miete Vertragsnr. 12993")
             XCTAssertEqual(t.transactionID, "T1.24")
             XCTAssertEqual(t.type, "Direct debit")
-            XCTAssertEqual(t.valueDate.timestamp, "2013-04-10T12:00:00.000Z")
+            XCTAssertEqual(t.valueDate?.timestamp ?? "", "2013-04-10T12:00:00.000Z")
             XCTAssertEqual(t.visited, true)
         }
         catch (let error as UnboxError) {
