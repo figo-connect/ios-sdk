@@ -105,7 +105,7 @@ public struct Transaction: Unboxable {
     public let type: String
     
     /// Value date
-    public let valueDate: FigoDate
+    public let valueDate: FigoDate?
     
     /// This flag indicates whether the transaction has already been marked as visited by the user
     public let visited: Bool
@@ -130,7 +130,7 @@ public struct Transaction: Unboxable {
         purpose             = unboxer.unbox(key: "purpose")
         transactionID       = try unboxer.unbox(key: "transaction_id")
         type                = try unboxer.unbox(key: "type")
-        valueDate           = try unboxer.unbox(key: "value_date")
+        valueDate           = unboxer.unbox(key: "value_date")
         visited             = try unboxer.unbox(key: "visited")
         additionalInfo      = unboxer.unbox(key: "additional_info")
     }
