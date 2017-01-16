@@ -16,8 +16,7 @@ class TransactionsTests: BaseTestCaseWithLogin {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            var parameters = RetrieveTransactionsParameters()
-            parameters.since = "2015-11-30"
+            let parameters = RetrieveTransactionsParameters()
 
             figo.retrieveTransactionsForAccount(self.demoGiroAccountId, parameters: parameters) { result in
                 if case .success(let envelope) = result {
@@ -34,8 +33,7 @@ class TransactionsTests: BaseTestCaseWithLogin {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
         login() {
-            var parameters = RetrieveTransactionsParameters()
-            parameters.since = "2015-11-30"
+            let parameters = RetrieveTransactionsParameters()
             
             figo.retrieveTransactions(parameters) { result in
                 
