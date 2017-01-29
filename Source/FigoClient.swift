@@ -38,7 +38,7 @@ public class FigoClient {
     private let session: URLSession
     
     // Used for Basic HTTP authentication, derived from CliendID and ClientSecret
-    internal var basicAuthCredentials: String?
+    private var basicAuthCredentials: String?
 
     /// OAuth2 access token
     internal var accessToken: String?
@@ -47,24 +47,37 @@ public class FigoClient {
     internal var refreshToken: String?
     
     
-    public convenience init() {
-        self.init(session: nil, logger: nil)
+    /**
+     Create a FigoClient instance
+     
+     - Parameter clientID: Client ID
+     - Parameter clientSecret: Client secret
+     
+     - Note: SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.
+     */
+    public convenience init(clientID: String, clientSecret: String) {
+        self.init(clientID: clientID, clientSecret: clientSecret, session: nil, logger: nil)
     }
     
     /**
      Create a FigoClient instance
      
+     - Parameter clientID: Client ID
+     - Parameter clientSecret: Client secret
      - Parameter session: NSURLSession instance (Uses own instance by default)
      - Parameter logger: Logger instance (Logging disabled by default)
      
      - Note: SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.
      */
-    public init(session: URLSession? = nil, logger: Logger? = nil) {
+    public init(clientID: String, clientSecret: String, session: URLSession? = nil, logger: Logger? = nil) {
+        self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
+        
         if let session = session {
             self.session = session
         } else {
             self.session = URLSession(configuration: URLSessionConfiguration.default, delegate: sessionDelegate, delegateQueue: nil)
         }
+        
         if let logger = logger {
             log = logger
         }
@@ -132,12 +145,9 @@ public class FigoClient {
     /**
      Check's the server's certificates to make sure that you are really talking to the figo server
      */
-    internal class func dispositionForChallenge(_ challenge: URLAuthenticationChallenge) -> URLSession.AuthChallengeDisposition {
-        
+    public class func dispositionForChallenge(_ challenge: URLAuthenticationChallenge) -> URLSession.AuthChallengeDisposition {
         var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
-        
-        if let serverTrust = challenge.protectionSpace.serverTrust
-        {
+        if let serverTrust = challenge.protectionSpace.serverTrust {
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
                 let certificateData = certificateDataForTrust(serverTrust)
                 let serverFingerprints = Set(certificateData.map() { return sha1($0) })
@@ -145,6 +155,7 @@ public class FigoClient {
                     disposition = .cancelAuthenticationChallenge
                 }
             }
+            
             if !trustIsValid(serverTrust) {
                 disposition = .cancelAuthenticationChallenge
             }

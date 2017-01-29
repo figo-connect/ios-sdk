@@ -11,7 +11,7 @@ import XCTest
 import Figo
 
 
-let figo = FigoClient(logger: ConsoleLogger())
+let figo = FigoClient(clientID: "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI", clientSecret: "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY", logger: ConsoleLogger(levels: [.debug, .error]))
 
 
 class BaseTestCaseWithLogin: XCTestCase {
@@ -44,7 +44,7 @@ class BaseTestCaseWithLogin: XCTestCase {
             return
         }
         debugPrint("Begin Login")
-        figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { refreshToken in
+        figo.loginWithUsername(username, password: password) { refreshToken in
             self.refreshToken = refreshToken.value
             XCTAssertNotNil(refreshToken.value)
             XCTAssertNil(refreshToken.error)
@@ -65,5 +65,14 @@ class BaseTestCaseWithLogin: XCTestCase {
             debugPrint("End Logout")
             completionHandler()
         }
+    }
+    
+    /// Allows you to get rid of the boilerplate code for async callbacks in test cases
+    func waitForCompletionOfTests(tests: (_ doneWaiting: @escaping () -> ()) -> ()) {
+        let completionExpectation = self.expectation(description: "Completion should be called")
+        tests {
+            completionExpectation.fulfill()
+        }
+        self.waitForExpectations(timeout: 30, handler: nil)
     }
 }

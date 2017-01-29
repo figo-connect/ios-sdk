@@ -32,10 +32,10 @@ class UserTests: BaseTestCaseWithLogin {
         let params = CreateUserParameters(name: username, email: username, password: password, sendNewsletter: false, language: "de")
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        figo.createNewFigoUser(params, clientID: clientID, clientSecret: clientSecret) { result in
+        figo.createNewFigoUser(params) { result in
             XCTAssertNil(result.error)
             
-            figo.loginWithUsername(username, password: password, clientID: self.clientID, clientSecret: self.clientSecret) { refreshToken in
+            figo.loginWithUsername(username, password: password) { refreshToken in
                 XCTAssertNil(refreshToken.error)
                 
                 figo.deleteCurrentUser({ (result) -> Void in

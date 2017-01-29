@@ -21,10 +21,8 @@ public extension FigoClient {
     /**
      CREATE NEW FIGO USER
      */
-    public func createNewFigoUser(_ user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: @escaping (FigoResult<String>) -> Void) {
-        self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
+    public func createNewFigoUser(_ user: CreateUserParameters, _ completionHandler: @escaping (FigoResult<String>) -> Void) {
         request(Endpoint.createNewFigoUser(user)) { response in
-            
             let envelopeUnboxingResult: FigoResult<RecoveryPasswordEnvelope> = decodeUnboxableResponse(response)
             switch envelopeUnboxingResult {
             case .success(let envelope):

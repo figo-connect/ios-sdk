@@ -22,12 +22,9 @@ public extension FigoClient {
      
      - Parameter username: The figo account email address
      - Parameter password: The figo account password
-     - Parameter clientID: Client ID
-     - Parameter clientSecret: Client secret
      - Parameter completionHandler: Returns refresh token or error
      */
-    public func loginWithUsername(_ username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: @escaping (FigoResult<String>) -> Void) {
-        self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
+    public func loginWithUsername(_ username: String, password: String, _ completionHandler: @escaping (FigoResult<String>) -> Void) {
         request(.loginUser(username: username, password: password)) { response in
             
             let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)
@@ -51,12 +48,9 @@ public extension FigoClient {
      as the user has not revoked the access granted to your application.
      
      - Parameter refreshToken: The refresh token returned from a previous CREDENTIAL LOGIN
-     - Parameter clientID: Client ID
-     - Parameter clientSecret: Client secret
      - parameter completionHandler: Returns nothing or error
      */
-    public func loginWithRefreshToken(_ refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: @escaping VoidCompletionHandler) {
-        self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
+    public func loginWithRefreshToken(_ refreshToken: String, _ completionHandler: @escaping VoidCompletionHandler) {
         request(Endpoint.refreshToken(refreshToken)) { response in
 
             let unboxingResult: FigoResult<Authorization> = decodeUnboxableResponse(response)

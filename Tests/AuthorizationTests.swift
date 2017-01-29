@@ -24,7 +24,7 @@ class AuthorizationTests: BaseTestCaseWithLogin {
     
     func testThatLoginWithWrongPasswordYieldsCorrectError() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
-        figo.loginWithUsername(username, password: "foo", clientID: clientID, clientSecret: clientSecret) { result in
+        figo.loginWithUsername(username, password: "foo") { result in
             XCTAssertNotNil(result.error)
             if case .failure(let error) = result {
                 XCTAssert(error.description.contains("Invalid credentials"))
@@ -70,7 +70,7 @@ class AuthorizationTests: BaseTestCaseWithLogin {
         login() {
             figo.revokeAccessToken { result in
                 XCTAssertNil(result.error)
-                figo.loginWithRefreshToken(figo.refreshToken!, clientID: self.clientID, clientSecret: self.clientSecret) { result in
+                figo.loginWithRefreshToken(figo.refreshToken!) { result in
                     XCTAssertNil(result.error)
                     self.logout() {
                         expectation.fulfill()

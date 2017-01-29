@@ -55,23 +55,34 @@ We don't support Cocoapods because it doesn't support the bridging header at thi
 
 After creating an instance of `FigoClient` you can call functions on it representing the API endpoints. These functions will always return a `FigoResult<T>`, where `T` will a corresponding type like `Account`, `[Account]` or `[Transaction]`.
 
+To use the client you need a client ID and a secret, see [Registering your application](## Registering your application) for details.
+
 	import Figo
-	let figo = FigoClient()
+	let figo = FigoClient(clientID: "xyz", clientSecret: "123")
 	
 Take a look at the test cases to see more examples of interaction with the API.
 
 ### Create user
 
-To be able to login and use the figo API a user is required.
+To be able to login and use the figo API a user is required. (Except for the [Supported banks and services](### Supported banks and services) endpoints which don't require to be logged in and therefore don't require a user.)
 
-    let params = CreateUserParameters(name: username, email: username, password: password, sendNewsletter: false, language: "de", affiliateUser: nil, affiliateClientID: nil)
-    figo.createNewFigoUser(params, clientID: clientID, clientSecret: clientSecret) { result in
+    let params = CreateUserParameters(name: "name", email: "email", password: "password", sendNewsletter: false, language: "de", affiliateUser: nil, affiliateClientID: nil)
+    figo.createNewFigoUser(params) { result in
     	...
     }
 
 ### Login	
-    figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
+
+    figo.loginWithUsername(username, password: password) { result in
         self.refreshToken = result.value
+        ...
+    }
+    
+ The returned refresh token can be stored by the client for future logins, but only
+ in a securely encryped store like the keychain or a SQLCipher database.
+ 
+    figo.loginWithRefreshToken(refreshToken) { result in
+    	...
     }
 
 ### Retrieve all accounts
@@ -100,9 +111,14 @@ To be able to login and use the figo API a user is required.
 
 For now we have a very simple logging solution. By default logging is disabled. If you want to enable logging, you can pass a logger instance to the `FigoClient`.
 
-	let figo = FigoClient(logger: ConsoleLogger())
+	let figo = FigoClient(clientID: "xyz", clientSecret: "123", logger: ConsoleLogger())
 
-If you want control of what is logged or how, you can provide your own instance that conforms to the `Logger` protocol.
+The `ConsoleLogger` by default only logs debug and error events. If you want to see the request headers and responses, you can pass in the `LogLevel` parameter.
+
+	let logger = ConsoleLogger(levels: [.verbose, .debug, .error])
+	let figo = FigoClient(clientID: "xyz", clientSecret: "123", logger: logger)
+
+If you want full control of what is logged or how, you can provide your own instance that conforms to the `Logger` protocol.
 
 	public protocol Logger {
 	    var debug: (String) -> Void { get }
@@ -118,7 +134,7 @@ If you want control of what is logged or how, you can provide your own instance 
 
 The central element of this API is the figo user, who owns bank accounts and grants selective access to them to other applications. This account can either be a free or a premium account. While both support the same set of features, the free account can only be used with the application through it got created, while a premium account can be used in all applications integrating figo.
 
-	createNewFigoUser(user: CreateUserParameters, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void)
+	createNewFigoUser(user: CreateUserParameters, _ completionHandler: (FigoResult<String>) -> Void)
 	retrieveCurrentUser(completionHandler: (FigoResult<User>) -> Void)
 	deleteCurrentUser(completionHandler: VoidCompletionHandler)
 
@@ -127,8 +143,8 @@ The central element of this API is the figo user, who owns bank accounts and gra
 
 The figo API uses OAuth 2 for authentication purposes and you need a user to login.
 
-	loginWithUsername(username: String, password: String, clientID: String, clientSecret: String, _ completionHandler: (FigoResult<String>) -> Void)
-	loginWithRefreshToken(refreshToken: String, clientID: String, clientSecret: String, _ completionHandler: VoidCompletionHandler)
+	loginWithUsername(username: String, password: String, _ completionHandler: (FigoResult<String>) -> Void)
+	loginWithRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler)
 	revokeAccessToken(completionHandler: VoidCompletionHandler)
 	revokeRefreshToken(refreshToken: String, _ completionHandler: VoidCompletionHandler)
 	
@@ -164,7 +180,9 @@ Usually the bank accounts are synchronized on a daily basis. However, the synchr
 
 To set up a new bank account in figo, you need to provide the right kind of credentials for each bank. These settings can be retrieved from the API aswell as a list of all supported banks and bank-like services.
 
-	retrieveSupportedBanks(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedBank]>) -> Void)
+**You don't need to be logged in to use this group of endpoints.**
+
+	retrieveSupportedBanks(countryCode: String? = nil, _ completionHandler: (FigoResult<[SupportedBank]>) -> Void)
 	retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedService]>) -> Void)
 	retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (FigoResult<LoginSettings>) -> Void)
 		

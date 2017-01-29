@@ -88,61 +88,6 @@ class AccountTests: BaseTestCaseWithLogin {
     }
     
     
-    func testRetrieveLoginSettings() {
-        let expectation = self.expectation(description: "Wait for all asyc calls to return")
-        login() {
-            figo.retrieveLoginSettings(bankCode: "20090500") { result in
-                XCTAssertNil(result.error)
-                if case .success(let settings) = result {
-                    XCTAssertTrue(settings.supported)
-                    XCTAssertEqual(settings.authType, "pin")
-                }
-                
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
 
-    func testSupportedBanksUnboxing() {
-        let data = Resources.SupportedBanks.data
-        do {
-            let envelope: BanksListEnvelope = try unbox(data: data)
-            XCTAssertEqual(envelope.banks.first!.bankCode, 10000000)
-            
-        } catch (let error) {
-            XCTAssertNil(error)
-        }
-    }
-    
-    func disabled_testRetrieveSupportedBanks() {
-        let expectation = self.expectation(description: "Wait for all asyc calls to return")
-        login() {
-            figo.retrieveSupportedBanks() { result in
-                XCTAssertNil(result.error)
-                if case .success(let banks) = result {
-                    let bank = banks.first!
-                    debugPrint(bank)
-                }
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: 60, handler: nil)
-    }
-    
-    func testRetrieveSupportedServices() {
-        let expectation = self.expectation(description: "Wait for all asyc calls to return")
-        login() {
-            figo.retrieveSupportedServices() { result in
-                XCTAssertNil(result.error)
-                if case .success(let services) = result {
-                    let service = services.first!
-                    debugPrint(service)
-                }
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
     
 }

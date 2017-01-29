@@ -15,7 +15,7 @@ class ErrorHandlingTests: BaseTestCaseWithLogin {
     func testInvalidUsername() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        figo.loginWithUsername("foo", password: "bar", clientID: clientID, clientSecret: clientSecret) { result in
+        figo.loginWithUsername("foo", password: "bar") { result in
             if case .success = result {
                 XCTFail()
             }
@@ -33,7 +33,7 @@ class ErrorHandlingTests: BaseTestCaseWithLogin {
     func testInvalidPassword() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        figo.loginWithUsername(username, password: "foo", clientID: clientID, clientSecret: clientSecret) { result in
+        figo.loginWithUsername(username, password: "foo") { result in
             if case .success = result {
                 XCTFail()
             }
@@ -49,9 +49,10 @@ class ErrorHandlingTests: BaseTestCaseWithLogin {
     }
     
     func testInvalidClientID() {
+        let figo = FigoClient(clientID: "123", clientSecret: clientSecret, logger: ConsoleLogger())
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        figo.loginWithUsername(username, password: password, clientID: "foo", clientSecret: clientSecret) { result in
+        figo.loginWithUsername(username, password: password) { result in
             if case .success = result {
                 XCTFail()
             }
@@ -67,9 +68,10 @@ class ErrorHandlingTests: BaseTestCaseWithLogin {
     }
     
     func testInvalidClientSecret() {
+        let figo = FigoClient(clientID: clientID, clientSecret: "123", logger: ConsoleLogger())
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: "foo") { result in
+        figo.loginWithUsername(username, password: password) { result in
             if case .success = result {
                 XCTFail()
             }
@@ -87,7 +89,7 @@ class ErrorHandlingTests: BaseTestCaseWithLogin {
     func testInvalidBankingCredentials() {
         let expectation = self.expectation(description: "Wait for all asyc calls to return")
         
-        figo.loginWithUsername(username, password: password, clientID: clientID, clientSecret: clientSecret) { result in
+        figo.loginWithUsername(username, password: password) { result in
             if case .success = result {
                 let account = CreateAccountParameters(bankCode: "66450050", iban: nil, credentials: ["foo2", "bar"], savePin: false)
                 

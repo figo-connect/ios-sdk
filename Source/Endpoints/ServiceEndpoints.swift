@@ -14,11 +14,11 @@ public extension FigoClient {
      
      This only returns the bank accounts the user has chosen to share with your application
      
-     - Parameter countryCode: The country the service comes from (Valid values: de)
+     - Parameter countryCode: The country the service comes from (see API reference for valid values)
      - Parameter bankCode: Bank code
      - Parameter completionHandler: Returns login settings or error
      */
-    public func retrieveLoginSettings(_ countryCode: String = "de", bankCode: String, _ completionHandler: @escaping (FigoResult<LoginSettings>) -> Void) {
+    public func retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: @escaping (FigoResult<LoginSettings>) -> Void) {
         request(Endpoint.retrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }
@@ -27,9 +27,11 @@ public extension FigoClient {
     /**
      RETRIEVE LIST OF SUPPORTED BANKS, CREDIT CARDS, OTHER PAYMENT SERVICES
      
-     - Parameter countryCode: The country the service comes from (Valid values: de)
+     Does not require login. Very large response!
+     
+     - Parameter countryCode: The country the service comes from (see API reference for valid values)
      */
-    public func retrieveSupportedBanks(_ countryCode: String = "de", _ completionHandler: @escaping (FigoResult<[SupportedBank]>) -> Void) {
+    public func retrieveSupportedBanks(countryCode: String? = nil, _ completionHandler: @escaping (FigoResult<[SupportedBank]>) -> Void) {
         request(Endpoint.retrieveSupportedBanks(countryCode: countryCode)) { response in
             let envelopeUnboxingResult: FigoResult<BanksListEnvelope> = decodeUnboxableResponse(response)
             
@@ -49,9 +51,9 @@ public extension FigoClient {
      
      These services do not use bank codes and are therefore listed seperatly. In order to provide a uniform interface for the remaining process, part of the response is a fake bank code, used as a surrogate for these services in our other calls.
      
-     - Parameter countryCode: The country the service comes from (Valid values: de)
+     - Parameter countryCode: The country the service comes from (see API reference for valid values)
      */
-    public func retrieveSupportedServices(_ countryCode: String = "de", _ completionHandler: @escaping (FigoResult<[SupportedService]>) -> Void) {
+    public func retrieveSupportedServices(countryCode: String = "de", _ completionHandler: @escaping (FigoResult<[SupportedService]>) -> Void) {
         request(Endpoint.retrieveSupportedServices(countryCode: countryCode)) { response in
             let envelopeUnboxingResult: FigoResult<ServicesListEnvelope> = decodeUnboxableResponse(response)
             

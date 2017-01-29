@@ -20,45 +20,64 @@ public protocol Logger {
 }
 
 public struct VoidLogger: Logger {
-    public var debug: (String) -> Void = { message in
-        
-    }
-    public var verbose: (String) -> Void = { message in
-        
-    }
-    public var error: (String) -> Void = { message in
-        
-    }
+    public var debug: (String) -> Void = { _ in }
+    public var verbose: (String) -> Void = { _ in }
+    public var error: (String) -> Void = { _ in }
 }
 
+/**
+ Simple implementation of a console logger
+ 
+ Does not log verbosely per default.
+ */
 public struct ConsoleLogger: Logger {
-    public init() {
     
+    public enum LogLevel {
+        case verbose
+        case debug
+        case error
     }
-    public var debug: (String) -> Void = { message in
-        print(message)
-    }
-    public var verbose: (String) -> Void = { message in
-        print(message)
-    }
-    public var error: (String) -> Void = { message in
-        print(message)
+    
+    public let verbose: (String) -> Void
+    public let debug: (String) -> Void
+    public let error: (String) -> Void
+    
+    public init(levels: [LogLevel]? = [.debug, .error]) {
+        if levels?.contains(.debug) ?? false {
+            self.debug = { message in
+                print(message)
+            }
+        } else {
+            self.debug = { _ in
+                
+            }
+        }
+        
+        if levels?.contains(.verbose) ?? false {
+            self.verbose = { message in
+                print(message)
+            }
+        } else {
+            self.verbose = { _ in
+                
+            }
+        }
+        
+        if levels?.contains(.error) ?? false {
+            self.error = { message in
+                print(message)
+            }
+        } else {
+            self.error = { _ in
+                
+            }
+        }
     }
 }
-
 
 func debugPrintRequest(_ request: URLRequest) {
     log.debug("⬆️ \(request.httpMethod!) \(request.url!)")
-    if let fields = request.allHTTPHeaderFields {
-        for (key, value) in fields {
-            log.verbose("\(key): \(value)")
-        }
-    }
-    if let data = request.httpBody {
-        if let string = String(data: data, encoding: String.Encoding.utf8) {
-            log.verbose(string)
-        }
-    }
+    log.verbose(request.curlCommand)
 }
 
 
