@@ -1,3 +1,7 @@
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Figo.svg)](https://img.shields.io/cocoapods/v/Figo.svg)
+[![Platform](https://img.shields.io/cocoapods/p/Figo.svg?style=flat)](http://cocoadocs.org/docsets/Figo)
+[![Twitter](https://img.shields.io/badge/twitter-@figoapi-blue.svg?style=flat)](http://twitter.com/figoapi)
 
 # figo iOS SDK
 
@@ -6,7 +10,7 @@ This Framework wraps the figo Connect API endpoints in nicely typed Swift functi
 - We don't support Swift versions older than 3.0
 - Supports iOS and macOS
 
-Client reference: [docs/index.html](docs/index.html)
+Client reference: [docs/index.html](http://cocoadocs.org/docsets/Figo)
 
 
 ## figo Connect API
@@ -76,7 +80,7 @@ To use the client you need a client ID and a secret, see [Registering your appli
 	import Figo
 	let figo = FigoClient(clientID: "xyz", clientSecret: "123")
 	
-Browse the [client reference](docs/index.html) to see all available funtions or take a look at the test cases to see more examples of interaction with the API.
+Browse the [client reference](http://cocoadocs.org/docsets/Figo) to see all available funtions or take a look at the test cases to see more examples of interaction with the API.
 
 ### Create user
 
