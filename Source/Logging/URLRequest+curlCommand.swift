@@ -3,7 +3,7 @@
 //  Figo
 //
 //  Created by Christian König on 29.01.17.
-//  Copyright © 2017 CodeStage. All rights reserved.
+//  Copyright © 2017 figo GmbH. All rights reserved.
 //
 
 import Foundation
