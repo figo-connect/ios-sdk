@@ -12,20 +12,17 @@ import XCTest
 
 class ServiceTests: BaseTestCaseWithLogin {
     
-    func testRetrieveLoginSettings() {
-        let expectation = self.expectation(description: "Wait for all asyc calls to return")
-        login() {
-            figo.retrieveLoginSettings(bankCode: "20090500") { result in
+    func testThatRetrieveLoginSettingsYieldsResult() {
+        self.waitForCompletionOfTests() { done in
+            figo.retrieveLoginSettings(countryCode: "de", bankCode: "10000000") { result in
                 XCTAssertNil(result.error)
                 if case .success(let settings) = result {
                     XCTAssertTrue(settings.supported)
                     XCTAssertEqual(settings.authType, "pin")
                 }
-                
-                expectation.fulfill()
+                done()
             }
         }
-        self.waitForExpectations(timeout: 30, handler: nil)
     }
     
     func testSupportedBanksUnboxing() {

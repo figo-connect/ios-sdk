@@ -12,13 +12,13 @@ public extension FigoClient {
     /**
      RETRIEVE LOGIN SETTINGS FOR A BANK OR SERVICE
      
-     This only returns the bank accounts the user has chosen to share with your application
+     Does not require login.
      
      - Parameter countryCode: The country the service comes from (see API reference for valid values)
      - Parameter bankCode: Bank code
      - Parameter completionHandler: Returns login settings or error
      */
-    public func retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: @escaping (FigoResult<LoginSettings>) -> Void) {
+    public func retrieveLoginSettings(countryCode: String, bankCode: String, _ completionHandler: @escaping (FigoResult<LoginSettings>) -> Void) {
         request(Endpoint.retrieveLoginSettings(countryCode: countryCode, bankCode: bankCode)) { response in
             completionHandler(decodeUnboxableResponse(response))
         }

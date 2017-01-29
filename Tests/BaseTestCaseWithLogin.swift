@@ -11,7 +11,7 @@ import XCTest
 import Figo
 
 
-let figo = FigoClient(clientID: "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI", clientSecret: "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY", logger: ConsoleLogger(levels: [.debug, .error]))
+let figo = FigoClient(clientID: "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI", clientSecret: "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY", logger: ConsoleLogger(levels: [.verbose, .debug, .error]))
 
 
 class BaseTestCaseWithLogin: XCTestCase {

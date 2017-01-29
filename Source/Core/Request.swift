@@ -98,7 +98,7 @@ internal enum Endpoint {
         case .removeStoredPin(let bankId):
             return "/rest/banks/\(bankId)/remove_pin"
         case .retrieveLoginSettings(let countryCode, let bankCode):
-            return "/rest/catalog/banks/\(countryCode)/\(bankCode)"
+            return "/catalog/banks/\(countryCode)/\(bankCode)"
         case .retrieveSupportedBanks(let countryCode):
             if let countryCode = countryCode {
                 return "/catalog/banks/\(countryCode)"
@@ -218,7 +218,7 @@ internal enum Endpoint {
     
     internal var needsBasicAuthHeader: Bool {
         switch self {
-        case .loginUser, .refreshToken, .revokeToken, .createNewFigoUser, .retrieveSupportedBanks, .retrieveSupportedServices:
+        case .loginUser, .refreshToken, .revokeToken, .createNewFigoUser, .retrieveLoginSettings, .retrieveSupportedBanks, .retrieveSupportedServices:
             return true
         default:
             return false
