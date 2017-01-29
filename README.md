@@ -41,14 +41,6 @@ Integrate the framework into your project:
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
 * Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
 
-### The bridging header
-
-We need CommonCrypto for our SSL pinning implementation, which is not available as a modular header. This makes it a bit challenging to import it into Swift. To work around this, we have included an Objective-C bridging header which imports the headers.
-
-	#import <CommonCrypto/CommonCrypto.h>
-
-If you want to add our source files directly without adding the project as a sub-project in Xcode, you have to add that import to your bridging header.
-
 ### Cocoapods / Carthage
 
 We don't support Cocoapods because it doesn't support the bridging header at this time. As for Carthage, we just haven't come around to it yet.

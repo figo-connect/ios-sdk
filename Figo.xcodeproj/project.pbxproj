@@ -16,6 +16,10 @@
 		831183761E3DF13D000DA80C /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8311836F1E3DF136000DA80C /* Logging.swift */; };
 		831183771E3DF141000DA80C /* URLRequest+curlCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831183701E3DF136000DA80C /* URLRequest+curlCommand.swift */; };
 		831183781E3DF141000DA80C /* URLRequest+curlCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831183701E3DF136000DA80C /* URLRequest+curlCommand.swift */; };
+		831183B81E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
+		831183B91E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
+		831183BA1E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
+		831183BB1E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
 		832CABAE1E242F8700D48895 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CABAD1E242F8700D48895 /* Unbox.swift */; };
 		833C01001E2AA72A00AA5E7C /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C00EF1E2AA6A100AA5E7C /* Figo.framework */; };
 		833C01061E2AA7F400AA5E7C /* FigoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E46B1C08A91400FB3709 /* FigoClient.swift */; };
@@ -184,6 +188,7 @@
 		831183651E3DEAE1000DA80C /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
 		8311836F1E3DF136000DA80C /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		831183701E3DF136000DA80C /* URLRequest+curlCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+curlCommand.swift"; sourceTree = "<group>"; };
+		831183B71E3E2F66000DA80C /* api.figo.me.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = api.figo.me.cer; sourceTree = "<group>"; };
 		832CABAD1E242F8700D48895 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
 		833285EE1C04D45900A9FE73 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = Resources/Balance.json; sourceTree = "<group>"; };
 		833285F01C04D48E00A9FE73 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
@@ -196,7 +201,6 @@
 		8346AABE1C0A03A700F9F0DE /* TaskEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEndpoints.swift; sourceTree = "<group>"; };
 		83648D561C0A42B700286FFB /* LoginSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginSettings.swift; path = Types/LoginSettings.swift; sourceTree = "<group>"; };
 		83648D591C0C32BE00286FFB /* ServiceEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndpoints.swift; sourceTree = "<group>"; };
-		83648D5D1C0C598B00286FFB /* Figo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Figo-Bridging-Header.h"; sourceTree = "<group>"; };
 		83648D621C0C705700286FFB /* SupportedBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportedBank.swift; path = Types/SupportedBank.swift; sourceTree = "<group>"; };
 		83648D651C0C75E600286FFB /* SupportedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportedService.swift; path = Types/SupportedService.swift; sourceTree = "<group>"; };
 		83648D681C0C7B4200286FFB /* LoginCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginCredentials.swift; path = Types/LoginCredentials.swift; sourceTree = "<group>"; };
@@ -236,7 +240,6 @@
 		838FDA461C0F403700525E1D /* FigoDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FigoDate.swift; sourceTree = "<group>"; };
 		83CEDB801C05DD3D0008CEF8 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		83CEDB821C05F43D0008CEF8 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = Resources/User.json; sourceTree = "<group>"; };
-		83D3A6811BFF2953003EDE45 /* Figo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figo.h; sourceTree = "<group>"; };
 		83D3A6FE1BFF8E97003EDE45 /* Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authorization.swift; path = Types/Authorization.swift; sourceTree = "<group>"; };
 		83D3A7091BFFB6A7003EDE45 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		83D3A70C1BFFB71D003EDE45 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Types/Account.swift; sourceTree = "<group>"; };
@@ -356,8 +359,6 @@
 		83D3A6801BFF2953003EDE45 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				83D3A6811BFF2953003EDE45 /* Figo.h */,
-				83648D5D1C0C598B00286FFB /* Figo-Bridging-Header.h */,
 				833C01341E2AA85C00AA5E7C /* Info-iOS.plist */,
 				833C01351E2AA85C00AA5E7C /* Info-macOS.plist */,
 			);
@@ -453,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				83D3A7201C03471D003EDE45 /* README.md */,
+				831183B71E3E2F66000DA80C /* api.figo.me.cer */,
 				83D3A67F1BFF2953003EDE45 /* Source */,
 				83D3A7081BFFB6A7003EDE45 /* Tests */,
 				83F3AF231BFF28D900767D77 /* Products */,
@@ -616,6 +618,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831183BA1E3E2F66000DA80C /* api.figo.me.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +626,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831183BB1E3E2F66000DA80C /* api.figo.me.cer in Resources */,
 				833C01991E2AADB400AA5E7C /* Account.json in Resources */,
 				833C019A1E2AADB400AA5E7C /* User.json in Resources */,
 				833C019B1E2AADB400AA5E7C /* Balance.json in Resources */,
@@ -643,6 +647,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831183B91E3E2F66000DA80C /* api.figo.me.cer in Resources */,
 				833C01511E2AAC0600AA5E7C /* Account.json in Resources */,
 				833C01521E2AAC0600AA5E7C /* User.json in Resources */,
 				833C01531E2AAC0600AA5E7C /* Balance.json in Resources */,
@@ -663,6 +668,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831183B81E3E2F66000DA80C /* api.figo.me.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,7 +1002,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.figo;
 				PRODUCT_NAME = Figo;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
-				SWIFT_OBJC_BRIDGING_HEADER = "Source/Supporting Files/Figo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1041,7 +1046,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.figo;
 				PRODUCT_NAME = Figo;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
-				SWIFT_OBJC_BRIDGING_HEADER = "Source/Supporting Files/Figo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -9,15 +9,14 @@
 import Foundation
 
 
-// Server's SHA1 fingerprints
-private let TRUSTED_FINGERPRINTS = Set(["dbe2e9158fc9903084fe36caa61138d85a205d93"])
-
 /// Milliseconds between polling task states
 internal let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
 
 /// Number of task state polling requests before giving up
 internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
 
+/// Name of certificate file for public key pinning
+internal let CERTIFICATE_FILE = "api.figo.me"
 
 
 /**
@@ -32,19 +31,30 @@ internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
  - Important: Completion handlers are NOT executed on the main thread
  
  */
-public class FigoClient {
+public class FigoClient: NSObject {
     
-    private let sessionDelegate = FigoURLSessionDelegate()
-    private let session: URLSession
+    private lazy var session: URLSession = {
+        return URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+    }()
     
-    // Used for Basic HTTP authentication, derived from CliendID and ClientSecret
+    /// Used for Basic HTTP authentication, derived from CliendID and ClientSecret
     private var basicAuthCredentials: String?
 
     /// OAuth2 access token
-    internal var accessToken: String?
+    var accessToken: String?
     
     /// OAuth2 refresh token
-    internal var refreshToken: String?
+    var refreshToken: String?
+    
+    /// Public key extracted from certificate file in bundle
+    lazy var publicKey: SecKey = {
+        let url = Bundle(for: FigoClient.self).url(forResource: CERTIFICATE_FILE, withExtension: "cer")!
+        let data = try? Data(contentsOf: url)
+        assert(data != nil, "Failed to load contents of certificate file '\(CERTIFICATE_FILE).cer'")
+        let key = publicKeyForCertificateData(data: data!)
+        assert(key != nil, "Failed to extract public key from certificate file '\(CERTIFICATE_FILE).cer'")
+        return key!
+    }()
     
     
     /**
@@ -70,12 +80,12 @@ public class FigoClient {
      - Note: SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.
      */
     public init(clientID: String, clientSecret: String, session: URLSession? = nil, logger: Logger? = nil) {
+        super.init()
+        
         self.basicAuthCredentials = base64EncodeBasicAuthCredentials(clientID, clientSecret)
         
         if let session = session {
             self.session = session
-        } else {
-            self.session = URLSession(configuration: URLSessionConfiguration.default, delegate: sessionDelegate, delegateQueue: nil)
         }
         
         if let logger = logger {
@@ -141,21 +151,19 @@ public class FigoClient {
         task.resume()
     }
     
-    
     /**
-     Check's the server's certificates to make sure that you are really talking to the figo server
+     Checks the server's certificates to make sure that you are really talking to the figo server
      */
-    public class func dispositionForChallenge(_ challenge: URLAuthenticationChallenge) -> URLSession.AuthChallengeDisposition {
+    public func dispositionForChallenge(_ challenge: URLAuthenticationChallenge) -> URLSession.AuthChallengeDisposition {
         var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
+        
         if let serverTrust = challenge.protectionSpace.serverTrust {
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-                let certificateData = certificateDataForTrust(serverTrust)
-                let serverFingerprints = Set(certificateData.map() { return sha1($0) })
-                if serverFingerprints.isDisjoint(with: TRUSTED_FINGERPRINTS) {
+                let serverKeys = publicKeysForServerTrust(serverTrust: serverTrust) as NSArray
+                if !serverKeys.contains(self.publicKey) {
                     disposition = .cancelAuthenticationChallenge
                 }
             }
-            
             if !trustIsValid(serverTrust) {
                 disposition = .cancelAuthenticationChallenge
             }
@@ -169,20 +177,44 @@ public class FigoClient {
     }
 }
 
-
-private class FigoURLSessionDelegate: NSObject, URLSessionDelegate {
-    
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        completionHandler(FigoClient.dispositionForChallenge(challenge), nil)
+extension FigoClient: URLSessionDelegate {
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        completionHandler(dispositionForChallenge(challenge), nil)
     }
 }
 
+private func publicKeyForCertificateData(data: Data) -> SecKey? {
+    if let certificate = SecCertificateCreateWithData(nil, data as CFData) {
+        var trust: SecTrust?
+        let status = SecTrustCreateWithCertificates(certificate, SecPolicyCreateBasicX509(), &trust)
+        if status == errSecSuccess {
+            if let trust = trust {
+                let key = SecTrustCopyPublicKey(trust)
+                return key
+            }
+        }
+    }
+    return nil
+}
 
-private func sha1(_ data: Data) -> String {
-    var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
-    CC_SHA1((data as NSData).bytes, CC_LONG(data.count), &digest)
-    let hexBytes = digest.map { String(format: "%02hhx", $0) }
-    return hexBytes.joined(separator: "")
+private func publicKeysForServerTrust(serverTrust: SecTrust) -> [SecKey] {
+    var keys: [SecKey] = []
+    
+    for index in 0 ..< SecTrustGetCertificateCount(serverTrust) {
+        if let certificate = SecTrustGetCertificateAtIndex(serverTrust, index) {
+            var trust: SecTrust?
+            let status = SecTrustCreateWithCertificates(certificate, SecPolicyCreateBasicX509(), &trust)
+            if status == errSecSuccess {
+                if let trust = trust {
+                    if let key = SecTrustCopyPublicKey(trust) {
+                        keys.append(key)
+                    }
+                }
+            }
+        }
+    }
+    
+    return keys
 }
 
 private func trustIsValid(_ trust: SecTrust) -> Bool {
@@ -197,19 +229,3 @@ private func trustIsValid(_ trust: SecTrust) -> Bool {
     }
     return isValid
 }
-
-private func certificateDataForTrust(_ trust: SecTrust) -> [Data] {
-    var certificates: [SecCertificate] = []
-    
-    for index in 0 ..< SecTrustGetCertificateCount(trust) {
-        if let certificate = SecTrustGetCertificateAtIndex(trust, index) {
-            certificates.append(certificate)
-        }
-    }
-    return certificateDataForCertificates(certificates)
-}
-
-private func certificateDataForCertificates(_ certificates: [SecCertificate]) -> [Data] {
-    return certificates.map { SecCertificateCopyData($0) as Data }
-}
-

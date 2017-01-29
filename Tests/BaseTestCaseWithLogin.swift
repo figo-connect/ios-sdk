@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import Figo
+@testable import Figo
 
 
 let figo = FigoClient(clientID: "C3XGp3LGISZFwJSsDfxwhHvXT1MjCoF92lOJ3VZrKeBI", clientSecret: "SJtBMNCn6KrIkjQSCkV-xU3_ob0sUTHAFLy-K1V86SpY", logger: ConsoleLogger(levels: [.verbose, .debug, .error]))
@@ -74,5 +74,9 @@ class BaseTestCaseWithLogin: XCTestCase {
             completionExpectation.fulfill()
         }
         self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func testThatCertificateIsPresent() {
+        XCTAssertNotNil(figo.publicKey)
     }
 }
