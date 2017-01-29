@@ -183,8 +183,8 @@ To set up a new bank account in figo, you need to provide the right kind of cred
 **You don't need to be logged in to use this group of endpoints.**
 
 	retrieveSupportedBanks(countryCode: String? = nil, _ completionHandler: (FigoResult<[SupportedBank]>) -> Void)
-	retrieveSupportedServices(countryCode: String = "de", _ completionHandler: (FigoResult<[SupportedService]>) -> Void)
-	retrieveLoginSettings(countryCode: String = "de", bankCode: String, _ completionHandler: (FigoResult<LoginSettings>) -> Void)
+	retrieveSupportedServices(countryCode: String? = nil, _ completionHandler: (FigoResult<[SupportedService]>) -> Void)
+	retrieveLoginSettings(countryCode: String, bankCode: String, _ completionHandler: (FigoResult<LoginSettings>) -> Void)
 		
 ### Payments
 
