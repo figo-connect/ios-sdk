@@ -10,7 +10,7 @@ This Framework wraps the figo Connect API endpoints in nicely typed Swift functi
 - We don't support Swift versions older than 3.0
 - Supports iOS and macOS
 
-Client reference: [docs/index.html](http://cocoadocs.org/docsets/Figo)
+Client reference: [Figo Docs](http://cocoadocs.org/docsets/Figo)
 
 
 ## figo Connect API
@@ -37,9 +37,7 @@ Website: [http://figo.io](http://figo.io)
 
 To add figo as a git submodule run the following command:
 
-```bash
-$ git submodule add https://github.com/figo-connect/ios-sdk.git
-```
+	$ git submodule add https://github.com/figo-connect/ios-sdk.git
 
 Integrate the framework into your project:
 
@@ -51,9 +49,8 @@ Integrate the framework into your project:
 
 To integrate figo into your Xcode project using [CocoaPods](http://cocoapods.org) , specify it in your `Podfile`:
 
-```
-pod 'Figo', :git => 'https://github.com/figo-connect/ios-sdk.git'
-```
+	pod 'Figo', :git => 'https://github.com/figo-connect/ios-sdk.git'
+
 
 Run `pod install` to download and integrate figo.
 
@@ -62,9 +59,7 @@ Run `pod install` to download and integrate figo.
 
 To integrate figo into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
-```
-github "figo-connect/ios-sdk" ~> 2.0
-```
+	github "figo-connect/ios-sdk" ~> 2.0
 
 Run `carthage update` to build the framework. Then add the built `Figo.framework` to your target's 'Embedded Binaries' section under 'General'.
 
