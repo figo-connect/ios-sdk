@@ -30,7 +30,7 @@ public struct SupportedService: Unboxable {
     public let icon: String
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         name               = try unboxer.unbox(key: "name")
         bankCode           = try unboxer.unbox(key: "bank_code")
         additionalIcons    = try unboxer.unbox(key: "additional_icons")

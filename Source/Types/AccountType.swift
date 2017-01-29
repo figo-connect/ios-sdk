@@ -17,10 +17,6 @@ public enum AccountType: String, UnboxableEnum {
     case CashBook = "Cash book"
     case Depot = "Depot"
     case Unknown = "Unknown"
-
-    public static func unboxFallbackValue() -> AccountType {
-        return .Unknown
-    }
     
 }
 

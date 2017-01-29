@@ -11,7 +11,7 @@ import Foundation
 
 extension URLRequest {
     
-    public var curlCommand: String {
+    var curlCommand: String {
         var command = "curl -k"
         if let method = self.httpMethod {
             if method == "PUT" || method == "DELETE" {

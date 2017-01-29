@@ -15,7 +15,7 @@ public struct SecurityListEnvelope: Unboxable {
     public let deleted: [Security]
     public let status: SyncStatus
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         securities = try unboxer.unbox(key: "securities")
         deleted = try unboxer.unbox(key: "deleted")
         status = try unboxer.unbox(key: "status")
@@ -109,7 +109,7 @@ public struct Security: Unboxable {
     }
     
 
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         securityID              = try unboxer.unbox(key: "security_id")
         accountID               = try unboxer.unbox(key: "account_id")
         name                    = try unboxer.unbox(key: "name")

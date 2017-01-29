@@ -52,7 +52,7 @@ public struct User: Unboxable {
     public let filters: [AnyObject]?
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         userID                 = unboxer.unbox(key: "user_id")
         name                   = try unboxer.unbox(key: "name")
         email                  = try unboxer.unbox(key: "email")

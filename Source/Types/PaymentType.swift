@@ -29,8 +29,4 @@ public enum PaymentType: String, UnboxableEnum {
     case SEPAStandingOrder = "SEPA standing order"
     case ModifySEPAStandingOrder = "Modify SEPA standing order"
     
-    public static func unboxFallbackValue() -> PaymentType {
-        return .Unknown
-    }
-    
 }

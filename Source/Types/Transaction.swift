@@ -16,7 +16,7 @@ public struct TransactionListEnvelope: Unboxable {
     public let statistics: [String: AnyObject]
     public let status: SyncStatus
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         transactions = try unboxer.unbox(key: "transactions")
         deleted = try unboxer.unbox(key: "deleted")
         statistics = try unboxer.unbox(key: "statistics")
@@ -114,7 +114,7 @@ public struct Transaction: Unboxable {
     public let additionalInfo: [String: AnyObject]?
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         accountID           = try unboxer.unbox(key: "account_id")
         accountNumber       = unboxer.unbox(key: "account_number")
         amount              = try unboxer.unbox(key: "amount")

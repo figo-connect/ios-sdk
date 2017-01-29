@@ -18,7 +18,7 @@ public struct Address: Unboxable {
     public let vat: Float?
     public let bill: Bool?
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         city        = unboxer.unbox(key: "city")
         company     = unboxer.unbox(key: "company")
         postalCode  = unboxer.unbox(key: "postal_code")

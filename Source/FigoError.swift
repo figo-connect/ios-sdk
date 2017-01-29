@@ -33,7 +33,7 @@ public struct FigoError: Error, CustomStringConvertible, Unboxable {
     public let data: [String:Any]?
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         code                = (try? unboxer.unbox(key: "code")) ?? 0
         group               = unboxer.unbox(key: "group")
         message             = unboxer.unbox(key: "message")
@@ -42,7 +42,7 @@ public struct FigoError: Error, CustomStringConvertible, Unboxable {
         data                = unboxer.unbox(key: "data")
     }
     
-    internal init(error: InternalError) {
+    init(error: InternalError) {
         code = error.code
         group = nil
         message = nil

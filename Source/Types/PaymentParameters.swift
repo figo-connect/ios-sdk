@@ -16,7 +16,7 @@ public struct PaymentParameters: Unboxable {
     public let supportedFileFormats: [String]
     public let supportedTextKeys: [Int]
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         allowedRecipients     = unboxer.unbox(key: "allowed_recipients")
         canBeRecurring        = try unboxer.unbox(key: "can_be_recurring")
         canBeScheduled        = try unboxer.unbox(key: "can_be_scheduled")

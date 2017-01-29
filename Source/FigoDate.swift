@@ -46,10 +46,6 @@ public struct FigoDate: UnboxableByTransform, CustomStringConvertible {
         return FigoDate(timestamp: unboxedValue)
     }
     
-    static func unboxFallbackValue() -> FigoDate {
-        return FigoDate()
-    }
-    
     fileprivate static let posixFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")

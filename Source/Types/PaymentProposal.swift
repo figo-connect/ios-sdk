@@ -15,7 +15,7 @@ public struct PaymentProposal: Unboxable {
     public let additionalIcons: [String: String]?
     public let icon: String
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         accountNumber   = try unboxer.unbox(key: "account_number")
         bankCode        = try unboxer.unbox(key: "bank_code")
         name            = try unboxer.unbox(key: "name")

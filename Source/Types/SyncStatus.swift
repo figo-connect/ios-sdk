@@ -15,7 +15,7 @@ public struct SyncStatus: Unboxable {
     public let syncDate: FigoDate
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         code          = try unboxer.unbox(key: "code")
         message       = unboxer.unbox(key: "message")
         successDate   = try unboxer.unbox(key: "success_timestamp")

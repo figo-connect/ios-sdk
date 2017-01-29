@@ -22,11 +22,6 @@ public enum SecuritySinceType: String, UnboxableEnum {
     
     /// The value of the parameter since will be compared to the last modification time of the security on the figo Connect server.
     case Modified = "modified"
-    
-    
-    public static func unboxFallbackValue() -> SecuritySinceType {
-        return .Traded
-    }
 }
 
 

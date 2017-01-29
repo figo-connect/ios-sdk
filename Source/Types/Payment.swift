@@ -96,7 +96,7 @@ public struct Payment: Unboxable {
     public var notificationRecipient: String?
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         paymentID           = try unboxer.unbox(key: "payment_id")
         accountID           = try unboxer.unbox(key: "account_id")
         type                = try unboxer.unbox(key: "type")

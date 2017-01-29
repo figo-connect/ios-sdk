@@ -16,10 +16,6 @@ public enum StandingOrderInterval: String, UnboxableEnum {
     case HalfYearly = "half yearly"
     case Yearly = "yearly"
     
-    public static func unboxFallbackValue() -> StandingOrderInterval {
-        return .Monthly
-    }
-    
 }
 
 
@@ -101,7 +97,7 @@ public struct StandingOrder: Unboxable {
     let modificationDate: FigoDate?
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         standingOrderID     = try unboxer.unbox(key: "standing_order_id")
         accountID           = try unboxer.unbox(key: "account_id")
         firstExecutionDate  = try unboxer.unbox(key: "first_execution_date")

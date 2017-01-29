@@ -22,11 +22,7 @@ public enum TransactionSinceType: String, UnboxableEnum {
     
     /// The value of the parameter since will be compared to the last modification time of the transaction on the figo Connect server. The response parameter transactions will contain not only newly created transactions but also modified transactions. The response parameter deleted will contain a list of removed transactions.
     case Modified = "modified"
-    
-    
-    public static func unboxFallbackValue() -> TransactionSinceType {
-        return .Booked
-    }
+
 }
 
 

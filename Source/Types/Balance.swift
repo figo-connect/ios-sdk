@@ -25,7 +25,7 @@ public struct Balance: Unboxable {
     public let status: SyncStatus?
     
     
-    public init(unboxer: Unboxer) throws {
+    init(unboxer: Unboxer) throws {
         balance                 = unboxer.unbox(key: "balance")
         balanceDate             = unboxer.unbox(key: "balance_date")
         creditLine              = try unboxer.unbox(key: "credit_line")
