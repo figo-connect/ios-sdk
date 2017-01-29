@@ -71,7 +71,7 @@ With test targets, you have to add a copy files phase to your test target where 
 
 After creating an instance of `FigoClient` you can call functions on it representing the API endpoints. These functions will always return a `FigoResult<T>`, where `T` will a corresponding type like `Account`, `[Account]` or `[Transaction]`.
 
-To use the client you need a client ID and a secret, see [Registering your application](## Registering your application) for details.
+To use the client you need a client ID and a secret, see [Registering your application](#registering-your-application) for details.
 
 	import Figo
 	let figo = FigoClient(clientID: "xyz", clientSecret: "123")
@@ -80,7 +80,7 @@ Browse the [client reference](docs/index.html) to see all available funtions or 
 
 ### Create user
 
-To be able to login and use the figo API a user is required. (Except for the [Supported banks and services](### Supported banks and services) endpoints which don't require to be logged in and therefore don't require a user.)
+To be able to login and use the figo API a user is required. (Except for the [Supported banks and services](#supported-banks-and-services) endpoints which don't require to be logged in and therefore don't require a user.)
 
     let params = CreateUserParameters(name: "name", email: "email", password: "password", sendNewsletter: false, language: "de", affiliateUser: nil, affiliateClientID: nil)
     figo.createNewFigoUser(params) { result in
