@@ -41,54 +41,31 @@ Integrate the framework into your project:
 
 * Open the new folder and drag the Figo.xcodeproj into the Project Navigator of your application's Xcode project.
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
-* Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
+* Add the Figo.framework to your target(s) in the 'Embedded Binaries' sections
 
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+To integrate figo into your Xcode project using [CocoaPods](http://cocoapods.org) , specify it in your `Podfile`:
 
-```bash
-$ gem install cocoapods
+```
+pod 'Figo', :git => 'https://github.com/figo-connect/ios-sdk.git'
 ```
 
-> CocoaPods 1.1.0+ is required to build figo 2.0+
+Run `pod install` to download and integrate figo.
 
-To integrate figo into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'Figo', '~> 2.0'
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
 
 ### Carthage
 
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+To integrate figo into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
 ```
-
-To integrate figo into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
 github "figo-connect/ios-sdk" ~> 2.0
 ```
 
-Run `carthage update` to build the framework and drag the built `Figo.framework` into your Xcode project.
+Run `carthage update` to build the framework. Then add the built `Figo.framework` to your target's 'Embedded Binaries' section under 'General'.
+
+With test targets, you have to add a copy files phase to your test target where you copy the framework to the 'Frameworks' folder.
+
 
 ## Usage
 
