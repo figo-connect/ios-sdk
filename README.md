@@ -10,7 +10,7 @@ This Framework wraps the figo Connect API endpoints in nicely typed Swift functi
 - We don't support Swift versions older than 3.0
 - Supports iOS and macOS
 
-Client reference: [Figo Docs](http://cocoadocs.org/docsets/Figo)
+Client reference: <http://cocoadocs.org/docsets/Figo>
 
 
 ## figo Connect API

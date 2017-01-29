@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Figo"
-  s.version      = "2.0"
+  s.version      = "2.0.1"
   s.summary      = "Wraps the figo Connect API endpoints in nicely typed Swift functions and types for your conveniece."
   s.description  = <<-DESC
   The figo Connect API allows you to easily access your bank account including transaction history and submitting payments.
