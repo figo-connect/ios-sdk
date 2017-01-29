@@ -6,6 +6,8 @@ This Framework wraps the figo Connect API endpoints in nicely typed Swift functi
 - We don't support Swift versions older than 3.0
 - Supports iOS and macOS
 
+Client reference: [docs/index.html](docs/index.html)
+
 
 ## figo Connect API
 
@@ -60,7 +62,7 @@ To use the client you need a client ID and a secret, see [Registering your appli
 	import Figo
 	let figo = FigoClient(clientID: "xyz", clientSecret: "123")
 	
-Take a look at the test cases to see more examples of interaction with the API.
+Browse the [client reference](docs/index.html) to see all available funtions or take a look at the test cases to see more examples of interaction with the API.
 
 ### Create user
 

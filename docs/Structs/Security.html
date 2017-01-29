@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Security Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Security" class="dashAnchor"></a>
+    <a title="Security Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (68% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Security Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/FigoClient.html">FigoClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FigoResult.html">FigoResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PaymentType.html">PaymentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SecuritySinceType.html">SecuritySinceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StandingOrderInterval.html">StandingOrderInterval</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransactionSinceType.html">TransactionSinceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Logger.html">Logger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Balance.html">Balance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Challenge.html">Challenge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ConsoleLogger.html">ConsoleLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ConsoleLogger/LogLevel.html">– LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateAccountParameters.html">CreateAccountParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreatePaymentParameters.html">CreatePaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateSyncTaskParameters.html">CreateSyncTaskParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateUserParameters.html">CreateUserParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FigoDate.html">FigoDate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FigoError.html">FigoError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginCredentials.html">LoginCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginSettings.html">LoginSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Payment.html">Payment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PaymentParameters.html">PaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PaymentProposal.html">PaymentProposal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Security.html">Security</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SecurityListEnvelope.html">SecurityListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:V4Figo13StandingOrder">StandingOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedBank.html">SupportedBank</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedService.html">SupportedService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SyncStatus.html">SyncStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TANScheme.html">TANScheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionListEnvelope.html">TransactionListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoidLogger.html">VoidLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:P4Figo20UnboxableByTransform13UnboxRawValue">UnboxRawValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:P4Figo19UnboxableCollection10UnboxValue">UnboxValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4Figo19UnboxableDictionary">UnboxableDictionary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Security</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Security</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Each depot account has a list of securities associated with it. In general the information provided for each security should be roughly similar to the contents of the printed or online depot listings available from the respective bank. Please note that not all banks provide the same level of detail.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Amounts in cents: YES
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security10securityIDSS"></a>
+                    <a name="//apple_ref/swift/Property/securityID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security10securityIDSS">securityID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal figo Connect security ID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">securityID</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security9accountIDSS"></a>
+                    <a name="//apple_ref/swift/Property/accountID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security9accountIDSS">accountID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal figo Connect account ID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security4nameSS"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security4nameSS">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Name of the security</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security4isinSS"></a>
+                    <a name="//apple_ref/swift/Property/isin" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security4isinSS">isin</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>International Securities Identification Number</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">isin</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security3wknSS"></a>
+                    <a name="//apple_ref/swift/Property/wkn" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security3wknSS">wkn</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Wertpapierkennnummer (if available)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">wkn</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security6marketSS"></a>
+                    <a name="//apple_ref/swift/Property/market" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security6marketSS">market</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Security</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security8currencySS"></a>
+                    <a name="//apple_ref/swift/Property/currency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security8currencySS">currency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Three-character currency code when measured in currency (and not pieces)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security8quantitySi"></a>
+                    <a name="//apple_ref/swift/Property/quantity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security8quantitySi">quantity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Number of pieces or value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security6amountSi"></a>
+                    <a name="//apple_ref/swift/Property/amount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security6amountSi">amount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Monetary value in account currency</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security22amountOriginalCurrencySi"></a>
+                    <a name="//apple_ref/swift/Property/amountOriginalCurrency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security22amountOriginalCurrencySi">amountOriginalCurrency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Monetary value in trading currency</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">amountOriginalCurrency</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security12exchangeRateSf"></a>
+                    <a name="//apple_ref/swift/Property/exchangeRate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security12exchangeRateSf">exchangeRate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Exchange rate between trading and account currency</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">exchangeRate</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security5priceSi"></a>
+                    <a name="//apple_ref/swift/Property/price" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security5priceSi">price</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current price</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">price</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security13priceCurrencySS"></a>
+                    <a name="//apple_ref/swift/Property/priceCurrency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security13priceCurrencySS">priceCurrency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Currency of current price</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">priceCurrency</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security14priceFormattedSS"></a>
+                    <a name="//apple_ref/swift/Property/priceFormatted" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security14priceFormattedSS">priceFormatted</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>String representation of current price</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">priceFormatted</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security13purchasePriceSi"></a>
+                    <a name="//apple_ref/swift/Property/purchasePrice" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security13purchasePriceSi">purchasePrice</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Purchase price</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">purchasePrice</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security21purchasePriceCurrencySS"></a>
+                    <a name="//apple_ref/swift/Property/purchasePriceCurrency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security21purchasePriceCurrencySS">purchasePriceCurrency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Currency of purchase price</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">purchasePriceCurrency</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security22purchasePriceFormattedSS"></a>
+                    <a name="//apple_ref/swift/Property/purchasePriceFormatted" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security22purchasePriceFormattedSS">purchasePriceFormatted</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>String representation of purchase price</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">purchasePriceFormatted</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security7visitedSb"></a>
+                    <a name="//apple_ref/swift/Property/visited" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security7visitedSb">visited</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This flag indicates whether the security has already been marked as visited by the user</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">visited</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security9tradeDateVS_8FigoDate"></a>
+                    <a name="//apple_ref/swift/Property/tradeDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security9tradeDateVS_8FigoDate">tradeDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Trading timestamp</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">tradeDate</span><span class="p">:</span> <span class="kt"><a href="../Structs/FigoDate.html">FigoDate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security12creationDateVS_8FigoDate"></a>
+                    <a name="//apple_ref/swift/Property/creationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security12creationDateVS_8FigoDate">creationDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal creation timestamp on the figo Connect server</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">creationDate</span><span class="p">:</span> <span class="kt"><a href="../Structs/FigoDate.html">FigoDate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo8Security16modificationDateVS_8FigoDate"></a>
+                    <a name="//apple_ref/swift/Property/modificationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo8Security16modificationDateVS_8FigoDate">modificationDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal modification timestamp on the figo Connect server</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt"><a href="../Structs/FigoDate.html">FigoDate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

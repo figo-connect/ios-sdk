@@ -1,0 +1,817 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoDate.swift",
+      "line": 17,
+      "symbol": "FigoDate.date",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoDate.swift",
+      "line": 18,
+      "symbol": "FigoDate.timestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoDate.swift",
+      "line": 19,
+      "symbol": "FigoDate.formattedShort",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoDate.swift",
+      "line": 20,
+      "symbol": "FigoDate.formattedLong",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoDate.swift",
+      "line": 29,
+      "symbol": "FigoDate.init(timestamp:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoError.swift",
+      "line": 21,
+      "symbol": "FigoError.group",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoResult.swift",
+      "line": 17,
+      "symbol": "FigoResult.success",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/FigoResult.swift",
+      "line": 18,
+      "symbol": "FigoResult.failure",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 16,
+      "symbol": "Logger",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 17,
+      "symbol": "Logger.debug",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 18,
+      "symbol": "Logger.verbose",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 19,
+      "symbol": "Logger.error",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 22,
+      "symbol": "VoidLogger",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 23,
+      "symbol": "VoidLogger.debug",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 24,
+      "symbol": "VoidLogger.verbose",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 25,
+      "symbol": "VoidLogger.error",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 35,
+      "symbol": "ConsoleLogger.LogLevel",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 36,
+      "symbol": "ConsoleLogger.LogLevel.verbose",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 37,
+      "symbol": "ConsoleLogger.LogLevel.debug",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 38,
+      "symbol": "ConsoleLogger.LogLevel.error",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 41,
+      "symbol": "ConsoleLogger.verbose",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 42,
+      "symbol": "ConsoleLogger.debug",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 43,
+      "symbol": "ConsoleLogger.error",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Logging/Logging.swift",
+      "line": 45,
+      "symbol": "ConsoleLogger.init(levels:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Request Parameters/CreateAccountParameters.swift",
+      "line": 41,
+      "symbol": "CreateAccountParameters.init(bankCode:iban:country:credentials:savePin:disableFirstSync:syncTasks:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Request Parameters/CreatePaymentParameters.swift",
+      "line": 70,
+      "symbol": "CreatePaymentParameters.init(accountID:type:name:amount:purpose:accountNumber:bankCode:iban:currency:textKey:textKeyExtension:notificationRecipient:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Request Parameters/CreateSyncTaskParameters.swift",
+      "line": 36,
+      "symbol": "CreateSyncTaskParameters.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Request Parameters/CreateUserParameters.swift",
+      "line": 39,
+      "symbol": "CreateUserParameters.init(name:email:password:sendNewsletter:language:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Request Parameters/RetrieveTransactionsParameters.swift",
+      "line": 137,
+      "symbol": "RetrieveTransactionsParameters.init(accounts:since:sinceType:until:filter:count:offset:includePending:includeStatistics:type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Account.swift",
+      "line": 79,
+      "symbol": "Account.supportedTANSchemes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Account.swift",
+      "line": 85,
+      "symbol": "Account.inTotalBalance",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 10,
+      "symbol": "AccountType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 12,
+      "symbol": "AccountType.GiroAccount",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 13,
+      "symbol": "AccountType.SavingsAccount",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 14,
+      "symbol": "AccountType.CreditCard",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 15,
+      "symbol": "AccountType.LoanAccount",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 16,
+      "symbol": "AccountType.PayPal",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 17,
+      "symbol": "AccountType.CashBook",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 18,
+      "symbol": "AccountType.Depot",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/AccountType.swift",
+      "line": 19,
+      "symbol": "AccountType.Unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 10,
+      "symbol": "Address",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 12,
+      "symbol": "Address.city",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 13,
+      "symbol": "Address.company",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 14,
+      "symbol": "Address.postalCode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 15,
+      "symbol": "Address.street",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 16,
+      "symbol": "Address.street2",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 17,
+      "symbol": "Address.country",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 18,
+      "symbol": "Address.vat",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Address.swift",
+      "line": 19,
+      "symbol": "Address.bill",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Balance.swift",
+      "line": 10,
+      "symbol": "Balance",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Challenge.swift",
+      "line": 10,
+      "symbol": "Challenge",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/LoginCredentials.swift",
+      "line": 10,
+      "symbol": "LoginCredentials",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/LoginSettings.swift",
+      "line": 10,
+      "symbol": "LoginSettings",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentParameters.swift",
+      "line": 10,
+      "symbol": "PaymentParameters",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentParameters.swift",
+      "line": 12,
+      "symbol": "PaymentParameters.allowedRecipients",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentParameters.swift",
+      "line": 13,
+      "symbol": "PaymentParameters.canBeRecurring",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentParameters.swift",
+      "line": 14,
+      "symbol": "PaymentParameters.canBeScheduled",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentParameters.swift",
+      "line": 15,
+      "symbol": "PaymentParameters.maxPurposeLength",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentParameters.swift",
+      "line": 16,
+      "symbol": "PaymentParameters.supportedFileFormats",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentParameters.swift",
+      "line": 17,
+      "symbol": "PaymentParameters.supportedTextKeys",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentProposal.swift",
+      "line": 10,
+      "symbol": "PaymentProposal",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentProposal.swift",
+      "line": 12,
+      "symbol": "PaymentProposal.accountNumber",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentProposal.swift",
+      "line": 13,
+      "symbol": "PaymentProposal.bankCode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentProposal.swift",
+      "line": 14,
+      "symbol": "PaymentProposal.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentProposal.swift",
+      "line": 15,
+      "symbol": "PaymentProposal.additionalIcons",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentProposal.swift",
+      "line": 16,
+      "symbol": "PaymentProposal.icon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 17,
+      "symbol": "PaymentType.Unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 18,
+      "symbol": "PaymentType.Transfer",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 19,
+      "symbol": "PaymentType.DirectDebit",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 20,
+      "symbol": "PaymentType.SEPATransfer",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 21,
+      "symbol": "PaymentType.SEPADirectDebit",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 22,
+      "symbol": "PaymentType.Interest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 23,
+      "symbol": "PaymentType.Charges",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 24,
+      "symbol": "PaymentType.ATM",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 25,
+      "symbol": "PaymentType.GeldKarte",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 26,
+      "symbol": "PaymentType.Rent",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 27,
+      "symbol": "PaymentType.StandingOrder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 28,
+      "symbol": "PaymentType.ElectronicCash",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 29,
+      "symbol": "PaymentType.SEPAStandingOrder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/PaymentType.swift",
+      "line": 30,
+      "symbol": "PaymentType.ModifySEPAStandingOrder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Security.swift",
+      "line": 12,
+      "symbol": "SecurityListEnvelope",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Security.swift",
+      "line": 14,
+      "symbol": "SecurityListEnvelope.securities",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Security.swift",
+      "line": 15,
+      "symbol": "SecurityListEnvelope.deleted",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Security.swift",
+      "line": 16,
+      "symbol": "SecurityListEnvelope.status",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Security.swift",
+      "line": 50,
+      "symbol": "Security.market",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/StandingOrder.swift",
+      "line": 10,
+      "symbol": "StandingOrderInterval",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/StandingOrder.swift",
+      "line": 12,
+      "symbol": "StandingOrderInterval.Weekly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/StandingOrder.swift",
+      "line": 13,
+      "symbol": "StandingOrderInterval.Monthly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/StandingOrder.swift",
+      "line": 14,
+      "symbol": "StandingOrderInterval.TwoMonthly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/StandingOrder.swift",
+      "line": 15,
+      "symbol": "StandingOrderInterval.Quarterly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/StandingOrder.swift",
+      "line": 16,
+      "symbol": "StandingOrderInterval.HalfYearly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/StandingOrder.swift",
+      "line": 17,
+      "symbol": "StandingOrderInterval.Yearly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedBank.swift",
+      "line": 20,
+      "symbol": "SupportedBank",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedBank.swift",
+      "line": 22,
+      "symbol": "SupportedBank.bankName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedBank.swift",
+      "line": 24,
+      "symbol": "SupportedBank.bankCode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedBank.swift",
+      "line": 26,
+      "symbol": "SupportedBank.bic",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedBank.swift",
+      "line": 28,
+      "symbol": "SupportedBank.icon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedBank.swift",
+      "line": 30,
+      "symbol": "SupportedBank.credentials",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedBank.swift",
+      "line": 32,
+      "symbol": "SupportedBank.advice",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedService.swift",
+      "line": 19,
+      "symbol": "SupportedService",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SupportedService.swift",
+      "line": 27,
+      "symbol": "SupportedService.additionalIcons",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SyncStatus.swift",
+      "line": 10,
+      "symbol": "SyncStatus",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SyncStatus.swift",
+      "line": 12,
+      "symbol": "SyncStatus.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SyncStatus.swift",
+      "line": 13,
+      "symbol": "SyncStatus.message",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SyncStatus.swift",
+      "line": 14,
+      "symbol": "SyncStatus.successDate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/SyncStatus.swift",
+      "line": 15,
+      "symbol": "SyncStatus.syncDate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/TANScheme.swift",
+      "line": 10,
+      "symbol": "TANScheme",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/TANScheme.swift",
+      "line": 12,
+      "symbol": "TANScheme.mediumName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/TANScheme.swift",
+      "line": 13,
+      "symbol": "TANScheme.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/TANScheme.swift",
+      "line": 14,
+      "symbol": "TANScheme.TANSchemeID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Transaction.swift",
+      "line": 12,
+      "symbol": "TransactionListEnvelope",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Transaction.swift",
+      "line": 14,
+      "symbol": "TransactionListEnvelope.transactions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Transaction.swift",
+      "line": 15,
+      "symbol": "TransactionListEnvelope.deleted",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Transaction.swift",
+      "line": 16,
+      "symbol": "TransactionListEnvelope.statistics",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/Transaction.swift",
+      "line": 17,
+      "symbol": "TransactionListEnvelope.status",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/chris/Figo/FigoSDK/Source/Types/User.swift",
+      "line": 10,
+      "symbol": "User",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/chris/Figo/FigoSDK"
+}

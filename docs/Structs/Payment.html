@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Payment Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Payment" class="dashAnchor"></a>
+    <a title="Payment Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (68% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Payment Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/FigoClient.html">FigoClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FigoResult.html">FigoResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PaymentType.html">PaymentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SecuritySinceType.html">SecuritySinceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StandingOrderInterval.html">StandingOrderInterval</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransactionSinceType.html">TransactionSinceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Logger.html">Logger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Balance.html">Balance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Challenge.html">Challenge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ConsoleLogger.html">ConsoleLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ConsoleLogger/LogLevel.html">– LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateAccountParameters.html">CreateAccountParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreatePaymentParameters.html">CreatePaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateSyncTaskParameters.html">CreateSyncTaskParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateUserParameters.html">CreateUserParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FigoDate.html">FigoDate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FigoError.html">FigoError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginCredentials.html">LoginCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginSettings.html">LoginSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Payment.html">Payment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PaymentParameters.html">PaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PaymentProposal.html">PaymentProposal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Security.html">Security</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SecurityListEnvelope.html">SecurityListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:V4Figo13StandingOrder">StandingOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedBank.html">SupportedBank</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedService.html">SupportedService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SyncStatus.html">SyncStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TANScheme.html">TANScheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionListEnvelope.html">TransactionListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoidLogger.html">VoidLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:P4Figo20UnboxableByTransform13UnboxRawValue">UnboxRawValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:P4Figo19UnboxableCollection10UnboxValue">UnboxValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4Figo19UnboxableDictionary">UnboxableDictionary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Payment</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Payment</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                </div>
+              </div>
+            <div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Amounts in cents: NO (server problem)
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment9paymentIDSS"></a>
+                    <a name="//apple_ref/swift/Property/paymentID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment9paymentIDSS">paymentID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal figo Connect payment ID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">paymentID</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment9accountIDSS"></a>
+                    <a name="//apple_ref/swift/Property/accountID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment9accountIDSS">accountID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal figo Connect account ID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment4typeOS_11PaymentType"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment4typeOS_11PaymentType">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Payment type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/PaymentType.html">PaymentType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment4nameSS"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment4nameSS">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Name of creditor or debtor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment13accountNumberSS"></a>
+                    <a name="//apple_ref/swift/Property/accountNumber" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment13accountNumberSS">accountNumber</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Account number of creditor or debtor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">accountNumber</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment8bankCodeSS"></a>
+                    <a name="//apple_ref/swift/Property/bankCode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment8bankCodeSS">bankCode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bank code of creditor or debtor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bankCode</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment8bankNameSS"></a>
+                    <a name="//apple_ref/swift/Property/bankName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment8bankNameSS">bankName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bank name of creditor or debtor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bankName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment8bankIconSS"></a>
+                    <a name="//apple_ref/swift/Property/bankIcon" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment8bankIconSS">bankIcon</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Icon of creditor or debtor bank</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bankIcon</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment19bankAdditionalIconsGVs10DictionarySSSS_"></a>
+                    <a name="//apple_ref/swift/Property/bankAdditionalIcons" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment19bankAdditionalIconsGVs10DictionarySSSS_">bankAdditionalIcons</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dictionary mapping from resolution to URL for additional resolutions of the banks icon. Currently supports the following sizes:</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bankAdditionalIcons</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment6amountSf"></a>
+                    <a name="//apple_ref/swift/Property/amount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment6amountSf">amount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Order amount</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment15amountFormattedSS"></a>
+                    <a name="//apple_ref/swift/Property/amountFormatted" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment15amountFormattedSS">amountFormatted</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>String representation of the amount</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">amountFormatted</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment8currencySS"></a>
+                    <a name="//apple_ref/swift/Property/currency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment8currencySS">currency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Three-character currency code</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment7purposeGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/purpose" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment7purposeGSqSS_">purpose</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Purpose text. This field might be empty if the transaction has no purpose.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">purpose</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment7textKeySi"></a>
+                    <a name="//apple_ref/swift/Property/textKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment7textKeySi">textKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DTA text key</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textKey</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment16textKeyExtensionSi"></a>
+                    <a name="//apple_ref/swift/Property/textKeyExtension" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment16textKeyExtensionSi">textKeyExtension</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DTA text key extension</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textKeyExtension</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment9containerGSqGSaS0___"></a>
+                    <a name="//apple_ref/swift/Property/container" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment9containerGSqGSaS0___">container</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If this payment object is a container for multiple payments, then this field is set and contains a list of payment objects</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">container</span><span class="p">:</span> <span class="p">[</span><span class="kt">Payment</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment14submissionDateGSqVS_8FigoDate_"></a>
+                    <a name="//apple_ref/swift/Property/submissionDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment14submissionDateGSqVS_8FigoDate_">submissionDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Timestamp of submission to the bank server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">submissionDate</span><span class="p">:</span> <span class="kt"><a href="../Structs/FigoDate.html">FigoDate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment12creationDateVS_8FigoDate"></a>
+                    <a name="//apple_ref/swift/Property/creationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment12creationDateVS_8FigoDate">creationDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal creation timestamp on the figo Connect server</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">creationDate</span><span class="p">:</span> <span class="kt"><a href="../Structs/FigoDate.html">FigoDate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment16modificationDateGSqVS_8FigoDate_"></a>
+                    <a name="//apple_ref/swift/Property/modificationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment16modificationDateGSqVS_8FigoDate_">modificationDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Internal modification timestamp on the figo Connect server</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt"><a href="../Structs/FigoDate.html">FigoDate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4Figo7Payment21notificationRecipientGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/notificationRecipient" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4Figo7Payment21notificationRecipientGSqSS_">notificationRecipient</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><strong>optional</strong> Recipient of the payment notification, should be an email address
+- Note: Only used when modifying an existing payment</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">notificationRecipient</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

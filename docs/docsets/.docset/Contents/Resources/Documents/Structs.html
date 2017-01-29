@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Structs  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="Structs  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (68% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Structs  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/FigoClient.html">FigoClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/FigoResult.html">FigoResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/PaymentType.html">PaymentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SecuritySinceType.html">SecuritySinceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/StandingOrderInterval.html">StandingOrderInterval</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/TransactionSinceType.html">TransactionSinceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Logger.html">Logger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Balance.html">Balance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Challenge.html">Challenge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ConsoleLogger.html">ConsoleLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ConsoleLogger/LogLevel.html">– LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/CreateAccountParameters.html">CreateAccountParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/CreatePaymentParameters.html">CreatePaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/CreateSyncTaskParameters.html">CreateSyncTaskParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/CreateUserParameters.html">CreateUserParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/FigoDate.html">FigoDate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/FigoError.html">FigoError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/LoginCredentials.html">LoginCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/LoginSettings.html">LoginSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Payment.html">Payment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/PaymentParameters.html">PaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/PaymentProposal.html">PaymentProposal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Security.html">Security</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SecurityListEnvelope.html">SecurityListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs.html#/s:V4Figo13StandingOrder">StandingOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SupportedBank.html">SupportedBank</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SupportedService.html">SupportedService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SyncStatus.html">SyncStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/TANScheme.html">TANScheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/TransactionListEnvelope.html">TransactionListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/VoidLogger.html">VoidLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:P4Figo20UnboxableByTransform13UnboxRawValue">UnboxRawValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:P4Figo19UnboxableCollection10UnboxValue">UnboxValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:4Figo19UnboxableDictionary">UnboxableDictionary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Structs</h1>
+            <p>The following structs are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo17PaymentParameters"></a>
+                    <a name="//apple_ref/swift/Struct/PaymentParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo17PaymentParameters">PaymentParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/PaymentParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo23TransactionListEnvelope"></a>
+                    <a name="//apple_ref/swift/Struct/TransactionListEnvelope" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo23TransactionListEnvelope">TransactionListEnvelope</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/TransactionListEnvelope.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo11Transaction"></a>
+                    <a name="//apple_ref/swift/Struct/Transaction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo11Transaction">Transaction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Each bank account has a list of transactions associated with it. The length of this list depends on the bank and time this account has been setup. In general the information provided for each transaction should be roughly similar to the contents of the printed or online transaction statement available from the respective bank. Please note that not all banks provide the same level of detail.</p>
+
+<p>ADDITIONAL TRANSACTION INFO</p>
+
+<p>For PayPal we provide the gross amount and fees of a transaction in an additional_info object. In the future we will add more properties to this object which are depending on the account type.</p>
+
+<p>TRANSACTION TYPE</p>
+
+<p>In order to simplify your analysis of the users transaction, they are pre-categorized into one of the following types: Transfer, Standing order, Direct debit, Salary or rent, * Electronic cash*, GeldKarte, ATM, Charges or interest or Unknown.</p>
+
+<p>PENDING TRANSACTIONS</p>
+
+<p>Some banks provide information on transaction, which have not yet been executed. These transactions are called pending. Figo marks them with the booked flag being false. As soon as the bank reports the execution of these transactions, this flag changes to true. If such a pending transaction fails to execute, it is automatically removed from the transaction list.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Amounts in cents: YES
+
+</div>
+
+                        <a href="Structs/Transaction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Transaction</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo20SecurityListEnvelope"></a>
+                    <a name="//apple_ref/swift/Struct/SecurityListEnvelope" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo20SecurityListEnvelope">SecurityListEnvelope</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/SecurityListEnvelope.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo8Security"></a>
+                    <a name="//apple_ref/swift/Struct/Security" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo8Security">Security</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Each depot account has a list of securities associated with it. In general the information provided for each security should be roughly similar to the contents of the printed or online depot listings available from the respective bank. Please note that not all banks provide the same level of detail.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Amounts in cents: YES
+
+</div>
+
+                        <a href="Structs/Security.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Security</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo16LoginCredentials"></a>
+                    <a name="//apple_ref/swift/Struct/LoginCredentials" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo16LoginCredentials">LoginCredentials</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/LoginCredentials.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo30RetrieveTransactionsParameters"></a>
+                    <a name="//apple_ref/swift/Struct/RetrieveTransactionsParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo30RetrieveTransactionsParameters">RetrieveTransactionsParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parameters for RETRIEVE TRANSACTIONS endpoints</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>The default number for the limit parameter is 1000</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter accounts: <strong>optional</strong> If retrieving the transactions for all accounts, filter the transactions to be only from these accounts</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter since: <strong>optional</strong> This parameter can either be a transaction ID or an ISO date.</p>
+
+<p><em>transaction ID</em></p>
+
+<p>the transactions which are newer than the referenced transaction will be returned in the response. The exact meaning of newer depends on the value of since_type</p>
+
+<p><em>ISO date</em></p>
+
+<p>the transactions which were booked on or after this date will be returned in the response</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter sinceType: <strong>optional</strong> This parameter defines how the parameter since will be interpreted.</p>
+
+<p><em>booked (default)</em></p>
+
+<p>the value of the parameter since will be compared to the booking date of the transaction.</p>
+
+<p><em>created</em></p>
+
+<p>the value of the parameter since will be compared to the creation time of the transaction on the figo Connect server</p>
+
+<p><em>modified</em></p>
+
+<p>the value of the parameter since will be compared to the last modification time of the transaction on the figo Connect server. The response parameter transactions will contain not only newly created transactions but also modified transactions. The response parameter deleted will contain a list of removed transactions.</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter until: <strong>optional</strong> Return only transactions which were booked on or before this date. Please provide as ISO date</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter filter: <strong>optional</strong> Filter expression to narrow down the returned transactions</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter count: <strong>optional</strong> Limit the number of returned transactions. In combination with the offset parameter this can be used to paginate the result list. (default: 1000)</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter offset: <strong>optional</strong> Offset into the implicit list of transactions used as starting point for the returned transactions. In combination with the count parameter this can be used to paginate the result list.</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter includePending: <strong>optional</strong> This flag indicates whether pending transactions should be included in the response. Pending transactions are always included as a complete set, regardless of the since parameter. Before caching a copy of the pending transactions, all existing pending transactions for the same account must be removed from the local cache. (default: false)</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter includeStatistics: <strong>optional</strong> This flag indicates whether statistics over the filtered transaction list should returned alongside the actual transactions. These statistics are always computed on the complete filtered transaction list, i.e. without count and offset. (default: false)</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter type: <strong>optional</strong> A list of transactions types which the transactions are filtered by.</p>
+
+</div>
+
+                        <a href="Structs/RetrieveTransactionsParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RetrieveTransactionsParameters</span><span class="p">:</span> <span class="kt">JSONObjectConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accounts</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If retrieving the transactions for all accounts, filter the transactions to be only from these accounts</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>since</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>This parameter can either be a transaction ID or an ISO date.</p>
+<p>the transactions which are newer than the referenced transaction will be returned in the response. The exact meaning of newer depends on the value of since_type</p>
+<p>the transactions which were booked on or after this date will be returned in the response</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sinceType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>This parameter defines how the parameter since will be interpreted.</p>
+<p>the value of the parameter since will be compared to the booking date of the transaction.</p>
+<p>the value of the parameter since will be compared to the creation time of the transaction on the figo Connect server</p>
+<p>the value of the parameter since will be compared to the last modification time of the transaction on the figo Connect server. The response parameter transactions will contain not only newly created transactions but also modified transactions. The response parameter deleted will contain a list of removed transactions.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>until</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Return only transactions which were booked on or before this date. Please provide as ISO date</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Filter expression to narrow down the returned transactions</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Limit the number of returned transactions. In combination with the offset parameter this can be used to paginate the result list. (default: 1000)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Offset into the implicit list of transactions used as starting point for the returned transactions. In combination with the count parameter this can be used to paginate the result list.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>includePending</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>This flag indicates whether pending transactions should be included in the response. Pending transactions are always included as a complete set, regardless of the since parameter. Before caching a copy of the pending transactions, all existing pending transactions for the same account must be removed from the local cache. (default: false)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>includeStatistics</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>This flag indicates whether statistics over the filtered transaction list should returned alongside the actual transactions. These statistics are always computed on the complete filtered transaction list, i.e. without count and offset. (default: false)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A list of transactions types which the transactions are filtered by.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo7Address"></a>
+                    <a name="//apple_ref/swift/Struct/Address" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo7Address">Address</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/Address.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo13StandingOrder"></a>
+                    <a name="//apple_ref/swift/Struct/StandingOrder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo13StandingOrder">StandingOrder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bank accounts can have standing orders associated with it if supported by the respective bank. In general the information provided for each standing order should be roughly similar to the content of the printed or online standing order statement available from the respective bank. Please note that not all banks provide the same level of detail.</p>
+
+<p>EXECUTION DAY AND INTERVAL</p>
+
+<p>When working with standing orders you have to take some characteristics into account. If a last_execution_date is set, the standing order has a limited term and will not run indefinitely.</p>
+
+<p>If you want to identify the next execution date you have to use the interval and execution_day parameters to calculate the next execution date. Interval defines the regular cycle the standing order gets executed. Possible values are: weekly, monthly, two monthly, quarterly, half yearly or yearly.</p>
+
+<p>On top of it the execution_day states the day of execution within the interval. This value depends on the interval chosen. </p>
+
+<ul>
+<li>If the interval is set to weekly, possible values for execution_day are: 00 (daily), 01 (monday), 02 (tuesday) … 07 (sunday).</li>
+<li>If the interval is set to one of the other possible values, execution_day could be: 01 - 30 (1st day of the month to 30th day of the month), 97 (closing of the month - 2), 98(closing of the month - 1) or 99 (closing of the month)</li>
+</ul>
+
+<p>REQUEST STANDING ORDERS</p>
+
+<p>Standing orders aren’t requested by default when a new bank account is setup. Make sure to add the value “standingOrder” to the sync_tasks list</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">StandingOrder</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo16SupportedService"></a>
+                    <a name="//apple_ref/swift/Struct/SupportedService" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo16SupportedService">SupportedService</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/SupportedService.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo10VoidLogger"></a>
+                    <a name="//apple_ref/swift/Struct/VoidLogger" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo10VoidLogger">VoidLogger</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/VoidLogger.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo13ConsoleLogger"></a>
+                    <a name="//apple_ref/swift/Struct/ConsoleLogger" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo13ConsoleLogger">ConsoleLogger</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Simple implementation of a console logger</p>
+
+<p>Does not log verbosely per default.</p>
+
+                        <a href="Structs/ConsoleLogger.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ConsoleLogger</span><span class="p">:</span> <span class="kt"><a href="Protocols/Logger.html">Logger</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo23CreateAccountParameters"></a>
+                    <a name="//apple_ref/swift/Struct/CreateAccountParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo23CreateAccountParameters">CreateAccountParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Contains the parameters for setting up a new bank account</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    At least one of either <code>bankCode</code> or <code>iban</code> has to be set
+
+</div>
+
+                        <a href="Structs/CreateAccountParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CreateAccountParameters</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo13SupportedBank"></a>
+                    <a name="//apple_ref/swift/Struct/SupportedBank" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo13SupportedBank">SupportedBank</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/SupportedBank.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo7Payment"></a>
+                    <a name="//apple_ref/swift/Struct/Payment" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo7Payment">Payment</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Amounts in cents: NO (server problem)
+
+</div>
+
+                        <a href="Structs/Payment.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Payment</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo9Challenge"></a>
+                    <a name="//apple_ref/swift/Struct/Challenge" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo9Challenge">Challenge</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/Challenge.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo28RetrieveSecuritiesParameters"></a>
+                    <a name="//apple_ref/swift/Struct/RetrieveSecuritiesParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo28RetrieveSecuritiesParameters">RetrieveSecuritiesParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parameters for RETRIEVE SECURITIES endpoints</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>The default number for the limit parameter is 1000</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter accounts: <strong>optional</strong> If retrieving the securities for all accounts, filter the securities to be only from these accounts</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter since: <strong>optional</strong> ISO date filtering the returned securities by their creation or last modification date (depending on sync_type) being the same or a later date</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter sinceType: <strong>optional</strong> This parameter defines how the parameter since will be interpreted.</p>
+
+<p><em>traded</em></p>
+
+<p>The value of the parameter since will be compared to the time of the latest trade of the security</p>
+
+<p><em>created</em></p>
+
+<p>The value of the parameter since will be compared to the creation time of the security on the figo Connect server (default)</p>
+
+<p><em>modified</em></p>
+
+<p>The value of the parameter since will be compared to the last modification time of the security on the figo Connect server.</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter count: <strong>optional</strong> Limit the number of returned transactions. In combination with the offset parameter this can be used to paginate the result list. (default: 1000)</p>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter offset: <strong>optional</strong> Offset into the implicit list of transactions used as starting point for the returned transactions. In combination with the count parameter this can be used to paginate the result list.</p>
+
+</div>
+
+                        <a href="Structs/RetrieveSecuritiesParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RetrieveSecuritiesParameters</span><span class="p">:</span> <span class="kt">JSONObjectConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accounts</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If retrieving the securities for all accounts, filter the securities to be only from these accounts</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>since</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ISO date filtering the returned securities by their creation or last modification date (depending on sync_type) being the same or a later date</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sinceType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>This parameter defines how the parameter since will be interpreted.</p>
+<p>The value of the parameter since will be compared to the time of the latest trade of the security</p>
+<p>The value of the parameter since will be compared to the creation time of the security on the figo Connect server (default)</p>
+<p>The value of the parameter since will be compared to the last modification time of the security on the figo Connect server.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Limit the number of returned transactions. In combination with the offset parameter this can be used to paginate the result list. (default: 1000)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Offset into the implicit list of transactions used as starting point for the returned transactions. In combination with the count parameter this can be used to paginate the result list.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo9TANScheme"></a>
+                    <a name="//apple_ref/swift/Struct/TANScheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo9TANScheme">TANScheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/TANScheme.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo7Account"></a>
+                    <a name="//apple_ref/swift/Struct/Account" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo7Account">Account</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bank accounts are the central domain object of this API and the main anchor point for many of the other resources. This API does not only consider classical bank accounts as account, but also alternative banking services, e.g. credit cards or Paypal. The API does not distinguish between these two in most points.</p>
+
+                        <a href="Structs/Account.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Account</span><span class="p">:</span> <span class="kt">Unboxable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo13LoginSettings"></a>
+                    <a name="//apple_ref/swift/Struct/LoginSettings" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo13LoginSettings">LoginSettings</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/LoginSettings.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo24CreateSyncTaskParameters"></a>
+                    <a name="//apple_ref/swift/Struct/CreateSyncTaskParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo24CreateSyncTaskParameters">CreateSyncTaskParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parameters for the CREATE NEW SYNCHRONIZATION TASK endpoint</p>
+
+                        <a href="Structs/CreateSyncTaskParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CreateSyncTaskParameters</span><span class="p">:</span> <span class="kt">JSONObjectConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo8FigoDate"></a>
+                    <a name="//apple_ref/swift/Struct/FigoDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo8FigoDate">FigoDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Provides a Foundation.Date representation for the server&rsquo;s timestamps</p>
+
+                        <a href="Structs/FigoDate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FigoDate</span><span class="p">:</span> <span class="kt">UnboxableByTransform</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo23CreatePaymentParameters"></a>
+                    <a name="//apple_ref/swift/Struct/CreatePaymentParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo23CreatePaymentParameters">CreatePaymentParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parameters for creating a payment</p>
+
+<p><li><p>Parameters:</p></p>
+
+<p><ul>
+<li>accountID: <strong>required</strong> Internal figo connect ID of the account</li>
+<li>type: <strong>required</strong> Payment type (valid values: Transfer, Direct debit, SEPA transfer, SEPA direct debit, SEPA standing order, Modify SEPA standing order)</li>
+<li>name: <strong>required</strong> Name of creditor or debtor</li>
+<li>amount: <strong>required</strong> Order amount</li>
+<li>purpose: <strong>required</strong> Purpose text</li>
+<li>accountNumber: <strong>optional</strong> Account number of creditor or debtor</li>
+<li>bankCode: <strong>optional</strong> Bank code of creditor or debtor</li>
+<li>iban: <strong>optional</strong> IBAN of creditor or debtor. Will overwrite bank_code and account_number if both are set</li>
+<li>currency: <strong>optional</strong> Three-character currency code (default: EUR)</li>
+<li>textKey: <strong>optional</strong> DTA text key (default: 51)</li>
+<li>textKeyExtension: <strong>optional</strong> DTA text key extension</li>
+<li>notificationRecipient: <strong>optional</strong> Recipient of the payment notification, should be an email address</li>
+</ul></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Either bankCode &amp; accountNumber or iban has to be set</p></p>
+
+<p></div></p>
+
+                        <a href="Structs/CreatePaymentParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CreatePaymentParameters</span><span class="p">:</span> <span class="kt">JSONObjectConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Internal figo connect ID of the account</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment type (valid values: Transfer, Direct debit, SEPA transfer, SEPA direct debit, SEPA standing order, Modify SEPA standing order)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of creditor or debtor</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Order amount</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>purpose</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Purpose text</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Account number of creditor or debtor</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bankCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bank code of creditor or debtor</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>iban</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>IBAN of creditor or debtor. Will overwrite bank_code and account_number if both are set</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>currency</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Three-character currency code (default: EUR)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>DTA text key (default: 51)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textKeyExtension</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>DTA text key extension</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>notificationRecipient</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Recipient of the payment notification, should be an email address</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo9FigoError"></a>
+                    <a name="//apple_ref/swift/Struct/FigoError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo9FigoError">FigoError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If an error occurs, the API returns an error object with a couple of fields providing further details.</p>
+
+                        <a href="Structs/FigoError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FigoError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Unboxable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo4User"></a>
+                    <a name="//apple_ref/swift/Struct/User" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo4User">User</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/User.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo10SyncStatus"></a>
+                    <a name="//apple_ref/swift/Struct/SyncStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo10SyncStatus">SyncStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/SyncStatus.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo7Balance"></a>
+                    <a name="//apple_ref/swift/Struct/Balance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo7Balance">Balance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/Balance.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo15PaymentProposal"></a>
+                    <a name="//apple_ref/swift/Struct/PaymentProposal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo15PaymentProposal">PaymentProposal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Structs/PaymentProposal.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4Figo20CreateUserParameters"></a>
+                    <a name="//apple_ref/swift/Struct/CreateUserParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4Figo20CreateUserParameters">CreateUserParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parameters for the endpoint CREATE NEW FIGO USER</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter name: <strong>required</strong> First and last name
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter email: <strong>required</strong> Email address; It must obey the figo username &amp; password policy
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter password: <strong>required</strong> New figo Account password; It must obey the figo username &amp; password policy
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter sendNewsletter: <strong>optional</strong> This flag indicates whether the user has agreed to be contacted by email (optional)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter language: <strong>optional</strong> Two-letter code of preferred language (default: de)
+
+</div>
+
+                        <a href="Structs/CreateUserParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CreateUserParameters</span><span class="p">:</span> <span class="kt">JSONObjectConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>First and last name</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Email address; It must obey the figo username &amp; password policy</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>New figo Account password; It must obey the figo username &amp; password policy</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sendNewsletter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>This flag indicates whether the user has agreed to be contacted by email (optional)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>language</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Two-letter code of preferred language (default: de)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

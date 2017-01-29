@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FigoClient Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/FigoClient" class="dashAnchor"></a>
+    <a title="FigoClient Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (68% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        FigoClient Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/FigoClient.html">FigoClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FigoResult.html">FigoResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PaymentType.html">PaymentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SecuritySinceType.html">SecuritySinceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StandingOrderInterval.html">StandingOrderInterval</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransactionSinceType.html">TransactionSinceType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Logger.html">Logger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Balance.html">Balance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Challenge.html">Challenge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ConsoleLogger.html">ConsoleLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ConsoleLogger/LogLevel.html">– LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateAccountParameters.html">CreateAccountParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreatePaymentParameters.html">CreatePaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateSyncTaskParameters.html">CreateSyncTaskParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CreateUserParameters.html">CreateUserParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FigoDate.html">FigoDate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FigoError.html">FigoError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginCredentials.html">LoginCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginSettings.html">LoginSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Payment.html">Payment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PaymentParameters.html">PaymentParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PaymentProposal.html">PaymentProposal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Security.html">Security</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SecurityListEnvelope.html">SecurityListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:V4Figo13StandingOrder">StandingOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedBank.html">SupportedBank</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SupportedService.html">SupportedService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SyncStatus.html">SyncStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TANScheme.html">TANScheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionListEnvelope.html">TransactionListEnvelope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoidLogger.html">VoidLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:P4Figo20UnboxableByTransform13UnboxRawValue">UnboxRawValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:P4Figo19UnboxableCollection10UnboxValue">UnboxValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4Figo19UnboxableDictionary">UnboxableDictionary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>FigoClient</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FigoClient</span></code></pre>
+
+                </div>
+              </div>
+            <p>Represents a figo session, which after successful a login can be used to access all the figo Connect API&rsquo;s endpoints</p>
+
+<p>Applications that would like to access the figo Connect API have to register with us beforehand. If you would like to use figo Connect API in your application, please email us. We would love to hear from you what you have in mind and will generate a client identifier and client secret for your application without any bureaucracy.</p>
+
+<p>The first login has to be with credentials, after that you can login using the refresh token which you got from the credential login.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    A session will timeout 60 minutes after login.
+
+</div>
+
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    Completion handlers are NOT executed on the main thread
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClientcFT8clientIDSS12clientSecretSS_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(clientID:clientSecret:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClientcFT8clientIDSS12clientSecretSS_S0_">init(clientID:clientSecret:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a FigoClient instance</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter clientID: Client ID
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter clientSecret: Client secret</p>
+
+</div>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">clientID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">clientSecret</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client ID</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientSecret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client secret</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClientcFT8clientIDSS12clientSecretSS7sessionGSqCSo10URLSession_6loggerGSqPS_6Logger___S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(clientID:clientSecret:session:logger:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClientcFT8clientIDSS12clientSecretSS7sessionGSqCSo10URLSession_6loggerGSqPS_6Logger___S0_">init(clientID:clientSecret:session:logger:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a FigoClient instance</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter clientID: Client ID
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter clientSecret: Client secret
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter session: NSURLSession instance (Uses own instance by default)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter logger: Logger instance (Logging disabled by default)</p>
+
+</div>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>SSL pinning is implemented in the NSURLSessionDelegate. So if you provide your own NSURLSession, make sure to use FigoClient.dispositionForChallenge(:) in your own NSURLSessionDelegate to enable SSL pinning.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">clientID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">clientSecret</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">URLSession</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">logger</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Logger.html">Logger</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client ID</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clientSecret</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client secret</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>NSURLSession instance (Uses own instance by default)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>logger</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Logger instance (Logging disabled by default)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC4Figo10FigoClient23dispositionForChallengeFCSo26URLAuthenticationChallengeOCSo10URLSession24AuthChallengeDisposition"></a>
+                    <a name="//apple_ref/swift/Method/dispositionForChallenge(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC4Figo10FigoClient23dispositionForChallengeFCSo26URLAuthenticationChallengeOCSo10URLSession24AuthChallengeDisposition">dispositionForChallenge(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check&rsquo;s the server&rsquo;s certificates to make sure that you are really talking to the figo server</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">dispositionForChallenge</span><span class="p">(</span><span class="n">_</span> <span class="nv">challenge</span><span class="p">:</span> <span class="kt">URLAuthenticationChallenge</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URLSession</span><span class="o">.</span><span class="kt">AuthChallengeDisposition</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient11synchronizeFT10parametersVS_24CreateSyncTaskParameters15progressHandlerGSqFSST__10pinHandlerFTSSSS_T3pinSS7savePinSb_17completionHandlerFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/synchronize(parameters:progressHandler:pinHandler:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient11synchronizeFT10parametersVS_24CreateSyncTaskParameters15progressHandlerGSqFSST__10pinHandlerFTSSSS_T3pinSS7savePinSb_17completionHandlerFGOS_10FigoResultT__T__T_">synchronize(parameters:progressHandler:pinHandler:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CREATE NEW SYNCHRONIZATION TASK</p>
+
+<p>In order for figo to have up-to-date transaction and account information, it needs to query the bank servers, which is called synchronization. With this call you can create a new task, synchronizing all (or the specified) accounts with the state returned by the bank.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter parameters: (optional) CreateSyncTaskParameters
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter progressHandler: (optional) Is called periodically with a message from the server
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter pinHandler: Is called when the server needs a PIN
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Is called on completion returning nothing or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">synchronize</span><span class="p">(</span><span class="nv">parameters</span><span class="p">:</span> <span class="kt"><a href="../Structs/CreateSyncTaskParameters.html">CreateSyncTaskParameters</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/CreateSyncTaskParameters.html">CreateSyncTaskParameters</a></span><span class="p">(),</span> <span class="nv">progressHandler</span><span class="p">:</span> <span class="kt">ProgressUpdate</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">pinHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">PinResponder</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>(optional) CreateSyncTaskParameters</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progressHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>(optional) Is called periodically with a message from the server</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pinHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Is called when the server needs a PIN</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Is called on completion returning nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient21retrieveLoginSettingsFT11countryCodeSS8bankCodeSSFGOS_10FigoResultVS_13LoginSettings_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveLoginSettings(countryCode:bankCode:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient21retrieveLoginSettingsFT11countryCodeSS8bankCodeSSFGOS_10FigoResultVS_13LoginSettings_T__T_">retrieveLoginSettings(countryCode:bankCode:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE LOGIN SETTINGS FOR A BANK OR SERVICE</p>
+
+<p>Does not require login.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter countryCode: The country the service comes from (see API reference for valid values)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter bankCode: Bank code
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns login settings or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveLoginSettings</span><span class="p">(</span><span class="nv">countryCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">bankCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/LoginSettings.html">LoginSettings</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>countryCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The country the service comes from (see API reference for valid values)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bankCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bank code</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns login settings or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient22retrieveSupportedBanksFT11countryCodeGSqSS_FGOS_10FigoResultGSaVS_13SupportedBank__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveSupportedBanks(countryCode:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient22retrieveSupportedBanksFT11countryCodeGSqSS_FGOS_10FigoResultGSaVS_13SupportedBank__T__T_">retrieveSupportedBanks(countryCode:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE LIST OF SUPPORTED BANKS, CREDIT CARDS, OTHER PAYMENT SERVICES</p>
+
+<p>Does not require login. Very large response!</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter countryCode: The country the service comes from (see API reference for valid values)
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveSupportedBanks</span><span class="p">(</span><span class="nv">countryCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/SupportedBank.html">SupportedBank</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>countryCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The country the service comes from (see API reference for valid values)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient25retrieveSupportedServicesFT11countryCodeGSqSS_FGOS_10FigoResultGSaVS_16SupportedService__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveSupportedServices(countryCode:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient25retrieveSupportedServicesFT11countryCodeGSqSS_FGOS_10FigoResultGSaVS_16SupportedService__T__T_">retrieveSupportedServices(countryCode:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE LIST OF SUPPORTED CREDIT CARDS AND OTHER PAYMENT SERVICES</p>
+
+<p>Does not require login.</p>
+
+<p>These services do not use bank codes and are therefore listed seperatly. In order to provide a uniform interface for the remaining process, part of the response is a fake bank code, used as a surrogate for these services in our other calls.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter countryCode: The country the service comes from (see API reference for valid values)
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveSupportedServices</span><span class="p">(</span><span class="nv">countryCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/SupportedService.html">SupportedService</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>countryCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The country the service comes from (see API reference for valid values)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient20retrieveTransactionsFTVS_30RetrieveTransactionsParametersFGOS_10FigoResultVS_23TransactionListEnvelope_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveTransactions(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient20retrieveTransactionsFTVS_30RetrieveTransactionsParametersFGOS_10FigoResultVS_23TransactionListEnvelope_T__T_">retrieveTransactions(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE TRANSACTIONS OF ALL ACCOUNTS</p>
+
+<p>Using this endpoint only returns transactions on accounts that the user has chosen to share with your application.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter parameters: (optional) <code><a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a></code>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns <code><a href="../Structs/TransactionListEnvelope.html">TransactionListEnvelope</a></code> or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveTransactions</span><span class="p">(</span><span class="n">_</span> <span class="nv">parameters</span><span class="p">:</span> <span class="kt"><a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a></span><span class="p">(),</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/TransactionListEnvelope.html">TransactionListEnvelope</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>(optional) <code>RetrieveTransactionsParameters</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns <code>TransactionListEnvelope</code> or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient30retrieveTransactionsForAccountFTSS10parametersVS_30RetrieveTransactionsParametersFGOS_10FigoResultVS_23TransactionListEnvelope_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveTransactionsForAccount(_:parameters:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient30retrieveTransactionsForAccountFTSS10parametersVS_30RetrieveTransactionsParametersFGOS_10FigoResultVS_23TransactionListEnvelope_T__T_">retrieveTransactionsForAccount(_:parameters:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE TRANSACTIONS OF ONE ACCOUNT</p>
+
+<p>Using this endpoint only returns transactions on accounts that the user has chosen to share with your application.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter accountID: The ID of the account for which to retrieve the transactions
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter parameters: (optional) <code><a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a></code>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns <code><a href="../Structs/TransactionListEnvelope.html">TransactionListEnvelope</a></code> or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveTransactionsForAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">parameters</span><span class="p">:</span> <span class="kt"><a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/RetrieveTransactionsParameters.html">RetrieveTransactionsParameters</a></span><span class="p">(),</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/TransactionListEnvelope.html">TransactionListEnvelope</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ID of the account for which to retrieve the transactions</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>(optional) <code>RetrieveTransactionsParameters</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns <code>TransactionListEnvelope</code> or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient19retrieveTransactionFTSSFGOS_10FigoResultVS_11Transaction_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveTransaction(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient19retrieveTransactionFTSSFGOS_10FigoResultVS_11Transaction_T__T_">retrieveTransaction(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE A TRANSACTION</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter transactionID: ID of the transaction to retrieve
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns transactions or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveTransaction</span><span class="p">(</span><span class="n">_</span> <span class="nv">transactionID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Transaction.html">Transaction</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transactionID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ID of the transaction to retrieve</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns transactions or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient16retrieveAccountsFFGOS_10FigoResultGSaVS_7Account__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveAccounts(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient16retrieveAccountsFFGOS_10FigoResultGSaVS_7Account__T_T_">retrieveAccounts(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE ALL BANK ACCOUNTS</p>
+
+<p>This only returns the bank accounts the user has chosen to share with your application</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns accounts or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveAccounts</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/Account.html">Account</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns accounts or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient15retrieveAccountFTSSFGOS_10FigoResultVS_7Account_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveAccount(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient15retrieveAccountFTSSFGOS_10FigoResultVS_7Account_T__T_">retrieveAccount(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE A BANK ACCOUNT</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter accountID: Internal figo Connect account ID
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns account or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Account.html">Account</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Internal figo Connect account ID</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns account or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient30removeStoredPinFromBankContactFTSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/removeStoredPinFromBankContact(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient30removeStoredPinFromBankContactFTSSFGOS_10FigoResultT__T__T_">removeStoredPinFromBankContact(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>REMOVE STORED PIN FROM BANK CONTACT</p>
+
+<p>Removes the stored PIN of a bank contact from the figo Connect server</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter bankID Internal ID of the bank
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns nothing or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeStoredPinFromBankContact</span><span class="p">(</span><span class="n">_</span> <span class="nv">bankID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bankID Internal ID of the bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient19setupNewBankAccountFTVS_23CreateAccountParameters15progressHandlerGSqFSST__FGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/setupNewBankAccount(_:progressHandler:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient19setupNewBankAccountFTVS_23CreateAccountParameters15progressHandlerGSqFSST__FGOS_10FigoResultT__T__T_">setupNewBankAccount(_:progressHandler:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>SETUP NEW BANK ACCOUNT</p>
+
+<p>The figo Connect server will transparently create or modify a bank contact to add additional bank accounts.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter parameters: CreateAccountParameters
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter progressHandler: (optional) Is called periodically with a message from the server
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns nothing or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setupNewBankAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">parameters</span><span class="p">:</span> <span class="kt"><a href="../Structs/CreateAccountParameters.html">CreateAccountParameters</a></span><span class="p">,</span> <span class="nv">progressHandler</span><span class="p">:</span> <span class="kt">ProgressUpdate</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CreateAccountParameters</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progressHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>(optional) Is called periodically with a message from the server</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient13deleteAccountFTSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteAccount(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient13deleteAccountFTSSFGOS_10FigoResultT__T__T_">deleteAccount(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DELETE BANK ACCOUNT</p>
+
+<p>Once the last remaining account of a bank contact has been removed, the bank contact will be automatically removed as well</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient17createNewFigoUserFTVS_20CreateUserParametersFGOS_10FigoResultSS_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/createNewFigoUser(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient17createNewFigoUserFTVS_20CreateUserParametersFGOS_10FigoResultSS_T__T_">createNewFigoUser(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CREATE NEW FIGO USER</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createNewFigoUser</span><span class="p">(</span><span class="n">_</span> <span class="nv">user</span><span class="p">:</span> <span class="kt"><a href="../Structs/CreateUserParameters.html">CreateUserParameters</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient19retrieveCurrentUserFFGOS_10FigoResultVS_4User_T_T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveCurrentUser(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient19retrieveCurrentUserFFGOS_10FigoResultVS_4User_T_T_">retrieveCurrentUser(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE CURRENT USER</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveCurrentUser</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/User.html">User</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient17deleteCurrentUserFFGOS_10FigoResultT__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteCurrentUser(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient17deleteCurrentUserFFGOS_10FigoResultT__T_T_">deleteCurrentUser(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DELETE CURRENT USER</p>
+
+<p>Users with an active premium subscription cannot be deleted. The subscription needs to be canceled first.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteCurrentUser</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient24retrievePaymentProposalsFFGOS_10FigoResultGSaVS_15PaymentProposal__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/retrievePaymentProposals(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient24retrievePaymentProposalsFFGOS_10FigoResultGSaVS_15PaymentProposal__T_T_">retrievePaymentProposals(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE PAYMENT PROPOSALS</p>
+
+<p>Provides a address book-like list of proposed wire transfer partners</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns payment proposals or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrievePaymentProposals</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/PaymentProposal.html">PaymentProposal</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns payment proposals or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient16retrievePaymentsFFGOS_10FigoResultGSaVS_7Payment__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/retrievePayments(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient16retrievePaymentsFFGOS_10FigoResultGSaVS_7Payment__T_T_">retrievePayments(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE PAYMENTS OF ALL ACCOUNTS</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns payments or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrievePayments</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/Payment.html">Payment</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns payments or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient26retrievePaymentsForAccountFTSSFGOS_10FigoResultGSaVS_7Payment__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrievePaymentsForAccount(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient26retrievePaymentsForAccountFTSSFGOS_10FigoResultGSaVS_7Payment__T__T_">retrievePaymentsForAccount(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE PAYMENTS OF ONE ACCOUNT</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns payments or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrievePaymentsForAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/Payment.html">Payment</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns payments or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient15retrievePaymentFTSS9accountIDSSFGOS_10FigoResultVS_7Payment_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrievePayment(_:accountID:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient15retrievePaymentFTSS9accountIDSSFGOS_10FigoResultVS_7Payment_T__T_">retrievePayment(_:accountID:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE A PAYMENT</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter paymentID: Internal figo connect ID of the payment
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter accountID: Internal figo connect ID of the account
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns payments or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrievePayment</span><span class="p">(</span><span class="n">_</span> <span class="nv">paymentID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Payment.html">Payment</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>paymentID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Internal figo connect ID of the payment</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Internal figo connect ID of the account</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns payments or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient13createPaymentFTVS_23CreatePaymentParametersFGOS_10FigoResultVS_7Payment_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/createPayment(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient13createPaymentFTVS_23CreatePaymentParametersFGOS_10FigoResultVS_7Payment_T__T_">createPayment(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CREATE A SINGLE PAYMENT</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter parameters: <code><a href="../Structs/CreatePaymentParameters.html">CreatePaymentParameters</a></code>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns payment or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createPayment</span><span class="p">(</span><span class="n">_</span> <span class="nv">parameters</span><span class="p">:</span> <span class="kt"><a href="../Structs/CreatePaymentParameters.html">CreatePaymentParameters</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Payment.html">Payment</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>CreatePaymentParameters</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns payment or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient13modifyPaymentFTVS_7PaymentFGOS_10FigoResultS1__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/modifyPayment(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient13modifyPaymentFTVS_7PaymentFGOS_10FigoResultS1__T__T_">modifyPayment(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MODIFY A PAYMENT</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter payment: <code><a href="../Structs/Payment.html">Payment</a></code>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns nothing or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">modifyPayment</span><span class="p">(</span><span class="n">_</span> <span class="nv">payment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Payment.html">Payment</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Payment.html">Payment</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>payment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>Payment</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient13submitPaymentFTVS_7Payment11tanSchemeIDSS10pinHandlerFTSSSS_T3pinSS7savePinSb_16challengeHandlerFTSSSSVS_9Challenge_SSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/submitPayment(_:tanSchemeID:pinHandler:challengeHandler:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient13submitPaymentFTVS_7Payment11tanSchemeIDSS10pinHandlerFTSSSS_T3pinSS7savePinSb_16challengeHandlerFTSSSSVS_9Challenge_SSFGOS_10FigoResultT__T__T_">submitPayment(_:tanSchemeID:pinHandler:challengeHandler:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>SUBMIT PAYMENT</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter payment: <code><a href="../Structs/Payment.html">Payment</a></code>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter tanSchemeID: TAN scheme ID of user-selected TAN scheme
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter pinHandler: Is called when the server needs a PIN
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter challengeHandler: Is called when the server needs a response to a challenge
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns nothing or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">submitPayment</span><span class="p">(</span><span class="n">_</span> <span class="nv">payment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Payment.html">Payment</a></span><span class="p">,</span> <span class="nv">tanSchemeID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">pinHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">PinResponder</span><span class="p">,</span> <span class="nv">challengeHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ChallengeResponder</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>payment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>Payment</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tanSchemeID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>TAN scheme ID of user-selected TAN scheme</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pinHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Is called when the server needs a PIN</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>challengeHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Is called when the server needs a response to a challenge</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient22retrieveStandingOrdersFFGOS_10FigoResultGSaVS_13StandingOrder__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveStandingOrders(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient22retrieveStandingOrdersFFGOS_10FigoResultGSaVS_13StandingOrder__T_T_">retrieveStandingOrders(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE STANDING ORDERS OF ALL ACCOUNTS</p>
+
+<p>Using this endpoint only returns standing orders on accounts that the user has chosen to share with your application.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns standing orders or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveStandingOrders</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs.html#/s:V4Figo13StandingOrder">StandingOrder</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns standing orders or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient32retrieveStandingOrdersForAccountFTSSFGOS_10FigoResultGSaVS_13StandingOrder__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveStandingOrdersForAccount(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient32retrieveStandingOrdersForAccountFTSSFGOS_10FigoResultGSaVS_13StandingOrder__T__T_">retrieveStandingOrdersForAccount(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE STANDING ORDERS OF ONE ACCOUNT</p>
+
+<p>Using this endpoint only returns standing orders on accounts that the user has chosen to share with your application.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter accountID: The ID of the account for which to retrieve the standing orders
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns standing orders or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveStandingOrdersForAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs.html#/s:V4Figo13StandingOrder">StandingOrder</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ID of the account for which to retrieve the standing orders</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns standing orders or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient21retrieveStandingOrderFTSSFGOS_10FigoResultVS_13StandingOrder_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveStandingOrder(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient21retrieveStandingOrderFTSSFGOS_10FigoResultVS_13StandingOrder_T__T_">retrieveStandingOrder(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE A STANDING ORDER</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter standingOrderID: ID of the transaction to retrieve
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns transactions or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveStandingOrder</span><span class="p">(</span><span class="n">_</span> <span class="nv">standingOrderID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:V4Figo13StandingOrder">StandingOrder</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>standingOrderID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ID of the transaction to retrieve</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns transactions or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient18retrieveSecuritiesFTVS_28RetrieveSecuritiesParametersFGOS_10FigoResultVS_20SecurityListEnvelope_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveSecurities(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient18retrieveSecuritiesFTVS_28RetrieveSecuritiesParametersFGOS_10FigoResultVS_20SecurityListEnvelope_T__T_">retrieveSecurities(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE SECURITIES OF ALL ACCOUNTS</p>
+
+<p>Using this endpoint only returns securities on accounts that the user has chosen to share with your application.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter parameters: (optional) <code><a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a></code>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns <code><a href="../Structs/SecurityListEnvelope.html">SecurityListEnvelope</a></code> or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveSecurities</span><span class="p">(</span><span class="n">_</span> <span class="nv">parameters</span><span class="p">:</span> <span class="kt"><a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a></span><span class="p">(),</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/SecurityListEnvelope.html">SecurityListEnvelope</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>(optional) <code>RetrieveSecuritiesParameters</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns <code>SecurityListEnvelope</code> or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient28retrieveSecuritiesForAccountFTSS10parametersVS_28RetrieveSecuritiesParametersFGOS_10FigoResultVS_20SecurityListEnvelope_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveSecuritiesForAccount(_:parameters:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient28retrieveSecuritiesForAccountFTSS10parametersVS_28RetrieveSecuritiesParametersFGOS_10FigoResultVS_20SecurityListEnvelope_T__T_">retrieveSecuritiesForAccount(_:parameters:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE SECURITIES OF ONE ACCOUNT</p>
+
+<p>Using this endpoint only returns securities on accounts that the user has chosen to share with your application.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter accountID: The ID of the account for which to retrieve the securities
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter parameters: (optional) <code><a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a></code>
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns <code><a href="../Structs/SecurityListEnvelope.html">SecurityListEnvelope</a></code> or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveSecuritiesForAccount</span><span class="p">(</span><span class="n">_</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">parameters</span><span class="p">:</span> <span class="kt"><a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/RetrieveSecuritiesParameters.html">RetrieveSecuritiesParameters</a></span><span class="p">(),</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/SecurityListEnvelope.html">SecurityListEnvelope</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ID of the account for which to retrieve the securities</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>(optional) <code>RetrieveSecuritiesParameters</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns <code>SecurityListEnvelope</code> or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient16retrieveSecurityFTSS9accountIDSSFGOS_10FigoResultVS_8Security_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/retrieveSecurity(_:accountID:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient16retrieveSecurityFTSS9accountIDSSFGOS_10FigoResultVS_8Security_T__T_">retrieveSecurity(_:accountID:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>RETRIEVE A SECURITY</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter securityID: ID of the securitiy to retrieve
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter accountID: ID of the account the security belongs to
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns security or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveSecurity</span><span class="p">(</span><span class="n">_</span> <span class="nv">securityID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">accountID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Security.html">Security</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>securityID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ID of the securitiy to retrieve</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accountID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ID of the account the security belongs to</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns security or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient17loginWithUsernameFTSS8passwordSSFGOS_10FigoResultSS_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/loginWithUsername(_:password:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient17loginWithUsernameFTSS8passwordSSFGOS_10FigoResultSS_T__T_">loginWithUsername(_:password:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CREDENTIAL LOGIN</p>
+
+<p>Requests authorization with credentials. Authorization can be obtained as long
+as the user has not revoked the access granted to your application.</p>
+
+<p>The returned refresh token can be stored by the client for future logins, but only
+in a securely encryped store like the keychain or a SQLCipher database.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter username: The figo account email address
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter password: The figo account password
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns refresh token or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loginWithUsername</span><span class="p">(</span><span class="n">_</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/FigoResult.html">FigoResult</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The figo account email address</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The figo account password</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns refresh token or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient21loginWithRefreshTokenFTSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/loginWithRefreshToken(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient21loginWithRefreshTokenFTSSFGOS_10FigoResultT__T__T_">loginWithRefreshToken(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>EXCHANGE REFRESH TOKEN</p>
+
+<p>Requests new access token with refresh token. New access tokens can be obtained as long
+as the user has not revoked the access granted to your application.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter refreshToken: The refresh token returned from a previous CREDENTIAL LOGIN
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loginWithRefreshToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">refreshToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>refreshToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The refresh token returned from a previous CREDENTIAL LOGIN</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient17revokeAccessTokenFFGOS_10FigoResultT__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/revokeAccessToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient17revokeAccessTokenFFGOS_10FigoResultT__T_T_">revokeAccessToken(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>REVOKE TOKEN</p>
+
+<p>Invalidates the session&rsquo;s access token for simulating an expired access token.</p>
+
+<p>After revoking the access token, with the next API call a new one is fetched automatically if the refresh token is still valid.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns nothing or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">revokeAccessToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4Figo10FigoClient18revokeRefreshTokenFTSSFGOS_10FigoResultT__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/revokeRefreshToken(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4Figo10FigoClient18revokeRefreshTokenFTSSFGOS_10FigoResultT__T__T_">revokeRefreshToken(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>REVOKE TOKEN</p>
+
+<p>Invalidates access token and refresh token, after that CREDENTIAL LOGIN is required.</p>
+
+<p>You might call this <strong>LOGOUT</strong>.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter refreshToken: The client&rsquo;s refresh token, defaults to the session&rsquo;s refresh token
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completionHandler: Returns nothing or error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">revokeRefreshToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">refreshToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">VoidCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>refreshToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The client’s refresh token, defaults to the session’s refresh token</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Returns nothing or error</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
