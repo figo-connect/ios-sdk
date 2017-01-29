@@ -33,7 +33,9 @@ Website: [http://figo.io](http://figo.io)
 
 To add figo as a git submodule run the following command:
 
-`git submodule add https://github.com/figome/ios-sdk.git`
+```bash
+$ git submodule add https://github.com/figo-connect/ios-sdk.git
+```
 
 Integrate the framework into your project:
 
@@ -41,9 +43,52 @@ Integrate the framework into your project:
 * Select the Figo.xcodeproj in the Project Navigator and verify the deployment target matches that of your application target.
 * Add the Figo.framework to your target(s) in the "Embedded Binaries" sections
 
-### Cocoapods / Carthage
+### CocoaPods
 
-We don't support Cocoapods because it doesn't support the bridging header at this time. As for Carthage, we just haven't come around to it yet.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+> CocoaPods 1.1.0+ is required to build figo 2.0+
+
+To integrate figo into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'Figo', '~> 2.0'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate figo into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "figo-connect/ios-sdk" ~> 2.0
+```
+
+Run `carthage update` to build the framework and drag the built `Figo.framework` into your Xcode project.
 
 ## Usage
 

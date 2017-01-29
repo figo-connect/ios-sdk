@@ -23,8 +23,8 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
-  # s.source       = { :git => "git@github.com:figo-connect/ios-sdk.git", :tag => "#{s.version}" }
-  s.source       = { :git => "https://github.com/figo-connect/ios-sdk.git", :branch => "feature/no_common_crypto" }
+  s.source        = { :git => "https://github.com/figo-connect/ios-sdk.git", :tag => "#{s.version}" }
   s.source_files  = "Source/**/*.swift"
+  s.resource      = "api.figo.me.cer"
 
 end
