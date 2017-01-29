@@ -49,11 +49,13 @@ public extension FigoClient {
     /**
      RETRIEVE LIST OF SUPPORTED CREDIT CARDS AND OTHER PAYMENT SERVICES
      
+     Does not require login.
+     
      These services do not use bank codes and are therefore listed seperatly. In order to provide a uniform interface for the remaining process, part of the response is a fake bank code, used as a surrogate for these services in our other calls.
      
      - Parameter countryCode: The country the service comes from (see API reference for valid values)
      */
-    public func retrieveSupportedServices(countryCode: String = "de", _ completionHandler: @escaping (FigoResult<[SupportedService]>) -> Void) {
+    public func retrieveSupportedServices(countryCode: String? = nil, _ completionHandler: @escaping (FigoResult<[SupportedService]>) -> Void) {
         request(Endpoint.retrieveSupportedServices(countryCode: countryCode)) { response in
             let envelopeUnboxingResult: FigoResult<ServicesListEnvelope> = decodeUnboxableResponse(response)
             

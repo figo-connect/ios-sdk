@@ -38,7 +38,7 @@ internal enum Endpoint {
     
     case retrieveLoginSettings(countryCode: String, bankCode: String)
     case retrieveSupportedBanks(countryCode: String?)
-    case retrieveSupportedServices(countryCode: String)
+    case retrieveSupportedServices(countryCode: String?)
 
     case pollTaskState(PollTaskStateParameters)
     case synchronize([String: AnyObject])
@@ -106,7 +106,11 @@ internal enum Endpoint {
                 return "/catalog/banks"
             }
         case .retrieveSupportedServices(let countryCode):
-            return "/rest/catalog/services/\(countryCode)"
+            if let countryCode = countryCode {
+                return "/catalog/services/\(countryCode)"
+            } else {
+                return "/catalog/services"
+            }
         case .synchronize:
             return "/rest/sync"
         case .retrieveTransactions:
@@ -214,7 +218,7 @@ internal enum Endpoint {
     
     internal var needsBasicAuthHeader: Bool {
         switch self {
-        case .loginUser, .refreshToken, .revokeToken, .createNewFigoUser, .retrieveSupportedBanks:
+        case .loginUser, .refreshToken, .revokeToken, .createNewFigoUser, .retrieveSupportedBanks, .retrieveSupportedServices:
             return true
         default:
             return false

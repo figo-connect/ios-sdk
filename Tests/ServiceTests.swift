@@ -39,6 +39,8 @@ class ServiceTests: BaseTestCaseWithLogin {
         }
     }
     
+    // MARK: - Supported banks
+    
     func testThatRetrieveSupportedBanksWorksWithoutLogin() {
         self.waitForCompletionOfTests { (done) in
             figo.retrieveSupportedBanks(countryCode: "de") { result in
@@ -81,8 +83,8 @@ class ServiceTests: BaseTestCaseWithLogin {
     }
     
     func testThatRetrieveSupportedBanksWithUnsupportedCountryCodeYieldsEmptyArray() {
-        self.waitForCompletionOfTests { (done) in
-            figo.retrieveSupportedBanks(countryCode: "us") { result in
+        self.waitForCompletionOfTests { done in
+            figo.retrieveSupportedBanks(countryCode: "it") { result in
                 XCTAssertNil(result.error)
                 if case .success(let banks) = result {
                     XCTAssertNotNil(banks)
@@ -93,19 +95,60 @@ class ServiceTests: BaseTestCaseWithLogin {
         }
     }
     
-    func testRetrieveSupportedServices() {
-        let expectation = self.expectation(description: "Wait for all asyc calls to return")
-        login() {
-            figo.retrieveSupportedServices() { result in
+    // MARK: - Supported services
+    
+    func testThatRetrieveSupportedServicesWorksWithoutLogin() {
+        self.waitForCompletionOfTests { (done) in
+            figo.retrieveSupportedServices(countryCode: "de") { result in
                 XCTAssertNil(result.error)
                 if case .success(let services) = result {
-                    let service = services.first!
-                    debugPrint(service)
+                    XCTAssertNotNil(services.first)
+                    print("Received \(services.count) services")
                 }
-                expectation.fulfill()
+                done()
             }
         }
-        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func testThatRetrieveSupportedServicesWorksWithLogin() {
+        self.waitForCompletionOfTests { (done) in
+            self.login {
+                figo.retrieveSupportedServices(countryCode: "de") { result in
+                    XCTAssertNil(result.error)
+                    if case .success(let services) = result {
+                        XCTAssertNotNil(services.first)
+                        print("Received \(services.count) services")
+                    }
+                    done()
+                }
+            }
+        }
+    }
+    
+    func testThatRetrieveSupportedServicesWorksWithoutCountryCode() {
+        self.waitForCompletionOfTests { (done) in
+            figo.retrieveSupportedServices(countryCode: nil) { result in
+                XCTAssertNil(result.error)
+                if case .success(let services) = result {
+                    XCTAssertNotNil(services.first)
+                    print("Received \(services.count) services")
+                }
+                done()
+            }
+        }
+    }
+    
+    func testThatRetrieveSupportedServicesWithUnsupportedCountryCodeYieldsEmptyArray() {
+        self.waitForCompletionOfTests { done in
+            figo.retrieveSupportedServices(countryCode: "it") { result in
+                XCTAssertNil(result.error)
+                if case .success(let services) = result {
+                    XCTAssertNotNil(services)
+                    print("Received \(services.count) services")
+                }
+                done()
+            }
+        }
     }
     
 }
