@@ -33,12 +33,12 @@ internal let CERTIFICATE_FILES = ["figo_2016"]
  */
 public class FigoClient: NSObject {
     
-    private lazy var session: URLSession = {
+    fileprivate lazy var session: URLSession = {
         return URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
     }()
     
     /// Used for Basic HTTP authentication, derived from CliendID and ClientSecret
-    private var basicAuthCredentials: String?
+    fileprivate var basicAuthCredentials: String?
 
     /// OAuth2 access token
     var accessToken: String?
@@ -48,7 +48,7 @@ public class FigoClient: NSObject {
     
     /// Public keys extracted from certificate files in bundle
     lazy var publicKeys: [SecKey] = {
-        return publicKeysForResources(resources: CERTIFICATE_FILES)
+        return publicKeysForResources(CERTIFICATE_FILES)
     }()
     
     
@@ -156,7 +156,7 @@ public class FigoClient: NSObject {
             }
             
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-                let serverKeys = publicKeysForServerTrust(serverTrust: serverTrust) as NSArray
+                let serverKeys = publicKeysForServerTrust(serverTrust) as NSArray
                 for clientKey in self.publicKeys {
                     if serverKeys.contains(clientKey) {
                         return .performDefaultHandling
@@ -181,7 +181,7 @@ extension FigoClient: URLSessionDelegate {
     }
 }
 
-private func publicKeyForCertificateData(data: Data) -> SecKey? {
+private func publicKeyForCertificateData(_ data: Data) -> SecKey? {
     if let certificate = SecCertificateCreateWithData(nil, data as CFData) {
         var trust: SecTrust?
         let status = SecTrustCreateWithCertificates(certificate, SecPolicyCreateBasicX509(), &trust)
@@ -195,7 +195,7 @@ private func publicKeyForCertificateData(data: Data) -> SecKey? {
     return nil
 }
 
-private func publicKeysForServerTrust(serverTrust: SecTrust) -> [SecKey] {
+private func publicKeysForServerTrust(_ serverTrust: SecTrust) -> [SecKey] {
     var keys: [SecKey] = []
     
     for index in 0 ..< SecTrustGetCertificateCount(serverTrust) {
@@ -228,14 +228,14 @@ private func trustIsValid(_ trust: SecTrust) -> Bool {
     return isValid
 }
 
-private func publicKeysForResources(resources: [String]) -> [SecKey] {
+private func publicKeysForResources(_ resources: [String]) -> [SecKey] {
     var publicKeys: [SecKey] = []
     
     for resource in resources {
         let url = Bundle(for: FigoClient.self).url(forResource: resource, withExtension: "cer")!
         let data = try? Data(contentsOf: url)
         assert(data != nil, "Failed to load contents of certificate file '\(resource).cer'")
-        let key = publicKeyForCertificateData(data: data!)
+        let key = publicKeyForCertificateData(data!)
         assert(key != nil, "Failed to extract public key from certificate file '\(resource).cer'")
         if let key = key {
             publicKeys.append(key)

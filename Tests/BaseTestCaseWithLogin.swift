@@ -68,7 +68,7 @@ class BaseTestCaseWithLogin: XCTestCase {
     }
     
     /// Allows you to get rid of the boilerplate code for async callbacks in test cases
-    func waitForCompletionOfTests(tests: (_ doneWaiting: @escaping () -> ()) -> ()) {
+    func waitForCompletionOfTests(_ tests: (_ doneWaiting: @escaping () -> ()) -> ()) {
         let completionExpectation = self.expectation(description: "Completion should be called")
         tests {
             completionExpectation.fulfill()

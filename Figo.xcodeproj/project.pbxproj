@@ -584,11 +584,12 @@
 					};
 					833C01391E2AAB4200AA5E7C = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					83F3AF211BFF28D900767D77 = {
 						CreatedOnToolsVersion = 7.1.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1068,6 +1069,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS;
 				PRODUCT_NAME = Figo;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1083,6 +1085,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS;
 				PRODUCT_NAME = Figo;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
