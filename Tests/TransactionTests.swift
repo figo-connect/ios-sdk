@@ -41,7 +41,7 @@ class TransactionsTests: BaseTestCaseWithLogin {
                 if case .success(let envelope) = result {
                     print("Retrieved \(envelope.transactions.count) transactions")
                     for t in envelope.transactions {
-                        print("\(t.name) \(t.amountFormatted)")
+                        print("\(t.name ?? "null")) \(t.amountFormatted)")
                     }
                     
                     figo.retrieveTransaction(envelope.transactions.last!.transactionID) { result in

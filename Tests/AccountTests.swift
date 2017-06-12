@@ -21,7 +21,7 @@ class AccountTests: BaseTestCaseWithLogin {
                     XCTAssertGreaterThan(accounts.count, 0)
                     print("\(accounts.count) accounts:")
                     for account in accounts {
-                        print("\(account.accountID) \(account.bankID) \(account.bankCode) \(account.name) \(account.balanceFormatted ?? "")")
+                        print("\(account.accountID) \(account.bankID ?? "null") \(account.bankCode) \(account.name) \(account.balanceFormatted ?? "")")
                     }
                     break
                 case .failure(let error):

@@ -31,7 +31,7 @@ extension URLRequest {
             command.append(" -H \"\(key): \(value)\"")
         }
         command.append(" --compressed")
-        command.append(" \"\(self.url?.absoluteString)\"")
+        command.append(" \"\(self.url!.absoluteString)\"")
         command.append(" | python -mjson.tool")
         return command
     }
