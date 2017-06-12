@@ -77,6 +77,6 @@ class BaseTestCaseWithLogin: XCTestCase {
     }
     
     func testThatCertificateIsPresent() {
-        XCTAssertNotNil(figo.publicKey)
+        XCTAssertNotNil(figo.publicKeys)
     }
 }
