@@ -16,7 +16,7 @@ internal let POLLING_INTERVAL_MSECS: Int64 = Int64(400) * Int64(NSEC_PER_MSEC)
 internal let POLLING_COUNTDOWN_INITIAL_VALUE = 100 // 100 x 400 ms = 40 s
 
 /// Name of certificate file for public key pinning
-internal let CERTIFICATE_FILES = ["figo_2016, figo_2017"]
+internal let CERTIFICATE_FILES = ["figo_2016", "figo_2017"]
 
 
 /**
