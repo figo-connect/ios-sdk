@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B6025731EF169E2005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
+		7B6025741EF169E2005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
+		7B6025751EF169E7005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
+		7B6025761EF169E8005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
 		830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
 		830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
 		830E63E31C05AB890048F7BF /* PaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63E21C05AB890048F7BF /* PaymentParameters.swift */; };
@@ -179,6 +183,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B6025721EF169E2005EF5B0 /* figo_2017.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = figo_2017.cer; sourceTree = "<group>"; };
 		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
 		830E63D81C05A4050048F7BF /* TANScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TANScheme.swift; path = Types/TANScheme.swift; sourceTree = "<group>"; };
 		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
@@ -455,6 +460,7 @@
 			children = (
 				83D3A7201C03471D003EDE45 /* README.md */,
 				831183B71E3E2F66000DA80C /* figo_2016.cer */,
+				7B6025721EF169E2005EF5B0 /* figo_2017.cer */,
 				83D3A67F1BFF2953003EDE45 /* Source */,
 				83D3A7081BFFB6A7003EDE45 /* Tests */,
 				83F3AF231BFF28D900767D77 /* Products */,
@@ -620,6 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				831183BA1E3E2F66000DA80C /* figo_2016.cer in Resources */,
+				7B6025741EF169E2005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +648,7 @@
 				833C01A31E2AADB400AA5E7C /* Security.json in Resources */,
 				833C01A41E2AADB400AA5E7C /* StandingOrder.json in Resources */,
 				833C01A51E2AADB400AA5E7C /* Payment.json in Resources */,
+				7B6025761EF169E8005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +670,7 @@
 				833C015B1E2AAC0600AA5E7C /* Security.json in Resources */,
 				833C015C1E2AAC0600AA5E7C /* StandingOrder.json in Resources */,
 				833C015D1E2AAC0600AA5E7C /* Payment.json in Resources */,
+				7B6025751EF169E7005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +679,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				831183B81E3E2F66000DA80C /* figo_2016.cer in Resources */,
+				7B6025731EF169E2005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
