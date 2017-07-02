@@ -53,5 +53,5 @@ internal func decodeUnboxableResponse<T: Unboxable>(_ data: FigoResult<Data>, co
 internal func base64EncodeBasicAuthCredentials(_ clientID: String, _ clientSecret: String) -> String {
     let clientCode: String = clientID + ":" + clientSecret
     let utf8str: Data = clientCode.data(using: String.Encoding.utf8)!
-    return utf8str.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithCarriageReturn)
+    return utf8str.base64EncodedString(options: Data.Base64EncodingOptions.endLineWithCarriageReturn)
 }

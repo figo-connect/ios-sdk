@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B6025731EF169E2005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
+		7B6025741EF169E2005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
+		7B6025751EF169E7005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
+		7B6025761EF169E8005EF5B0 /* figo_2017.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7B6025721EF169E2005EF5B0 /* figo_2017.cer */; };
 		830E63D91C05A4050048F7BF /* TANScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63D81C05A4050048F7BF /* TANScheme.swift */; };
 		830E63DE1C05A7070048F7BF /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63DD1C05A7070048F7BF /* SyncStatus.swift */; };
 		830E63E31C05AB890048F7BF /* PaymentParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E63E21C05AB890048F7BF /* PaymentParameters.swift */; };
@@ -16,10 +20,10 @@
 		831183761E3DF13D000DA80C /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8311836F1E3DF136000DA80C /* Logging.swift */; };
 		831183771E3DF141000DA80C /* URLRequest+curlCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831183701E3DF136000DA80C /* URLRequest+curlCommand.swift */; };
 		831183781E3DF141000DA80C /* URLRequest+curlCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831183701E3DF136000DA80C /* URLRequest+curlCommand.swift */; };
-		831183B81E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
-		831183B91E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
-		831183BA1E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
-		831183BB1E3E2F66000DA80C /* api.figo.me.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* api.figo.me.cer */; };
+		831183B81E3E2F66000DA80C /* figo_2016.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* figo_2016.cer */; };
+		831183B91E3E2F66000DA80C /* figo_2016.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* figo_2016.cer */; };
+		831183BA1E3E2F66000DA80C /* figo_2016.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* figo_2016.cer */; };
+		831183BB1E3E2F66000DA80C /* figo_2016.cer in Resources */ = {isa = PBXBuildFile; fileRef = 831183B71E3E2F66000DA80C /* figo_2016.cer */; };
 		832CABAE1E242F8700D48895 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CABAD1E242F8700D48895 /* Unbox.swift */; };
 		833C01001E2AA72A00AA5E7C /* Figo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C00EF1E2AA6A100AA5E7C /* Figo.framework */; };
 		833C01061E2AA7F400AA5E7C /* FigoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0E46B1C08A91400FB3709 /* FigoClient.swift */; };
@@ -179,6 +183,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B6025721EF169E2005EF5B0 /* figo_2017.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = figo_2017.cer; sourceTree = "<group>"; };
 		83017B771C0A2FE80062FC08 /* TaskState.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TaskState.json; path = Resources/TaskState.json; sourceTree = "<group>"; };
 		830E63D81C05A4050048F7BF /* TANScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TANScheme.swift; path = Types/TANScheme.swift; sourceTree = "<group>"; };
 		830E63DB1C05A4960048F7BF /* TanScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TanScheme.json; path = Resources/TanScheme.json; sourceTree = "<group>"; };
@@ -188,7 +193,7 @@
 		831183651E3DEAE1000DA80C /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
 		8311836F1E3DF136000DA80C /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		831183701E3DF136000DA80C /* URLRequest+curlCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+curlCommand.swift"; sourceTree = "<group>"; };
-		831183B71E3E2F66000DA80C /* api.figo.me.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = api.figo.me.cer; sourceTree = "<group>"; };
+		831183B71E3E2F66000DA80C /* figo_2016.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = figo_2016.cer; sourceTree = "<group>"; };
 		832CABAD1E242F8700D48895 /* Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
 		833285EE1C04D45900A9FE73 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = Resources/Balance.json; sourceTree = "<group>"; };
 		833285F01C04D48E00A9FE73 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
@@ -454,7 +459,8 @@
 			isa = PBXGroup;
 			children = (
 				83D3A7201C03471D003EDE45 /* README.md */,
-				831183B71E3E2F66000DA80C /* api.figo.me.cer */,
+				831183B71E3E2F66000DA80C /* figo_2016.cer */,
+				7B6025721EF169E2005EF5B0 /* figo_2017.cer */,
 				83D3A67F1BFF2953003EDE45 /* Source */,
 				83D3A7081BFFB6A7003EDE45 /* Tests */,
 				83F3AF231BFF28D900767D77 /* Products */,
@@ -571,7 +577,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CodeStage;
 				TargetAttributes = {
 					833C00EE1E2AA6A100AA5E7C = {
@@ -584,11 +590,12 @@
 					};
 					833C01391E2AAB4200AA5E7C = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					83F3AF211BFF28D900767D77 = {
 						CreatedOnToolsVersion = 7.1.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -618,7 +625,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831183BA1E3E2F66000DA80C /* api.figo.me.cer in Resources */,
+				831183BA1E3E2F66000DA80C /* figo_2016.cer in Resources */,
+				7B6025741EF169E2005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,7 +634,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831183BB1E3E2F66000DA80C /* api.figo.me.cer in Resources */,
+				831183BB1E3E2F66000DA80C /* figo_2016.cer in Resources */,
 				833C01991E2AADB400AA5E7C /* Account.json in Resources */,
 				833C019A1E2AADB400AA5E7C /* User.json in Resources */,
 				833C019B1E2AADB400AA5E7C /* Balance.json in Resources */,
@@ -640,6 +648,7 @@
 				833C01A31E2AADB400AA5E7C /* Security.json in Resources */,
 				833C01A41E2AADB400AA5E7C /* StandingOrder.json in Resources */,
 				833C01A51E2AADB400AA5E7C /* Payment.json in Resources */,
+				7B6025761EF169E8005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +656,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831183B91E3E2F66000DA80C /* api.figo.me.cer in Resources */,
+				831183B91E3E2F66000DA80C /* figo_2016.cer in Resources */,
 				833C01511E2AAC0600AA5E7C /* Account.json in Resources */,
 				833C01521E2AAC0600AA5E7C /* User.json in Resources */,
 				833C01531E2AAC0600AA5E7C /* Balance.json in Resources */,
@@ -661,6 +670,7 @@
 				833C015B1E2AAC0600AA5E7C /* Security.json in Resources */,
 				833C015C1E2AAC0600AA5E7C /* StandingOrder.json in Resources */,
 				833C015D1E2AAC0600AA5E7C /* Payment.json in Resources */,
+				7B6025751EF169E7005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +678,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831183B81E3E2F66000DA80C /* api.figo.me.cer in Resources */,
+				831183B81E3E2F66000DA80C /* figo_2016.cer in Resources */,
+				7B6025731EF169E2005EF5B0 /* figo_2017.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -982,6 +993,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1032,6 +1044,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1066,6 +1079,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS;
 				PRODUCT_NAME = Figo;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1081,6 +1095,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.figo.iOS;
 				PRODUCT_NAME = Figo;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
