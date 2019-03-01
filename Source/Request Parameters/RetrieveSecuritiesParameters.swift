@@ -56,6 +56,13 @@ public enum SecuritySinceType: String, UnboxableEnum {
  */
 public struct RetrieveSecuritiesParameters: JSONObjectConvertible {
     
+    public init(accounts: [String]? = nil, since: String? = nil, sinceType: TransactionSinceType? = nil, count: Int? = nil) {
+        self.accounts = accounts
+        self.since = since
+        self.sinceType = sinceType
+        self.count = count
+    }
+    
     /// **optional** If retrieving the securities for all accounts, filter the transactions to be only from these accounts
     public var accounts: [String]?
     

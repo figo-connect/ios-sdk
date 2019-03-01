@@ -58,7 +58,7 @@ public extension FigoClient {
             case .success(let authorization):
                 self.accessToken = authorization.accessToken
                 self.refreshToken = authorization.refreshToken
-                completionHandler(.success())
+                completionHandler(.success(()))
                 break
             case .failure(let error):
                 completionHandler(.failure(error))

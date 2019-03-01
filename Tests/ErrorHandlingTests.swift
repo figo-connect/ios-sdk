@@ -99,8 +99,8 @@ class ErrorHandlingTests: BaseTestCaseWithLogin {
                     }
                     if case .failure(let error) = result {
                         XCTAssertGreaterThan(error.code, 0)
-                        XCTAssertGreaterThan(error.description.characters.count, 0)
-                        XCTAssertGreaterThan(error.message?.characters.count ?? 0, 0)
+                        XCTAssertGreaterThan(error.description.count, 0)
+                        XCTAssertGreaterThan(error.message?.count ?? 0, 0)
                     }
                     
                     expectation.fulfill()

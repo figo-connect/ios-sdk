@@ -58,7 +58,7 @@ public extension FigoClient {
                 }
                     
                 else if state.isEnded {
-                    completionHandler(.success())
+                    completionHandler(.success(()))
                 }
                     
                 else if state.isWaitingForPIN {

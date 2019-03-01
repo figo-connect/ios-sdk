@@ -14,7 +14,7 @@ internal func decodeVoidResponse(_ response: FigoResult<Data>) -> FigoResult<Voi
     case .failure(let error):
         return .failure(error)
     case .success:
-        return .success()
+        return .success(())
     }
 }
 
