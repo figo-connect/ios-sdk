@@ -1011,7 +1011,7 @@ private extension Sequence {
             return try self.map(transform)
         }
         
-        return self.flatMap {
+        return self.compactMap {
             return try? transform($0)
         }
     }
